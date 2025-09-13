@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import {
   NavigationMenu,
@@ -8,11 +8,13 @@ import {
 } from "../../../../components/ui/navigation-menu";
 
 export const TopBarSubsection = (): JSX.Element => {
+  const location = useLocation();
+
   const navigationItems = [
     { label: "LA FONDATION", to: "/" },
     { label: "GALA 2025", to: "/gala" },
     { label: "CERCLE DES ALLIANCES", to: "/cercle" },
-    { label: "ACTUALITÉS", to: "/" },
+    { label: "ACTUALITÉS", to: "/actualites" },
     { label: "NOTRE ÉQUIPE", to: "/equipe" },
     { label: "LA PRÉSIDENTE", to: "/fondatrice" },
   ];
@@ -21,7 +23,7 @@ export const TopBarSubsection = (): JSX.Element => {
     {
       defaultImage: "/nav_icons/nav_contact_icon.svg",
       hoverImage: "/nav_icons/nav_contact_icon_2.svg",
-      to: "/#contact", // Hash vers section Contact
+      to: "/#contact",
       hash: true,
     },
     {
@@ -46,67 +48,66 @@ export const TopBarSubsection = (): JSX.Element => {
 
         <NavigationMenu className="items-center justify-end flex relative self-stretch">
           <NavigationMenuList className="flex items-center justify-end gap-8">
-            {navigationItems.map((item, index) => (
-              <NavigationMenuItem
-                key={index}
-                className="hover:-translate-y-1 transition-all duration-300 ease-in-out"
-              >
-                <NavigationMenuLink asChild>
-                  <Link
-                    to={item.to}
-                    className="w-fit mt-[-1.00px] [font-family:'Libertinus_Sans',Helvetica] font-normal text-black text-base whitespace-nowrap relative cursor-pointer hover:-translate-y-1 hover:font-medium transition-all duration-300 ease-in-out"
-                  >
-                    {item.label}
-                  </Link>
-                </NavigationMenuLink>
-              </NavigationMenuItem>
-            ))}
+            {navigationItems.map((item, index) => {
+              const isActive = location.pathname === item.to;
+              return (
+                <NavigationMenuItem
+                  key={index}
+                  className="hover:-translate-y-1 transition-all duration-300 ease-in-out"
+                >
+                  <NavigationMenuLink asChild>
+                    <Link
+                      to={item.to}
+                      className={`w-fit [font-family:'Libertinus_Sans',Helvetica] text-base whitespace-nowrap relative cursor-pointer transition-all duration-300 ease-in-out
+                        ${isActive ? "font-bold " : "font-normal"} 
+                        hover:-translate-y-1 hover:font-medium`}
+                    >
+                      {item.label}
+                    </Link>
+                  </NavigationMenuLink>
+                </NavigationMenuItem>
+              );
+            })}
           </NavigationMenuList>
         </NavigationMenu>
       </nav>
 
       {/* Icônes sociales */}
       <div className="inline-flex flex-col items-start justify-center gap-5 px-[13px] py-[30px] fixed top-40 right-10 z-50 bg-[#ffffff80] rounded-[100px] backdrop-blur-[7.5px]">
-        {socialIcons.map((icon, index) => {
-          if (icon.hash) {
-            // Cas Contact → HashLink
-            return (
-              <HashLink
-                key={index}
-                smooth
-                to={icon.to}
-                className="relative w-[52px] h-[55px] cursor-pointer group transform transition-transform duration-300 ease-out hover:scale-105"
-              >
-                <div
-                  className="absolute inset-0 bg-[length:100%_100%] bg-no-repeat transition-opacity duration-300 group-hover:opacity-0"
-                  style={{ backgroundImage: `url(${icon.defaultImage})` }}
-                />
-                <div
-                  className="absolute inset-0 bg-[length:100%_100%] bg-no-repeat opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  style={{ backgroundImage: `url(${icon.hoverImage})` }}
-                />
-              </HashLink>
-            );
-          } else {
-            // Cas Don → Link classique
-            return (
-              <Link
-                key={index}
-                to={icon.to}
-                className="relative w-[52px] h-[55px] cursor-pointer group transform transition-transform duration-300 ease-out hover:scale-105"
-              >
-                <div
-                  className="absolute inset-0 bg-[length:100%_100%] bg-no-repeat transition-opacity duration-300 group-hover:opacity-0"
-                  style={{ backgroundImage: `url(${icon.defaultImage})` }}
-                />
-                <div
-                  className="absolute inset-0 bg-[length:100%_100%] bg-no-repeat opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  style={{ backgroundImage: `url(${icon.hoverImage})` }}
-                />
-              </Link>
-            );
-          }
-        })}
+        {socialIcons.map((icon, index) =>
+          icon.hash ? (
+            <HashLink
+              key={index}
+              smooth
+              to={icon.to}
+              className="relative w-[52px] h-[55px] cursor-pointer group transform transition-transform duration-300 ease-out hover:scale-105"
+            >
+              <div
+                className="absolute inset-0 bg-[length:100%_100%] bg-no-repeat transition-opacity duration-300 group-hover:opacity-0"
+                style={{ backgroundImage: `url(${icon.defaultImage})` }}
+              />
+              <div
+                className="absolute inset-0 bg-[length:100%_100%] bg-no-repeat opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                style={{ backgroundImage: `url(${icon.hoverImage})` }}
+              />
+            </HashLink>
+          ) : (
+            <Link
+              key={index}
+              to={icon.to}
+              className="relative w-[52px] h-[55px] cursor-pointer group transform transition-transform duration-300 ease-out hover:scale-105"
+            >
+              <div
+                className="absolute inset-0 bg-[length:100%_100%] bg-no-repeat transition-opacity duration-300 group-hover:opacity-0"
+                style={{ backgroundImage: `url(${icon.defaultImage})` }}
+              />
+              <div
+                className="absolute inset-0 bg-[length:100%_100%] bg-no-repeat opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                style={{ backgroundImage: `url(${icon.hoverImage})` }}
+              />
+            </Link>
+          )
+        )}
       </div>
     </header>
   );

@@ -1,6 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ScrollToTop } from "./components/ScrollToTop";
 import { PageHome } from "./screens/PageHome/PageHome";
 import { PageDon } from "./screens/PageDon/PageDon";
 import { PageEquipe } from "./screens/PageEquipe/PageEquipe";
@@ -12,6 +13,7 @@ import { PageGala } from "./screens/PageGala/PageGala";
 createRoot(document.getElementById("app") as HTMLElement).render(
   <StrictMode>
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<PageHome />} />
         <Route path="/don" element={<PageDon />} />

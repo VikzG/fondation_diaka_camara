@@ -141,7 +141,7 @@ export const DonationSection = (): JSX.Element => {
 
         <div className="flex flex-col items-start gap-[70px] w-full">
           {/* 👉 important: items-stretch pour uniformiser les hauteurs */}
-          <div className="flex items-stretch gap-[30px] w-full">
+          <div className="flex items-stretch gap-[30px] w-full max-w-[1600px] mx-auto">
             {donationAmounts.map((donation, index) => (
               <Card
                 key={index}
@@ -164,7 +164,7 @@ export const DonationSection = (): JSX.Element => {
       <div className="flex min-h-[780px] w-full">
         {/* Colonne Formulaire */}
         <div className="w-1/2 flex items-center justify-center bg-antiflash p-[100px] px-32">
-          <div className="bg-white/50 backdrop-blur-md rounded-3xl p-12 w-full shadow-2xl lg:min-w-[450px]">
+          <div className="bg-white/50 backdrop-blur-md rounded-3xl p-12 w-full shadow-2xl lg:min-w-[450px] max-w-[700px]">
             <h3 className="text-5xl font-[beautique-display] text-gray-800 mb-10 text-center">
               Faîtes un don
             </h3>
@@ -247,7 +247,7 @@ export const DonationSection = (): JSX.Element => {
               </h3>
             </div>
 
-            <div className="flex items-start gap-10 px-24 py-20 w-full">
+            <div className="flex items-start gap-10 px-24 py-20 w-full max-w-[1600px] mx-auto">
               {engagementItems.map((item, index) => (
                 <div
                   key={index}
@@ -274,7 +274,7 @@ export const DonationSection = (): JSX.Element => {
             </span>
           </p>
 
-          <Button className="group relative flex items-center gap-5 px-5 py-2.5 w-full bg-antiflash rounded-[10px] shadow-[0px_1px_2px_#00000040] backdrop-blur-[7.5px] backdrop-brightness-[100%] [-webkit-backdrop-filter:blur(7.5px)_brightness(100%)] h-auto border-0 overflow-hidden hover:-translate-y-1 transition ease-in-out duration-300">
+          <Button className="group max-w-[1500px] mx-auto relative flex items-center gap-5 px-5 py-2.5 w-full bg-antiflash rounded-[10px] shadow-[0px_1px_2px_#00000040] backdrop-blur-[7.5px] backdrop-brightness-[100%] [-webkit-backdrop-filter:blur(7.5px)_brightness(100%)] h-auto border-0 overflow-hidden hover:-translate-y-1 transition ease-in-out duration-300">
             {/* Container image avec transition */}
             <div className="relative w-14 h-14">
               {/* Image par défaut */}

@@ -31,46 +31,59 @@ export const IntroductionSection = (): JSX.Element => {
 
   return (
     <section className="w-full bg-vanilla">
-      <div className="flex items-center max-w-[1600px] mx-auto px-10 py-20 gap-10 relative self-stretch w-full flex-[0_0_auto]">
-<div className="flex-1 flex items-center justify-center">
-  <div className="w-[720px] aspect-square rounded-full overflow-hidden">
-    <img
-      className="w-full h-full object-cover"
-      alt="image cercle"
-      src="/cercle_section/cercle_hands.png"
-    />
+<div className="flex items-center max-w-[1600px] mx-auto px-10 py-20 gap-10 w-full">
+  {/* Côté image */}
+  <div className="w-1/2 flex items-center justify-center">
+    <div className="relative w-[500px] aspect-square rounded-full overflow-hidden">
+      {/* Image cercle */}
+      <img
+        className="w-full h-full object-cover"
+        alt="image cercle"
+        src="/cercle_section/cercle_hands.png"
+      />
+
+      {/* Logo agrandi au centre */}
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="w-40 h-40 bg-transparent rounded-full flex items-center justify-center shadow-lg">
+          <img
+            className="w-full h-full object-contain"
+            alt="logo"
+            src="cercle_section/cercle_logo.svg"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {/* Côté texte */}
+  <div className="w-1/2 flex flex-col items-center justify-center gap-12 px-12">
+    <h2 className="w-full font-[beautique-display] text-licorice text-4xl text-center">
+      Un réseau d&apos;exception,
+      <br />
+      Une solidarité partagée
+    </h2>
+
+    <div className="w-full font-corps text-licorice text-[length:var(--corps-font-size)] text-justify tracking-[var(--corps-letter-spacing)] leading-[var(--corps-line-height)] [font-style:var(--corps-font-style)]">
+      <p className="mb-[var(--corps-line-height)]">
+        {textContent.map((segment, index) => (
+          <span
+            key={index}
+            className={`leading-[var(--corps-line-height)] font-corps [font-style:var(--corps-font-style)] tracking-[var(--corps-letter-spacing)] text-[length:var(--corps-font-size)] ${
+              segment.isHighlighted ? "font-bold" : ""
+            }`}
+          >
+            {segment.text}
+          </span>
+        ))}
+      </p>
+
+      <p className="leading-[var(--corps-line-height)] font-corps [font-style:var(--corps-font-style)] font-[number:var(--corps-font-weight)] tracking-[var(--corps-letter-spacing)] text-[length:var(--corps-font-size)]">
+        {secondParagraph}
+      </p>
+    </div>
   </div>
 </div>
 
-        <div className="flex flex-col items-center justify-center gap-[50px] p-[100px] flex-1">
-          <h2 className="w-full font-[beautique-display] text-licorice text-4xl text-center">
-            Un réseau d&apos;exception,
-            <br />
-            Une solidarité partagée
-          </h2>
-
-          <div className="w-full font-corps font-[number:var(--corps-font-weight)] text-licorice text-[length:var(--corps-font-size)] text-justify tracking-[var(--corps-letter-spacing)] leading-[var(--corps-line-height)] [font-style:var(--corps-font-style)]">
-            <p className="mb-[var(--corps-line-height)]">
-              {textContent.map((segment, index) => (
-                <span
-                  key={index}
-                  className={`leading-[var(--corps-line-height)] font-corps [font-style:var(--corps-font-style)] tracking-[var(--corps-letter-spacing)] text-[length:var(--corps-font-size)] ${
-                    segment.isHighlighted
-                      ? "font-bold"
-                      : ""
-                  }`}
-                >
-                  {segment.text}
-                </span>
-              ))}
-            </p>
-
-            <p className="leading-[var(--corps-line-height)] font-corps [font-style:var(--corps-font-style)] font-[number:var(--corps-font-weight)] tracking-[var(--corps-letter-spacing)] text-[length:var(--corps-font-size)]">
-              {secondParagraph}
-            </p>
-          </div>
-        </div>
-      </div>
       <div className="flex items-start px-10 py-20 relative self-stretch w-full flex-[0_0_auto] bg-[linear-gradient(270deg,rgba(240,100,25,1)_0%,rgba(195,15,40,1)_100%)]">
         <div className="flex items-start gap-10 relative flex-1 self-stretch grow">
           <div className="flex flex-col items-center justify-center gap-5 relative flex-1 grow">

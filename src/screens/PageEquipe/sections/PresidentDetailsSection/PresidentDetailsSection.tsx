@@ -45,7 +45,7 @@ export const PresidentDetailsSection = (): JSX.Element => {
   ];
 
   return (
-    <section className="w-full gap-20 p-28 bg-blanc flex flex-col items-center justify-center">
+    <section className="w-full gap-20 p-28 bg-blanc flex flex-col items-center justify-center max-w-[1600px] mx-auto">
       <Card className="flex flex-col items-center justify-center gap-[30px] px-[200px] py-0 w-full border-none shadow-none bg-transparent">
         <CardContent className="flex flex-col items-center justify-center gap-[50px] w-full p-0">
           <div

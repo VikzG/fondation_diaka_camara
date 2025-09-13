@@ -6,7 +6,7 @@ export const PresidentSection = (): JSX.Element => {
       <div className="flex items-center justify-center w-full">
         <div className="flex-1 h-full bg-[url(/page_equipe_section/presidente.png)] bg-cover bg-center bg-no-repeat min-h-[780px] max-w-[750px]" />
 
-        <div className="flex-1 gap-[50px] p-[100px] flex flex-col items-center justify-center">
+        <div className="flex-1 gap-10 p-20 flex flex-col items-center justify-center max-w-[700px] mx-auto">
           <h2 className="w-full font-[beautique-display] text-5xl text-licorice text-center">
             Madame Diaka Camara
           </h2>
