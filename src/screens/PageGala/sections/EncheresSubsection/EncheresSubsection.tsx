@@ -48,7 +48,7 @@ export const EncheresSubsection = (): JSX.Element => {
 const ref = useRef(null);
 const isInView = useInView(ref, {
   once: true,       // l’animation se joue 1 seule fois
-  amount: 0.8       // déclenche quand 60% de la section est visible
+  amount: 0.6       // déclenche quand 60% de la section est visible
 });
 
   // ✅ États animation
