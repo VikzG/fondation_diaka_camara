@@ -58,7 +58,7 @@ export const FoundationSection = (): JSX.Element => {
   ];
 
   return (
-    <section className="flex flex-col w-full items-center justify-center gap-[50px] px-[100px] py-[70px] bg-blanc">
+    <section id="fondation_fondatrice" className="flex flex-col w-full items-center justify-center gap-[50px] px-[100px] py-[70px] bg-blanc">
       <div className="flex flex-col items-center justify-center gap-20 w-full">
         <header className="flex flex-col items-center justify-center gap-10 px-60 py-0 w-full">
           <img

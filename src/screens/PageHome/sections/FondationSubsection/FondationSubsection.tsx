@@ -23,7 +23,7 @@ const pillarsData = [
 
 export const FondationSubsection = (): JSX.Element => {
   return (
-    <section className="flex flex-col w-full items-center justify-center gap-20 pt-[100px] py-20 px-[100px] bg-vanilla">
+    <section id="fondation_home" className="flex flex-col w-full items-center justify-center gap-20 pt-[100px] py-20 px-[100px] bg-vanilla">
       <div className="max-w-[1300px] mx-auto flex flex-col items-center justify-center gap-14 relative self-stretch w-full flex-[0_0_auto]">
         <header className="flex items-center justify-center gap-2.5 relative self-stretch w-full flex-[0_0_auto]">
           <img

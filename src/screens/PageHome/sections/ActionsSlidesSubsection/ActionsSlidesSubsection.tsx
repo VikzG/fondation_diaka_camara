@@ -3,6 +3,7 @@ import { Button } from "../../../../components/ui/button";
 import { Card, CardContent } from "../../../../components/ui/card";
 import { AnimatedCircles } from "../../../../components/AnimatedCircles";
 import { AnimatePresence, motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const slides = [
   {
@@ -106,25 +107,28 @@ export const ActionsSlidesSubsection = (): JSX.Element => {
             <p className="font-corps font-[number:var(--corps-font-weight)] text-licorice text-[length:var(--corps-font-size)] tracking-[var(--corps-letter-spacing)] leading-[var(--corps-line-height)] [font-style:var(--corps-font-style)]">
               {slide.description}
             </p>
-<Card className="group bg-[#ffffffcc] rounded-[10px] cursor-pointer shadow-[0px_1px_2px_#00000040] backdrop-blur-[7.5px] border-0 hover:underline hover:-translate-y-1 transition-all duration-300 ease-in-out">
-  <CardContent className="flex items-center gap-5 px-5 py-2.5">
-    {/* Image normale */}
-    <img
-      className="w-[52px] h-[55px] transition-all duration-300 group-hover:opacity-0 "
-      alt="don icon"
-      src="/nav_icons/nav_don_icon.svg"
-    />
-    {/* Image au hover */}
-    <img
-      className="w-[52px] h-[55px] absolute transition-all duration-300 opacity-0 group-hover:opacity-100"
-      alt="don icon hover"
-      src="/nav_icons/nav_don_icon_2.svg"
-    />
-    <div className="flex-1 [font-family:'Mona_Sans',Helvetica] font-extrabold text-lg text-colbat text-center">
-      Faire un don à la Fondation
-    </div>
-  </CardContent>
-</Card>
+            {/* 🔗 Lien vers /don */}
+            <Link to="/don" className="w-full">
+              <Card className="group bg-[#ffffffcc] rounded-[10px] cursor-pointer shadow-[0px_1px_2px_#00000040] backdrop-blur-[7.5px] border-0 hover:underline hover:-translate-y-1 transition-all duration-300 ease-in-out">
+                <CardContent className="flex items-center gap-5 px-5 py-2.5">
+                  {/* Image normale */}
+                  <img
+                    className="w-[52px] h-[55px] transition-all duration-300 group-hover:opacity-0"
+                    alt="don icon"
+                    src="/nav_icons/nav_don_icon.svg"
+                  />
+                  {/* Image au hover */}
+                  <img
+                    className="w-[52px] h-[55px] absolute transition-all duration-300 opacity-0 group-hover:opacity-100"
+                    alt="don icon hover"
+                    src="/nav_icons/nav_don_icon_2.svg"
+                  />
+                  <div className="flex-1 [font-family:'Mona_Sans',Helvetica] font-extrabold text-lg text-colbat text-center">
+                    Faire un don à la Fondation
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
           </div>
         </div>
 

@@ -1,4 +1,5 @@
 import { Button } from "../../../../components/ui/button";
+import { HashLink } from "react-router-hash-link";
 
 export const HeroSubsection = (): JSX.Element => {
   return (
@@ -21,33 +22,41 @@ export const HeroSubsection = (): JSX.Element => {
       </div>
 
       <div className="flex items-start gap-5 px-[100px] py-0 w-full">
-        <Button className="group relative flex items-center bg-vanilla justify-between w-full rounded-[500px] shadow-[0px_1px_2px_#00000040] h-auto py-2 overflow-hidden transition-all duration-500 hover:bg-carmin">
-          <span className="flex-1 text-center [font-family:'Mona_Sans',Helvetica] font-extrabold text-xl tracking-[0] leading-[35px] text-carmin group-hover:text-antiflash">
-            Acheter vos places
-          </span>
+        <HashLink smooth to="#billeterie_gala" className="w-full">
+          <Button className="group relative flex items-center bg-vanilla justify-between w-full rounded-[500px] shadow-[0px_1px_2px_#00000040] h-auto py-2 overflow-hidden transition-all duration-500 hover:bg-carmin">
+            <span className="flex-1 text-center [font-family:'Mona_Sans',Helvetica] font-extrabold text-xl tracking-[0] leading-[35px] text-carmin group-hover:text-antiflash">
+              Acheter vos places
+            </span>
 
-          <div className="border-2 border-vanilla group-hover:border-transparent absolute right-[calc(100%-50px)] group-hover:right-[10px] top-1/2 -translate-y-1/2 w-[50px] h-[50px] flex items-center justify-center rounded-full transition-all duration-500 ease-in-out bg-carmin">
-            <img className="w-7 h-7" alt="Icon" src="/gala_arrow_button.svg" />
-          </div>
-        </Button>
-        <Button className="group relative flex items-center bg-antiflash justify-between w-full rounded-[500px] shadow-[0px_1px_2px_#00000040] h-auto py-2 overflow-hidden transition-all duration-500 hover:bg-[#0A4BA5]">
-          <span className="flex-1 text-center [font-family:'Mona_Sans',Helvetica] font-extrabold text-xl tracking-[0] leading-[35px] text-[#0A4BA5] group-hover:text-antiflash">
-            Participer aux enchères
-          </span>
+            <div className="border-2 border-vanilla group-hover:border-transparent absolute right-[calc(100%-50px)] group-hover:right-[10px] top-1/2 -translate-y-1/2 w-[50px] h-[50px] flex items-center justify-center rounded-full transition-all duration-500 ease-in-out bg-carmin">
+              <img className="w-7 h-7" alt="Icon" src="/gala_arrow_button.svg" />
+            </div>
+          </Button>
+        </HashLink>
 
-          <div className="border-2 border-vanilla group-hover:border-transparent absolute right-[calc(100%-50px)] group-hover:right-[10px] top-1/2 -translate-y-1/2 w-[50px] h-[50px] flex items-center justify-center rounded-full transition-all duration-500 ease-in-out bg-[#0A4BA5]">
-            <img className="w-7 h-7" alt="Icon" src="/gala_arrow_button.svg" />
-          </div>
-        </Button>
-        <Button className="group relative flex items-center bg-vanilla justify-between w-full rounded-[500px] shadow-[0px_1px_2px_#00000040] h-auto py-2 overflow-hidden transition-all duration-500 hover:bg-pumpkin">
-          <span className="flex-1 text-center [font-family:'Mona_Sans',Helvetica] font-extrabold text-xl tracking-[0] leading-[35px] text-pumpkin group-hover:text-vanilla">
-            Devenir partenaire
-          </span>
+        <HashLink smooth to="#encheres_gala" className="w-full">
+          <Button className="group relative flex items-center bg-antiflash justify-between w-full rounded-[500px] shadow-[0px_1px_2px_#00000040] h-auto py-2 overflow-hidden transition-all duration-500 hover:bg-[#0A4BA5]">
+            <span className="flex-1 text-center [font-family:'Mona_Sans',Helvetica] font-extrabold text-xl tracking-[0] leading-[35px] text-[#0A4BA5] group-hover:text-antiflash">
+              Participer aux enchères
+            </span>
 
-          <div className="border-2 border-vanilla group-hover:border-transparent absolute right-[calc(100%-50px)] group-hover:right-[10px] top-1/2 -translate-y-1/2 w-[50px] h-[50px] flex items-center justify-center rounded-full transition-all duration-500 ease-in-out bg-pumpkin">
-            <img className="w-7 h-7" alt="Icon" src="/gala_arrow_button.svg" />
-          </div>
-        </Button>
+            <div className="border-2 border-vanilla group-hover:border-transparent absolute right-[calc(100%-50px)] group-hover:right-[10px] top-1/2 -translate-y-1/2 w-[50px] h-[50px] flex items-center justify-center rounded-full transition-all duration-500 ease-in-out bg-[#0A4BA5]">
+              <img className="w-7 h-7" alt="Icon" src="/gala_arrow_button.svg" />
+            </div>
+          </Button>
+        </HashLink>
+
+        <HashLink smooth to="#cercle_gala" className="w-full">
+          <Button className="group relative flex items-center bg-vanilla justify-between w-full rounded-[500px] shadow-[0px_1px_2px_#00000040] h-auto py-2 overflow-hidden transition-all duration-500 hover:bg-pumpkin">
+            <span className="flex-1 text-center [font-family:'Mona_Sans',Helvetica] font-extrabold text-xl tracking-[0] leading-[35px] text-pumpkin group-hover:text-vanilla">
+              Devenir partenaire
+            </span>
+
+            <div className="border-2 border-vanilla group-hover:border-transparent absolute right-[calc(100%-50px)] group-hover:right-[10px] top-1/2 -translate-y-1/2 w-[50px] h-[50px] flex items-center justify-center rounded-full transition-all duration-500 ease-in-out bg-pumpkin">
+              <img className="w-7 h-7" alt="Icon" src="/gala_arrow_button.svg" />
+            </div>
+          </Button>
+        </HashLink>
       </div>
     </section>
   );

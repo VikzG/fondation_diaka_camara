@@ -1,35 +1,39 @@
-import { Card, CardContent } from "../../../../components/ui/card";
+import { Button } from "../../../../components/ui/button";
 
 export const PartenaireSubsection = (): JSX.Element => {
   return (
-    <section className="flex flex-col w-full items-start justify-center gap-[150px] p-[100px] relative">
+    <section
+      id="cercle_gala"
+      className="flex flex-col w-full items-start justify-center bg-[url(/cercle_section/cercle_bg.png)] bg-cover bg-no-repeat gap-40 p-28 relative"
+    >
       <h2 className="mt-[-1.00px] font-titres font-[number:var(--titres-font-weight)] text-vanilla text-[length:var(--titres-font-size)] text-center tracking-[var(--titres-letter-spacing)] leading-[var(--titres-line-height)] relative self-stretch [font-style:var(--titres-font-style)]">
         LE CERCLE DES ALLIANCES
       </h2>
 
       <div className="flex flex-col items-start justify-center gap-[30px] relative self-stretch w-full flex-[0_0_auto]">
-        <h3 className="relative self-stretch mt-[-1.00px] [font-family:'Beautique_Display_Condensed-MediumItalic',Helvetica] font-medium italic text-vanilla text-[32px] text-center tracking-[0.64px] leading-[38px]">
+        <h3 className="relative self-stretch font-[beautique-display] text-vanilla text-4xl text-center">
           Pourquoi devenir partenaire?
         </h3>
 
         <p className="relative self-stretch [font-family:'Libertinus_Sans',Helvetica] font-normal text-vanilla text-lg text-center tracking-[0.54px] leading-[25px]">
-          ASSOCIER VOTRE IMAGE À UN ÉVÉNEMENT PRESTIGIEUX ET PORTEUR DE SENS
+          • ASSOCIER VOTRE IMAGE À UN ÉVÉNEMENT PRESTIGIEUX ET PORTEUR DE SENS
           <br />
-          ACCÉDER À UN RÉSEAU EXCLUSIF DE DÉCIDEURS ET PHILANTHROPES
-          <br />
-          CONTRIBUER DIRECTEMENT À DES PROJETS CONCRETS
+          • ACCÉDER À UN RÉSEAU EXCLUSIF DE DÉCIDEURS ET PHILANTHROPES
+          <br />• CONTRIBUER DIRECTEMENT À DES PROJETS CONCRETS
         </p>
       </div>
 
-      <Card className="flex flex-col items-start justify-center relative self-stretch w-full flex-[0_0_auto] bg-vanilla rounded-[500px] shadow-[0px_1px_2px_#00000040] border-0">
-        <CardContent className="flex items-center justify-center pl-0 pr-[50px] py-0 relative self-stretch w-full flex-[0_0_auto] p-0">
-          <img className="relative w-[50px] h-[50px]" alt="Group" />
+      <a href="/cercle" className="w-full">
+        <Button className="group relative flex items-center justify-between w-full rounded-[500px] shadow-[0px_1px_2px_#00000040] h-auto py-2 overflow-hidden transition-all duration-500 bg-vanilla hover:bg-pumpkin">
+          <span className="flex-1 text-center [font-family:'Mona_Sans',Helvetica] font-extrabold text-xl tracking-[0] leading-[35px] text-pumpkin group-hover:text-vanilla">
+            S'inscrire au Cercle des Alliances
+          </span>
 
-          <div className="relative flex-1 [font-family:'Mona_Sans',Helvetica] font-extrabold text-pumpkin text-xl text-center tracking-[0] leading-[35px]">
-            S&apos;inscrire au Cercle des Alliances
+          <div className="border-2 border-vanilla group-hover:border-transparent absolute right-[calc(100%-50px)] group-hover:right-[10px] top-1/2 -translate-y-1/2 w-[50px] h-[50px] flex items-center justify-center rounded-full transition-all duration-500 ease-in-out bg-pumpkin ">
+            <img className="w-7 h-7" alt="Icon" src="/gala_arrow_button.svg" />
           </div>
-        </CardContent>
-      </Card>
+        </Button>
+      </a>
     </section>
   );
 };

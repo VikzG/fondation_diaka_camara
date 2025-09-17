@@ -22,11 +22,11 @@ export const PageGala = (): JSX.Element => {
         <ObjectifsSubsection />
         <FrameSubsection />
         <MaitressesCeremonieSubsection />
-        <IntervenantsSubsection />
         <IntervenantsIntroSubsection />
+        <IntervenantsSubsection />
         <BilleterieSubsection />
-        <PartenaireSubsection />
         <EncheresSubsection />
+        <PartenaireSubsection />
         <ContactSubsection />
         <FooterSubsection />
       </div>

@@ -30,7 +30,7 @@ export const IntroductionSection = (): JSX.Element => {
     "En rejoignant le CDA, vous ne rejoignez pas seulement la Fondation Diaka Camara : vous devenez partie prenante d'un cercle de confiance, où les organisations invitées partagent leurs expériences, renforcent leur visibilité et créent ensemble un impact durable.";
 
   return (
-    <section className="w-full bg-vanilla">
+    <section id="introduction_cercle" className="w-full bg-vanilla">
 <div className="flex items-center max-w-[1600px] mx-auto px-10 py-20 gap-10 w-full">
   {/* Côté image */}
   <div className="w-1/2 flex items-center justify-center">

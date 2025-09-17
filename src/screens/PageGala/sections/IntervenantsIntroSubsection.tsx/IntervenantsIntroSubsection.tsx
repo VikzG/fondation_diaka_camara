@@ -1,34 +1,110 @@
+"use client";
+
+import { motion } from "framer-motion";
 
 export const IntervenantsIntroSubsection = (): JSX.Element => {
+  // Variants génériques pour le fade + slide léger
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 20 },
+    visible: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: i * 0.8, // ⚡ 500ms entre chaque apparition
+        duration: 0.8,
+        ease: "easeOut",
+      },
+    }),
+  };
+
   return (
-    <section className="flex flex-col items-center gap-[70px] px-[100px] py-[70px] bg-white w-full relative">
+    <section className="flex flex-col items-center gap-20 px-20 py-32 bg-white w-full relative max-w-[1600px] mx-auto">
       <header className="flex flex-col items-center justify-end relative w-full">
-        <h1 className="relative w-full font-titres font-[number:var(--titres-font-weight)] text-licorice text-[length:var(--titres-font-size)] text-center tracking-[var(--titres-letter-spacing)] leading-[var(--titres-line-height)] [font-style:var(--titres-font-style)]">
+        <motion.h1
+          custom={0}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeInUp}
+          className="relative w-full font-titres font-[number:var(--titres-font-weight)] 
+          text-licorice text-[length:var(--titres-font-size)] text-center 
+          tracking-[var(--titres-letter-spacing)] leading-[var(--titres-line-height)] 
+          [font-style:var(--titres-font-style)]"
+        >
           UNE
-        </h1>
+        </motion.h1>
 
-        <div className="relative w-full opacity-0 font-titres font-[number:var(--titres-font-weight)] text-licorice text-[length:var(--titres-font-size)] text-center tracking-[var(--titres-letter-spacing)] leading-[var(--titres-line-height)] [font-style:var(--titres-font-style)]">
+        <motion.div
+          custom={1}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeInUp}
+          className="relative w-full font-titres font-[number:var(--titres-font-weight)] 
+          text-licorice text-[length:var(--titres-font-size)] text-center 
+          tracking-[var(--titres-letter-spacing)] leading-[var(--titres-line-height)] 
+          [font-style:var(--titres-font-style)]"
+        >
           CÉLÉBRATION
-        </div>
+        </motion.div>
 
-        <div className="relative w-full max-w-[1240px] h-[50px] opacity-0 font-titres font-[number:var(--titres-font-weight)] text-licorice text-[length:var(--titres-font-size)] text-center tracking-[var(--titres-letter-spacing)] leading-[var(--titres-line-height)] whitespace-nowrap [font-style:var(--titres-font-style)]">
+        <motion.div
+          custom={2}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeInUp}
+          className="relative w-full max-w-[1240px] h-[50px] font-titres 
+          font-[number:var(--titres-font-weight)] text-licorice 
+          text-[length:var(--titres-font-size)] text-center 
+          tracking-[var(--titres-letter-spacing)] leading-[var(--titres-line-height)] 
+          whitespace-nowrap [font-style:var(--titres-font-style)]"
+        >
           ARTISTIQUE &amp; CULTURELLE
-        </div>
+        </motion.div>
       </header>
 
-      <div className="flex w-[400px] h-[230px] items-center justify-center gap-2.5 p-2.5 relative rounded-[500px] overflow-hidden bg-cover bg-[50%_50%]">
-        <div className="relative flex-1 opacity-0 [font-family:'Beautique_Display_Condensed-BlackItalic',Helvetica] font-black italic text-vanilla text-[50px] text-center tracking-[0] leading-[50px]">
+      {/* Conteneur animé en largeur */}
+      <motion.div
+        initial={{ width: "30%" }}
+        whileInView={{ width: "100%" }}
+        transition={{ duration: 0.8, delay: 3 * 0.8 }} // delay aligné avec "Inoubliable"
+        viewport={{ once: true }}
+        className="flex py-24 items-center justify-center gap-2.5 p-2.5 
+        relative rounded-[500px] overflow-hidden 
+        bg-[url(/page_gala_section/slider_3_img.png)] bg-cover bg-[50%_50%] 
+        mx-auto"
+      >
+        {/* Texte animé séparément */}
+        <motion.div
+          custom={3}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeInUp}
+          className="relative flex-1 font-[beautique-display] text-vanilla text-6xl text-center"
+        >
           Inoubliable
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
-      <div className="flex items-end justify-between relative w-full opacity-0">
-        <div className="flex items-center gap-[100px] relative flex-1">
-          <h2 className="relative [font-family:'Beautique_Display_Condensed-MediumItalic',Helvetica] font-medium italic text-licorice text-[32px] tracking-[0.64px] leading-[38px] whitespace-nowrap">
+      <motion.div
+        custom={4}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={fadeInUp}
+        className="flex items-end justify-between w-full"
+      >
+        <div className="flex items-center gap-20 flex-1">
+          <h2 className="font-[beautique-display] text-licorice text-4xl whitespace-nowrap">
             Les Artistes &amp; Intervenants
           </h2>
-
-          <img className="relative w-[47px] h-[25px]" alt="Vector" />
+          <img
+            className="w-[47px] h-[25px]"
+            alt="red arrow"
+            src="/actualites_section/red_top_arrow.svg"
+          />
         </div>
 
         <div className="flex flex-col items-end gap-[30px] relative flex-1">
@@ -37,11 +113,9 @@ export const IntervenantsIntroSubsection = (): JSX.Element => {
               Le Gala 2025 ne sera pas seulement un moment de solidarité et de
               philanthropie, mais aussi{" "}
             </span>
-
             <span className="font-bold">
               une célébration artistique et culturelle
             </span>
-
             <span className="[font-family:'Mona_Sans',Helvetica] font-normal text-[#160a00] text-[17.5px] tracking-[0] leading-7">
               . Des artistes de renommée internationale et des personnalités
               engagées offriront leurs voix et leurs talents pour amplifier
@@ -49,7 +123,7 @@ export const IntervenantsIntroSubsection = (): JSX.Element => {
             </span>
           </p>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

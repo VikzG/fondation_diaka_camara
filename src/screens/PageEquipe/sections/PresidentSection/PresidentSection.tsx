@@ -1,4 +1,5 @@
 import { Button } from "../../../../components/ui/button";
+import { Link } from "react-router-dom";
 
 export const PresidentSection = (): JSX.Element => {
   return (
@@ -24,21 +25,25 @@ export const PresidentSection = (): JSX.Element => {
             protection sociale en Guinée.
           </p>
 
-          <Button className="group relative flex items-center justify-between w-full rounded-[500px] shadow-[0px_1px_2px_#00000040] h-auto py-2 overflow-hidden transition-all duration-500 bg-vanilla hover:bg-pumpkin">
-            <span className="flex-1 text-center [font-family:'Mona_Sans',Helvetica] font-extrabold text-xl tracking-[0] leading-[35px] text-pumpkin group-hover:text-vanilla">
-              Lire le mot de la présidente
-            </span>
+          {/* Redirection vers /fondatrice */}
+          <Link to="/fondatrice" className="w-full">
+            <Button className="group relative flex items-center justify-between w-full rounded-[500px] shadow-[0px_1px_2px_#00000040] h-auto py-2 overflow-hidden transition-all duration-500 bg-vanilla hover:bg-pumpkin">
+              <span className="flex-1 text-center [font-family:'Mona_Sans',Helvetica] font-extrabold text-xl tracking-[0] leading-[35px] text-pumpkin group-hover:text-vanilla">
+                Lire le mot de la présidente
+              </span>
 
-            <div className="border-2 border-vanilla group-hover:border-transparent absolute right-[calc(100%-50px)] group-hover:right-[10px] top-1/2 -translate-y-1/2 w-[50px] h-[50px] flex items-center justify-center rounded-full transition-all duration-500 ease-in-out bg-pumpkin ">
-              <img
-                className="w-7 h-7"
-                alt="Icon"
-                src="/gala_arrow_button.svg"
-              />
-            </div>
-          </Button>
+              <div className="border-2 border-vanilla group-hover:border-transparent absolute right-[calc(100%-50px)] group-hover:right-[10px] top-1/2 -translate-y-1/2 w-[50px] h-[50px] flex items-center justify-center rounded-full transition-all duration-500 ease-in-out bg-pumpkin ">
+                <img
+                  className="w-7 h-7"
+                  alt="Icon"
+                  src="/gala_arrow_button.svg"
+                />
+              </div>
+            </Button>
+          </Link>
         </div>
       </div>
+
       <div className="flex items-start px-10 py-20 relative self-stretch w-full flex-[0_0_auto] bg-pumpkin">
         <div className="flex items-start gap-10 relative flex-1 self-stretch grow max-w-[1600px] mx-auto">
           <div className="flex flex-col items-center justify-center gap-5 relative flex-1 grow">

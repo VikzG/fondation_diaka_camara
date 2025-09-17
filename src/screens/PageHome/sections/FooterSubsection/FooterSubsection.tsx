@@ -1,7 +1,7 @@
 
 export const FooterSubsection = (): JSX.Element => {
   return (
-    <footer className="flex w-full items-center justify-center gap-2.5 px-[60px] py-5 relative bg-colbat">
+    <footer id="footer" className="flex w-full items-center justify-center gap-2.5 px-[60px] py-5 relative bg-colbat">
       <div className="flex items-center gap-[30px] relative flex-1 grow">
         <img
           className="relative w-[52px] h-[38.21px]"

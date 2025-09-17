@@ -69,6 +69,12 @@
   --animate-spin: spin 1s linear infinite;
 }
 
+.fade-image {
+  opacity: 0;
+  animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+
 .animate-fade-in {
   animation: fade-in 1s var(--animation-delay, 0s) ease forwards;
 }
@@ -131,6 +137,11 @@
     opacity: 1;
     transform: none;
   }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 @keyframes fade-up {

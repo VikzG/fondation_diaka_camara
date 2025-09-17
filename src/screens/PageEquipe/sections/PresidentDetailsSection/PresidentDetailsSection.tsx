@@ -109,7 +109,7 @@ export const PresidentDetailsSection = (): JSX.Element => {
               />
 
               <div className="flex flex-col items-start gap-5 w-full">
-                <h3 className="w-full mt-[-1.00px] [font-family:'Beautique_Display_Condensed-MediumItalic',Helvetica] font-medium italic text-licorice text-[32px] text-center tracking-[0.64px] leading-10">
+                <h3 className="w-full font-[beautique-display] text-[32px] text-licorice text-center">
                   {member.name}
                 </h3>
 

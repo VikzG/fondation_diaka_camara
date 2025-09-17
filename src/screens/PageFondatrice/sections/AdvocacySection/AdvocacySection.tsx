@@ -1,5 +1,6 @@
 import { Button } from "../../../../components/ui/button";
 import { Card, CardContent } from "../../../../components/ui/card";
+import { Link } from "react-router-dom";
 
 export const AdvocacySection = (): JSX.Element => {
   return (
@@ -48,25 +49,27 @@ export const AdvocacySection = (): JSX.Element => {
 
           <Card className="self-stretch w-full bg-vanilla rounded-[500px] shadow-[0px_1px_2px_#00000040] border-0">
             <CardContent className="p-0">
-              <Button className="group relative flex items-center justify-between w-full rounded-[500px] shadow-[0px_1px_2px_#00000040] h-auto py-2 overflow-hidden transition-all duration-500 bg-vanilla hover:bg-carmin">
-                <span className="flex-1 text-center [font-family:'Mona_Sans',Helvetica] font-extrabold text-xl tracking-[0] leading-[35px] text-carmin group-hover:text-vanilla">
-                  Participer au Gala 2025
-                </span>
+              <Link to="/gala">
+                <Button className="group relative flex items-center justify-between w-full rounded-[500px] shadow-[0px_1px_2px_#00000040] h-auto py-2 overflow-hidden transition-all duration-500 bg-vanilla hover:bg-carmin">
+                  <span className="flex-1 text-center [font-family:'Mona_Sans',Helvetica] font-extrabold text-xl tracking-[0] leading-[35px] text-carmin group-hover:text-vanilla">
+                    Participer au Gala 2025
+                  </span>
 
-                <div className="border-2 border-vanilla group-hover:border-transparent absolute right-[calc(100%-50px)] group-hover:right-[10px] top-1/2 -translate-y-1/2 w-[50px] h-[50px] flex items-center justify-center rounded-full transition-all duration-500 ease-in-out bg-carmin ">
-                  <img
-                    className="w-7 h-7"
-                    alt="Icon"
-                    src="/gala_arrow_button.svg"
-                  />
-                </div>
-              </Button>
+                  <div className="border-2 border-vanilla group-hover:border-transparent absolute right-[calc(100%-50px)] group-hover:right-[10px] top-1/2 -translate-y-1/2 w-[50px] h-[50px] flex items-center justify-center rounded-full transition-all duration-500 ease-in-out bg-carmin ">
+                    <img
+                      className="w-7 h-7"
+                      alt="Icon"
+                      src="/gala_arrow_button.svg"
+                    />
+                  </div>
+                </Button>
+              </Link>
             </CardContent>
           </Card>
         </div>
 
         <div className="w-1/2 flex items-center justify-center">
-          <div className="relative w-[500px] aspect-square rounded-full overflow-hidden">
+          <div className="relative w-[500px] aspect-square rounded-full overflow-hidden group">
             {/* Image cercle */}
             <img
               className="w-full h-full object-cover"
@@ -74,14 +77,33 @@ export const AdvocacySection = (): JSX.Element => {
               src="/cercle_section/cercle_bg.png"
             />
 
-            {/* Logo agrandi au centre */}
+            {/* Logo + bouton agrandi au centre */}
             <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-40 h-40 bg-transparent rounded-full flex items-center justify-center shadow-lg">
-                <img
-                  className="w-full h-full object-contain"
-                  alt="logo"
-                  src="cercle_section/cercle_logo.svg"
-                />
+              <div className="relative flex items-center justify-center">
+                {/* Logo */}
+                <div
+                  className="w-40 h-40 bg-transparent rounded-full flex items-center justify-center shadow-lg 
+                        transition-transform duration-500 ease-in-out
+                        group-hover:scale-[1.2] group-hover:mix-blend-color-dodge"
+                >
+                  <img
+                    className="w-full h-full object-contain"
+                    alt="logo"
+                    src="cercle_section/cercle_logo.svg"
+                  />
+                </div>
+
+                {/* Bouton */}
+                <Link to="/cercle">
+                  <Button
+                    className="absolute opacity-0 group-hover:opacity-100 top-1/2 left-1/2 
+                      -translate-x-1/2 -translate-y-1/2 z-10 bg-antiflash
+                      text-carmin font-bold text-lg px-8 py-2 rounded-lg shadow-[0px_1px_2px_#00000040]
+                      transition-all duration-300 ease-in-out hover:underline"
+                  >
+                    Rejoindre le Cercle des Alliances
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>

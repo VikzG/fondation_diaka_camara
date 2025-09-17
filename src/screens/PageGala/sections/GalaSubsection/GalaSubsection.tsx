@@ -1,11 +1,11 @@
 import { Button } from "../../../../components/ui/button";
 import { Card, CardContent } from "../../../../components/ui/card";
+import { HashLink } from "react-router-hash-link";
 
 export const GalaSubsection = (): JSX.Element => {
   return (
-    <section className="flex flex-col w-full items-center gap-10 px-20 py-20 relative bg-white">
+    <section className="flex flex-col w-full items-center gap-10 px-10 py-20 relative bg-white">
       <div className="flex items-stretch justify-center max-h-[700px] max-w-[1400px] gap-20 px-20 py-0 relative w-full">
-        
         {/* Colonne gauche */}
         <div className="flex flex-col items-start gap-[30px] flex-1">
           <div className="flex h-[619.73px] w-full">
@@ -15,14 +15,15 @@ export const GalaSubsection = (): JSX.Element => {
               alt="Enveloppe animation"
             />
           </div>
-
-          <Button className="bg-antiflash text-carmin w-full [font-family:'Mona_Sans',Helvetica] font-extrabold text-lg px-8 py-2 rounded-lg shadow-[0px_1px_2px_#00000040] h-auto hover:underline hover:-translate-y-1 transition-all duration-300 ease-in-out">
-            Acheter mes places
-          </Button>
+          <HashLink smooth to="#billeterie_gala" className="w-full">
+            <Button className="bg-antiflash text-carmin w-full [font-family:'Mona_Sans',Helvetica] font-extrabold text-lg px-8 py-2 rounded-lg shadow-[0px_1px_2px_#00000040] h-auto hover:underline hover:-translate-y-1 transition-all duration-300 ease-in-out">
+              Acheter mes places
+            </Button>
+          </HashLink>
         </div>
 
         {/* Colonne droite */}
-        <Card className="flex flex-col justify-between flex-1 h-full self-stretch bg-vanilla rounded-[15px] overflow-hidden border-0">
+        <Card className="flex flex-col max-h-[700px] justify-between flex-1 h-full self-stretch bg-vanilla rounded-[15px] overflow-hidden border-0">
           <CardContent className="flex flex-col items-center justify-between h-full w-full px-10 py-14 gap-14">
             <img
               className="w-[47px] h-[25px]"
@@ -31,7 +32,9 @@ export const GalaSubsection = (): JSX.Element => {
             />
 
             <h2 className="text-center font-[beautique-display] text-4xl text-carmin text-[32px]">
-              Vous êtes invité.e à un<br />événement exclusif
+              Vous êtes invité.e à un
+              <br />
+              événement exclusif
             </h2>
 
             <div className="text-center [font-family:'Mona_Sans',Helvetica] font-normal text-licorice text-[17.5px] leading-[17.5px]">

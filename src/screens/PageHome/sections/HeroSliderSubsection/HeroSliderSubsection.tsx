@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "../../../../components/ui/button";
+import { useNavigate } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 
 interface SlideData {
   id: number;
@@ -62,6 +64,7 @@ const buttonColors: Record<number, string> = {
 export const HeroSliderSubsection = (): JSX.Element => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const navigate = useNavigate();
 
   // Auto-play functionality
   useEffect(() => {
@@ -84,18 +87,25 @@ export const HeroSliderSubsection = (): JSX.Element => {
 
   const currentSlideData = slidesData[currentSlide];
 
+    const handleButtonClick = () => {
+    if (currentSlideData.id === 2) {
+      navigate("/don");
+    } else if (currentSlideData.id === 3) {
+      navigate("/gala");
+    }
+  };
+
   return (
-<motion.section
-  key={currentSlide}
-  initial={{ opacity: 0.5 }}
-  animate={{ opacity: 1 }}
-  transition={{ duration: 1 }}
-  className="w-full h-[1200px] bg-cover bg-center bg-no-repeat flex items-center justify-between"
-  style={{
-    backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(${slidesData[currentSlide].backgroundImage})`,
-  }}
->
-      
+    <motion.section
+      key={currentSlide}
+      initial={{ opacity: 0.5 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+      className="w-full h-[1100px] bg-cover bg-center bg-no-repeat flex items-center justify-between mt-10"
+      style={{
+        backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(${slidesData[currentSlide].backgroundImage})`,
+      }}
+    >
       {/* Left side - empty for background visibility */}
       <div className="flex-1 justify-centerself-stretch">
         {currentSlideData.id === 2 && (
@@ -142,13 +152,16 @@ export const HeroSliderSubsection = (): JSX.Element => {
       </div>
 
       {/* Right side - content */}
-{/* Right side - content */}
-<div className="flex flex-col w-1/2 max-w-3xl py-20 pr-40 flex-1 self-stretch items-center justify-between">
-  
-  {/* Logo toujours en haut */}
-  <div className="w-full flex justify-center mb-10 mt-10">
-    <img alt="Icon" src="/logo_gala.svg" className="h-20 object-contain" />
-  </div>
+      {/* Right side - content */}
+      <div className="flex flex-col w-1/2 max-w-3xl py-20 pr-40 flex-1 self-stretch items-center justify-between">
+        {/* Logo toujours en haut */}
+        <div className="w-full flex justify-center mb-10 mt-10">
+          <img
+            alt="Icon"
+            src="/logo_gala.svg"
+            className="h-20 object-contain"
+          />
+        </div>
 
         <AnimatePresence mode="wait">
           <motion.div
@@ -169,55 +182,71 @@ export const HeroSliderSubsection = (): JSX.Element => {
                   {currentSlideData.description.split(" ").slice(0, 4).join(" ")}
                 </span>
                 <span className="text-[#faf2d7]">
-                  {" " +
-                    currentSlideData.description.split(" ").slice(4).join(" ")}
+                  {" " + currentSlideData.description.split(" ").slice(4).join(" ")}
                 </span>
               </p>
             )}
 
-            <Button
-              className={`group relative flex items-center justify-between w-full rounded-[500px] shadow-[0px_1px_2px_#00000040] h-auto py-2 overflow-hidden transition-all duration-500 bg-vanilla ${
-                buttonColors[currentSlideData.id]
-              }`}
-            >
-              <span
-                className={`flex-1 text-center font-mona font-bold text-xl tracking-[0] leading-[35px] transition-colors duration-500 ${currentSlideData.buttonTextColor} group-hover:text-vanilla`}
+            {/* Bouton dynamique */}
+            {currentSlideData.id === 1 ? (
+              <HashLink smooth to="#fondation_home" className="w-full">
+                <Button
+                  className={`group relative flex items-center justify-between w-full rounded-[500px] shadow-[0px_1px_2px_#00000040] h-auto py-2 overflow-hidden transition-all duration-500 bg-vanilla ${
+                    buttonColors[currentSlideData.id]
+                  }`}
+                >
+                  <span
+                    className={`flex-1 text-center font-mona font-bold text-xl tracking-[0] leading-[35px] transition-colors duration-500 ${currentSlideData.buttonTextColor} group-hover:text-vanilla`}
+                  >
+                    {currentSlideData.buttonText}
+                  </span>
+                  <div
+                    className={`border-2 border-vanilla group-hover:border-transparent absolute right-[calc(100%-50px)] group-hover:right-[10px] top-1/2 -translate-y-1/2 w-[50px] h-[50px] flex items-center justify-center rounded-full transition-all duration-500 ease-in-out ${currentSlideData.buttonIconBg}`}
+                  >
+                    <img className="w-7 h-7" alt="Icon" src={currentSlideData.buttonIcon} />
+                  </div>
+                </Button>
+              </HashLink>
+            ) : (
+              <Button
+                onClick={handleButtonClick}
+                className={`group relative flex items-center justify-between w-full rounded-[500px] shadow-[0px_1px_2px_#00000040] h-auto py-2 overflow-hidden transition-all duration-500 bg-vanilla ${
+                  buttonColors[currentSlideData.id]
+                }`}
               >
-                {currentSlideData.buttonText}
-              </span>
-
-              <div
-                className={`border-2 border-vanilla group-hover:border-transparent absolute right-[calc(100%-50px)] group-hover:right-[10px] top-1/2 -translate-y-1/2 w-[50px] h-[50px] flex items-center justify-center rounded-full transition-all duration-500 ease-in-out ${currentSlideData.buttonIconBg}`}
-              >
-                <img
-                  className="w-7 h-7"
-                  alt="Icon"
-                  src={currentSlideData.buttonIcon}
-                />
-              </div>
-            </Button>
+                <span
+                  className={`flex-1 text-center font-mona font-bold text-xl tracking-[0] leading-[35px] transition-colors duration-500 ${currentSlideData.buttonTextColor} group-hover:text-vanilla`}
+                >
+                  {currentSlideData.buttonText}
+                </span>
+                <div
+                  className={`border-2 border-vanilla group-hover:border-transparent absolute right-[calc(100%-50px)] group-hover:right-[10px] top-1/2 -translate-y-1/2 w-[50px] h-[50px] flex items-center justify-center rounded-full transition-all duration-500 ease-in-out ${currentSlideData.buttonIconBg}`}
+                >
+                  <img className="w-7 h-7" alt="Icon" src={currentSlideData.buttonIcon} />
+                </div>
+              </Button>
+            )}
           </motion.div>
         </AnimatePresence>
 
-  {/* Navigation dots */}
-  <nav
-    className="flex items-end justify-center gap-[30px] self-stretch w-full flex-[0_0_auto] mt-10"
-    aria-label="Slider pagination"
-  >
-    {slidesData.map((_, index) => (
-      <button
-        key={index}
-        onClick={() => goToSlide(index)}
-        className={`w-5 h-5 rounded-[10px] border-[1.5px] border-solid border-[#faf2d7] transition-all duration-300 hover:scale-110 ${
-          index === currentSlide ? "bg-pumpkin" : "bg-[#ffffff33]"
-        }`}
-        aria-label={`Go to slide ${index + 1}`}
-        aria-current={index === currentSlide ? "true" : "false"}
-      />
-    ))}
-  </nav>
-</div>
-
+        {/* Navigation dots */}
+        <nav
+          className="flex items-end justify-center gap-[30px] self-stretch w-full flex-[0_0_auto] mt-10"
+          aria-label="Slider pagination"
+        >
+          {slidesData.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => goToSlide(index)}
+              className={`w-5 h-5 rounded-[10px] border-[1.5px] border-solid border-[#faf2d7] transition-all duration-300 hover:scale-110 ${
+                index === currentSlide ? "bg-pumpkin" : "bg-[#ffffff33]"
+              }`}
+              aria-label={`Go to slide ${index + 1}`}
+              aria-current={index === currentSlide ? "true" : "false"}
+            />
+          ))}
+        </nav>
+      </div>
     </motion.section>
   );
 };
