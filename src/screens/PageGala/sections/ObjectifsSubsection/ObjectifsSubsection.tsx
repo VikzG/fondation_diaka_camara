@@ -12,7 +12,7 @@ export const ObjectifsSubsection = (): JSX.Element => {
       <div className="flex items-start justify-between px-28 py-20">
         <div className="flex items-start gap-10 flex-1">
           <div className="flex items-center justify-between flex-1">
-            <h2 className="flex-1 font-titres font-[number:var(--titres-font-weight)] text-vanilla text-[length:var(--titres-font-size)] tracking-[var(--titres-letter-spacing)] leading-[var(--titres-line-height)] [font-style:var(--titres-font-style)]">
+            <h2 className="flex-1 font-[beautique-display-bold] text-5xl text-vanilla">
               OBJECTIFS 2025
             </h2>
 
