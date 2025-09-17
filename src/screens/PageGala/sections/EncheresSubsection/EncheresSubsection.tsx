@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence, useInView } from "framer-motion";
 import { Card, CardContent } from "../../../../components/ui/card";
 import { Button } from "../../../../components/ui/button";
 
@@ -15,7 +15,6 @@ export const EncheresSubsection = (): JSX.Element => {
     "• Participation possible sur place ou à distance",
   ];
 
-  // ✅ 3 états (image, artiste, description)
   const auctionStates = [
     {
       image: "/page_gala_section/mali_art.jpg",
@@ -45,8 +44,36 @@ export const EncheresSubsection = (): JSX.Element => {
     return () => clearInterval(interval);
   }, []);
 
+  // ✅ Ref pour déclencher l’animation au scroll
+const ref = useRef(null);
+const isInView = useInView(ref, {
+  once: true,       // l’animation se joue 1 seule fois
+  amount: 0.8       // déclenche quand 60% de la section est visible
+});
+
+  // ✅ États animation
+  const [showFeatures, setShowFeatures] = useState(false);
+  const [showCatalogue, setShowCatalogue] = useState(false);
+  const [showButton, setShowButton] = useState(false);
+
+  useEffect(() => {
+    if (isInView) {
+      setShowFeatures(true);
+      const timer1 = setTimeout(() => setShowCatalogue(true), 1000);
+      const timer2 = setTimeout(() => setShowButton(true), 1500);
+      return () => {
+        clearTimeout(timer1);
+        clearTimeout(timer2);
+      };
+    }
+  }, [isInView]);
+
   return (
-    <section id="encheres_gala" className="flex flex-col w-full items-center justify-center gap-20 py-20 px-20 bg-antiflash">
+    <section
+      ref={ref}
+      id="encheres_gala"
+      className="flex flex-col w-full items-center justify-center gap-20 py-20 px-20 bg-antiflash"
+    >
       <div className="flex flex-col items-center gap-[100px] px-0 py-[50px] w-full max-w-[1400px]">
         <Card className="w-full h-[170px] bg-colbat rounded-[20px] border-0">
           <CardContent className="flex items-center px-[50px] py-0 h-full">
@@ -83,7 +110,7 @@ export const EncheresSubsection = (): JSX.Element => {
               </AnimatePresence>
             </div>
 
-            {/* Nom + description dynamiques avec effet */}
+            {/* Nom + description dynamiques */}
             <div className="flex flex-col items-end justify-end gap-2.5 flex-1 overflow-hidden">
               <AnimatePresence mode="wait">
                 <motion.div
@@ -97,7 +124,6 @@ export const EncheresSubsection = (): JSX.Element => {
                   {currentState.artist}
                 </motion.div>
               </AnimatePresence>
-
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentState.description}
@@ -132,36 +158,57 @@ export const EncheresSubsection = (): JSX.Element => {
         <CardContent className="flex p-0">
           {/* Colonne gauche */}
           <div className="flex flex-col w-1/2 h-[390px] items-center gap-[30px] p-[50px]">
-            <img
-              className="w-[47px] h-[25px]"
-              alt="blue arrow top"
-              src="/blue_arrow_top.svg"
-            />
+            <img className="w-[47px] h-[25px]" alt="blue arrow top" src="/blue_arrow_top.svg" />
             <div className="flex flex-col items-start gap-5 w-full">
-              {auctionFeatures.map((feature, index) => (
-                <div
-                  key={index}
-                  className="w-full font-medium text-licorice text-[17.5px] text-center leading-7"
-                >
-                  {feature}
-                </div>
-              ))}
+              <AnimatePresence>
+                {showFeatures &&
+                  auctionFeatures.map((feature, index) => (
+                    <motion.div
+                      key={index}
+                      className="w-full font-medium text-licorice text-[17.5px] text-center leading-7"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: index * 0.2 }}
+                    >
+                      {feature}
+                    </motion.div>
+                  ))}
+              </AnimatePresence>
             </div>
-            <img
-              className="w-[47px] h-[25px]"
-              alt="blue arrow bottom"
-              src="/blue_arrow_bottom.svg"
-            />
+            <img className="w-[47px] h-[25px]" alt="blue arrow bottom" src="/blue_arrow_bottom.svg" />
           </div>
 
           {/* Colonne droite */}
           <div className="flex flex-col w-1/2 items-center justify-between gap-[50px] p-[50px] bg-[url(/slider_cercle_section/slide_img_2.png)] bg-cover bg-[50%_50%] rounded-[0px_20px_20px_0px] overflow-hidden">
-            <div className="font-bold text-vanilla text-lg text-center w-full font-legendes-bold">
-              LE LIEN DU CATALOGUE S&apos;AFFICHERA ICI
-            </div>
-            <Button className="bg-[#FFCD50] font-corps text-colbat w-full font-bold text-lg px-8 py-2 rounded-lg shadow h-auto hover:underline hover:-translate-y-1 transition-all duration-300 ease-in-out">
-              Bientôt disponible
-            </Button>
+            {/* Texte catalogue */}
+            <AnimatePresence>
+              {showCatalogue && (
+                <motion.div
+                  className="font-bold text-vanilla text-lg text-center w-full font-legendes-bold"
+                  initial={{ opacity: 0, y: 40 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6 }}
+                >
+                  LE LIEN DU CATALOGUE S&apos;AFFICHERA ICI
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            {/* Bouton */}
+            <AnimatePresence>
+              {showButton && (
+                <motion.div
+                  initial={{ opacity: 0, y: -40 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6 }}
+                  className="w-full"
+                >
+                  <Button className="bg-[#FFCD50] font-corps text-colbat w-full font-bold text-lg px-8 py-2 rounded-lg shadow h-auto hover:underline hover:-translate-y-1 transition-all duration-300 ease-in-out">
+                    Bientôt disponible
+                  </Button>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         </CardContent>
       </Card>

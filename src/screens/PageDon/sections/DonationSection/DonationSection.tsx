@@ -54,7 +54,7 @@ export const DonationSection = (): JSX.Element => {
       <div className="flex h-[1000px] items-center justify-center gap-[70px] px-32 py-48 w-full max-w-[1600px] mx-auto">
         <div className="flex flex-col items-center justify-between flex-1 h-full">
           <div className="flex flex-col items-center gap-[70px] flex-1 w-full">
-            <h1 className="w-full font-titres text-5xl text-colbat">
+            <h1 className="w-full font-[beautique-display-bold] text-5xl text-colbat">
               FAIRE UN DON
             </h1>
 
@@ -96,7 +96,6 @@ export const DonationSection = (): JSX.Element => {
             <div className="flex flex-col items-start justify-center gap-[30px] flex-1">
               <p className="w-full font-[beautique-display] text-colbat text-4xl">
                 Chaque contribution est une
-                <br />
                 étincelle d&apos;avenir
               </p>
             </div>
@@ -105,7 +104,7 @@ export const DonationSection = (): JSX.Element => {
 
         <Card className="flex flex-col items-center justify-center gap-10 px-14 py-24 bg-antiflash rounded-[20px] overflow-hidden">
           <CardContent className="flex flex-col items-center gap-[70px] p-0 w-full">
-            <h2 className="w-full font-[beautique-display] font-medium italic text-colbat text-4xl text-center">
+            <h2 className="w-full font-[beautique-display] text-colbat text-4xl text-center">
               En 2025, notre priorité est claire :
             </h2>
 
@@ -133,104 +132,108 @@ export const DonationSection = (): JSX.Element => {
         </Card>
       </div>
 
-      <div className="flex flex-col items-start gap-[30px] p-20 px-32 w-full [background:url(/donation_section/don_bg.png)_50%_50%_/_cover]">
-        <h2 className="w-full font-legendes-bold text-vanilla text-center text-xl">
-          VOTRE DON FAIT LA DIFFÉRENCE : CHAQUE MONTANT COMPTE. CHAQUE GESTE EST
-          UN PAS VERS UN AVENIR MEILLEUR.
-        </h2>
+<div className="flex flex-col items-start gap-[30px] p-20 px-32 w-full [background:url(/donation_section/don_bg.png)_50%_50%_/_cover]">
+  <h2 className="w-full font-legendes-bold text-vanilla text-center text-xl">
+    VOTRE DON FAIT LA DIFFÉRENCE : CHAQUE MONTANT COMPTE. CHAQUE GESTE EST
+    UN PAS VERS UN AVENIR MEILLEUR.
+  </h2>
 
-        <div className="flex flex-col items-start gap-[70px] w-full">
-          {/* 👉 important: items-stretch pour uniformiser les hauteurs */}
-          <div className="flex items-stretch gap-[30px] w-full max-w-[1600px] mx-auto">
-            {donationAmounts.map((donation, index) => (
-              <Card
-                key={index}
-                className="flex flex-col items-center justify-center gap-10 p-14 flex-1 bg-vanilla rounded-[20px] overflow-hidden"
-              >
-                <CardContent className="flex flex-col items-center gap-[30px] p-0 w-full h-full justify-center">
-                  <div className="w-full font-[beautique-display] text-5xl font-bold text-colbat text-center">
-                    {donation.amount}
-                  </div>
-                  <p className="w-full font-corps font-[number:var(--corps-font-weight)] text-licorice text-[length:var(--corps-font-size)] text-center tracking-[var(--corps-letter-spacing)] leading-[var(--corps-line-height)] [font-style:var(--corps-font-style)]">
-                    {donation.description}
-                  </p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <div className="flex min-h-[780px] w-full">
-        {/* Colonne Formulaire */}
-        <div className="w-1/2 flex items-center justify-center bg-antiflash p-[100px] px-32">
-          <div className="bg-white/50 backdrop-blur-md rounded-3xl p-12 w-full shadow-2xl lg:min-w-[450px] max-w-[700px]">
-            <h3 className="text-5xl font-[beautique-display] text-gray-800 mb-10 text-center">
-              Faîtes un don
-            </h3>
-
-            <div className="space-y-8 mb-8 font-mona">
-              <div className="flex bg-colbat rounded-full text-2xl font-bold">
-                <button className="flex-1 bg-antiflash text-colbat py-5 px-3 rounded-full font-bold hover:bg-blue-50 transition-colors">
-                  Don mensuel
-                </button>
-                <button className="flex-1 bg-colbat text-white py-5 px-3 rounded-full font-bold hover:bg-blue-700 transition-colors">
-                  Don unique
-                </button>
-              </div>
-
-              <div className="grid grid-cols-2 gap-3 text-2xl">
-                <button className="bg-antiflash hover:bg-blue-100 text-colbat font-bold py-3 px-3 rounded-2xl transition-colors">
-                  1000$
-                </button>
-                <button className="bg-antiflash hover:bg-blue-100 text-colbat font-bold py-3 px-3 rounded-2xl transition-colors">
-                  500$
-                </button>
-                <button className="bg-antiflash hover:bg-blue-100 text-colbat font-bold py-3 px-3 rounded-2xl transition-colors">
-                  100$
-                </button>
-                <button className="bg-antiflash hover:bg-blue-100 text-colbat font-bold py-3 px-3 rounded-2xl transition-colors">
-                  50$
-                </button>
-              </div>
-
-              <button className="text-2xl w-full bg-antiflash hover:bg-blue-100 text-colbat font-semibold py-3 px-3 rounded-2xl transition-colors">
-                Montant personnalisé
-              </button>
+  <div className="flex flex-col items-start gap-[70px] w-full">
+    {/* Wrapper interne pour limiter la largeur max */}
+    <div className="flex items-stretch gap-[30px] w-full max-w-[1600px] mx-auto">
+      {donationAmounts.map((donation, index) => (
+        <Card
+          key={index}
+          className="flex flex-col items-center justify-center gap-10 p-14 flex-1 bg-vanilla rounded-[20px] overflow-hidden"
+        >
+          <CardContent className="flex flex-col items-center gap-[30px] p-0 w-full h-full justify-center">
+            <div className="w-full font-[beautique-display] text-5xl font-bold text-colbat text-center">
+              {donation.amount}
             </div>
+            <p className="w-full font-corps font-[number:var(--corps-font-weight)] text-licorice text-[length:var(--corps-font-size)] text-center tracking-[var(--corps-letter-spacing)] leading-[var(--corps-line-height)] [font-style:var(--corps-font-style)]">
+              {donation.description}
+            </p>
+          </CardContent>
+        </Card>
+      ))}
+    </div>
+  </div>
+</div>
 
-            <button className="text-2xl w-full bg-colbat hover:bg-colbat text-white font-semibold py-3 px-3 rounded-2xl transition-colors mt-6">
-              Procéder au paiement
+
+<div className="flex min-h-[780px] w-full bg-antiflash">
+  <div className="flex w-full max-w-[1600px] mx-auto">
+    {/* Colonne Formulaire */}
+    <div className="w-1/2 flex items-center justify-center p-[100px] px-24">
+      <div className="bg-white/50 backdrop-blur-md rounded-3xl p-12 w-full shadow-2xl lg:min-w-[450px] max-w-[700px]">
+        <h3 className="text-5xl font-[beautique-display] text-gray-800 mb-10 text-center">
+          Faites un don
+        </h3>
+
+        <div className="space-y-8 mb-8 font-mona">
+          <div className="flex bg-colbat rounded-full text-2xl font-bold">
+            <button className="flex-1 bg-antiflash text-colbat py-5 px-3 rounded-full font-bold hover:bg-blue-50 transition-colors">
+              Don mensuel
+            </button>
+            <button className="flex-1 bg-colbat text-white py-5 px-3 rounded-full font-bold hover:bg-blue-700 transition-colors">
+              Don unique
             </button>
           </div>
-        </div>
 
-        {/* Colonne Méthodes de paiement */}
-        <div className="w-1/2 flex flex-col justify-between p-[100px] px-32 bg-antiflash ">
-          <div className="flex flex-col items-start gap-[30px] w-full">
-            <h3 className="w-full font-titres font-[number:var(--titres-font-weight)] text-colbat text-[length:var(--titres-font-size)] text-center tracking-[var(--titres-letter-spacing)] leading-[var(--titres-line-height)] [font-style:var(--titres-font-style)]">
-              COMMENT DONNER ?
-            </h3>
+          <div className="grid grid-cols-2 gap-3 text-2xl">
+            <button className="bg-antiflash hover:bg-blue-100 text-colbat font-bold py-3 px-3 rounded-2xl transition-colors">
+              1000$
+            </button>
+            <button className="bg-antiflash hover:bg-blue-100 text-colbat font-bold py-3 px-3 rounded-2xl transition-colors">
+              500$
+            </button>
+            <button className="bg-antiflash hover:bg-blue-100 text-colbat font-bold py-3 px-3 rounded-2xl transition-colors">
+              100$
+            </button>
+            <button className="bg-antiflash hover:bg-blue-100 text-colbat font-bold py-3 px-3 rounded-2xl transition-colors">
+              50$
+            </button>
           </div>
 
-          <div className="flex flex-col items-start gap-5 w-full">
-            {paymentMethods.map((method, index) => (
-              <Card
-                key={index}
-                className="p-[30px] w-full flex flex-col items-center gap-11 rounded-[20px] overflow-hidden text-licorice hover:text-antiflash bg-white hover:bg-colbat cursor-pointer transition ease-in-out duration-300"
-              >
-                <CardContent className="p-0 w-full">
-                  <h4
-                    className="w-full font-[beautique-display] text-4xl text-center tracking-[0.64px] leading-[38px]"
-                  >
-                    {method.title}
-                  </h4>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          <button className="text-2xl w-full bg-antiflash hover:bg-blue-100 text-colbat font-semibold py-3 px-3 rounded-2xl transition-colors">
+            Montant personnalisé
+          </button>
         </div>
+
+        <button className="text-2xl w-full bg-colbat hover:bg-colbat text-white font-semibold py-3 px-3 rounded-2xl transition-colors mt-2">
+          Procéder au paiement
+        </button>
       </div>
+    </div>
+
+    {/* Colonne Méthodes de paiement */}
+    <div className="w-1/2 flex flex-col justify-between p-[100px] px-24">
+      <div className="flex flex-col items-start gap-[30px] w-full">
+        <h3 className="w-full text-colbat font-[beautique-display-bold] text-5xl text-center">
+          COMMENT DONNER ?
+        </h3>
+      </div>
+
+      <div className="flex flex-col items-start gap-5 w-full">
+        {paymentMethods.map((method, index) => (
+          <Card
+            key={index}
+            className="p-[30px] w-full flex flex-col items-center gap-11 rounded-[20px] overflow-hidden text-licorice hover:text-antiflash bg-white hover:bg-colbat cursor-pointer transition ease-in-out duration-300"
+          >
+            <CardContent className="p-0 w-full">
+              <h4
+                className="w-full font-[beautique-display] text-4xl text-center tracking-[0.64px] leading-[38px]"
+              >
+                {method.title}
+              </h4>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    </div>
+  </div>
+</div>
+
 
       <div className="flex flex-col w-full bg-blanc">
         <div className="flex flex-col w-full bg-antiflash">

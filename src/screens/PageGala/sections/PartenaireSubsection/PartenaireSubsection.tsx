@@ -1,4 +1,5 @@
 import { Button } from "../../../../components/ui/button";
+import { Link } from "react-router-dom";
 
 export const PartenaireSubsection = (): JSX.Element => {
   return (
@@ -23,17 +24,17 @@ export const PartenaireSubsection = (): JSX.Element => {
         </p>
       </div>
 
-      <a href="/cercle" className="w-full">
+      <Link to="/cercle" className="w-full">
         <Button className="group relative flex items-center justify-between w-full rounded-[500px] shadow-[0px_1px_2px_#00000040] h-auto py-2 overflow-hidden transition-all duration-500 bg-vanilla hover:bg-pumpkin">
           <span className="flex-1 text-center [font-family:'Mona_Sans',Helvetica] font-extrabold text-xl tracking-[0] leading-[35px] text-pumpkin group-hover:text-vanilla">
             S'inscrire au Cercle des Alliances
           </span>
 
-          <div className="border-2 border-vanilla group-hover:border-transparent absolute right-[calc(100%-50px)] group-hover:right-[10px] top-1/2 -translate-y-1/2 w-[50px] h-[50px] flex items-center justify-center rounded-full transition-all duration-500 ease-in-out bg-pumpkin ">
+          <div className="border-2 border-vanilla group-hover:border-transparent absolute right-[calc(100%-50px)] group-hover:right-[10px] top-1/2 -translate-y-1/2 w-[50px] h-[50px] flex items-center justify-center rounded-full transition-all duration-500 ease-in-out bg-pumpkin">
             <img className="w-7 h-7" alt="Icon" src="/gala_arrow_button.svg" />
           </div>
         </Button>
-      </a>
+      </Link>
     </section>
   );
 };
