@@ -121,9 +121,7 @@ export const IntervenantsSubsection = (): JSX.Element => {
           <div className="flex flex-col flex-1 relative">
             <div className="flex flex-col items-center justify-center gap-[50px] p-20 w-full h-full">
               <h2
-                className={`font-titres text-center whitespace-pre-line font-[number:var(--titres-font-weight)] ${currentSlide.color} 
-                  text-[length:var(--titres-font-size)] tracking-[var(--titres-letter-spacing)] 
-                  leading-[var(--titres-line-height)] [font-style:var(--titres-font-style)]`}
+                className={` text-center whitespace-pre-line font-[beautique-display-bold] text-5xl  ${currentSlide.color} font-[beautique-display-bold] text-5xl`}
               >
                 {currentSlide.title}
               </h2>
@@ -140,7 +138,7 @@ export const IntervenantsSubsection = (): JSX.Element => {
                 onClick={nextSlide}
                 variant="outline"
                 className="group inline-flex items-center px-6 py-2.5 rounded-[50px] 
-                border border-solid border-licorice bg-transparent h-auto 
+                border border-solid border-licorice bg-transparent hover:bg-vanilla h-auto 
                 transition-all duration-300"
               >
                 <span

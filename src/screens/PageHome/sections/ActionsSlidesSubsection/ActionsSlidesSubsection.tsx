@@ -78,7 +78,7 @@ export const ActionsSlidesSubsection = (): JSX.Element => {
       <div className="flex flex-wrap items-start justify-center gap-40 max-w-[1440px] mx-auto">
         <div className="flex-1 min-w-0 flex flex-col justify-between h-[709px] px-10">
           <div className="flex flex-col gap-5">
-            <h2 className="text-colbat font-titres font-[number:var(--titres-font-weight)] text-[length:var(--titres-font-size)] tracking-[var(--titres-letter-spacing)] leading-[var(--titres-line-height)] [font-style:var(--titres-font-style)]">
+            <h2 className="text-colbat font-[beautique-display-bold] text-5xl">
               NOS ACTIONS
             </h2>
           </div>

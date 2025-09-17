@@ -30,7 +30,7 @@ export const ContactSubsection = (): JSX.Element => {
         }`}
       >
         {/* Titre dynamique */}
-        <h2 className="relative w-fit mt-[-1.00px] font-titres font-[number:var(--titres-font-weight)] text-licorice text-[length:var(--titres-font-size)] tracking-[var(--titres-letter-spacing)] leading-[var(--titres-line-height)] [font-style:var(--titres-font-style)]">
+        <h2 className="relative w-fit font-[beautique-display-bold] text-5xl text-licorice">
           {isCerclePage ? "REJOINDRE LE CERCLE" : "CONTACTEZ-NOUS"}
         </h2>
 

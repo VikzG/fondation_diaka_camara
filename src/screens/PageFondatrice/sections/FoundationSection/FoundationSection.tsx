@@ -67,7 +67,7 @@ export const FoundationSection = (): JSX.Element => {
             src="/page_equipe_section/logo-primaire.svg"
           />
 
-          <h1 className="font-titres font-[number:var(--titres-font-weight)] text-licorice text-[length:var(--titres-font-size)] text-center tracking-[var(--titres-letter-spacing)] leading-[var(--titres-line-height)] [font-style:var(--titres-font-style)]">
+          <h1 className="font-[beautique-display-bold] text-5xl text-licorice text-center">
             NAISSANCE
             <br />
             DE LA FONDATION

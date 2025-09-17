@@ -5,7 +5,7 @@ export const HeroSection = (): JSX.Element => {
   return (
     <section className="flex flex-col w-full items-start min-h-[1200px] gap-2.5 px-20 py-20 relative bg-[url(/cercle_section/cercle_bg.png)] bg-no-repeat bg-cover bg-center">
       <div className="flex flex-col items-center justify-center gap-[30px] relative flex-1 self-stretch w-full grow">
-        <h1 className="font-titres font-[number:var(--titres-font-weight)] text-vanilla text-[length:var(--titres-font-size)] text-center tracking-[var(--titres-letter-spacing)] leading-[var(--titres-line-height)] relative self-stretch [font-style:var(--titres-font-style)]">
+        <h1 className="text-vanilla text-center relative self-stretch font-[beautique-display-bold] text-5xl">
           LE CERCLE DES ALLIANCES
         </h1>
 

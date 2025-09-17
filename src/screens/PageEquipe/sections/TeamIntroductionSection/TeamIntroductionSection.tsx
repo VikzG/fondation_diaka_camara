@@ -11,7 +11,7 @@ export const TeamIntroductionSection = (): JSX.Element => {
 
         <div className="flex items-center justify-center gap-2.5 w-full">
           <div className="flex flex-col items-center gap-5 flex-1">
-            <h1 className="font-titres font-[number:var(--titres-font-weight)] text-licorice text-[length:var(--titres-font-size)] text-center tracking-[var(--titres-letter-spacing)] leading-[var(--titres-line-height)] whitespace-nowrap [font-style:var(--titres-font-style)]">
+            <h1 className="font-[beautique-display-bold] text-5xl text-licorice text-center whitespace-nowrap">
               NOTRE ÉQUIPE
             </h1>
           </div>

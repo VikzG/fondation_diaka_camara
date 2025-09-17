@@ -58,11 +58,11 @@ export const SliderCercleSubsection = (): JSX.Element => {
       />
 
       {/* TEXTE + CTA + INDICATEURS */}
-      <div className="flex flex-col items-center justify-between pt-[100px] pb-[70px] px-[100px] self-stretch relative w-1/2">
+      <div className="flex flex-col items-center justify-between py-20 px-24 self-stretch relative w-1/2">
         <h2
-          className={`self-stretch font-titres ${
+          className={`self-stretch ${
             currentState.titleColor
-          } text-[length:var(--titres-font-size)] leading-[var(--titres-line-height)] relative mt-[-1.00px] font-[number:var(--titres-font-weight)] text-center tracking-[var(--titres-letter-spacing)] [font-style:var(--titres-font-style)] transition-opacity duration-700 ${
+          } font-[beautique-display-bold] text-5xl relative text-center transition-opacity duration-700 ${
             fade ? "opacity-100" : "opacity-0"
           }`}
         >

@@ -50,7 +50,7 @@ export const BilleterieSubsection = (): JSX.Element => {
       id="billeterie_gala"
       className="flex flex-col w-full items-center gap-11 py-28 px-20 relative bg-[url(/page_gala_section/bg_billeterie.png)] bg-cover bg-no-repeat"
     >
-      <h2 className="relative self-stretch mt-[-1.00px] font-titres font-[number:var(--titres-font-weight)] text-licorice text-[length:var(--titres-font-size)] text-center tracking-[var(--titres-letter-spacing)] leading-[var(--titres-line-height)] [font-style:var(--titres-font-style)]">
+      <h2 className="relative self-stretch font-[beautique-display-bold] text-5xl text-licorice text-center">
         BILLETERIE
       </h2>
 

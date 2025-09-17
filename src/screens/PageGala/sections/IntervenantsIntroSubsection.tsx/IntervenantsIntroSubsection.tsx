@@ -26,10 +26,8 @@ export const IntervenantsIntroSubsection = (): JSX.Element => {
           whileInView="visible"
           viewport={{ once: true }}
           variants={fadeInUp}
-          className="relative w-full font-titres font-[number:var(--titres-font-weight)] 
-          text-licorice text-[length:var(--titres-font-size)] text-center 
-          tracking-[var(--titres-letter-spacing)] leading-[var(--titres-line-height)] 
-          [font-style:var(--titres-font-style)]"
+          className="font-[beautique-display-bold] text-5xl relative w-full  
+          text-licorice text-center"
         >
           UNE
         </motion.h1>
@@ -40,10 +38,10 @@ export const IntervenantsIntroSubsection = (): JSX.Element => {
           whileInView="visible"
           viewport={{ once: true }}
           variants={fadeInUp}
-          className="relative w-full font-titres font-[number:var(--titres-font-weight)] 
-          text-licorice text-[length:var(--titres-font-size)] text-center 
-          tracking-[var(--titres-letter-spacing)] leading-[var(--titres-line-height)] 
-          [font-style:var(--titres-font-style)]"
+          className="relative w-full font-[beautique-display-bold] text-5xl
+          text-licorice  text-center 
+          
+          "
         >
           CÉLÉBRATION
         </motion.div>
@@ -54,11 +52,11 @@ export const IntervenantsIntroSubsection = (): JSX.Element => {
           whileInView="visible"
           viewport={{ once: true }}
           variants={fadeInUp}
-          className="relative w-full max-w-[1240px] h-[50px] font-titres 
-          font-[number:var(--titres-font-weight)] text-licorice 
-          text-[length:var(--titres-font-size)] text-center 
-          tracking-[var(--titres-letter-spacing)] leading-[var(--titres-line-height)] 
-          whitespace-nowrap [font-style:var(--titres-font-style)]"
+          className="relative w-full max-w-[1240px] h-[50px] 
+          text-licorice 
+          text-center 
+          font-[beautique-display-bold] text-5xl
+          whitespace-nowrap "
         >
           ARTISTIQUE &amp; CULTURELLE
         </motion.div>
@@ -94,7 +92,7 @@ export const IntervenantsIntroSubsection = (): JSX.Element => {
         whileInView="visible"
         viewport={{ once: true }}
         variants={fadeInUp}
-        className="flex items-end justify-between w-full"
+        className="flex items-center justify-between w-full"
       >
         <div className="flex items-center gap-20 flex-1">
           <h2 className="font-[beautique-display] text-licorice text-4xl whitespace-nowrap">
@@ -109,14 +107,14 @@ export const IntervenantsIntroSubsection = (): JSX.Element => {
 
         <div className="flex flex-col items-end gap-[30px] relative flex-1">
           <p className="[font-family:'Mona_Sans',Helvetica] font-normal text-licorice text-[17.5px] text-justify tracking-[0] leading-7 relative w-full">
-            <span className="[font-family:'Mona_Sans',Helvetica] font-normal text-[#160a00] text-[17.5px] tracking-[0] leading-7">
+            <span className="[font-family:'Mona_Sans',Helvetica] font-normal text-licorice text-[17.5px] tracking-[0] leading-7">
               Le Gala 2025 ne sera pas seulement un moment de solidarité et de
               philanthropie, mais aussi{" "}
             </span>
             <span className="font-bold">
               une célébration artistique et culturelle
             </span>
-            <span className="[font-family:'Mona_Sans',Helvetica] font-normal text-[#160a00] text-[17.5px] tracking-[0] leading-7">
+            <span className="[font-family:'Mona_Sans',Helvetica] font-normal text-licorice text-[17.5px] tracking-[0] leading-7">
               . Des artistes de renommée internationale et des personnalités
               engagées offriront leurs voix et leurs talents pour amplifier
               notre message et créer une expérience mémorable.

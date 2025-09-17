@@ -111,7 +111,7 @@ export const HeroSliderSubsection = (): JSX.Element => {
         {currentSlideData.id === 2 && (
           <div className="bg-white/50 backdrop-blur-md rounded-3xl p-12 max-w-xl mx-auto shadow-2xl">
             <h3 className="text-5xl font-[beautique-display] text-gray-800 mb-10 text-center">
-              Faîtes un don
+              Faites un don
             </h3>
 
             <div className="space-y-8 mb-8 font-mona">
@@ -144,7 +144,7 @@ export const HeroSliderSubsection = (): JSX.Element => {
               </button>
             </div>
 
-            <button className="text-2xl w-full bg-colbat hover:bg-colbat text-white font-semibold py-3 px-3 rounded-2xl transition-colors mt-6">
+            <button className="text-2xl w-full bg-colbat hover:bg-colbat text-white font-semibold py-3 px-3 rounded-2xl transition-colors mt-2">
               Procéder au paiement
             </button>
           </div>

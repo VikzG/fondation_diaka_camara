@@ -6,7 +6,7 @@ export const PartenaireSubsection = (): JSX.Element => {
       id="cercle_gala"
       className="flex flex-col w-full items-start justify-center bg-[url(/cercle_section/cercle_bg.png)] bg-cover bg-no-repeat gap-40 p-28 relative"
     >
-      <h2 className="mt-[-1.00px] font-titres font-[number:var(--titres-font-weight)] text-vanilla text-[length:var(--titres-font-size)] text-center tracking-[var(--titres-letter-spacing)] leading-[var(--titres-line-height)] relative self-stretch [font-style:var(--titres-font-style)]">
+      <h2 className="text-vanilla text-center relative self-stretch font-[beautique-display-bold] text-5xl">
         LE CERCLE DES ALLIANCES
       </h2>
 

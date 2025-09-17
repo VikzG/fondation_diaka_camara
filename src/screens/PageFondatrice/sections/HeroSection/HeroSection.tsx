@@ -13,7 +13,7 @@ export const HeroSection = (): JSX.Element => {
           />
 
           <div className="flex flex-col items-start gap-5 relative self-stretch w-full flex-[0_0_auto]">
-            <h1 className="relative self-stretch mt-[-1.00px] font-titres font-[number:var(--titres-font-weight)] text-vanilla text-[length:var(--titres-font-size)] text-center tracking-[var(--titres-letter-spacing)] leading-[var(--titres-line-height)] [font-style:var(--titres-font-style)]">
+            <h1 className="relative self-stretch font-[beautique-display-bold] text-5xl text-vanilla text-center">
               UN MOT DE LA PRÉSIDENTE
             </h1>
 

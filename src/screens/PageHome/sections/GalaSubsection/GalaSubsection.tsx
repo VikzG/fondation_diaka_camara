@@ -52,7 +52,7 @@ export const GalaSubsection = (): JSX.Element => {
     <section id="actualites_home"className="flex flex-col w-full items-center relative bg-[url(/actualites_section/bg_actualites.png)] bg-cover bg-[50%_50%]">
       <div className="flex items-start justify-center max-w-[1400px] gap-20 px-20 py-20 self-stretch m-auto w-full flex-[0_0_auto]">
         <div className="items-start gap-[30px] pl-0 pr-[30px] py-0 flex flex-col relative flex-1 grow">
-          <h2 className="relative self-stretch h-[50px] mt-[-1.00px] font-titres font-[number:var(--titres-font-weight)] text-carmin text-[length:var(--titres-font-size)] text-center tracking-[var(--titres-letter-spacing)] leading-[var(--titres-line-height)] whitespace-nowrap [font-style:var(--titres-font-style)]">
+          <h2 className="relative self-stretch font-[beautique-display-bold] text-5xl  text-carmin text-center whitespace-nowrap">
             ACTUALITÉS
           </h2>
 
