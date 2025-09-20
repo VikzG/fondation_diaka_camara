@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "../../../../components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
+import DonationForm from "../../../../components/DonationForm";
 
 interface SlideData {
   id: number;
@@ -56,9 +57,9 @@ const slidesData: SlideData[] = [
 ];
 
 const buttonColors: Record<number, string> = {
-  1: "hover:bg-pumpkin", // Slide 1
-  2: "hover:bg-colbat", // Slide 2
-  3: "hover:bg-red-500", // Slide 3
+  1: "hover:bg-pumpkin",
+  2: "hover:bg-colbat",
+  3: "hover:bg-red-500",
 };
 
 export const HeroSliderSubsection = (): JSX.Element => {
@@ -66,28 +67,25 @@ export const HeroSliderSubsection = (): JSX.Element => {
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const navigate = useNavigate();
 
-  // Auto-play functionality
   useEffect(() => {
     if (!isAutoPlaying) return;
 
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slidesData.length);
-    }, 5000); // Change slide every 5 seconds
+    }, 5000);
 
     return () => clearInterval(interval);
   }, [isAutoPlaying]);
 
   const goToSlide = (index: number) => {
     setCurrentSlide(index);
-    setIsAutoPlaying(false); // Stop auto-play when user manually navigates
-
-    // Resume auto-play after 10 seconds
+    setIsAutoPlaying(false);
     setTimeout(() => setIsAutoPlaying(true), 10000);
   };
 
   const currentSlideData = slidesData[currentSlide];
 
-    const handleButtonClick = () => {
+  const handleButtonClick = () => {
     if (currentSlideData.id === 2) {
       navigate("/don");
     } else if (currentSlideData.id === 3) {
@@ -101,66 +99,32 @@ export const HeroSliderSubsection = (): JSX.Element => {
       initial={{ opacity: 0.5 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
-      className="w-full h-[1100px] bg-cover bg-center bg-no-repeat flex items-center justify-between mt-10"
+      className="w-full h-[1100px] bg-cover bg-center bg-no-repeat flex items-center justify-between mt-10 max-[1200px]:flex-col max-[1200px]:justify-center max-[1200px]:items-center"
       style={{
         backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(${slidesData[currentSlide].backgroundImage})`,
       }}
     >
-      {/* Left side - empty for background visibility */}
-      <div className="flex-1 justify-centerself-stretch">
-        {currentSlideData.id === 2 && (
-          <div className="bg-white/50 backdrop-blur-md rounded-3xl p-12 max-w-xl mx-auto shadow-2xl">
-            <h3 className="text-5xl font-[beautique-display] text-gray-800 mb-10 text-center">
-              Faites un don
-            </h3>
-
-            <div className="space-y-8 mb-8 font-mona">
-              <div className="flex bg-colbat rounded-full text-2xl font-bold">
-                <button className="flex-1 bg-antiflash text-colbat py-5 px-3 rounded-full font-bold hover:bg-blue-50 transition-colors">
-                  Don mensuel
-                </button>
-                <button className="flex-1 bg-colbat text-white py-5 px-3 rounded-full font-bold hover:bg-blue-700 transition-colors">
-                  Don unique
-                </button>
-              </div>
-
-              <div className="grid grid-cols-2 gap-3 text-2xl">
-                <button className="bg-antiflash hover:bg-blue-100 text-colbat font-bold py-3 px-3 rounded-2xl transition-colors">
-                  1000$
-                </button>
-                <button className="bg-antiflash hover:bg-blue-100 text-colbat font-bold py-3 px-3 rounded-2xl transition-colors">
-                  500$
-                </button>
-                <button className="bg-antiflash hover:bg-blue-100 text-colbat font-bold py-3 px-3 rounded-2xl transition-colors">
-                  100$
-                </button>
-                <button className="bg-antiflash hover:bg-blue-100 text-colbat font-bold py-3 px-3 rounded-2xl transition-colors">
-                  50$
-                </button>
-              </div>
-
-              <button className="text-2xl w-full bg-antiflash hover:bg-blue-100 text-colbat font-semibold py-3 px-3 rounded-2xl transition-colors">
-                Montant personnalisé
-              </button>
-            </div>
-
-            <button className="text-2xl w-full bg-colbat hover:bg-colbat text-white font-semibold py-3 px-3 rounded-2xl transition-colors mt-2">
-              Procéder au paiement
-            </button>
-          </div>
-        )}
+      {/* Left side */}
+      <div className="flex-1 self-stretch justify-center max-[1200px]:hidden">
+        {currentSlideData.id === 2 && <DonationForm />}
       </div>
 
-      {/* Right side - content */}
-      {/* Right side - content */}
-      <div className="flex flex-col w-1/2 max-w-3xl py-20 pr-40 flex-1 self-stretch items-center justify-between">
-        {/* Logo toujours en haut */}
+      {/* Right side */}
+<div
+  className="
+    flex flex-col 
+    w-1/2 max-w-3xl 
+    py-20 pr-40 flex-1 self-stretch 
+    items-center justify-between
+    
+    max-[1200px]:w-full 
+    max-[1200px]:max-w-full 
+    max-[1200px]:p-6 
+    max-[1200px]:flex-none
+  "
+>
         <div className="w-full flex justify-center mb-10 mt-10">
-          <img
-            alt="Icon"
-            src="/logo_gala.svg"
-            className="h-20 object-contain"
-          />
+          <img alt="Icon" src="/logo_gala.svg" className="h-20 object-contain" />
         </div>
 
         <AnimatePresence mode="wait">
@@ -187,7 +151,6 @@ export const HeroSliderSubsection = (): JSX.Element => {
               </p>
             )}
 
-            {/* Bouton dynamique */}
             {currentSlideData.id === 1 ? (
               <HashLink smooth to="#fondation_home" className="w-full">
                 <Button
@@ -229,7 +192,6 @@ export const HeroSliderSubsection = (): JSX.Element => {
           </motion.div>
         </AnimatePresence>
 
-        {/* Navigation dots */}
         <nav
           className="flex items-end justify-center gap-[30px] self-stretch w-full flex-[0_0_auto] mt-10"
           aria-label="Slider pagination"
