@@ -26,7 +26,7 @@ const slides = [
     subtitle:
       "450 000 personnes sensibilisées aux VBG (Violences Basées sur Le Genre)",
     description:
-      "Brisons le silence pour les femmes victimes de violence. Leur voix compte, leur sécurité importe. En parlant, en écoutant, en agissant, nous pouvons mettre fin à ces injustices.",
+      "Brisons le silence pour les femmes victimes de violence. Leur voix compte, leur sécurité importe. En parlant, en écoutant, en agissant, nous pouvons mettre fin à ces injustices.",
     image: "/actions_section/action_img_3.png",
   },
   {
@@ -62,20 +62,117 @@ const slides = [
 
 export const ActionsSlidesSubsection = (): JSX.Element => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 1200);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 3000); // toutes les 3 secondes
-
+    }, 3000);
     return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 1200);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const slide = slides[currentSlide];
 
+  // === VERSION MOBILE ===
+  if (isMobile) {
+    return (
+      <section className="w-full bg-antiflash px-6 py-10 flex flex-col items-center text-center gap-8">
+        {/* Titre */}
+        <h2 className="text-colbat font-[beautique-display-bold] text-3xl">
+          NOS ACTIONS
+        </h2>
+
+{/* Cercle image (mobile) */}
+<div className="relative flex items-center justify-center mx-auto shrink-0 w-[300px] h-[300px] overflow-hidden">
+  {/* Image */}
+  <AnimatePresence mode="wait">
+    <motion.img
+      key={currentSlide}
+      className="w-[240px] h-[240px] object-cover rounded-full border-2 border-[#0A4BA5] absolute"
+      alt="Actions"
+      src={slide.image}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.6, ease: 'easeInOut' }}
+    />
+  </AnimatePresence>
+
+  {/* Cercles animés */}
+  <div className="absolute inset-0 flex items-center justify-center">
+    <AnimatedCircles currentSlide={currentSlide} />
+  </div>
+</div>
+
+
+        {/* Texte animé */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentSlide}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.6, ease: "easeInOut" }}
+            className="flex flex-col gap-3"
+          >
+            <div className="font-[beautique-display] text-pumpkin text-2xl">
+              {slide.title}
+            </div>
+            <div className="[font-family:'Mona_Sans',Helvetica] text-licorice text-base font-bold">
+              {slide.subtitle}
+            </div>
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Description */}
+        <p className="font-corps text-sm text-licorice leading-6 px-4">
+          {slide.description}
+        </p>
+
+        {/* CTA Rapport + Don */}
+        <div className="flex flex-col items-center gap-4 w-full max-w-[320px]">
+          {/* 🔵 Bouton bleu rapport */}
+          <Button className="w-full bg-colbat text-antiflash font-extrabold text-base px-6 py-2 rounded-lg shadow h-auto hover:underline hover:-translate-y-1 transition-all duration-300 ease-in-out">
+            Télécharger le rapport<br/>d&apos;activité 2024
+          </Button>
+
+          {/* 🟠 Bouton Don */}
+          <Link to="/don" className="w-full">
+            <Card className="group bg-[#ffffffcc] rounded-[10px] cursor-pointer shadow-[0px_1px_2px_#00000040] backdrop-blur-[7.5px] border-0 hover:underline hover:-translate-y-1 transition-all duration-300 ease-in-out w-full">
+              <CardContent className="flex items-center gap-5 px-5 py-2.5">
+                <img
+                  className="w-[40px] h-[42px] transition-all duration-300 group-hover:opacity-0"
+                  alt="don icon"
+                  src="/nav_icons/nav_don_icon.svg"
+                />
+                <img
+                  className="w-[40px] h-[42px] absolute transition-all duration-300 opacity-0 group-hover:opacity-100"
+                  alt="don icon hover"
+                  src="/nav_icons/nav_don_icon_2.svg"
+                />
+                <div className="flex-1 font-extrabold text-base text-colbat text-center">
+                  Faire un don à la Fondation
+                </div>
+              </CardContent>
+            </Card>
+          </Link>
+        </div>
+      </section>
+    );
+  }
+
+
+  // === VERSION DESKTOP (inchangée) ===
   return (
     <section className="w-full bg-antiflash px-30 py-20">
       <div className="flex flex-wrap items-start justify-center gap-40 max-w-[1440px] mx-auto">
+        {/* Colonne gauche */}
         <div className="flex-1 min-w-0 flex flex-col justify-between h-[709px] px-10">
           <div className="flex flex-col gap-5">
             <h2 className="text-colbat font-[beautique-display-bold] text-5xl">
@@ -83,7 +180,6 @@ export const ActionsSlidesSubsection = (): JSX.Element => {
             </h2>
           </div>
 
-          {/* Animation du bloc texte */}
           <AnimatePresence mode="wait">
             <motion.div
               key={currentSlide}
@@ -96,7 +192,6 @@ export const ActionsSlidesSubsection = (): JSX.Element => {
               <div className="font-[beautique-display] text-pumpkin text-5xl">
                 {slide.title}
               </div>
-
               <div className="[font-family:'Mona_Sans',Helvetica] text-licorice text-lg font-bold">
                 {slide.subtitle}
               </div>
@@ -104,26 +199,23 @@ export const ActionsSlidesSubsection = (): JSX.Element => {
           </AnimatePresence>
 
           <div className="flex flex-col gap-10">
-            <p className="font-corps font-[number:var(--corps-font-weight)] text-licorice text-[length:var(--corps-font-size)] tracking-[var(--corps-letter-spacing)] leading-[var(--corps-line-height)] [font-style:var(--corps-font-style)]">
+            <p className="font-corps text-licorice">
               {slide.description}
             </p>
-            {/* 🔗 Lien vers /don */}
             <Link to="/don" className="w-full">
-              <Card className="group bg-[#ffffffcc] rounded-[10px] cursor-pointer shadow-[0px_1px_2px_#00000040] backdrop-blur-[7.5px] border-0 hover:underline hover:-translate-y-1 transition-all duration-300 ease-in-out">
+              <Card className="group bg-[#ffffffcc] rounded-[10px] cursor-pointer shadow backdrop-blur-[7.5px] border-0 hover:underline hover:-translate-y-1 transition-all duration-300 ease-in-out">
                 <CardContent className="flex items-center gap-5 px-5 py-2.5">
-                  {/* Image normale */}
                   <img
                     className="w-[52px] h-[55px] transition-all duration-300 group-hover:opacity-0"
                     alt="don icon"
                     src="/nav_icons/nav_don_icon.svg"
                   />
-                  {/* Image au hover */}
                   <img
                     className="w-[52px] h-[55px] absolute transition-all duration-300 opacity-0 group-hover:opacity-100"
                     alt="don icon hover"
                     src="/nav_icons/nav_don_icon_2.svg"
                   />
-                  <div className="flex-1 [font-family:'Mona_Sans',Helvetica] font-extrabold text-lg text-colbat text-center">
+                  <div className="flex-1 font-extrabold text-lg text-colbat text-center">
                     Faire un don à la Fondation
                   </div>
                 </CardContent>
@@ -132,13 +224,13 @@ export const ActionsSlidesSubsection = (): JSX.Element => {
           </div>
         </div>
 
+        {/* Colonne droite */}
         <div className="flex flex-col w-[570px] h-[709px] items-center justify-end gap-16">
           <div className="relative flex items-center justify-center w-[450px] h-[450px]">
-            {/* Animation de l'image */}
             <AnimatePresence mode="wait">
               <motion.img
                 key={currentSlide}
-                className="w-[360px] h-[360px] object-cover rounded-full border-solid border-2 border-[#0A4BA5] absolute"
+                className="w-[360px] h-[360px] object-cover rounded-full border-2 border-[#0A4BA5] absolute"
                 alt="Actions"
                 src={slide.image}
                 initial={{ opacity: 0 }}
@@ -147,17 +239,14 @@ export const ActionsSlidesSubsection = (): JSX.Element => {
                 transition={{ duration: 0.6, ease: "easeInOut" }}
               />
             </AnimatePresence>
-
-            {/* Cercle SVG plus grand */}
             <AnimatedCircles currentSlide={currentSlide} />
           </div>
 
           <div className="flex flex-col items-center gap-[30px] w-full">
-            <div className="font-legendes-categories font-[number:var(--legendes-categories-font-weight)] text-colbat text-[length:var(--legendes-categories-font-size)] text-center tracking-[var(--legendes-categories-letter-spacing)] leading-[var(--legendes-categories-line-height)] whitespace-nowrap [font-style:var(--legendes-categories-font-style)]">
+            <div className="font-legendes-categories text-colbat">
               NOS PROJETS PHARES 2024
             </div>
-
-            <Button className="bg-colbat text-antiflash [font-family:'Mona_Sans',Helvetica] font-extrabold text-lg px-8 py-2 rounded-lg shadow-[0px_1px_2px_#00000040] h-auto hover:underline hover:-translate-y-1 transition-all duration-300 ease-in-out">
+            <Button className="bg-colbat text-antiflash font-extrabold text-lg px-8 py-2 rounded-lg shadow h-auto hover:underline hover:-translate-y-1 transition-all duration-300 ease-in-out">
               Télécharger le rapport d&apos;activité 2024
             </Button>
           </div>

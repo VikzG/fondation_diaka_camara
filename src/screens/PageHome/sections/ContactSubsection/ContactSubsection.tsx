@@ -19,51 +19,32 @@ export const ContactSubsection = (): JSX.Element => {
     { id: "message", label: "Votre message*", type: "textarea", required: true },
   ];
 
-  return (
-    <section
-      id="contact"
-      className="flex w-full items-start gap-[100px] p-[100px] relative bg-vanilla"
-    >
-      <div
-        className={`inline-flex flex-col gap-[100px] relative self-stretch w-1/2 ${
-          isCerclePage ? "items-start text-left" : "items-center text-center"
-        }`}
-      >
-        {/* Titre dynamique */}
+  // === DESKTOP RETURN ===
+  const desktopReturn = (
+    <section id="contact" className="hidden lg:flex w-full items-start gap-[100px] p-[100px] relative bg-vanilla">
+      <div className={`inline-flex flex-col gap-[100px] relative self-stretch w-1/2 ${isCerclePage ? "items-start text-left" : "items-center text-center"}`}>
         <h2 className="relative w-fit font-[beautique-display-bold] text-5xl text-licorice">
           {isCerclePage ? "REJOINDRE LE CERCLE" : "CONTACTEZ-NOUS"}
         </h2>
-
-        {/* Image remplacée par un texte si on est sur /cercle */}
         {isCerclePage ? (
           <p className="font-corps text-licorice text-lg text-justify leading-relaxed max-w-md">
-            Le Cercle des Alliances est un lieu de partage, de collaboration et
-            de solidarité. Ensemble, nous pouvons créer des passerelles entre
-            nos causes et bâtir un avenir plus équitable pour les enfants et les
-            femmes d’Afrique.
+            Le Cercle des Alliances est un lieu de partage, de collaboration et de solidarité...
           </p>
         ) : (
-          <img
-            className="relative w-60 h-[247px]"
-            alt="contact"
-            src="/contact_section/logo_contact.svg"
-          />
+          <img className="relative w-60 h-[247px]" alt="contact" src="/contact_section/logo_contact.svg" />
         )}
       </div>
 
-      {/* Formulaire */}
       <div className="flex flex-col items-center justify-center gap-10 relative w-1/2">
         <form className="flex-col justify-center gap-[15px] flex-[0_0_auto] flex items-center relative self-stretch w-full">
           <div className="flex items-center gap-[15px] relative self-stretch w-full flex-[0_0_auto]">
             {formFields.map((field) => (
               <div key={field.id} className={`relative ${field.className}`}>
-                <Label htmlFor={field.id} className="sr-only">
-                  {field.label}
-                </Label>
+                <Label htmlFor={field.id} className="sr-only">{field.label}</Label>
                 <Input
                   id={field.id}
                   placeholder={field.label}
-                  className="h-[38px] gap-2.5 px-5 py-[5px] bg-[#ffffffcc] rounded-lg backdrop-blur-[5px] backdrop-brightness-[100%] border-0 placeholder:[font-family:'Mona_Sans',Helvetica] placeholder:font-medium placeholder:text-licorice placeholder:text-[17.5px] placeholder:leading-7"
+                  className="h-[38px] gap-2.5 px-5 py-[5px] bg-[#ffffffcc] rounded-lg backdrop-blur-[5px] border-0 placeholder:[font-family:'Mona_Sans',Helvetica] placeholder:font-medium placeholder:text-licorice placeholder:text-[17.5px] placeholder:leading-7"
                 />
               </div>
             ))}
@@ -71,20 +52,18 @@ export const ContactSubsection = (): JSX.Element => {
 
           {singleFields.map((field) => (
             <div key={field.id} className="relative self-stretch w-full">
-              <Label htmlFor={field.id} className="sr-only">
-                {field.label}
-              </Label>
+              <Label htmlFor={field.id} className="sr-only">{field.label}</Label>
               {field.type === "textarea" ? (
                 <Textarea
                   id={field.id}
                   placeholder={field.label}
-                  className="h-[173px] gap-2.5 px-5 py-[5px] bg-[#ffffffcc] rounded-lg backdrop-blur-[5px] backdrop-brightness-[100%] border-0 resize-none placeholder:[font-family:'Mona_Sans',Helvetica] placeholder:font-medium placeholder:text-licorice placeholder:text-[17.5px] placeholder:leading-7"
+                  className="h-[173px] gap-2.5 px-5 py-[5px] bg-[#ffffffcc] rounded-lg backdrop-blur-[5px] border-0 resize-none placeholder:[font-family:'Mona_Sans',Helvetica] placeholder:font-medium placeholder:text-licorice placeholder:text-[17.5px] placeholder:leading-7"
                 />
               ) : (
                 <Input
                   id={field.id}
                   placeholder={field.label}
-                  className="h-[38px] gap-2.5 px-5 py-[5px] bg-[#ffffffcc] rounded-lg backdrop-blur-[5px] backdrop-brightness-[100%] border-0 placeholder:[font-family:'Mona_Sans',Helvetica] placeholder:font-medium placeholder:text-licorice placeholder:text-[17.5px] placeholder:leading-7"
+                  className="h-[38px] gap-2.5 px-5 py-[5px] bg-[#ffffffcc] rounded-lg backdrop-blur-[5px] border-0 placeholder:[font-family:'Mona_Sans',Helvetica] placeholder:font-medium placeholder:text-licorice placeholder:text-[17.5px] placeholder:leading-7"
                 />
               )}
             </div>
@@ -101,6 +80,7 @@ export const ContactSubsection = (): JSX.Element => {
             </Button>
           </div>
 
+          {/* Pièce jointe facultative desktop */}
           <div className="flex items-center justify-center gap-2.5 px-5 py-[5px] self-stretch w-full bg-[#ffffff33] rounded-lg border border-solid border-[#160a00] backdrop-blur-[7.5px]">
             <div className="relative w-fit font-corps text-licorice text-[length:var(--corps-font-size)] text-center leading-[var(--corps-line-height)]">
               <span className="text-[#160a00] font-corps">
@@ -114,5 +94,92 @@ export const ContactSubsection = (): JSX.Element => {
         </form>
       </div>
     </section>
+  );
+
+  // === MOBILE RETURN ===
+  const mobileReturn = (
+    <section id="contact" className="flex bg-vanilla flex-col items-center gap-6 px-6 py-10 lg:hidden">
+      {/* Partie gauche en haut */}
+      <div className="flex flex-col items-center gap-4 w-full">
+        <h2 className="font-[beautique-display-bold] text-3xl text-licorice text-center">
+          {isCerclePage ? "REJOINDRE LE CERCLE" : "CONTACTEZ-NOUS"}
+        </h2>
+        {isCerclePage ? (
+          <p className="font-corps text-licorice text-base text-center leading-relaxed max-w-md">
+            Le Cercle des Alliances est un lieu de partage, de collaboration et de solidarité...
+          </p>
+        ) : (
+          <img className="w-40 h-40" alt="contact" src="/contact_section/logo_contact.svg" />
+        )}
+      </div>
+
+      {/* Partie droite en bas */}
+      <div className="flex flex-col items-center w-full gap-4">
+        <form className="flex flex-col gap-4 w-full">
+          {/* Champs côte à côte inversés */}
+          <div className="flex gap-4 w-full">
+            <div className="flex-1">
+              <Label htmlFor="organization" className="sr-only">Organisation</Label>
+              <Input
+                id="organization"
+                placeholder="Organisation"
+                className="h-10 px-4 bg-[#ffffffcc] rounded-lg backdrop-blur-sm border-0 placeholder:[font-family:'Mona_Sans',Helvetica] placeholder:font-medium placeholder:text-licorice placeholder:text-sm"
+              />
+            </div>
+            <div className="flex-1">
+              <Label htmlFor="fullName" className="sr-only">Nom complet*</Label>
+              <Input
+                id="fullName"
+                placeholder="Nom complet*"
+                className="h-10 px-4 bg-[#ffffffcc] rounded-lg backdrop-blur-sm border-0 placeholder:[font-family:'Mona_Sans',Helvetica] placeholder:font-medium placeholder:text-licorice placeholder:text-sm"
+              />
+            </div>
+          </div>
+
+          {/* Champs restants */}
+          {singleFields.map((field) => (
+            <div key={field.id}>
+              <Label htmlFor={field.id} className="sr-only">{field.label}</Label>
+              {field.type === "textarea" ? (
+                <Textarea
+                  id={field.id}
+                  placeholder={field.label}
+                  className="h-36 px-4 py-2 bg-[#ffffffcc] rounded-lg backdrop-blur-sm border-0 resize-none placeholder:[font-family:'Mona_Sans',Helvetica] placeholder:font-medium placeholder:text-licorice placeholder:text-sm"
+                />
+              ) : (
+                <Input
+                  id={field.id}
+                  placeholder={field.label}
+                  className="h-10 px-4 bg-[#ffffffcc] rounded-lg backdrop-blur-sm border-0 placeholder:[font-family:'Mona_Sans',Helvetica] placeholder:font-medium placeholder:text-licorice placeholder:text-sm"
+                />
+              )}
+            </div>
+          ))}
+
+          <Button
+            type="submit"
+            className="mt-2 w-full py-3 bg-pumpkin rounded-lg text-vanilla font-extrabold text-lg hover:underline hover:-translate-y-1 transition-all shadow-sm"
+          >
+            Envoyer
+          </Button>
+
+          {/* Pièce jointe facultative mobile */}
+          <div className="flex items-center justify-center gap-2.5 px-4 py-2 w-full bg-[#ffffff33] rounded-lg border border-solid border-[#160a00] backdrop-blur-sm">
+            <div className="relative w-fit font-corps text-licorice text-sm text-center leading-5">
+              <span className="text-[#160a00] font-corps font-bold">
+                * <strong>Pièce jointe facultative</strong>
+              </span>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+  );
+
+  return (
+    <>
+      {desktopReturn}
+      {mobileReturn}
+    </>
   );
 };

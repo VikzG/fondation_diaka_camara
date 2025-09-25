@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "../../../../components/ui/button";
+import { motion, AnimatePresence } from "framer-motion";
 
 export const IntervenantsSubsection = (): JSX.Element => {
   const slides = [
@@ -15,7 +16,7 @@ export const IntervenantsSubsection = (): JSX.Element => {
     {
       title: "CIRCUS\nBAOBAB",
       description:
-        "Précurseur du cirque ouest-africain, Circus Baobab parcourt le monde depuis 25 ans. Originaire de Guinée, cette compagnie cultive une identité singulière mêlant danses rituelles et nouvelles écritures contemporaines.",
+        "Précurseur du cirque ouest-africain, Circus Baobab parcourt le monde depuis 25 ans. Originaire de Guinée, cette compagnie cultive une identité singulière mêlant danses rituelles et nouvelles écritures contemporaines.",
       legend: "SPECTACLE ACROBATIQUE",
       color: "text-colbat",
       image: "/page_gala_section/gala_slider/slide_2.png",
@@ -24,7 +25,7 @@ export const IntervenantsSubsection = (): JSX.Element => {
     {
       title: "PRISSY\nLA DEGAMEUSE",
       description:
-        "Actrice, présentatrice, chroniqueuse culturelle, Prissy la Dégameuse est une constellation de talents. Elle s’est fait connaître grâce à ses vidéos humoristiques, où elle dépeint avec ironie et dérision les réalités de la société ivoirienne.",
+        "Actrice, présentatrice, chroniqueuse culturelle, Prissy la Dégameuse est une constellation de talents. Elle s’est fait connaître grâce à ses vidéos humoristiques, où elle dépeint avec ironie et dérision les réalités de la société ivoirienne.",
       legend: "INTERLUDE HUMORISTIQUE",
       color: "text-carmin",
       image: "/page_gala_section/gala_slider/slide_3.png",
@@ -60,25 +61,128 @@ export const IntervenantsSubsection = (): JSX.Element => {
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [fade, setFade] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   const nextSlide = () => {
     setFade(true);
     setTimeout(() => {
       setCurrentIndex((prev) => (prev + 1) % slides.length);
       setFade(false);
-    }, 300); // durée du fade-out
+    }, 300);
+  };
+
+  const prevSlide = () => {
+    setFade(true);
+    setTimeout(() => {
+      setCurrentIndex((prev) => (prev - 1 + slides.length) % slides.length);
+      setFade(false);
+    }, 300);
   };
 
   const currentSlide = slides[currentIndex];
+  const prevSlideData = slides[(currentIndex - 1 + slides.length) % slides.length];
+  const nextSlideData = slides[(currentIndex + 1) % slides.length];
+
+  useEffect(() => {
+    const checkScreen = () => setIsMobile(window.innerWidth < 1200);
+    checkScreen();
+    window.addEventListener("resize", checkScreen);
+    return () => window.removeEventListener("resize", checkScreen);
+  }, []);
 
   const getArrowSrc = (index: number) => {
-    if (index === 0 || index === 3)
-      return "/orange_arrows/arrow_orange_right.svg";
+    if (index === 0 || index === 3) return "/orange_arrows/arrow_orange_right.svg";
     if (index === 1 || index === 4) return "/blue_arrow.svg";
     if (index === 2 || index === 5) return "/red_arrow.svg";
     return "/orange_arrows/arrow_orange_right.svg";
   };
 
+  // === VERSION MOBILE ===
+  if (isMobile) {
+    return (
+<section className="h-[800px] bg-vanilla w-full relative px-6 py-12 flex flex-col items-center justify-around">
+  {/* Grande image ronde animée */}
+  <AnimatePresence mode="wait">
+    <motion.div
+      key={currentSlide.image}
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.8 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className="w-[280px] h-[280px] rounded-full shadow-lg bg-cover bg-center"
+      style={{ backgroundImage: `url(${currentSlide.image})` }}
+    />
+  </AnimatePresence>
+
+  {/* Légende animée */}
+  <AnimatePresence mode="wait">
+    <motion.div
+      key={currentSlide.legend + currentIndex}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className={`font-legendes-categories ${currentSlide.color} text-center`}
+    >
+      {currentSlide.legend}
+    </motion.div>
+  </AnimatePresence>
+
+  {/* Titre animé */}
+  <AnimatePresence mode="wait">
+    <motion.h2
+      key={currentSlide.title + currentIndex}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className={`whitespace-pre-line font-[beautique-display-bold] text-3xl text-center ${currentSlide.color}`}
+    >
+      {currentSlide.title}
+    </motion.h2>
+  </AnimatePresence>
+
+  {/* Description (fixe, pas animée comme tu veux garder stable) */}
+  <p className="font-[Mona_Sans] text-licorice text-base text-center leading-6">
+    {currentSlide.description}
+  </p>
+
+  {/* Navigation */}
+  <div className="flex items-center justify-center w-full max-w-md mt-6 gap-10">
+    {/* Pastille précédente */}
+    <div
+      onClick={prevSlide}
+      className="w-[70px] h-[100px] grayscale rounded-full shadow-md bg-cover bg-center cursor-pointer"
+      style={{ backgroundImage: `url(${prevSlideData.image})` }}
+    />
+
+    {/* Bouton Next identique desktop */}
+    <Button
+      onClick={nextSlide}
+      variant="outline"
+      className="group inline-flex items-center px-6 py-2.5 rounded-[50px] 
+        border border-solid border-licorice bg-transparent hover:bg-vanilla h-auto 
+        transition-all duration-300"
+    >
+      <img
+        className="w-[18px] h-[35px] ml-0 transition-all duration-300"
+        alt="arrow"
+        src={getArrowSrc(currentIndex)}
+      />
+    </Button>
+
+    {/* Pastille suivante */}
+    <div
+      onClick={nextSlide}
+      className="w-[70px] h-[100px] grayscale rounded-full shadow-md bg-cover bg-center cursor-pointer"
+      style={{ backgroundImage: `url(${nextSlideData.image})` }}
+    />
+  </div>
+</section>
+    );
+  }
+
+  // === VERSION DESKTOP ===
   return (
     <section className="bg-vanilla w-full relative">
       <div className="flex flex-col w-full max-w-[1440px] mx-auto relative">
@@ -100,11 +204,7 @@ export const IntervenantsSubsection = (): JSX.Element => {
                     className={`
                       w-[125px] h-[125px] rounded-[100px] shadow-[0px_1px_2px_#00000080] 
                       bg-cover bg-[50%_50%] cursor-pointer transition-all duration-300
-                      ${
-                        currentIndex === index
-                          ? "grayscale-0"
-                          : "grayscale hover:grayscale-0"
-                      }
+                      ${currentIndex === index ? "grayscale-0" : "grayscale hover:grayscale-0"}
                     `}
                     style={{ backgroundImage: `url(${slide.image})` }}
                   />
@@ -121,12 +221,12 @@ export const IntervenantsSubsection = (): JSX.Element => {
           <div className="flex flex-col flex-1 relative">
             <div className="flex flex-col items-center justify-center gap-[50px] p-20 w-full h-full">
               <h2
-                className={` text-center whitespace-pre-line font-[beautique-display-bold] text-5xl  ${currentSlide.color} font-[beautique-display-bold] text-5xl`}
+                className={`text-center whitespace-pre-line font-[beautique-display-bold] text-5xl ${currentSlide.color}`}
               >
                 {currentSlide.title}
               </h2>
 
-              <p className="[font-family:'Mona_Sans',Helvetica] font-normal text-licorice text-[17.5px] text-center leading-7">
+              <p className="font-[Mona_Sans] text-licorice text-[17.5px] text-center leading-7">
                 {currentSlide.description}
               </p>
 
@@ -160,22 +260,21 @@ export const IntervenantsSubsection = (): JSX.Element => {
           <img
             key={currentSlide.icon}
             className={`absolute h-[321px] left-1/2 transform -translate-x-1/2 z-10
-    ${[2, 3].includes(currentIndex) ? "bottom-0" : "bottom-10"} fade-image`}
+              ${[2, 3].includes(currentIndex) ? "bottom-0" : "bottom-10"} fade-image`}
             alt="slide icon"
             src={currentSlide.icon}
           />
 
-          {/* Image droite avec fade */}
+          {/* Image droite */}
           <div className="flex items-center p-32 flex-1 relative overflow-hidden">
             <div
               key={currentSlide.image}
               className={`flex-1 h-[550px] rounded-[500px] shadow-[0px_4px_4px_#00000080] 
-      bg-cover bg-[50%_50%] relative fade-image
-      ${[0, 1, 4].includes(currentIndex) ? "z-10" : "z-0"}`}
+                bg-cover bg-[50%_50%] relative fade-image
+                ${[0, 1, 4].includes(currentIndex) ? "z-10" : "z-0"}`}
               style={{
                 backgroundImage: `url(${currentSlide.image})`,
-                backgroundPosition:
-                  currentIndex === 3 ? "center top" : "center",
+                backgroundPosition: currentIndex === 3 ? "center top" : "center",
               }}
             />
           </div>

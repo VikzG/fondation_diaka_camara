@@ -1,7 +1,16 @@
 import { Card, CardContent } from "../../../../components/ui/card";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 export const WhyJoinSection = (): JSX.Element => {
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 900);
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 900);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
   const cardData = [
     {
       icon: "/cercle_section/solidarite_cercle.svg",
@@ -32,6 +41,54 @@ export const WhyJoinSection = (): JSX.Element => {
         "Accès privilégié aux événements du CDA : Gala annuel, dîners de travail, forums d’échange entre fondations et partenaires.",
     },
   ];
+
+  if (isMobile) {
+    return (
+      <section className="flex flex-col gap-6 p-6 [background:url(../slider_cercle_section/slide_img_1.png)_50%_50%_/_cover] w-full">
+        {cardData.map((card, index) => (
+          <Card
+            key={index}
+            className="w-full h-auto bg-[#ebf0eee6] rounded-[20px] shadow-[0px_1px_3px_#00000080] backdrop-blur-[7.5px] backdrop-brightness-[100%] border-0"
+          >
+            <CardContent className="flex flex-col items-center justify-start gap-4 p-6">
+              {/* Icône + titre */}
+              <motion.div
+                initial={{ y: 20 }}
+                whileInView={{ y: 0 }}
+                transition={{
+                  duration: 0.6,
+                  delay: index * 0.3,
+                  ease: "easeOut",
+                }}
+                viewport={{ once: true }}
+                className="flex flex-col items-center gap-2"
+              >
+                <img className="w-20 h-20" alt={card.alt} src={card.icon} />
+                <div className="font-legendes-bold text-licorice text-xl text-center">
+                  {card.title}
+                </div>
+              </motion.div>
+
+              {/* Description */}
+              <motion.p
+                className="text-center text-licorice text-base leading-relaxed mt-2"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 0.6,
+                  delay: index * 0.3 + 0.2,
+                  ease: "easeOut",
+                }}
+                viewport={{ once: true }}
+              >
+                {card.description}
+              </motion.p>
+            </CardContent>
+          </Card>
+        ))}
+      </section>
+    );
+  }
 
   return (
     <section className="flex flex-col gap-5 p-[100px] [background:url(../slider_cercle_section/slide_img_1.png)_50%_50%_/_cover] w-full">

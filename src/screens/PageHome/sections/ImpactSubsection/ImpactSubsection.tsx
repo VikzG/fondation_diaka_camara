@@ -1,10 +1,15 @@
-import { JSXElementConstructor, Key, ReactElement, ReactFragment, ReactPortal, useState } from "react";
-import DonateButton from "../../../../components/DonateButton";
+import { useState, useEffect, ReactElement, JSXElementConstructor, ReactFragment, ReactPortal, Key } from "react";
 import { Button } from "../../../../components/ui/button";
 import { Card, CardContent } from "../../../../components/ui/card";
 import { Counter } from "../../../../components/Counter";
+import DonateButton from "../../../../components/DonateButton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../../../components/ui/tabs";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
 
+// ================== tes catégories et stats (inchangés) ==================
 const categories = [
   { id: "education", label: "ÉDUCATION" },
   { id: "culture", label: "CULTURE" },
@@ -13,75 +18,75 @@ const categories = [
   { id: "partenariats", label: "PARTENARIATS" },
 ];
 
-const educationStats = {
-  image: "/impact_section/education-image.png",
-  icon: "/impact_section/book.svg",
-  left: [
-    { number: "45", title: "Jeunes filles", description: "scolarisées à 100% via\n#Scolarisons100filles" },
-    { number: "2", title: "Bibliothèques", description: "rénovées pour 1200 élèves\nbénéficiaires" },
-  ],
-  right: [
-    { number: "100", title: "Kits Scolaires", description: "complets distribués aux\nenfants des écoles" },
-    { number: "45", title: "Bénéficiaires", description: "d'une allocation mensuelle\npour la cantine" },
-  ],
-};
-
-const cultureStats = {
-  image: "/impact_section/culture-image.png",
-  icon: "/impact_section/culture.svg",
-  left: { number: "72", title: "Du Livre", description: "Partenariat culturel" },
-  right: [
-    { number: "26", title: "Écoles", description: "engagées dans le concours\n“Plumes fines”" },
-    { number: "300", title: "Enfants", description: "participants aux\nateliers de lecture" },
-  ],
-};
-
-const protectionStats = {
-  image: "/impact_section/protection-image.png",
-  icon: "/impact_section/hands.svg",
-  left: { number: "450", title: "Personnes", description: "atteintes par la campagne\n#BrisonsLeSilence" },
-  right: [
-    { number: "1", title: "Intervention", description: "d’urgence médico-\npsychologique et judiciaire" },
-    { number: "10", title: "Écoles", description: "ayant assisté aux\nateliers de prévention" },
-  ],
-};
-
-const solidariteStats = {
-  image: "/impact_section/solidarite-image.png",
-  icon: "/impact_section/solidarite.svg",
-  left: { number: "7", title: "Édition de\nl’Orphan’s Day", description: "Dons éducatifs et ludiques\nà des orphelins" },
-  right: [
-    { number: "4", title: "Enfants", description: "Ayant été opérés avec\nsuccès" },
-    { number: "1", title: "Documentaire", description: "réalisé sur l’autisme (une\npremière en Guinée" },
-  ],
-};
-
-const partenariatsStats = {
-  image: "/impact_section/partenariats-image.png",
-  icon: "/impact_section/partenaire.svg",
-  left: { number: "10", title: "Partenaires\nmajeurs" },
-  right: [{ number: "7", title: "Mentors\nbénévoles" }],
-};
-
 const statsMap: Record<string, any> = {
-  education: educationStats,
-  culture: cultureStats,
-  protection: protectionStats,
-  solidarite: solidariteStats,
-  partenariats: partenariatsStats,
+  education: {
+    image: "/impact_section/education-image.png",
+    icon: "/impact_section/book.svg",
+    left: [
+      { number: "45", title: "Jeunes filles", description: "scolarisées à 100% via\n#Scolarisons100filles" },
+      { number: "2", title: "Bibliothèques", description: "rénovées pour 1200 élèves\nbénéficiaires" },
+    ],
+    right: [
+      { number: "100", title: "Kits Scolaires", description: "complets distribués aux\nenfants des écoles" },
+      { number: "45", title: "Bénéficiaires", description: "d'une allocation mensuelle\npour la cantine" },
+    ],
+  },
+  culture: {
+    image: "/impact_section/culture-image.png",
+    icon: "/impact_section/culture.svg",
+    left: { number: "72", title: "Du Livre", description: "Partenariat culturel" },
+    right: [
+      { number: "26", title: "Écoles", description: "engagées dans le concours\n“Plumes fines”" },
+      { number: "300", title: "Enfants", description: "participants aux\nateliers de lecture" },
+    ],
+  },
+  protection: {
+    image: "/impact_section/protection-image.png",
+    icon: "/impact_section/hands.svg",
+    left: { number: "450", title: "Personnes", description: "atteintes par la campagne\n#BrisonsLeSilence" },
+    right: [
+      { number: "1", title: "Intervention", description: "d’urgence médico-\npsychologique et judiciaire" },
+      { number: "10", title: "Écoles", description: "ayant assisté aux\nateliers de prévention" },
+    ],
+  },
+  solidarite: {
+    image: "/impact_section/solidarite-image.png",
+    icon: "/impact_section/solidarite.svg",
+    left: { number: "7", title: "Édition de\nl’Orphan’s Day", description: "Dons éducatifs et ludiques\nà des orphelins" },
+    right: [
+      { number: "4", title: "Enfants", description: "Ayant été opérés avec\nsuccès" },
+      { number: "1", title: "Documentaire", description: "réalisé sur l’autisme (une\npremière en Guinée" },
+    ],
+  },
+  partenariats: {
+    image: "/impact_section/partenariats-image.png",
+    icon: "/impact_section/partenaire.svg",
+    left: { number: "10", title: "Partenaires\nmajeurs" },
+    right: [{ number: "7", title: "Mentors\nbénévoles" }],
+  },
 };
 
+// ================== COMPONENT ==================
 export const ImpactSubsection = (): JSX.Element => {
+  const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 1200);
   const [activeTab, setActiveTab] = useState("education");
   const [fade, setFade] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => setIsDesktop(window.innerWidth >= 1200);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const handleTabChange = (value: string) => {
     setFade(true);
     setTimeout(() => {
       setActiveTab(value);
       setFade(false);
-    }, 200); // Durée du fade en ms
+    }, 200);
   };
+
+   if (isDesktop) {
 
   return (
     <section className="w-full bg-colbat py-24">
@@ -191,5 +196,98 @@ export const ImpactSubsection = (): JSX.Element => {
         </div>
       </div>
     </section>
+  );
+}
+
+  // ================== MOBILE VERSION ==================
+  return (
+<section className="block xl:hidden w-full bg-colbat py-16 relative"> {/* relative ajouté ici */}
+  <header className="flex flex-col items-center text-center gap-6">
+    <h2 className="text-antiflash font-titres text-3xl">
+      NOTRE IMPACT <br />
+      <span className="font-[beautique-display] font-normal">en</span> CHIFFRES
+    </h2>
+    <p className="text-antiflash text-base font-corps">
+      Parce que chaque action compte, voici un
+      <br />
+      extrait de ce que nous avons réalisé en 2024 :
+    </p>
+  </header>
+
+  <div className="mt-10 w-full">
+    <Swiper
+      pagination={{ clickable: true }}
+      modules={[Pagination]}
+      className="w-full h-[700px]" // hauteur fixe pour tous les slides
+    >
+      {categories.map((category) => {
+        const stats = statsMap[category.id];
+        const items = [
+          ...(Array.isArray(stats.left) ? stats.left : [stats.left]),
+          ...(stats.right || []),
+        ];
+        return (
+          <SwiperSlide key={category.id} className="h-[700px] flex flex-col w-full">
+            {/* Onglet catégorie */}
+            <h3 className="w-full rounded-t-2xl bg-pumpkin text-vanilla font-legendes-bold text-center text-lg py-2">
+              {category.label}
+            </h3>
+
+            {/* Image plus grande */}
+            <img
+              src={stats.image}
+              alt={category.label}
+              className="w-full h-52 object-cover"
+            />
+
+            {/* Stats */}
+            <div className="flex-1 flex flex-col justify-around w-full bg-vanilla px-4 py-6 gap-6 h-[400px] overflow-hidden">
+              {items.map((stat, i) => (
+                <div key={i} className="flex w-full">
+                  {/* Gauche : chiffre + titre */}
+                  <div className="flex-1 text-pumpkin text-center">
+                    <div className="text-3xl font-bold font-[beautique-display]">
+                      <Counter value={parseInt(stat.number, 10)} duration={1000} />
+                    </div>
+                    <div className="text-lg font-[beautique-display]">{stat.title}</div>
+                  </div>
+
+                  {/* Droite : description */}
+                  <div className="flex-1 text-pumpkin text-center">
+                    {stat.description && (
+                      <p className="text-sm font-corps whitespace-pre-line">
+                        {stat.description}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </SwiperSlide>
+        );
+      })}
+    </Swiper>
+  </div>
+
+  {/* bouton faire un don */}
+  <div className="mt-20 flex justify-center relative z-10"> {/* relative ici pour que le bouton se place correctement */}
+    <DonateButton />
+  </div>
+
+  {/* Styles custom bullets */}
+  <style>{`
+    .swiper-pagination-bullet {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #faf2d7; /* neutre */
+      opacity: 1;
+      margin: 0 6px !important;
+    }
+    .swiper-pagination-bullet-active {
+      background: #ff7a00; /* pumpkin */
+    }
+  `}</style>
+</section>
   );
 };

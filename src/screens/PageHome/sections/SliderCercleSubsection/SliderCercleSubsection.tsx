@@ -6,7 +6,14 @@ export const SliderCercleSubsection = (): JSX.Element => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [fade, setFade] = useState(true);
 
-  // Configuration des 2 états
+  // Gestion de la largeur de l’écran
+  const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 1200);
+  useEffect(() => {
+    const handleResize = () => setIsDesktop(window.innerWidth >= 1200);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const states = [
     {
       title: "LE CERCLE DES ALLIANCES",
@@ -34,35 +41,101 @@ export const SliderCercleSubsection = (): JSX.Element => {
 
   const currentState = states[activeIndex];
 
-  // Auto-slide toutes les 5s avec effet fade
+  // Auto-slide toutes les 5s avec fade
   useEffect(() => {
     const interval = setInterval(() => {
-      setFade(false); // on déclenche le fade out
+      setFade(false);
       setTimeout(() => {
         setActiveIndex((prevIndex) => (prevIndex + 1) % states.length);
-        setFade(true); // puis fade in après changement
-      }, 300); // durée du fade out
+        setFade(true);
+      }, 300);
     }, 5000);
 
     return () => clearInterval(interval);
   }, [states.length]);
 
+  // =========================
+  // DESKTOP VERSION (≥1200px)
+  // =========================
+  if (isDesktop) {
+    return (
+      <section className="flex w-full items-start bg-vanilla overflow-hidden">
+        {/* IMAGE À GAUCHE */}
+        <div
+          className={`h-[657px] bg-cover bg-[50%_50%] relative w-1/2 transition-opacity duration-700 ${
+            fade ? "opacity-100" : "opacity-0"
+          }`}
+          style={{ backgroundImage: `url(${currentState.imageUrl})` }}
+        />
+
+        {/* TEXTE */}
+        <div className="flex flex-col items-center justify-between py-20 px-24 self-stretch relative w-1/2">
+          <h2
+            className={`${currentState.titleColor} font-[beautique-display-bold] text-5xl relative text-center transition-opacity duration-700 ${
+              fade ? "opacity-100" : "opacity-0"
+            }`}
+          >
+            {currentState.title}
+          </h2>
+
+          <p
+            className={`font-[beautique-display] text-licorice text-3xl text-center transition-opacity duration-700 ${
+              fade ? "opacity-100" : "opacity-0"
+            }`}
+          >
+            {currentState.paragraph}
+          </p>
+
+          <Link to={currentState.link} className="w-full block">
+            <Button
+              className={`flex w-full items-center justify-center gap-2.5 pt-[5px] pb-[7px] px-[25px] ${currentState.buttonColor} rounded-[10px] shadow-[0px_1px_2px_#00000040] h-auto hover:underline hover:-translate-y-1 transition-all duration-300`}
+            >
+              <span className="font-extrabold text-vanilla text-lg">
+                {currentState.buttonText}
+              </span>
+            </Button>
+          </Link>
+
+          {/* INDICATEURS */}
+          <div className="flex items-end justify-center gap-[30px] w-full mt-6">
+            {states.map((state, index) => (
+              <div
+                key={index}
+                onClick={() => {
+                  setFade(false);
+                  setTimeout(() => {
+                    setActiveIndex(index);
+                    setFade(true);
+                  }, 300);
+                }}
+                className={`${
+                  activeIndex === index ? state.indicatorColor : "bg-[#ffffff33]"
+                } cursor-pointer border-[#160a00] w-5 h-5 rounded-[10px] border-[1.5px] transition-colors duration-500`}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // =========================
+  // MOBILE VERSION (<1200px)
+  // =========================
   return (
-    <section className="flex w-full items-start bg-vanilla overflow-hidden">
-      {/* IMAGE À GAUCHE */}
+    <section className="flex flex-col w-full items-stretch bg-vanilla overflow-hidden">
+      {/* IMAGE EN HAUT */}
       <div
-        className={`h-[657px] bg-cover bg-[50%_50%] relative w-1/2 transition-opacity duration-700 ${
+        className={`h-[300px] bg-cover bg-center relative w-full transition-opacity duration-700 ${
           fade ? "opacity-100" : "opacity-0"
         }`}
         style={{ backgroundImage: `url(${currentState.imageUrl})` }}
       />
 
-      {/* TEXTE + CTA + INDICATEURS */}
-      <div className="flex flex-col items-center justify-between py-20 px-24 self-stretch relative w-1/2">
+      {/* TEXTE EN BAS */}
+      <div className="flex flex-col items-center justify-between gap-6 py-10 px-6 w-full">
         <h2
-          className={`self-stretch ${
-            currentState.titleColor
-          } font-[beautique-display-bold] text-5xl relative text-center transition-opacity duration-700 ${
+          className={`${currentState.titleColor} font-[beautique-display-bold] text-3xl text-center transition-opacity duration-700 ${
             fade ? "opacity-100" : "opacity-0"
           }`}
         >
@@ -70,27 +143,23 @@ export const SliderCercleSubsection = (): JSX.Element => {
         </h2>
 
         <p
-          className={`relative self-stretch font-[beautique-display] text-licorice text-3xl text-center transition-opacity duration-700 ${
+          className={`font-[beautique-display] text-licorice text-lg text-center transition-opacity duration-700 ${
             fade ? "opacity-100" : "opacity-0"
           }`}
         >
           {currentState.paragraph}
         </p>
 
-        <div className="flex items-center justify-center gap-2.5 px-0 py-0.5 self-stretch w-full flex-[0_0_auto] rounded-[10px]">
-          <Link to={currentState.link} className="w-full block">
-            <Button
-              className={`flex w-full items-center justify-center gap-2.5 pt-[5px] pb-[7px] px-[25px] relative ${currentState.buttonColor} rounded-[10px] shadow-[0px_1px_2px_#00000040] h-auto hover:underline hover:-translate-y-1 transition-all duration-300`}
-            >
-              <span className="relative w-fit mt-[-1.00px] [font-family:'Mona_Sans',Helvetica] font-extrabold text-vanilla text-lg text-center tracking-[0] leading-[30px] whitespace-nowrap">
-                {currentState.buttonText}
-              </span>
-            </Button>
-          </Link>
-        </div>
+        <Link to={currentState.link} className="w-full block">
+          <Button
+            className={`flex w-full items-center justify-center gap-2.5 py-3 px-6 ${currentState.buttonColor} rounded-[10px] shadow-[0px_1px_2px_#00000040] text-base font-extrabold text-vanilla transition-all duration-300`}
+          >
+            {currentState.buttonText}
+          </Button>
+        </Link>
 
         {/* INDICATEURS */}
-        <div className="flex items-end justify-center gap-[30px] relative self-stretch w-full flex-[0_0_auto]">
+        <div className="flex items-center justify-center gap-5 w-full mt-4">
           {states.map((state, index) => (
             <div
               key={index}
@@ -103,7 +172,7 @@ export const SliderCercleSubsection = (): JSX.Element => {
               }}
               className={`${
                 activeIndex === index ? state.indicatorColor : "bg-[#ffffff33]"
-              } cursor-pointer border-[#160a00] relative w-5 h-5 rounded-[10px] border-[1.5px] border-solid transition-colors duration-500`}
+              } cursor-pointer w-4 h-4 rounded-full border border-[#160a00] transition-colors duration-500`}
             />
           ))}
         </div>

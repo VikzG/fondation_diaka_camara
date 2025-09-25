@@ -1,12 +1,38 @@
 import React from "react";
+import { useState,useEffect } from "react";
 
 export const ObjectifsSubsection = (): JSX.Element => {
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 1200);
+
   const objectives = [
     "• Scolariser 100 jeunes filles via la Bourse Zenab Soumah",
     "• Ouvrir 3 nouvelles bibliothèques scolaires",
     "• Financer la création d'un fonds d'urgence pour les jeunes filles victimes de VBG",
   ];
 
+    useEffect(() => {
+      const handleResize = () => setIsMobile(window.innerWidth < 1200);
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
+  // === MOBILE RENDER ===
+  if (isMobile) {
+    return (
+      <section className="w-full relative bg-[linear-gradient(270deg,rgba(240,100,25,1)_0%,rgba(195,15,40,1)_100%)] px-6 py-16 flex flex-col items-center gap-8">
+        <h2 className="font-[beautique-display-bold] text-4xl text-vanilla text-center">
+          OBJECTIFS 2025
+        </h2>
+        <div className="[font-family:'Mona_Sans',Helvetica] font-bold text-antiflash text-md text-center leading-7 flex flex-col gap-2">
+          {objectives.map((objective, index) => (
+            <span key={index}>{objective}</span>
+          ))}
+        </div>
+      </section>
+    );
+  }
+
+  // === DESKTOP RENDER ===
   return (
     <section className="w-full relative bg-[linear-gradient(270deg,rgba(240,100,25,1)_0%,rgba(195,15,40,1)_100%)]">
       <div className="flex items-start justify-between px-28 py-20">

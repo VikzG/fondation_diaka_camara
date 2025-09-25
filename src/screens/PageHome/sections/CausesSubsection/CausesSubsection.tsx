@@ -74,12 +74,12 @@ export const CausesSubsection = (): JSX.Element => {
   ];
 
   return (
-    <section className="w-full items-center gap-[70px] pt-0 pb-5 px-0 flex flex-col">
-      <header className="flex flex-col w-full max-w-[1240px] items-center gap-10 px-60 py-0 relative">
-        <h2 className="text-pumpkin text-center font-[beautique-display-bold] text-5xl">
+    <section className="w-full flex flex-col items-center gap-[70px] pt-0 pb-5 max-[1200px]:pb-0 px-0">
+      <header className="flex flex-col w-full max-w-[1240px] items-center gap-10 px-60 max-[1200px]:px-6 py-0 relative">
+        <h2 className="text-pumpkin text-center font-[beautique-display-bold] text-5xl max-[1200px]:text-3xl">
           NOS CAUSES
         </h2>
-        <p className="text-licorice text-center font-corps">
+        <p className="text-licorice text-center font-corps max-[1200px]:text-sm">
           Nos programmes ciblent{" "}
           <span className="font-bold text-pumpkin">
             trois priorités stratégiques
@@ -93,57 +93,57 @@ export const CausesSubsection = (): JSX.Element => {
         type="single"
         collapsible
         defaultValue="item-2"
-        className="w-full flex flex-col gap-5"
+        className="w-full flex flex-col max-[1200px]:gap-0 gap-5"
       >
         {causesData.map((cause) => (
-<AccordionItem
-  key={cause.id}
-  value={cause.id}
-  className={cn(
-    "border-none transition-all duration-300 bg-vanilla",
-    cause.number === "2"
-      ? // Gradient foncé à droite (comme avant)
-        "hover:bg-[linear-gradient(90deg,rgba(0,0,0,0.4)_18%,rgba(0,0,0,0)_94%),var(--bg-url)] hover:bg-cover hover:bg-center hover:mix-blend-luminosity data-[state=open]:bg-[linear-gradient(90deg,rgba(0,0,0,0.4)_18%,rgba(0,0,0,0)_94%),var(--bg-url)] data-[state=open]:bg-cover data-[state=open]:bg-center data-[state=open]:mix-blend-luminosity"
-      : // Gradient foncé à gauche
-        "hover:bg-[linear-gradient(270deg,rgba(0,0,0,0.4)_18%,rgba(0,0,0,0)_94%),var(--bg-url)] hover:bg-cover hover:bg-center hover:mix-blend-luminosity data-[state=open]:bg-[linear-gradient(270deg,rgba(0,0,0,0.4)_18%,rgba(0,0,0,0)_94%),var(--bg-url)] data-[state=open]:bg-cover data-[state=open]:bg-center data-[state=open]:mix-blend-luminosity"
-  )}
-  style={
-    {
-      "--bg-url": `url(${cause.backgroundImage})`,
-    } as React.CSSProperties
-  }
->
-            {/* Trigger */}
-            <AccordionTrigger className="group/trigger w-full px-[100px] py-[15px] flex items-center justify-between hover:no-underline">
+          <AccordionItem
+            key={cause.id}
+            value={cause.id}
+            className={cn(
+              "border-none transition-all duration-300 bg-vanilla",
+              cause.number === "2"
+                ? "hover:bg-[linear-gradient(90deg,rgba(0,0,0,0.4)_18%,rgba(0,0,0,0)_94%),var(--bg-url)] hover:bg-cover hover:bg-center hover:mix-blend-luminosity data-[state=open]:bg-[linear-gradient(90deg,rgba(0,0,0,0.4)_18%,rgba(0,0,0,0)_94%),var(--bg-url)] data-[state=open]:bg-cover data-[state=open]:bg-center data-[state=open]:mix-blend-luminosity"
+                : "hover:bg-[linear-gradient(270deg,rgba(0,0,0,0.4)_18%,rgba(0,0,0,0)_94%),var(--bg-url)] hover:bg-cover hover:bg-center hover:mix-blend-luminosity data-[state=open]:bg-[linear-gradient(270deg,rgba(0,0,0,0.4)_18%,rgba(0,0,0,0)_94%),var(--bg-url)] data-[state=open]:bg-cover data-[state=open]:bg-center data-[state=open]:mix-blend-luminosity"
+            )}
+            style={
+              {
+                "--bg-url": `url(${cause.backgroundImage})`,
+              } as React.CSSProperties
+            }
+          >
+            <AccordionTrigger className="group/trigger w-full px-[100px] py-[15px] max-[1200px]:px-6 max-[1200px]:py-3 flex items-center justify-between hover:no-underline">
               {cause.number === "2" ? (
                 <>
-                  <h3 className="text-left font-[beautique-display] text-[32px] leading-[38px] text-licorice transition-colors group-hover/trigger:text-vanilla group-aria-expanded/trigger:text-vanilla">
+                  <h3 className="text-left font-[beautique-display] text-[32px] leading-[38px] text-licorice transition-colors group-hover/trigger:text-vanilla group-aria-expanded/trigger:text-vanilla max-[1200px]:text-[22px] max-[1200px]:leading-[26px]">
                     {cause.title}
                   </h3>
-                  <div className="text-[100px] font-[beautique-display-bold] leading-[150px] text-pumpkin transition-colors group-hover/trigger:text-vanilla group-aria-expanded/trigger:text-vanilla">
+                  <div className="text-[100px] font-[beautique-display-bold] leading-[150px] text-pumpkin transition-colors group-hover/trigger:text-vanilla group-aria-expanded/trigger:text-vanilla max-[1200px]:text-[40px] max-[1200px]:leading-[60px]">
                     {cause.number}
                   </div>
                 </>
               ) : (
                 <>
-                  <div className="text-[100px] font-[beautique-display-bold] leading-[150px] text-pumpkin transition-colors group-hover/trigger:text-vanilla group-aria-expanded/trigger:text-vanilla">
+                  <div className="text-[100px] font-[beautique-display-bold] leading-[150px] text-pumpkin transition-colors group-hover/trigger:text-vanilla group-aria-expanded/trigger:text-vanilla max-[1200px]:text-[40px] max-[1200px]:leading-[60px]">
                     {cause.number}
                   </div>
-                  <h3 className="text-right font-[beautique-display] text-[32px] leading-[38px] text-licorice transition-colors group-hover/trigger:text-vanilla group-aria-expanded/trigger:text-vanilla">
+                  <h3 className="text-right font-[beautique-display] text-[32px] leading-[38px] text-licorice transition-colors group-hover/trigger:text-vanilla group-aria-expanded/trigger:text-vanilla max-[1200px]:text-[22px] max-[1200px]:leading-[26px]">
                     {cause.title}
                   </h3>
                 </>
               )}
             </AccordionTrigger>
 
-            {/* Content → description sur le même fond */}
-            <AccordionContent className="px-[100px] pb-[50px]">
+            <AccordionContent className="px-[100px] pb-[50px] max-[1200px]:px-6 max-[1200px]:pb-6">
               <div
-                className={`text-[17.5px] leading-7 text-vanilla ${
-                  cause.number !== "2" ? "text-right" : ""
-                }`}
+                className={cn(
+                  "mx-auto text-antiflash max-[1200px]:text-justify",
+                  // En desktop : item 1 et 3 => texte à droite
+                  cause.number !== "2" && "min-[1200px]:text-right"
+                )}
               >
-                {cause.content.description}
+                <div className="max-[1200px]:bg-white/10 max-[1200px]:backdrop-blur-sm max-[1200px]:border max-[1200px]:border-antiflash max-[1200px]:rounded-lg max-[1200px]:p-4">
+                  {cause.content.description}
+                </div>
               </div>
             </AccordionContent>
           </AccordionItem>

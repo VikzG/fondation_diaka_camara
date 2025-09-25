@@ -1,8 +1,22 @@
 import DonationForm from "../../../../components/DonationForm";
+import { useState,useEffect } from "react";
 import { Button } from "../../../../components/ui/button";
 import { Card, CardContent } from "../../../../components/ui/card";
 
 export const DonationSection = (): JSX.Element => {
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 1200);
+
+    const handleResize = () => {
+        setIsMobile(window.innerWidth < 1200);
+    };
+
+    useEffect(() => {
+        window.addEventListener("resize", handleResize);
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
+    }, []);
+
   const priorityItems = [
     {
       icon: "/donation_section/book_blue.svg",
@@ -49,6 +63,143 @@ export const DonationSection = (): JSX.Element => {
     "Vous recevrez des rapports réguliers sur l'impact de votre contribution.",
     "Vous aurez accès à des témoignages et histoires de vie des bénéficiaires.",
   ];
+
+  if (isMobile) {
+  return (
+    <section className="flex flex-col w-full items-center justify-center bg-blanc">
+      {/* Intro */}
+      <div className="flex flex-col items-center gap-6 px-6 py-8 mt-20 text-center">
+        <h1 className="font-[beautique-display-bold] text-4xl text-colbat">
+          FAIRE UN DON
+        </h1>
+        <p className="font-corps text-licorice">
+          Depuis sa création, la <strong>Fondation Diaka Camara</strong> agit
+          pour offrir aux enfants et aux jeunes filles vulnérables un droit
+          fondamental :{" "}
+          <strong>Celui d&apos;apprendre et de rêver sans limite.</strong>
+        </p>
+        <p className="font-corps text-licorice">
+          Grâce à votre générosité, nous avons déjà scolarisé des dizaines de
+          filles, ouvert des bibliothèques et apporté un soutien concret à
+          celles qui en avaient le plus besoin.
+        </p>
+      </div>
+
+      {/* Priorités */}
+      <Card className="w-[90%] bg-antiflash rounded-2xl my-6">
+        <CardContent className="flex flex-col gap-8 p-6">
+          <h2 className="font-[beautique-display] text-2xl text-colbat text-center">
+            En 2025, notre priorité est claire :
+          </h2>
+          <div className="flex flex-col gap-6">
+            {priorityItems.map((item, index) => (
+              <div key={index} className="flex items-center gap-4">
+                <img className="w-14 h-14" alt="Icone" src={item.icon} />
+                <div>
+                  <p className="text-colbat font-semibold text-sm">
+                    {item.title}
+                  </p>
+                  <p className="text-licorice text-sm">{item.subtitle}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Montants */}
+      <div className="w-full bg-[url(/donation_section/don_bg.png)] bg-cover bg-center px-6 py-12">
+        <h2 className="text-vanilla font-legendes-bold text-center text-lg mb-8">
+          VOTRE DON FAIT LA DIFFÉRENCE : CHAQUE MONTANT COMPTE.
+        </h2>
+        <div className="flex flex-col gap-6">
+          {donationAmounts.map((donation, index) => (
+            <Card
+              key={index}
+              className="bg-vanilla rounded-2xl p-6 text-center"
+            >
+              <CardContent className="flex flex-col gap-3 items-center">
+                <div className="text-3xl font-bold text-colbat">
+                  {donation.amount}
+                </div>
+                <p className="text-sm text-licorice">{donation.description}</p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </div>
+
+      {/* Formulaire & moyens de don */}
+      <div className="flex flex-col gap-8 w-full bg-antiflash px-6 py-12">
+        <DonationForm />
+
+        <div className="flex flex-col gap-6">
+          <h3 className="text-colbat font-[beautique-display-bold] text-3xl text-center">
+            COMMENT DONNER ?
+          </h3>
+          {paymentMethods.map((method, index) => (
+            <Card
+              key={index}
+              className="flex items-center justify-center p-6 rounded-2xl text-center bg-white hover:bg-colbat hover:text-white transition"
+            >
+              <CardContent className="p-0">
+                <h4 className="text-xl items-center justify-center font-[beautique-display]">
+                  {method.title}
+                </h4>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </div>
+
+      {/* Engagement */}
+      <div className="w-full bg-antiflash flex flex-col">
+        <div className="h-[200px] flex items-center justify-center bg-[url(/donation_section/don_bg_2.png)] bg-cover bg-center">
+          <h2 className="text-blanc text-2xl font-[beautique-display] text-center">
+            Nous croyons en la transparence
+          </h2>
+        </div>
+        <div className="bg-colbat py-4">
+          <h3 className="text-vanilla text-center font-legendes-bold text-base">
+            NOTRE ENGAGEMENT ENVERS VOUS
+          </h3>
+        </div>
+        <div className="flex flex-col gap-6 px-6 py-10">
+          {engagementItems.map((item, index) => (
+            <p
+              key={index}
+              className="text-center text-colbat font-bold text-sm"
+            >
+              {item}
+            </p>
+          ))}
+        </div>
+      </div>
+
+      {/* Call to Action */}
+      <div className="flex flex-col items-center gap-8 px-6 py-12">
+        <p className="text-center text-licorice font-[beautique-display] text-2xl">
+          <span className="text-colbat">
+            Donner, c&apos;est plus qu&apos;un geste. C&apos;est changer une vie.
+          </span>
+          <br />
+          C&apos;est offrir un sourire, une chance et une dignité retrouvée.
+        </p>
+        <Button className="flex items-center gap-4 px-6 py-6 w-full rounded-xl bg-antiflash hover:-translate-y-1 transition">
+          <img
+            className="w-8 h-8"
+            alt="don button"
+            src="/nav_icons/nav_don_icon.svg"
+          />
+          <span className="text-colbat font-bold text-base text-center flex-1">
+            Faire un don à la Fondation
+          </span>
+        </Button>
+      </div>
+    </section>
+  );
+};
+
 
   return (
     <section className="flex flex-col w-full items-start justify-center bg-blanc">
@@ -259,4 +410,4 @@ export const DonationSection = (): JSX.Element => {
       </div>
     </section>
   );
-};
+}

@@ -1,4 +1,14 @@
+import { useState, useEffect } from "react";
+
 export const IntroductionSection = (): JSX.Element => {
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 1200);
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 1200);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
   const textContent = [
     {
       text: "Le ",
@@ -28,61 +38,118 @@ export const IntroductionSection = (): JSX.Element => {
 
   const secondParagraph =
     "En rejoignant le CDA, vous ne rejoignez pas seulement la Fondation Diaka Camara : vous devenez partie prenante d'un cercle de confiance, où les organisations invitées partagent leurs expériences, renforcent leur visibilité et créent ensemble un impact durable.";
+  if (isMobile) {
+    return (
+      <section
+        id="introduction_cercle_mobile"
+        className="w-full bg-vanilla flex flex-col items-center pt-10 pb-0 gap-12"
+      >
+        {/* Partie texte en haut */}
+        <div className="w-full flex flex-col items-center gap-8 px-6">
+          <h2 className="font-[beautique-display] text-2xl md:text-3xl text-licorice text-center">
+            Un réseau d&apos;exception,
+            <br />
+            Une solidarité partagée
+          </h2>
 
+          <div className="w-full font-corps text-licorice text-base md:text-lg text-justify leading-6 md:leading-7">
+            <p className="mb-4">
+              {textContent.map((segment, index) => (
+                <span
+                  key={index}
+                  className={`${segment.isHighlighted ? "font-bold" : ""}`}
+                >
+                  {segment.text}
+                </span>
+              ))}
+            </p>
+            <p>{secondParagraph}</p>
+          </div>
+        </div>
+
+        {/* Partie image en bas */}
+        <div className="w-full flex items-center justify-center">
+          <div className="relative w-64 md:w-80 aspect-square rounded-full overflow-hidden">
+            <img
+              className="w-full h-full object-cover"
+              alt="image cercle"
+              src="/cercle_section/cercle_hands.png"
+            />
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="w-24 md:w-32 h-24 md:h-32 flex items-center justify-center shadow-lg">
+                <img
+                  className="w-full h-full object-contain"
+                  alt="logo"
+                  src="cercle_section/cercle_logo.svg"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Bandeau dégradé */}
+        <div className="w-full py-16 bg-[linear-gradient(270deg,rgba(240,100,25,1)_0%,rgba(195,15,40,1)_100%)] flex justify-center">
+          <p className="font-[beautique-display] text-xl md:text-2xl text-antiflash text-center">
+            Pourquoi rejoindre le Cercle des Alliances ?
+          </p>
+        </div>
+      </section>
+    );
+  }
   return (
     <section id="introduction_cercle" className="w-full bg-vanilla">
-<div className="flex items-center max-w-[1600px] mx-auto px-10 py-20 gap-10 w-full">
-  {/* Côté image */}
-  <div className="w-1/2 flex items-center justify-center">
-    <div className="relative w-[500px] aspect-square rounded-full overflow-hidden">
-      {/* Image cercle */}
-      <img
-        className="w-full h-full object-cover"
-        alt="image cercle"
-        src="/cercle_section/cercle_hands.png"
-      />
+      <div className="flex items-center max-w-[1600px] mx-auto px-10 py-20 gap-10 w-full">
+        {/* Côté image */}
+        <div className="w-1/2 flex items-center justify-center">
+          <div className="relative w-[500px] aspect-square rounded-full overflow-hidden">
+            {/* Image cercle */}
+            <img
+              className="w-full h-full object-cover"
+              alt="image cercle"
+              src="/cercle_section/cercle_hands.png"
+            />
 
-      {/* Logo agrandi au centre */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="w-40 h-40 bg-transparent rounded-full flex items-center justify-center shadow-lg">
-          <img
-            className="w-full h-full object-contain"
-            alt="logo"
-            src="cercle_section/cercle_logo.svg"
-          />
+            {/* Logo agrandi au centre */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="w-40 h-40 bg-transparent rounded-full flex items-center justify-center shadow-lg">
+                <img
+                  className="w-full h-full object-contain"
+                  alt="logo"
+                  src="cercle_section/cercle_logo.svg"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Côté texte */}
+        <div className="w-1/2 flex flex-col items-center justify-center gap-12 px-12">
+          <h2 className="w-full font-[beautique-display] text-licorice text-4xl text-center">
+            Un réseau d&apos;exception,
+            <br />
+            Une solidarité partagée
+          </h2>
+
+          <div className="w-full font-corps text-licorice text-[length:var(--corps-font-size)] text-justify tracking-[var(--corps-letter-spacing)] leading-[var(--corps-line-height)] [font-style:var(--corps-font-style)]">
+            <p className="mb-[var(--corps-line-height)]">
+              {textContent.map((segment, index) => (
+                <span
+                  key={index}
+                  className={`leading-[var(--corps-line-height)] font-corps [font-style:var(--corps-font-style)] tracking-[var(--corps-letter-spacing)] text-[length:var(--corps-font-size)] ${
+                    segment.isHighlighted ? "font-bold" : ""
+                  }`}
+                >
+                  {segment.text}
+                </span>
+              ))}
+            </p>
+
+            <p className="leading-[var(--corps-line-height)] font-corps [font-style:var(--corps-font-style)] font-[number:var(--corps-font-weight)] tracking-[var(--corps-letter-spacing)] text-[length:var(--corps-font-size)]">
+              {secondParagraph}
+            </p>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-
-  {/* Côté texte */}
-  <div className="w-1/2 flex flex-col items-center justify-center gap-12 px-12">
-    <h2 className="w-full font-[beautique-display] text-licorice text-4xl text-center">
-      Un réseau d&apos;exception,
-      <br />
-      Une solidarité partagée
-    </h2>
-
-    <div className="w-full font-corps text-licorice text-[length:var(--corps-font-size)] text-justify tracking-[var(--corps-letter-spacing)] leading-[var(--corps-line-height)] [font-style:var(--corps-font-style)]">
-      <p className="mb-[var(--corps-line-height)]">
-        {textContent.map((segment, index) => (
-          <span
-            key={index}
-            className={`leading-[var(--corps-line-height)] font-corps [font-style:var(--corps-font-style)] tracking-[var(--corps-letter-spacing)] text-[length:var(--corps-font-size)] ${
-              segment.isHighlighted ? "font-bold" : ""
-            }`}
-          >
-            {segment.text}
-          </span>
-        ))}
-      </p>
-
-      <p className="leading-[var(--corps-line-height)] font-corps [font-style:var(--corps-font-style)] font-[number:var(--corps-font-weight)] tracking-[var(--corps-letter-spacing)] text-[length:var(--corps-font-size)]">
-        {secondParagraph}
-      </p>
-    </div>
-  </div>
-</div>
 
       <div className="flex items-start px-10 py-20 relative self-stretch w-full flex-[0_0_auto] bg-[linear-gradient(270deg,rgba(240,100,25,1)_0%,rgba(195,15,40,1)_100%)]">
         <div className="flex items-start gap-10 relative flex-1 self-stretch grow">
