@@ -7,7 +7,6 @@ export default function PageDon() {
   const [customAmount, setCustomAmount] = useState<string>("");
   const [interval, setIntervalValue] = useState<"o" | "m">("o");
   const [showCustomInput, setShowCustomInput] = useState(false);
-  const [paymentMethod, setPaymentMethod] = useState<"donorbox" | "momo">("donorbox");
 
   // Déterminer le montant final
   const getFinalAmount = () => {
@@ -34,43 +33,6 @@ export default function PageDon() {
       url.searchParams.set("recurring", "true");
     }
     window.open(url.toString(), "_blank", "noopener");
-  };
-
-  // Paiement MoMo
-  const payWithMomo = async () => {
-    const finalAmount = getFinalAmount();
-    if (!finalAmount) {
-      alert("Veuillez entrer un montant valide.");
-      return;
-    }
-
-    try {
-      const response = await fetch("http://localhost:5000/api/momo/pay", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          amount: finalAmount.toString(),
-          phoneNumber: "22960000000",
-        }),
-      });
-
-      const data = await response.json();
-      if (data.success) {
-        alert(`Paiement MoMo initié ! Référence : ${data.referenceId}`);
-      } else {
-        alert("Erreur lors du paiement MoMo.");
-      }
-    } catch (err) {
-      alert("Impossible de contacter le serveur MoMo.");
-    }
-  };
-
-  const handlePayment = () => {
-    if (paymentMethod === "donorbox") {
-      openDonorbox();
-    } else {
-      payWithMomo();
-    }
   };
 
   const handleCustomAmountClick = () => {
@@ -162,43 +124,18 @@ export default function PageDon() {
               </div>
             )}
           </div>
-
-          {/* Choix du moyen de paiement */}
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-            <button
-              onClick={() => setPaymentMethod("donorbox")}
-              className={`flex-1 py-2 lg:py-3 px-2 lg:px-3 rounded-2xl font-bold ${
-                paymentMethod === "donorbox"
-                  ? "bg-colbat text-white"
-                  : "bg-antiflash text-colbat hover:bg-blue-100"
-              }`}
-            >
-              Carte / PayPal (Donorbox)
-            </button>
-            <button
-              onClick={() => setPaymentMethod("momo")}
-              className={`flex-1 py-2 lg:py-3 px-2 lg:px-3 rounded-2xl font-bold ${
-                paymentMethod === "momo"
-                  ? "bg-colbat text-white"
-                  : "bg-antiflash text-colbat hover:bg-blue-100"
-              }`}
-            >
-              MoMo MTN
-            </button>
-          </div>
         </div>
 
         {/* Bouton paiement */}
         <button
-          onClick={handlePayment}
+          onClick={openDonorbox}
           className="text-base sm:text-xl lg:text-2xl w-full bg-colbat text-white hover:bg-blue-700 font-semibold py-2 lg:py-3 px-3 rounded-2xl transition-colors mt-2"
         >
           Procéder au paiement
         </button>
 
         <p className="mt-3 text-xs sm:text-sm lg:text-base text-gray-600 text-center">
-          Si vous choisissez Donorbox, le bouton ouvrira une nouvelle page.  
-          Si vous choisissez MoMo, vous recevrez une demande de paiement sur votre téléphone.
+          Le bouton ouvrira une nouvelle page sécurisée via Donorbox (Carte bancaire ou PayPal).
         </p>
       </div>
     </div>
