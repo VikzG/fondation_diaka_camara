@@ -49,7 +49,7 @@ export const IntervenantsIntroSubsection = (): JSX.Element => {
           whileInView={{ width: "100%" }}
           transition={{ duration: 0.8, delay: 0.8 }}
           viewport={{ once: true }}
-          className="flex items-center justify-center py-8 px-4 w-full rounded-full bg-[url(/page_gala_section/slider_3_img.png)] bg-cover bg-center"
+          className="flex items-center justify-center py-8 px-4 w-full rounded-full bg-[url(/page_gala_section/gala_escalier_couleur.png)] bg-cover bg-center"
         >
           <motion.div
             custom={1}
@@ -140,7 +140,7 @@ export const IntervenantsIntroSubsection = (): JSX.Element => {
         viewport={{ once: true }}
         className="flex py-24 items-center justify-center gap-2.5 p-2.5 
         relative rounded-[500px] overflow-hidden 
-        bg-[url(/page_gala_section/slider_3_img.png)] bg-cover bg-[50%_50%] 
+        bg-[url(/page_gala_section/gala_escalier_couleur.png)] bg-cover bg-[50%_50%] 
         mx-auto"
       >
         <motion.div

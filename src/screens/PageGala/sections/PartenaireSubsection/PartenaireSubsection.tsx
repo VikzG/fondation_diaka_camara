@@ -17,7 +17,7 @@ export const PartenaireSubsection = (): JSX.Element => {
   if (isMobile) {
     return (
     <section
-      id="cercle_gala_mobile"
+      id="cercle_gala"
       className="flex flex-col w-full items-center justify-center bg-[url(/cercle_section/cercle_bg.png)] bg-cover bg-center bg-no-repeat gap-28 px-6 py-12 relative"
     >
       {/* Titre principal */}

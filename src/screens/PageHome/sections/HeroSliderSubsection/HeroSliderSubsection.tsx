@@ -109,9 +109,23 @@ export const HeroSliderSubsection = (): JSX.Element => {
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
         className="w-full h-[800px] mt-14 bg-cover bg-[center_right_70%] bg-no-repeat flex flex-col items-center justify-start relative"
-  style={{
-    backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(${slidesData[currentSlide].backgroundImage})`,
-  }}
+        style={{
+          backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(${slidesData[currentSlide].backgroundImage})`,
+        }}
+        drag="x"
+        dragConstraints={{ left: 0, right: 0 }}
+        dragElastic={0.1} // réduit l’amplitude du drag (0 = aucun, 1 = libre)
+        onDragEnd={(event: any, info: { offset: { x: number } }) => {
+          if (info.offset.x < -50) {
+            // swipe gauche → prochain
+            goToSlide((currentSlide + 1) % slidesData.length);
+          } else if (info.offset.x > 50) {
+            // swipe droite → précédent
+            goToSlide(
+              (currentSlide - 1 + slidesData.length) % slidesData.length
+            );
+          }
+        }}
       >
         {/* Titre en haut */}
         <h1 className="absolute top-48 left-1/2 -translate-x-1/2 font-[beautique-display] text-vanilla text-3xl text-center tracking-[0.64px] leading-[36px] w-11/12">
@@ -131,54 +145,65 @@ export const HeroSliderSubsection = (): JSX.Element => {
             {currentSlideData.description && (
               <p className="text-vanilla leading-7 font-mona font-normal text-lg text-center">
                 <span className="font-bold text-[#faf2d7]">
-                  {currentSlideData.description.split(" ").slice(0, 4).join(" ")}
+                  {currentSlideData.description
+                    .split(" ")
+                    .slice(0, 4)
+                    .join(" ")}
                 </span>
                 <span className="text-[#faf2d7]">
-                  {" " + currentSlideData.description.split(" ").slice(4).join(" ")}
+                  {" " +
+                    currentSlideData.description.split(" ").slice(4).join(" ")}
                 </span>
               </p>
             )}
 
             {/* Bouton */}
-{currentSlideData.id === 1 ? (
-  <HashLink smooth to="#fondation_home" className="w-full">
-    <Button
-      className={`group relative flex items-center justify-between w-full rounded-[500px] shadow-[0px_1px_2px_#00000040] h-auto py-2 overflow-hidden transition-all duration-500 bg-vanilla ${
-        buttonColors[currentSlideData.id]
-      }`}
-    >
-      <span
-        className={`flex-1 text-center font-mona font-bold text-lg tracking-[0] leading-[35px] transition-colors duration-500 ${currentSlideData.buttonTextColor} group-hover:text-vanilla`}
-      >
-        {currentSlideData.buttonText}
-      </span>
-      <div
-        className={`border-2 border-vanilla group-hover:border-transparent absolute right-[calc(100%-50px)] group-hover:right-[10px] top-1/2 -translate-y-1/2 w-[50px] h-[50px] flex items-center justify-center rounded-full transition-all duration-500 ease-in-out ${currentSlideData.buttonIconBg}`}
-      >
-        <img className="w-7 h-7" alt="Icon" src={currentSlideData.buttonIcon} />
-      </div>
-    </Button>
-  </HashLink>
-) : (
-  <Button
-    onClick={handleButtonClick}
-    className={`group relative flex items-center justify-between w-full rounded-[500px] shadow-[0px_1px_2px_#00000040] h-auto py-2 overflow-hidden transition-all duration-500 bg-vanilla ${
-      buttonColors[currentSlideData.id]
-    }`}
-  >
-    <span
-      className={`flex-1 text-center font-mona font-bold text-lg tracking-[0] leading-[35px] transition-colors duration-500 ${currentSlideData.buttonTextColor} group-hover:text-vanilla`}
-    >
-      {currentSlideData.buttonText}
-    </span>
-    <div
-      className={`border-2 border-vanilla group-hover:border-transparent absolute right-[calc(100%-50px)] group-hover:right-[10px] top-1/2 -translate-y-1/2 w-[50px] h-[50px] flex items-center justify-center rounded-full transition-all duration-500 ease-in-out ${currentSlideData.buttonIconBg}`}
-    >
-      <img className="w-7 h-7" alt="Icon" src={currentSlideData.buttonIcon} />
-    </div>
-  </Button>
-)}
-
+            {currentSlideData.id === 1 ? (
+              <HashLink smooth to="#fondation_home" className="w-full">
+                <Button
+                  className={`group relative flex items-center justify-between w-full rounded-[500px] shadow-[0px_1px_2px_#00000040] h-auto py-2 overflow-hidden transition-all duration-500 bg-vanilla ${
+                    buttonColors[currentSlideData.id]
+                  }`}
+                >
+                  <span
+                    className={`flex-1 text-center font-mona font-bold text-lg tracking-[0] leading-[35px] transition-colors duration-500 ${currentSlideData.buttonTextColor} group-hover:text-vanilla`}
+                  >
+                    {currentSlideData.buttonText}
+                  </span>
+                  <div
+                    className={`border-2 border-vanilla group-hover:border-transparent absolute right-[calc(100%-50px)] group-hover:right-[10px] top-1/2 -translate-y-1/2 w-[50px] h-[50px] flex items-center justify-center rounded-full transition-all duration-500 ease-in-out ${currentSlideData.buttonIconBg}`}
+                  >
+                    <img
+                      className="w-7 h-7"
+                      alt="Icon"
+                      src={currentSlideData.buttonIcon}
+                    />
+                  </div>
+                </Button>
+              </HashLink>
+            ) : (
+              <Button
+                onClick={handleButtonClick}
+                className={`group relative flex items-center justify-between w-full rounded-[500px] shadow-[0px_1px_2px_#00000040] h-auto py-2 overflow-hidden transition-all duration-500 bg-vanilla ${
+                  buttonColors[currentSlideData.id]
+                }`}
+              >
+                <span
+                  className={`flex-1 text-center font-mona font-bold text-lg tracking-[0] leading-[35px] transition-colors duration-500 ${currentSlideData.buttonTextColor} group-hover:text-vanilla`}
+                >
+                  {currentSlideData.buttonText}
+                </span>
+                <div
+                  className={`border-2 border-vanilla group-hover:border-transparent absolute right-[calc(100%-50px)] group-hover:right-[10px] top-1/2 -translate-y-1/2 w-[50px] h-[50px] flex items-center justify-center rounded-full transition-all duration-500 ease-in-out ${currentSlideData.buttonIconBg}`}
+                >
+                  <img
+                    className="w-7 h-7"
+                    alt="Icon"
+                    src={currentSlideData.buttonIcon}
+                  />
+                </div>
+              </Button>
+            )}
 
             {/* Points radios */}
             <nav
@@ -224,7 +249,11 @@ export const HeroSliderSubsection = (): JSX.Element => {
       <div className="flex flex-col w-1/2 max-w-3xl py-20 pr-40 flex-1 self-stretch items-center justify-between">
         {/* Logo Gala visible seulement desktop */}
         <div className="w-full flex justify-center mb-10 mt-10">
-          <img alt="Icon" src="/logo_gala.svg" className="h-20 object-contain" />
+          <img
+            alt="Icon"
+            src="/logo_gala.svg"
+            className="h-20 object-contain"
+          />
         </div>
 
         <AnimatePresence mode="wait">
@@ -244,54 +273,65 @@ export const HeroSliderSubsection = (): JSX.Element => {
             {currentSlideData.description && (
               <p className="text-vanilla leading-7 self-stretch font-mona font-normal text-lg text-center">
                 <span className="font-bold text-[#faf2d7]">
-                  {currentSlideData.description.split(" ").slice(0, 4).join(" ")}
+                  {currentSlideData.description
+                    .split(" ")
+                    .slice(0, 4)
+                    .join(" ")}
                 </span>
                 <span className="text-[#faf2d7]">
-                  {" " + currentSlideData.description.split(" ").slice(4).join(" ")}
+                  {" " +
+                    currentSlideData.description.split(" ").slice(4).join(" ")}
                 </span>
               </p>
             )}
 
             {/* Bouton identique */}
-{currentSlideData.id === 1 ? (
-  <HashLink smooth to="#fondation_home" className="w-full">
-    <Button
-      className={`group relative flex items-center justify-between w-full rounded-[500px] shadow-[0px_1px_2px_#00000040] h-auto py-2 overflow-hidden transition-all duration-500 bg-vanilla ${
-        buttonColors[currentSlideData.id]
-      }`}
-    >
-      <span
-        className={`flex-1 text-center font-mona font-bold text-xl tracking-[0] leading-[35px] transition-colors duration-500 ${currentSlideData.buttonTextColor} group-hover:text-vanilla`}
-      >
-        {currentSlideData.buttonText}
-      </span>
-      <div
-        className={`border-2 border-vanilla group-hover:border-transparent absolute right-[calc(100%-50px)] group-hover:right-[10px] top-1/2 -translate-y-1/2 w-[50px] h-[50px] flex items-center justify-center rounded-full transition-all duration-500 ease-in-out ${currentSlideData.buttonIconBg}`}
-      >
-        <img className="w-7 h-7" alt="Icon" src={currentSlideData.buttonIcon} />
-      </div>
-    </Button>
-  </HashLink>
-) : (
-  <Button
-    onClick={handleButtonClick}
-    className={`group relative flex items-center justify-between w-full rounded-[500px] shadow-[0px_1px_2px_#00000040] h-auto py-2 overflow-hidden transition-all duration-500 bg-vanilla ${
-      buttonColors[currentSlideData.id]
-    }`}
-  >
-    <span
-      className={`flex-1 text-center font-mona font-bold text-xl tracking-[0] leading-[35px] transition-colors duration-500 ${currentSlideData.buttonTextColor} group-hover:text-vanilla`}
-    >
-      {currentSlideData.buttonText}
-    </span>
-    <div
-      className={`border-2 border-vanilla group-hover:border-transparent absolute right-[calc(100%-50px)] group-hover:right-[10px] top-1/2 -translate-y-1/2 w-[50px] h-[50px] flex items-center justify-center rounded-full transition-all duration-500 ease-in-out ${currentSlideData.buttonIconBg}`}
-    >
-      <img className="w-7 h-7" alt="Icon" src={currentSlideData.buttonIcon} />
-    </div>
-  </Button>
-)}
-
+            {currentSlideData.id === 1 ? (
+              <HashLink smooth to="#fondation_home" className="w-full">
+                <Button
+                  className={`group relative flex items-center justify-between w-full rounded-[500px] shadow-[0px_1px_2px_#00000040] h-auto py-2 overflow-hidden transition-all duration-500 bg-vanilla ${
+                    buttonColors[currentSlideData.id]
+                  }`}
+                >
+                  <span
+                    className={`flex-1 text-center font-mona font-bold text-xl tracking-[0] leading-[35px] transition-colors duration-500 ${currentSlideData.buttonTextColor} group-hover:text-vanilla`}
+                  >
+                    {currentSlideData.buttonText}
+                  </span>
+                  <div
+                    className={`border-2 border-vanilla group-hover:border-transparent absolute right-[calc(100%-50px)] group-hover:right-[10px] top-1/2 -translate-y-1/2 w-[50px] h-[50px] flex items-center justify-center rounded-full transition-all duration-500 ease-in-out ${currentSlideData.buttonIconBg}`}
+                  >
+                    <img
+                      className="w-7 h-7"
+                      alt="Icon"
+                      src={currentSlideData.buttonIcon}
+                    />
+                  </div>
+                </Button>
+              </HashLink>
+            ) : (
+              <Button
+                onClick={handleButtonClick}
+                className={`group relative flex items-center justify-between w-full rounded-[500px] shadow-[0px_1px_2px_#00000040] h-auto py-2 overflow-hidden transition-all duration-500 bg-vanilla ${
+                  buttonColors[currentSlideData.id]
+                }`}
+              >
+                <span
+                  className={`flex-1 text-center font-mona font-bold text-xl tracking-[0] leading-[35px] transition-colors duration-500 ${currentSlideData.buttonTextColor} group-hover:text-vanilla`}
+                >
+                  {currentSlideData.buttonText}
+                </span>
+                <div
+                  className={`border-2 border-vanilla group-hover:border-transparent absolute right-[calc(100%-50px)] group-hover:right-[10px] top-1/2 -translate-y-1/2 w-[50px] h-[50px] flex items-center justify-center rounded-full transition-all duration-500 ease-in-out ${currentSlideData.buttonIconBg}`}
+                >
+                  <img
+                    className="w-7 h-7"
+                    alt="Icon"
+                    src={currentSlideData.buttonIcon}
+                  />
+                </div>
+              </Button>
+            )}
           </motion.div>
         </AnimatePresence>
 
@@ -316,4 +356,3 @@ export const HeroSliderSubsection = (): JSX.Element => {
     </motion.section>
   );
 };
-
