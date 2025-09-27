@@ -17,7 +17,7 @@ export const PresidentSection = (): JSX.Element => {
     return (
       <section className="w-full bg-blanc flex flex-col items-center justify-center gap-12">
         {/* Image en haut */}
-        <div className="w-full max-w-[500px] h-[400px] bg-[url(/page_equipe_section/presidente.png)] bg-cover bg-[50%_40%] bg-no-repeat" />
+        <div className="w-full max-w-[500px] h-[400px] bg-[url(/page_equipe_section/presidente.jpg)] bg-cover bg-[50%_40%] bg-no-repeat" />
 
         {/* Contenu texte en bas */}
         <div className="flex flex-col items-center gap-6 px-6 w-full max-w-[500px]">
@@ -75,7 +75,7 @@ export const PresidentSection = (): JSX.Element => {
   return (
     <section className="w-full bg-blanc flex flex-col items-center justify-center">
       <div className="flex items-center justify-center w-full">
-        <div className="flex-1 h-full bg-[url(/page_equipe_section/presidente.png)] bg-cover bg-center bg-no-repeat min-h-[780px] max-w-[750px]" />
+        <div className="flex-1 h-full bg-[url(/page_equipe_section/presidente.jpg)] bg-cover bg-center bg-no-repeat min-h-[780px] max-w-[750px]" />
 
         <div className="flex-1 gap-10 p-20 flex flex-col items-center justify-center max-w-[700px] mx-auto">
           <h2 className="w-full font-[beautique-display] text-5xl text-licorice text-center">

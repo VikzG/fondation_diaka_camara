@@ -11,7 +11,7 @@ export const EncheresSubsection = (): JSX.Element => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
   const auctionDetails = [
-    { label: "DÉBUT", date: "8 NOV." },
+    { label: "DÉBUT", date: "13 NOV." },
     { label: "FIN", date: "15 NOV." },
   ];
 

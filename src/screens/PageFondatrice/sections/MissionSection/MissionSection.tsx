@@ -17,10 +17,10 @@ export const MissionSection = (): JSX.Element => {
       <section className="w-full flex flex-col items-center justify-center gap-8">
         {/* Image en haut */}
         <div
-          className="w-full h-[400px] bg-cover bg-center bg-no-repeat"
+          className="w-full h-[400px] bg-cover bg-top bg-no-repeat"
           style={{
             backgroundImage:
-              "url(/page_presidente_section/presidente_photo.png)",
+              "url(/page_presidente_section/presidente_photo.jpg)",
           }}
         />
 
@@ -68,10 +68,10 @@ export const MissionSection = (): JSX.Element => {
     <section className="w-full flex items-center justify-center">
       {/* Image gauche */}
       <div
-        className="flex-1 h-[770px] bg-cover bg-center bg-no-repeat max-w-[750px]"
+        className="flex-1 h-[770px] bg-cover bg-top bg-no-repeat max-w-[750px]"
         style={{
           backgroundImage:
-            "url(/page_presidente_section/presidente_photo.png)",
+            "url(/page_presidente_section/presidente_photo.jpg)",
         }}
       />
 

@@ -46,7 +46,7 @@ export const EquipeSubsection = (): JSX.Element => {
           </div>
 
           {/* Image */}
-          <div className="w-[300px] h-[467px] rounded-[500px] bg-[url(/equipe_section/presidente_img.png)] bg-cover bg-center" />
+          <div className="w-[300px] h-[467px] rounded-[500px] bg-[url(/equipe_section/fondation_presidente.jpg)] bg-cover bg-center" />
 
           {/* Équipe */}
           <div className="flex flex-col items-center flex-1 gap-32">
@@ -85,7 +85,7 @@ export const EquipeSubsection = (): JSX.Element => {
   return (
   <section className="w-full flex flex-col items-center gap-12 px-6 py-10">
     {/* Image en cercle */}
-    <div className="w-[220px] h-[220px] rounded-full bg-[url(/equipe_section/presidente_img.png)] bg-cover bg-center" />
+    <div className="w-[220px] h-[220px] rounded-full bg-[length:150%] bg-[50%_20%] bg-[url(/equipe_section/fondation_presidente.jpg)]" />
 
     {/* Présidente */}
     <div className="flex flex-col items-center gap-6 w-full">

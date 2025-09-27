@@ -58,71 +58,80 @@ export const PresidentDetailsSection = (): JSX.Element => {
       role: "ACTEUR DE LA SOCIÉTÉ CIVILE, MOBILISÉ POUR LA JEUNESSE GUINÉENNE",
       image: "bg-[url(/page_equipe_section/conseil_img/chaikou_bah.png)]",
     },
+    {
+      name: "Déborah Mutund",
+      role: "STRATEGIC DIRECTOR & COMMUNICATION SPECIALIST",
+      image: "bg-[url(/page_equipe_section/conseil_img/deborah_mutund.jpg)]",
+    },
   ];
-if (isMobile) {
-  return (
-    <section className="w-full flex flex-col items-center justify-center gap-16 px-6 py-12 bg-blanc">
-      {/* Président */}
-      <Card className="flex flex-col items-center justify-center gap-6 border-none shadow-none bg-transparent w-full max-w-[500px]">
-        <CardContent className="flex flex-col items-center gap-6 w-full p-0">
-          <div
-            className={`${presidentData.image} bg-cover bg-center w-[150px] h-[200px] rounded-[10px]`}
-          />
-          <h2 className="font-[beautique-display] text-2xl text-licorice text-center">
-            {presidentData.name}
-          </h2>
-          <p className="font-legendes-categories text-colbat text-sm text-center uppercase">
-            {presidentData.role}
-          </p>
-          <p className="font-corps text-licorice text-base text-center leading-6">
-            {presidentData.description}
-          </p>
-        </CardContent>
-      </Card>
+  if (isMobile) {
+    return (
+      <section className="w-full flex flex-col items-center justify-center gap-16 px-6 py-12 bg-blanc">
+        {/* Président */}
+        <Card className="flex flex-col items-center justify-center gap-6 border-none shadow-none bg-transparent w-full max-w-[500px]">
+          <CardContent className="flex flex-col items-center gap-6 w-full p-0">
+            <div
+              className={`${presidentData.image} bg-cover bg-center w-[150px] h-[200px] rounded-[10px]`}
+            />
+            <h2 className="font-[beautique-display] text-2xl text-licorice text-center">
+              {presidentData.name}
+            </h2>
+            <p className="font-legendes-categories text-colbat text-sm text-center uppercase">
+              {presidentData.role}
+            </p>
+            <p className="font-corps text-licorice text-base text-center leading-6">
+              {presidentData.description}
+            </p>
+          </CardContent>
+        </Card>
 
-      {/* Swiper équipe */}
-      <Swiper
-        effect="coverflow"
-        grabCursor
-        centeredSlides
-        slidesPerView={1}
-        coverflowEffect={{
-          rotate: 0,
-          stretch: 0,
-          depth: 150,
-          modifier: 2,
-          slideShadows: false,
-        }}
-        pagination={{ clickable: true }}
-        modules={[EffectCoverflow, Pagination]}
-        className="w-full h-[450px] max-w-[500px] custom-swiper"
-      >
-        {teamMembers.map((member, index) => (
-          <SwiperSlide key={index} className="w-[250px]">
-            <Card className="flex flex-col items-center gap-4 border-none bg-white/80 rounded-xl p-6">
-              <CardContent className="flex flex-col items-center gap-4 p-0">
-                <div
-                  className={`
+        {/* Swiper équipe */}
+        <Swiper
+          effect="coverflow"
+          grabCursor
+          centeredSlides
+          slidesPerView={1}
+          coverflowEffect={{
+            rotate: 0,
+            stretch: 0,
+            depth: 150,
+            modifier: 2,
+            slideShadows: false,
+          }}
+          pagination={{ clickable: true }}
+          modules={[EffectCoverflow, Pagination]}
+          className="w-full h-[450px] max-w-[500px] custom-swiper"
+        >
+          {teamMembers.map((member, index) => (
+            <SwiperSlide key={index} className="w-[250px]">
+              <Card className="flex flex-col items-center gap-4 border-none bg-white/80 rounded-xl p-6">
+                <CardContent className="flex flex-col items-center gap-4 p-0">
+                  <div
+                    className={`
                     ${member.image} 
-                    ${member.name === "Komba Bijou Camara" ? "bg-[length:180%]" : "bg-cover"}
+                    ${
+                      member.name === "Komba Bijou Camara"
+                        ? "bg-[length:180%]"
+                        : "bg-cover"
+                    }
                     bg-center w-[150px] h-[200px] rounded-lg
                   `}
-                />
-                <h3 className="font-[beautique-display] text-xl text-licorice text-center">
-                  {member.name}
-                </h3>
-                <p className="font-legendes-categories text-colbat text-sm text-center leading-5">
-                  {member.role}
-                </p>
-              </CardContent>
-            </Card>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+                  />
+                  <h3 className="font-[beautique-display] text-xl text-licorice text-center">
+                    {member.name}
+                  </h3>
+                  <p className="font-legendes-categories text-colbat text-sm text-center leading-5">
+                    {member.role}
+                  </p>
+                </CardContent>
+              </Card>
+            </SwiperSlide>
+          ))}
+        </Swiper>
 
-      {/* Styles custom pagination */}
-      <style>
-        {`
+        {/* Styles custom pagination */}
+        <style>
+          {`
           .custom-swiper .swiper-pagination {
             bottom: 20px !important; /* descendre les points radios */
           }
@@ -138,10 +147,10 @@ if (isMobile) {
             transform: scale(1.2); /* effet point plus gros */
           }
         `}
-      </style>
-    </section>
-  );
-}
+        </style>
+      </section>
+    );
+  }
 
   return (
     <section className="w-full gap-20 p-28 bg-blanc flex flex-col items-center justify-center max-w-[1600px] mx-auto">
@@ -197,7 +206,7 @@ if (isMobile) {
       </div>
 
       <div className="grid grid-cols-3 gap-[70px] w-full">
-        {teamMembers.slice(3, 6).map((member, index) => (
+        {teamMembers.slice(3, 7).map((member, index) => (
           <Card
             key={`team-member-${index + 3}`}
             className="flex flex-col items-center gap-[30px] border-none shadow-none bg-transparent"

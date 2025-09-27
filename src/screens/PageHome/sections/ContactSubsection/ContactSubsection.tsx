@@ -28,7 +28,7 @@ export const ContactSubsection = (): JSX.Element => {
         </h2>
         {isCerclePage ? (
           <p className="font-corps text-licorice text-lg text-justify leading-relaxed max-w-md">
-            Le Cercle des Alliances est un lieu de partage, de collaboration et de solidarité...
+            Le Cercle des Alliances est un lieu de partage, de collaboration et de solidarité. Ensemble, nous pouvons créer des passerelles entre nos causes et bâtir un avenir plus équitable pour les enfants et les femmes d’Afrique.
           </p>
         ) : (
           <img className="relative w-60 h-[247px]" alt="contact" src="/contact_section/logo_contact.svg" />
@@ -106,7 +106,7 @@ export const ContactSubsection = (): JSX.Element => {
         </h2>
         {isCerclePage ? (
           <p className="font-corps text-licorice text-base text-center leading-relaxed max-w-md">
-            Le Cercle des Alliances est un lieu de partage, de collaboration et de solidarité...
+            Le Cercle des Alliances est un lieu de partage, de collaboration et de solidarité. Ensemble, nous pouvons créer des passerelles entre nos causes et bâtir un avenir plus équitable pour les enfants et les femmes d’Afrique.
           </p>
         ) : (
           <img className="w-40 h-40" alt="contact" src="/contact_section/logo_contact.svg" />
