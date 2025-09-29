@@ -105,6 +105,25 @@
   font-style: bold;
 }
 
+@keyframes spinBounce {
+  0% {
+    transform: rotate(0deg);
+  }
+  80% {
+    transform: rotate(360deg);
+  }
+  90% {
+    transform: rotate(345deg); /* petit retour arrière */
+  }
+  100% {
+    transform: rotate(360deg); /* stabilisation */
+  }
+}
+
+.icon-rotate {
+  animation: spinBounce 1.2s ease-in-out; /* durée ajustable */
+}
+
 @keyframes spin {
   to {
     transform: rotate(1turn);
