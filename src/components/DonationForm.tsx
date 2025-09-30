@@ -64,7 +64,9 @@ export default function PageDon() {
             <button
               onClick={() => setIntervalValue("m")}
               className={`relative z-10 flex-1 py-2 lg:py-4 px-2 lg:px-3 rounded-full font-bold transition-colors duration-300 ${
-                interval === "m" ? "text-colbat" : "text-white hover:text-gray-200"
+                interval === "m"
+                  ? "text-colbat"
+                  : "text-white hover:text-gray-200"
               }`}
             >
               Don mensuel
@@ -72,7 +74,9 @@ export default function PageDon() {
             <button
               onClick={() => setIntervalValue("o")}
               className={`relative z-10 flex-1 py-2 lg:py-4 px-2 lg:px-3 rounded-full font-bold transition-colors duration-300 ${
-                interval === "o" ? "text-colbat" : "text-white hover:text-gray-200"
+                interval === "o"
+                  ? "text-colbat"
+                  : "text-white hover:text-gray-200"
               }`}
             >
               Don unique
@@ -120,22 +124,32 @@ export default function PageDon() {
                   min="1"
                   step="0.01"
                 />
-                <span className="text-base sm:text-xl lg:text-2xl font-bold text-colbat">$</span>
+                <span className="text-base sm:text-xl lg:text-2xl font-bold text-colbat">
+                  $
+                </span>
               </div>
             )}
           </div>
         </div>
 
         {/* Bouton paiement */}
-        <button
+        {/*   <button
           onClick={openDonorbox}
           className="text-base sm:text-xl lg:text-2xl w-full bg-colbat text-white hover:bg-blue-700 font-semibold py-2 lg:py-3 px-3 rounded-2xl transition-colors mt-2"
         >
           Procéder au paiement
+        </button>*/}
+        {/* Bouton paiement désactivé */}
+        <button
+          disabled
+          className="text-base sm:text-xl lg:text-2xl w-full bg-gray-400 text-white font-semibold py-2 lg:py-3 px-3 rounded-2xl mt-2 cursor-not-allowed"
+        >
+          Procéder au paiement<br/>(bientôt disponible)
         </button>
 
         <p className="mt-3 text-xs sm:text-sm lg:text-base text-gray-600 text-center">
-          Le bouton ouvrira une nouvelle page sécurisée via Donorbox (Carte bancaire ou PayPal).
+          Le bouton ouvrira une nouvelle page sécurisée via Donorbox (Carte
+          bancaire ou PayPal).
         </p>
       </div>
     </div>

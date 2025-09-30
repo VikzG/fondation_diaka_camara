@@ -5,6 +5,7 @@ import { Card, CardContent } from "../../../../components/ui/card";
 
 export const DonationSection = (): JSX.Element => {
     const [isMobile, setIsMobile] = useState(window.innerWidth < 1200);
+    const [selectedMethod, setSelectedMethod] = useState("En ligne");
 
     const handleResize = () => {
         setIsMobile(window.innerWidth < 1200);
@@ -53,9 +54,9 @@ export const DonationSection = (): JSX.Element => {
   ];
 
   const paymentMethods = [
-    { title: "En ligne" },
-    { title: "Par virement" },
-    { title: "Par chèque" },
+    { title: "En ligne", value: "En ligne" },
+    { title: "Par virement", value: "Par virement" },
+    { title: "Par chèque", value: "Par chèque" },
   ];
 
   const engagementItems = [
@@ -63,6 +64,37 @@ export const DonationSection = (): JSX.Element => {
     "Vous recevrez des rapports réguliers sur l'impact de votre contribution.",
     "Vous aurez accès à des témoignages et histoires de vie des bénéficiaires.",
   ];
+
+  // ✅ Contenu dynamique
+  const renderContent = () => {
+    if (selectedMethod === "En ligne") {
+      return <DonationForm />;
+    }
+if (selectedMethod === "Par virement") {
+  return (
+    <div className="flex flex-col items-center gap-6 p-10 bg-white rounded-2xl shadow-md text-center">
+      <h3 className="font-[beautique-display] text-3xl text-colbat">
+        Faire un don par virement
+      </h3>
+      <p className="text-licorice text-base max-w-lg">
+        Vous pouvez soutenir la{" "}
+        <strong>Fondation Diaka Camara</strong> en effectuant un virement
+        sécurisé via notre compte PayPal.  
+        Chaque geste contribue à offrir un avenir meilleur aux jeunes filles
+        que nous accompagnons.
+      </p>
+      <a
+        href="https://www.paypal.me/diakacamara1"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="px-8 py-4 rounded-2xl bg-colbat text-white font-bold text-lg shadow hover:scale-105 transition"
+      >
+        Virement par PayPal
+      </a>
+    </div>
+  );
+}
+  };
 
   if (isMobile) {
   return (
@@ -131,26 +163,41 @@ export const DonationSection = (): JSX.Element => {
 
       {/* Formulaire & moyens de don */}
       <div className="flex flex-col gap-8 w-full bg-antiflash px-6 py-12">
-        <DonationForm />
 
         <div className="flex flex-col gap-6">
-          <h3 className="text-colbat font-[beautique-display-bold] text-3xl text-center">
+         <h3 className="text-colbat font-[beautique-display-bold] text-3xl text-center">
             COMMENT DONNER ?
           </h3>
-          {paymentMethods.map((method, index) => (
-            <Card
-              key={index}
-              className="flex items-center justify-center p-6 rounded-2xl text-center bg-white hover:bg-colbat hover:text-white transition"
-            >
-              <CardContent className="p-0">
-                <h4 className="text-xl items-center justify-center font-[beautique-display]">
-                  {method.title}
-                </h4>
-              </CardContent>
-            </Card>
-          ))}
+
+          <div className="flex flex-col gap-6">
+            {paymentMethods.map((method) => (
+              <Card
+                key={method.value}
+                onClick={() =>
+                  method.value !== "Par chèque" && setSelectedMethod(method.value)
+                }
+                className={`flex items-center justify-center p-6 rounded-2xl text-center cursor-pointer transition
+                  ${
+                    selectedMethod === method.value
+                      ? "bg-colbat text-white"
+                      : "bg-white text-colbat hover:bg-colbat hover:text-white"
+                  }
+                  ${method.value === "Par chèque" ? "opacity-50 cursor-not-allowed" : ""}
+                `}
+              >
+                <CardContent className="p-0">
+                  <h4 className="text-xl font-[beautique-display]">
+                    {method.title}
+                  </h4>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          {/* Contenu dynamique */}
+          <div className="mt-6">{renderContent()}</div>
         </div>
-      </div>
+        </div>
 
       {/* Engagement */}
       <div className="w-full bg-antiflash flex flex-col">
@@ -313,25 +360,35 @@ export const DonationSection = (): JSX.Element => {
 
       <div className="flex min-h-[780px] w-full bg-antiflash">
         <div className="flex w-full max-w-[1600px] mx-auto">
-          {/* Colonne Formulaire */}
-          <DonationForm />
+          {/* Col gauche = contenu */}
+          <div className="w-1/2 flex items-center justify-center p-12">
+            {renderContent()}
+          </div>
 
-          {/* Colonne Méthodes de paiement */}
-          <div className="w-1/2 flex flex-col justify-between p-[100px] px-24">
-            <div className="flex flex-col items-start gap-[30px] w-full">
-              <h3 className="w-full text-colbat font-[beautique-display-bold] text-5xl text-center">
-                COMMENT DONNER ?
-              </h3>
-            </div>
+          {/* Col droite = boutons */}
+          <div className="w-1/2 flex flex-col justify-center gap-8 p-[100px] px-24">
+            <h3 className="w-full text-colbat font-[beautique-display-bold] text-5xl text-center">
+              COMMENT DONNER ?
+            </h3>
 
-            <div className="flex flex-col items-start gap-5 w-full">
-              {paymentMethods.map((method, index) => (
+            <div className="flex flex-col gap-5">
+              {paymentMethods.map((method) => (
                 <Card
-                  key={index}
-                  className="p-[30px] w-full flex flex-col items-center gap-11 rounded-[20px] overflow-hidden text-licorice hover:text-antiflash bg-white hover:bg-colbat cursor-pointer transition ease-in-out duration-300"
+                  key={method.value}
+                  onClick={() =>
+                    method.value !== "Par chèque" && setSelectedMethod(method.value)
+                  }
+                  className={`p-[30px] w-full flex flex-col items-center gap-11 rounded-[20px] text-licorice cursor-pointer transition
+                    ${
+                      selectedMethod === method.value
+                        ? "bg-colbat text-white"
+                        : "bg-white text-colbat hover:bg-colbat hover:text-white"
+                    }
+                    ${method.value === "Par chèque" ? "opacity-50 cursor-not-allowed" : ""}
+                  `}
                 >
                   <CardContent className="p-0 w-full">
-                    <h4 className="w-full font-[beautique-display] text-4xl text-center tracking-[0.64px] leading-[38px]">
+                    <h4 className="w-full font-[beautique-display] text-4xl text-center">
                       {method.title}
                     </h4>
                   </CardContent>
