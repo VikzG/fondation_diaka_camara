@@ -33,7 +33,7 @@ export const MaitressesCeremonieSubsection = (): JSX.Element => {
           />
 
           <h2 className="font-[beautique-display] text-carmin text-3xl">
-            Les maîtresses de cérémonie
+            Les maitresses de cérémonie
           </h2>
 
           <p className="font-corps text-licorice text-base leading-relaxed">
@@ -92,7 +92,7 @@ export const MaitressesCeremonieSubsection = (): JSX.Element => {
         />
 
         <h2 className="relative font-[beautique-display] text-carmin text-4xl text-center">
-          Les maîtresses de cérémonie
+          Les maitresses de cérémonie
         </h2>
 
         <p className="relative font-corps font-normal text-licorice text-lg text-center">
