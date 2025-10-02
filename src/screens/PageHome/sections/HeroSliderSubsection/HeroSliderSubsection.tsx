@@ -96,7 +96,7 @@ export const HeroSliderSubsection = (): JSX.Element => {
     if (currentSlideData.id === 2) {
       navigate("/don");
     } else if (currentSlideData.id === 3) {
-      navigate("/gala");
+      navigate("/gala2025");
     }
   };
 

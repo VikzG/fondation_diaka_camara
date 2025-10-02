@@ -35,7 +35,7 @@ export const SliderCercleSubsection = (): JSX.Element => {
       buttonColor: "bg-blue-600 hover:bg-blue-500",
       indicatorColor: "bg-blue-600",
       imageUrl: "/slider_cercle_section/slide_img_2.png",
-      link: "/gala",
+      link: "/gala2025",
     },
   ];
 

@@ -17,7 +17,7 @@ export const TopBarSubsection = (): JSX.Element => {
 
   const navigationItems = [
     { label: "LA FONDATION", to: "/" },
-    { label: "GALA 2025", to: "/gala" },
+    { label: "GALA 2025", to: "/gala2025" },
     { label: "CERCLE DES ALLIANCES", to: "/cercle" },
     { label: "NOTRE ÉQUIPE", to: "/equipe" },
     { label: "LA PRÉSIDENTE", to: "/fondatrice" },

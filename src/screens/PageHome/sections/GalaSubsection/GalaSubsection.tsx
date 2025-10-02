@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "../../../../components/ui/button";
 import { Card, CardContent } from "../../../../components/ui/card";
 
@@ -69,20 +70,21 @@ export const GalaSubsection = (): JSX.Element => {
             src="/gala_section/enveloppe_gala_anim.gif"
             alt="Enveloppe animation"
           />
+          <Link to="/gala2025" className="w-full">
+            <Button className="group relative flex items-center justify-between w-full rounded-[500px] shadow-[0px_1px_2px_#00000040] h-auto py-2 overflow-hidden transition-all duration-500 bg-vanilla hover:bg-[#C30F28]">
+              <span className="flex-1 text-center font-mona font-bold text-xl tracking-[0] leading-[35px] text-[#C30F28] transition-colors duration-500 group-hover:text-vanilla">
+                Infos & Participation
+              </span>
 
-          <Button className="group relative flex items-center justify-between w-full rounded-[500px] shadow-[0px_1px_2px_#00000040] h-auto py-2 overflow-hidden transition-all duration-500 bg-vanilla hover:bg-[#C30F28]">
-            <span className="flex-1 text-center font-mona font-bold text-xl tracking-[0] leading-[35px] text-[#C30F28] transition-colors duration-500 group-hover:text-vanilla">
-              Infos & Participation
-            </span>
-
-            <div className="border-2 border-vanilla group-hover:border-transparent absolute right-[calc(100%-50px)] group-hover:right-[10px] top-1/2 -translate-y-1/2 w-[50px] h-[50px] flex items-center justify-center rounded-full transition-all duration-500 ease-in-out bg-[#C30F28]">
-              <img
-                className="w-7 h-7"
-                alt="Icon"
-                src="/gala_arrow_button.svg"
-              />
-            </div>
-          </Button>
+              <div className="border-2 border-vanilla group-hover:border-transparent absolute right-[calc(100%-50px)] group-hover:right-[10px] top-1/2 -translate-y-1/2 w-[50px] h-[50px] flex items-center justify-center rounded-full transition-all duration-500 ease-in-out bg-[#C30F28]">
+                <img
+                  className="w-7 h-7"
+                  alt="Icon"
+                  src="/gala_arrow_button.svg"
+                />
+              </div>
+            </Button>
+          </Link>
         </div>
 
         {/* Bloc Programme en bas */}
@@ -151,20 +153,21 @@ export const GalaSubsection = (): JSX.Element => {
               alt="Enveloppe animation"
             />
           </div>
+          <Link to="/gala2025" className="w-full">
+            <Button className="group relative flex items-center justify-between w-full rounded-[500px] shadow-[0px_1px_2px_#00000040] h-auto py-2 overflow-hidden transition-all duration-500 bg-vanilla hover:bg-[#C30F28]">
+              <span className="flex-1 text-center [font-family:'Mona_Sans',Helvetica] font-extrabold text-xl tracking-[0] leading-[35px] text-[#C30F28] group-hover:text-vanilla">
+                Informations & Participation
+              </span>
 
-          <Button className="group relative flex items-center justify-between w-full rounded-[500px] shadow-[0px_1px_2px_#00000040] h-auto py-2 overflow-hidden transition-all duration-500 bg-vanilla hover:bg-[#C30F28]">
-            <span className="flex-1 text-center [font-family:'Mona_Sans',Helvetica] font-extrabold text-xl tracking-[0] leading-[35px] text-[#C30F28] group-hover:text-vanilla">
-              Informations & Participation
-            </span>
-
-            <div className="border-2 border-vanilla group-hover:border-transparent absolute right-[calc(100%-50px)] group-hover:right-[10px] top-1/2 -translate-y-1/2 w-[50px] h-[50px] flex items-center justify-center rounded-full transition-all duration-500 ease-in-out bg-[#C30F28]">
-              <img
-                className="w-7 h-7"
-                alt="Icon"
-                src="/gala_arrow_button.svg"
-              />
-            </div>
-          </Button>
+              <div className="border-2 border-vanilla group-hover:border-transparent absolute right-[calc(100%-50px)] group-hover:right-[10px] top-1/2 -translate-y-1/2 w-[50px] h-[50px] flex items-center justify-center rounded-full transition-all duration-500 ease-in-out bg-[#C30F28]">
+                <img
+                  className="w-7 h-7"
+                  alt="Icon"
+                  src="/gala_arrow_button.svg"
+                />
+              </div>
+            </Button>
+          </Link>
         </div>
 
         <Card className="flex flex-col items-center justify-between p-10 relative flex-1 self-stretch bg-[#faf2d7d9] rounded-[15px] overflow-hidden shadow-[0px_2px_3px_#00000040] backdrop-blur-[5px] backdrop-brightness-[100%] [-webkit-backdrop-filter:blur(5px)_brightness(100%)] border-0">

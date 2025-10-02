@@ -43,7 +43,7 @@ export const AdvocacySection = (): JSX.Element => {
             </div>
             <Card className="self-stretch w-full bg-vanilla rounded-[500px] shadow-[0px_1px_2px_#00000040] border-0">
               <CardContent className="p-0">
-                <Link to="/gala">
+                <Link to="/gala2025">
                   <Button className="group relative flex items-center justify-between w-full rounded-[500px] shadow-[0px_1px_2px_#00000040] h-auto py-2 overflow-hidden transition-all duration-500 bg-vanilla hover:bg-carmin">
                     <span className="flex-1 text-center font-extrabold text-xl text-carmin group-hover:text-vanilla">
                       Participer au Gala 2025
@@ -121,7 +121,7 @@ export const AdvocacySection = (): JSX.Element => {
           </div>
           <Card className="w-full bg-vanilla rounded-[500px] shadow-[0px_1px_2px_#00000040] border-0">
             <CardContent className="p-0">
-              <Link to="/gala">
+              <Link to="/gala2025">
                 <Button className="group relative flex items-center justify-between w-full rounded-[500px] shadow-[0px_1px_2px_#00000040] h-auto py-2 overflow-hidden transition-all duration-500 bg-vanilla hover:bg-carmin">
                   <span className="flex-1 text-center font-extrabold text-lg text-carmin group-hover:text-vanilla">
                     Participer au Gala 2025

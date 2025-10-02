@@ -25,7 +25,7 @@ function AnimatedRoutes() {
         <Route path="/equipe" element={<PageTransition><PageEquipe /></PageTransition>} />
         <Route path="/fondatrice" element={<PageTransition><PageFondatrice /></PageTransition>} />
         <Route path="/cercle" element={<PageTransition><PageCercle /></PageTransition>} />
-        <Route path="/gala" element={<PageTransition><PageGala /></PageTransition>} />
+        <Route path="/gala2025" element={<PageTransition><PageGala /></PageTransition>} />
         {/* Catch-all route pour les pages inexistantes */}
         <Route path="*" element={<PageTransition><PageNotFound /></PageTransition>} />
       </Routes>
