@@ -11,6 +11,7 @@ import { MaitressesCeremonieSubsection } from "./sections/MaitressesCeremonieSub
 import { ObjectifsSubsection } from "./sections/ObjectifsSubsection/ObjectifsSubsection";
 import { PartenaireSubsection } from "./sections/PartenaireSubsection/PartenaireSubsection";
 import { TopBarSubsection } from "../PageHome/sections/TopBarSubsection/TopBarSubsection";
+import { MatchtombolaSubsection } from "./sections/MatchtombolaSubsection/MatchtombolaSubsection";
 
 export const PageGala = (): JSX.Element => {
   return (
@@ -25,6 +26,7 @@ export const PageGala = (): JSX.Element => {
         <IntervenantsIntroSubsection />
         <IntervenantsSubsection />
         <BilleterieSubsection />
+        <MatchtombolaSubsection />
         <EncheresSubsection />
         <PartenaireSubsection />
         <ContactSubsection />
