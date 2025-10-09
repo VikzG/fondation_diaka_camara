@@ -12,7 +12,7 @@ export const MatchtombolaSubsection = (): JSX.Element => {
 
   const events = [
     {
-      title: "Match de Gala",
+      title: "Le Match de la Solidarité",
       image: "/page_gala_section/match_gala.jpg",
       description:
         "Rejoignez-nous pour un moment sportif et solidaire ! Le match du Gala rassemble personnalités, supporters et amis de la Fondation dans une ambiance festive.",
@@ -20,7 +20,7 @@ export const MatchtombolaSubsection = (): JSX.Element => {
       color: "bg-carmin hover:bg-carmin/90",
     },
     {
-      title: "Tombola du Gala",
+      title: "La Tombola du Gala",
       image: "/page_gala_section/tombola_gala.jpg",
       description:
         "Tentez votre chance et soutenez la Fondation ! De magnifiques lots sont à gagner lors de la tombola du Gala, au profit de nos actions éducatives et sociales.",
@@ -34,13 +34,21 @@ export const MatchtombolaSubsection = (): JSX.Element => {
     return (
       <section
         id="match_tombola"
-        className="flex flex-col w-full items-center justify-center bg-antiflash bg-cover bg-center bg-no-repeat gap-14 px-6 py-16 relative"
+        className="flex flex-col w-full items-center justify-center bg-antiflash bg-cover bg-center bg-no-repeat gap-16 px-6 py-16 relative"
       >
+        {/* === SECTION TITLE === */}
+        <h2 className="font-[beautique-display-bold] uppercase text-3xl sm:text-4xl text-licorice text-center">
+          Les Événements<br/>du Gala
+        </h2>
         {events.map((event, i) => (
           <div
             key={i}
             className="flex flex-col items-center gap-8 w-full max-w-[500px]"
           >
+            {/* === CARD TITLE === */}
+            <h3 className="font-[beautique-display] text-licorice text-2xl text-center">
+              {event.title}
+            </h3>
             {/* === CARD === */}
             <div className="group relative overflow-hidden rounded-[25px] w-full shadow-lg hover:shadow-xl transition-shadow duration-500 bg-[#f3f3f3]">
               <div className="flex items-center justify-center w-full h-full bg-[#f3f3f3]">
@@ -73,11 +81,19 @@ export const MatchtombolaSubsection = (): JSX.Element => {
   return (
     <section
       id="match_tombola"
-      className="flex w-full items-center justify-center bg-antiflash bg-cover bg-center bg-no-repeat gap-20 px-10 py-20 relative"
+      className="flex flex-col items-center justify-center bg-antiflash bg-cover bg-center bg-no-repeat gap-28 px-10 py-28 relative"
     >
+      {/* === SECTION TITLE === */}
+      <h2 className="relative uppercase self-stretch font-[beautique-display-bold] text-5xl text-licorice text-center">
+        Les événements du Gala
+      </h2>
       <div className="flex items-start justify-center gap-20 max-w-[1600px] w-full">
         {events.map((event, i) => (
           <div key={i} className="flex flex-col items-center gap-10">
+            {/* === CARD TITLE === */}
+            <h3 className="font-[beautique-display] text-licorice text-4xl whitespace-nowrap">
+              {event.title}
+            </h3>
             {/* === CARD === */}
             <div className="group relative overflow-hidden rounded-[30px] w-[600px]  shadow-xl hover:shadow-2xl transition-shadow duration-500 bg-[#f3f3f3]">
               <div className="flex items-center justify-center w-full h-full bg-[#f3f3f3]">
