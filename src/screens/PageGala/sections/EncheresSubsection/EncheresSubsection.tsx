@@ -153,9 +153,6 @@ export const EncheresSubsection = (): JSX.Element => {
             Participez à nos enchères caritatives pour acquérir des pièces
             uniques et soutenir nos actions
           </p>
-          <p className="text-colbat font-[beautique-display] px-4 text-2xl text-center leading-7">
-            Deja 15000€ levés pour financer les actions de la fondation !
-          </p>
         </div>
 
         {/* Card catalogue */}
@@ -339,9 +336,6 @@ return (
           Participez à nos enchères caritatives pour acquérir
           <br />
           des pièces uniques et soutenir nos actions
-        </p>
-        <p className="text-colbat font-[beautique-display] text-4xl text-center">
-          Deja 15000€ levés pour financer les actions de la fondation !
         </p>
       </div>
 
