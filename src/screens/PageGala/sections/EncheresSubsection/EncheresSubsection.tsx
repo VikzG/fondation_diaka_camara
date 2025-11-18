@@ -25,19 +25,19 @@ export const EncheresSubsection = (): JSX.Element => {
     {
       image: "/page_gala_section/mali_art.jpg",
       artist: "Mali Watta",
-      description: "TABLEAU",
+      description: "Cette œuvre de MaliWatta rend hommage à toutes les filles dont l’avenir peut basculer grâce à l’éducation, symbolisée par la figure bleue portant dignement son histoire et les six livres représentant apprentissage, curiosité, créativité et liberté. Le septième livre, ouvert entre ses mains, incarne le pouvoir de choisir, de se protéger et de se projeter, tandis que les couleurs profondes traduisent à la fois la mémoire, la sensibilité et les défis auxquels elles font face, affirmant que l’éducation est le plus puissant outil de transformation.",
       statut: "- VENDUE -",
     },
     {
       image: "/page_gala_section/serge_art.jpg",
       artist: "Ousmane Mbaye",
-      description: "SCULPTURE",
+      description: "Chef-d’œuvre M’Blo Baoulé du Goli de Béoumi, véritable emblème de la grâce et de l’esthétique baoulé. Issue de la prestigieuse collection Stanzi, l’un des plus grands collectionneurs de Côte d’Ivoire, puis du cabinet Glory Art First de Serge, figure incontournable du marché de l’art international, la pièce est accompagnée d’un certificat d’authenticité signé par le Directeur du Musée des Civilisations de Côte d’Ivoire. L’an dernier, un masque comparable provenant du même collectionneur s’est envolé à plus de 90 millions de FCFA lors d’une vente caritative d’exception.",
       statut: "- VENDUE - ",
     },
     {
       image: "/page_gala_section/ousmane_art.jpg",
       artist: "Serge Hié",
-      description: "PHOTOGRAPHIE",
+      description: "Au design industriel et artistique, avec assise arquée en plaques colorées issues de matériaux recyclés, reposant sur une structure métallique robuste.Polyvalent, il peut servir de siège, de repose-pieds ou d’objet décoratif au charme unique.",
       statut: "- VENDUE -  ",
     },
   ];
@@ -49,7 +49,7 @@ export const EncheresSubsection = (): JSX.Element => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % auctionStates.length);
-    }, 3000);
+    }, 5000);
     return () => clearInterval(interval);
   }, []);
 
@@ -100,7 +100,7 @@ export const EncheresSubsection = (): JSX.Element => {
             />
           </AnimatePresence>
         </div>
-        <div>
+        <div className="flex flex-col gap-4 px-2">
           {/* Artiste */}
           <AnimatePresence mode="wait">
             <motion.div
@@ -131,7 +131,7 @@ export const EncheresSubsection = (): JSX.Element => {
           <AnimatePresence mode="wait">
             <motion.div
               key={currentState.statut}
-              className="font-legendes-categories text-colbat text-center"
+              className="font-legendes-categories text-xl text-colbat text-center"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
@@ -236,91 +236,99 @@ export const EncheresSubsection = (): JSX.Element => {
     );
   }
 
-  // === DESKTOP ===
-  return (
-    <section
-      ref={ref}
-      id="encheres_gala"
-      className="flex flex-col w-full items-center justify-center gap-20 py-20 px-20 bg-antiflash"
-    >
-      <div className="flex flex-col items-center gap-[100px] px-0 py-[50px] w-full max-w-[1400px]">
-        <Card className="w-full h-[170px] bg-colbat rounded-[20px] border-0">
-          <CardContent className="flex items-center px-[50px] py-0 h-full">
-            {/* Bloc DÉBUT / FIN */}
-            <div className="flex flex-col items-start flex-1">
-              {auctionDetails.map((detail, index) => (
-                <div
-                  key={index}
-                  className="flex items-center gap-[30px] w-full"
-                >
-                  <div className="w-[70px] font-legendes-bold text-vanilla">
-                    {detail.label}
-                  </div>
-                  <div className="w-fit font-[beautique-display-bold] text-5xl text-vanilla whitespace-nowrap">
-                    {detail.date}
-                  </div>
+// === DESKTOP ===
+return (
+  <section
+    ref={ref}
+    id="encheres_gala"
+    className="flex flex-col w-full items-center justify-center gap-20 py-20 px-20 bg-antiflash"
+  >
+    <div className="flex flex-col items-center gap-[40px] w-full max-w-[1400px]">
+
+      {/* Nom artiste au-dessus du cadran bleu */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={currentState.artist}
+          className="font-[beautique-display] text-4xl text-colbat text-center"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.5 }}
+        >
+          {currentState.artist}
+        </motion.div>
+      </AnimatePresence>
+
+      {/* === CADRAN BLEU AVEC DATES + IMAGE + DESCRIPTION ==== */}
+      <Card className="w-full h-[270px] bg-colbat rounded-[20px] border-0">
+        <CardContent className="flex items-center px-[50px] h-full gap-4 py-4">
+
+          {/* Bloc DÉBUT / FIN (conservé) */}
+          <div className="flex flex-col items-start flex-1">
+            {auctionDetails.map((detail, index) => (
+              <div
+                key={index}
+                className="flex items-center gap-[30px] w-full"
+              >
+                <div className="w-[70px] font-legendes-bold text-vanilla">
+                  {detail.label}
                 </div>
-              ))}
-            </div>
+                <div className="w-fit font-[beautique-display-bold] text-4xl text-vanilla whitespace-nowrap">
+                  {detail.date}
+                </div>
+              </div>
+            ))}
+          </div>
 
-            {/* Image dynamique avec effet */}
-            <div className="flex-1 h-[220px] relative flex items-center justify-center">
-              <AnimatePresence mode="wait">
-                <motion.img
-                  key={currentState.image}
-                  src={currentState.image}
-                  alt={currentState.artist}
-                  className="max-h-full max-w-full object-contain"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 1.1 }}
-                  transition={{ duration: 0.6 }}
-                />
-              </AnimatePresence>
-            </div>
+          {/* Image dynamique */}
+          <div className="flex-1 h-full flex items-center justify-center">
+            <AnimatePresence mode="wait">
+              <motion.img
+                key={currentState.image}
+                src={currentState.image}
+                alt={currentState.artist}
+                className="max-h-full max-w-full object-contain"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1.2 }}
+                exit={{ opacity: 0, scale: 1.1 }}
+                transition={{ duration: 0.6 }}
+              />
+            </AnimatePresence>
+          </div>
 
-            {/* Nom + description dynamiques */}
-            <div className="flex flex-col items-end justify-end gap-2.5 flex-1 overflow-hidden">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={currentState.artist}
-                  className="self-stretch font-[beautique-display] text-3xl text-vanilla text-right"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.5 }}
-                >
-                  {currentState.artist}
-                </motion.div>
-              </AnimatePresence>
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={currentState.description}
-                  className="self-stretch font-legendes-categories text-vanilla text-right"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.5, delay: 0.1 }}
-                >
-                  {currentState.description}
-                </motion.div>
-              </AnimatePresence>
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={currentState.statut}
-                  className="self-stretch font-legendes-categories text-vanilla text-right"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.5, delay: 0.2 }}
-                >
-                  {currentState.statut}
-                </motion.div>
-              </AnimatePresence>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
+          {/* Description DANS le cadran bleu */}
+          <div className="flex-1 flex items-end justify-end">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentState.description}
+                className="font-legendes-categories text-vanilla text-right"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+              >
+                {currentState.description}
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+        </CardContent>
+      </Card>
+
+      {/* Statut SOUS le cadran bleu */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={currentState.statut}
+          className="font-legendes-categories text-2xl text-colbat text-center"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          {currentState.statut}
+        </motion.div>
+      </AnimatePresence>
+    </div>
 
       {/* Texte central */}
       <div className="flex flex-col items-center justify-center gap-5 px-60 py-0 w-full">
