@@ -25,17 +25,20 @@ export const EncheresSubsection = (): JSX.Element => {
     {
       image: "/page_gala_section/mali_art.jpg",
       artist: "Mali Watta",
-      description: 'TABLEAU " NOM DE L’OEUVRE "',
+      description: "TABLEAU",
+      statut: "- VENDUE -",
     },
     {
       image: "/page_gala_section/serge_art.jpg",
       artist: "Ousmane Mbaye",
-      description: 'SCULPTURE " NOM DE L’OEUVRE "',
+      description: "SCULPTURE",
+      statut: "- VENDUE - ",
     },
     {
       image: "/page_gala_section/ousmane_art.jpg",
       artist: "Serge Hié",
-      description: 'PHOTOGRAPHIE " NOM DE L’OEUVRE "',
+      description: "PHOTOGRAPHIE",
+      statut: "- VENDUE -  ",
     },
   ];
 
@@ -51,11 +54,11 @@ export const EncheresSubsection = (): JSX.Element => {
   }, []);
 
   // ✅ Ref pour déclencher l’animation au scroll
-const ref = useRef(null);
-const isInView = useInView(ref, {
-  once: true,       // l’animation se joue 1 seule fois
-  amount: 0.6       // déclenche quand 60% de la section est visible
-});
+  const ref = useRef(null);
+  const isInView = useInView(ref, {
+    once: true, // l’animation se joue 1 seule fois
+    amount: 0.6, // déclenche quand 60% de la section est visible
+  });
 
   // ✅ États animation
   const [showFeatures, setShowFeatures] = useState(false);
@@ -74,145 +77,167 @@ const isInView = useInView(ref, {
     }
   }, [isInView]);
 
-    if (isMobile) {
+  if (isMobile) {
     return (
-        <section
-      ref={ref}
-      id="encheres_gala"
-      className="flex flex-col w-full items-center justify-start gap-12 py-12 bg-antiflash"
-    >
-{/* Bandeau bleu haut */}
-<div className="bg-colbat flex items-center justify-center w-full max-w-[500px] h-[120px] overflow-visible relative">
-  <AnimatePresence mode="wait">
-    <motion.img
-      key={currentState.image}
-      src={currentState.image}
-      alt={currentState.artist}
-      className="object-contain h-full"
-      style={{ zIndex: 10 }}
-      initial={{ opacity: 0, scale: 1 }}
-      animate={{ opacity: 1, scale: 1.5 }} // augmente la taille de 20%
-      exit={{ opacity: 0, scale: 1 }}
-      transition={{ duration: 0.6 }}
-    />
-  </AnimatePresence>
-</div>
-<div>
+      <section
+        ref={ref}
+        id="encheres_gala"
+        className="flex flex-col w-full items-center justify-start gap-12 py-12 bg-antiflash"
+      >
+        {/* Bandeau bleu haut */}
+        <div className="bg-colbat flex items-center justify-center w-full max-w-[500px] h-[120px] overflow-visible relative">
+          <AnimatePresence mode="wait">
+            <motion.img
+              key={currentState.image}
+              src={currentState.image}
+              alt={currentState.artist}
+              className="object-contain h-full"
+              style={{ zIndex: 10 }}
+              initial={{ opacity: 0, scale: 1 }}
+              animate={{ opacity: 1, scale: 1.5 }} // augmente la taille de 20%
+              exit={{ opacity: 0, scale: 1 }}
+              transition={{ duration: 0.6 }}
+            />
+          </AnimatePresence>
+        </div>
+        <div>
+          {/* Artiste */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentState.artist}
+              className="font-[beautique-display] text-2xl text-colbat text-center"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.5 }}
+            >
+              {currentState.artist}
+            </motion.div>
+          </AnimatePresence>
 
-      {/* Artiste */}
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={currentState.artist}
-          className="font-[beautique-display] text-2xl text-colbat text-center"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          transition={{ duration: 0.5 }}
-        >
-          {currentState.artist}
-        </motion.div>
-      </AnimatePresence>
+          {/* Description */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentState.description}
+              className="font-legendes-categories text-colbat text-center"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
+              {currentState.description}
+            </motion.div>
+          </AnimatePresence>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentState.statut}
+              className="font-legendes-categories text-colbat text-center"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              {currentState.statut}
+            </motion.div>
+          </AnimatePresence>
+        </div>
 
-      {/* Description */}
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={currentState.description}
-          className="font-legendes-categories text-colbat text-center"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-        >
-          {currentState.description}
-        </motion.div>
-      </AnimatePresence>
-      </div>
+        {/* Vente aux enchères */}
+        <div className="flex flex-col items-center justify-center gap-4 w-full">
+          <h2 className="font-[beautique-display-bold] text-3xl text-colbat text-center">
+            VENTE AUX
+            <br />
+            ENCHÈRES
+          </h2>
+          <p className="text-licorice font-[beautique-display] px-4 text-3xl text-center leading-7">
+            Participez à nos enchères caritatives pour acquérir des pièces
+            uniques et soutenir nos actions
+          </p>
+          <p className="text-colbat font-[beautique-display] px-4 text-2xl text-center leading-7">
+            Deja 15000€ levés pour financer les actions de la fondation !
+          </p>
+        </div>
 
-      {/* Vente aux enchères */}
-      <div className="flex flex-col items-center justify-center gap-4 w-full">
-        <h2 className="font-[beautique-display-bold] text-3xl text-colbat text-center">
-          VENTE AUX<br/>ENCHÈRES
-        </h2>
-        <p className="text-licorice font-[beautique-display] px-4 text-3xl text-center leading-7">
-          Participez à nos enchères caritatives pour acquérir des pièces uniques
-          et soutenir nos actions
-        </p>
-      </div>
-
-      {/* Card catalogue */}
-<Card className="w-full max-w-[340px] rounded-[15px] border-0 overflow-hidden shadow-md">
-  <CardContent className="flex flex-col w-full p-0 h-[500px] relative">
-    {/* Partie image en haut (1/3) avec texte centré */}
-    <div className="w-full h-1/3 relative overflow-hidden">
-      <img
-        src="/slider_cercle_section/slide_img_2.png"
-        alt="Catalogue"
-        className="w-full h-full object-cover"
-      />
-      {showCatalogue && (
-        <motion.div
-          className="absolute inset-0 flex items-center justify-center text-center font-legendes-bold text-vanilla text-lg"
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6 }}
-        >
-          LE LIEN DU CATALOGUE<br/>S&apos;AFFICHERA ICI
-        </motion.div>
-      )}
-    </div>
-
-    {/* Partie features en bas (2/3) */}
-    <div className="flex flex-col items-center bg-white justify-around gap-2 p-4 h-2/3 w-full">
-      {/* Flèche top */}
-      <img
-        src="/blue_arrow_top.svg"
-        alt="Top arrow"
-        className="w-[47px] h-[25px] mb-2"
-      />
-
-      {/* Auction features */}
-      <div className="flex flex-col gap-4 w-ful px-3">
-        {auctionFeatures.map((feature, index) => (
-          <motion.div
-            key={index}
-            className="text-licorice text-center text-md"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: index * 0.1 }}
-          >
-            {feature}
-          </motion.div>
-        ))}
-      </div>
-
-      {/* Flèche bottom */}
-      <img
-        src="/blue_arrow_bottom.svg"
-        alt="Bottom arrow"
-        className="w-[47px] h-[25px] mt-2"
-      />
-    </div>
-  </CardContent>
-</Card>
-
-      {/* Bandeau bleu bas avec dates */}
-      <Card className="w-full h-[120px] bg-colbat rounded-none border-none">
-        <CardContent className="flex p-0 ms-16 flex-col items-start justify-center h-full">
-          {auctionDetails.map((detail, index) => (
-            <div key={index} className="flex items-center text-vanilla gap-10">
-              <span className="font-legendes-bold">{detail.label}</span>
-              <span className="font-[beautique-display-bold] text-2xl">{detail.date}</span>
+        {/* Card catalogue */}
+        <Card className="w-full max-w-[340px] rounded-[15px] border-0 overflow-hidden shadow-md">
+          <CardContent className="flex flex-col w-full p-0 h-[500px] relative">
+            {/* Partie image en haut (1/3) avec texte centré */}
+            <div className="w-full h-1/3 relative overflow-hidden">
+              <img
+                src="/slider_cercle_section/slide_img_2.png"
+                alt="Catalogue"
+                className="w-full h-full object-cover"
+              />
+              {showCatalogue && (
+                <motion.div
+                  className="absolute inset-0 flex items-center justify-center text-center font-legendes-bold text-vanilla text-lg"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6 }}
+                >
+                  LE LIEN DU CATALOGUE
+                  <br />
+                  S&apos;AFFICHERA ICI
+                </motion.div>
+              )}
             </div>
-          ))}
-        </CardContent>
-      </Card>
-    </section>
-  );
-    }
+
+            {/* Partie features en bas (2/3) */}
+            <div className="flex flex-col items-center bg-white justify-around gap-2 p-4 h-2/3 w-full">
+              {/* Flèche top */}
+              <img
+                src="/blue_arrow_top.svg"
+                alt="Top arrow"
+                className="w-[47px] h-[25px] mb-2"
+              />
+
+              {/* Auction features */}
+              <div className="flex flex-col gap-4 px-3">
+                {auctionFeatures.map((feature, index) => (
+                  <motion.div
+                    key={index}
+                    className="text-licorice text-center text-md"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: index * 0.1 }}
+                  >
+                    {feature}
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* Flèche bottom */}
+              <img
+                src="/blue_arrow_bottom.svg"
+                alt="Bottom arrow"
+                className="w-[47px] h-[25px] mt-2"
+              />
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Bandeau bleu bas avec dates */}
+        <Card className="w-full h-[120px] bg-colbat rounded-none border-none">
+          <CardContent className="flex p-0 ms-16 flex-col items-start justify-center h-full">
+            {auctionDetails.map((detail, index) => (
+              <div
+                key={index}
+                className="flex items-center text-vanilla gap-10"
+              >
+                <span className="font-legendes-bold">{detail.label}</span>
+                <span className="font-[beautique-display-bold] text-2xl">
+                  {detail.date}
+                </span>
+              </div>
+            ))}
+          </CardContent>
+        </Card>
+      </section>
+    );
+  }
 
   // === DESKTOP ===
   return (
-
     <section
       ref={ref}
       id="encheres_gala"
@@ -280,6 +305,18 @@ const isInView = useInView(ref, {
                   {currentState.description}
                 </motion.div>
               </AnimatePresence>
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentState.statut}
+                  className="self-stretch font-legendes-categories text-vanilla text-right"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                >
+                  {currentState.statut}
+                </motion.div>
+              </AnimatePresence>
             </div>
           </CardContent>
         </Card>
@@ -295,6 +332,9 @@ const isInView = useInView(ref, {
           <br />
           des pièces uniques et soutenir nos actions
         </p>
+        <p className="text-colbat font-[beautique-display] text-4xl text-center">
+          Deja 15000€ levés pour financer les actions de la fondation !
+        </p>
       </div>
 
       {/* Catalogue */}
@@ -302,7 +342,11 @@ const isInView = useInView(ref, {
         <CardContent className="flex p-0">
           {/* Colonne gauche */}
           <div className="flex flex-col w-1/2 h-[390px] items-center gap-[30px] p-[50px]">
-            <img className="w-[47px] h-[25px]" alt="blue arrow top" src="/blue_arrow_top.svg" />
+            <img
+              className="w-[47px] h-[25px]"
+              alt="blue arrow top"
+              src="/blue_arrow_top.svg"
+            />
             <div className="flex flex-col items-start gap-5 w-full">
               <AnimatePresence>
                 {showFeatures &&
@@ -319,7 +363,11 @@ const isInView = useInView(ref, {
                   ))}
               </AnimatePresence>
             </div>
-            <img className="w-[47px] h-[25px]" alt="blue arrow bottom" src="/blue_arrow_bottom.svg" />
+            <img
+              className="w-[47px] h-[25px]"
+              alt="blue arrow bottom"
+              src="/blue_arrow_bottom.svg"
+            />
           </div>
 
           {/* Colonne droite */}
