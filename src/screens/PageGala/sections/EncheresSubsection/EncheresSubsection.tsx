@@ -25,7 +25,7 @@ export const EncheresSubsection = (): JSX.Element => {
     {
       image: "/page_gala_section/mali_art.jpg",
       artist: "Mali Watta",
-      description: "Cette œuvre de MaliWatta rend hommage à toutes les filles dont l’avenir peut basculer grâce à l’éducation, symbolisée par la figure bleue portant dignement son histoire et les six livres représentant apprentissage, curiosité, créativité et liberté. Le septième livre, ouvert entre ses mains, incarne le pouvoir de choisir, de se protéger et de se projeter, tandis que les couleurs profondes traduisent à la fois la mémoire, la sensibilité et les défis auxquels elles font face, affirmant que l’éducation est le plus puissant outil de transformation.",
+      description: "Cette œuvre de Mali Watta rend hommage à toutes les filles dont l’avenir peut basculer grâce à l’éducation, symbolisée par la figure bleue portant dignement son histoire et les six livres représentant apprentissage, curiosité, créativité et liberté. Le septième livre, ouvert entre ses mains, incarne le pouvoir de choisir, de se protéger et de se projeter, tandis que les couleurs profondes traduisent à la fois la mémoire, la sensibilité et les défis auxquels elles font face, affirmant que l’éducation est le plus puissant outil de transformation.",
       statut: "- VENDUE -",
     },
     {
@@ -260,7 +260,7 @@ return (
       </AnimatePresence>
 
       {/* === CADRAN BLEU AVEC DATES + IMAGE + DESCRIPTION ==== */}
-      <Card className="w-full h-[270px] bg-colbat rounded-[20px] border-0">
+      <Card className="w-full h-[300px] bg-colbat rounded-[20px] border-0">
         <CardContent className="flex items-center px-[50px] h-full gap-4 py-4">
 
           {/* Bloc DÉBUT / FIN (conservé) */}
