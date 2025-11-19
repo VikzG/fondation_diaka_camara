@@ -153,6 +153,9 @@ export const EncheresSubsection = (): JSX.Element => {
             Participez à nos enchères caritatives pour acquérir des pièces
             uniques et soutenir nos actions
           </p>
+                  <p className="font-legendes-categories italic text-xl text-colbat text-center">
+          Le prix des oeuvres est confidentiel.
+        </p>
         </div>
 
         {/* Card catalogue */}
@@ -336,6 +339,9 @@ return (
           Participez à nos enchères caritatives pour acquérir
           <br />
           des pièces uniques et soutenir nos actions
+        </p>
+        <p className="font-legendes-categories italic text-2xl text-colbat text-center">
+          Le prix des oeuvres est confidentiel.
         </p>
       </div>
 
