@@ -70,14 +70,14 @@ export const IntroductionSection = (): JSX.Element => {
         {/* Partie image en bas */}
         <div className="w-full flex items-center justify-center">
           <div className="relative w-64 md:w-80 aspect-square rounded-full overflow-hidden">
-            <img
+            <img loading="lazy" decoding="async"
               className="w-full h-full object-cover"
               alt="image cercle"
-              src="/cercle_section/cercle_hands.png"
+              src="/cercle_section/cercle_hands.webp"
             />
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="w-24 md:w-32 h-24 md:h-32 flex items-center justify-center shadow-lg">
-                <img
+                <img loading="lazy" decoding="async"
                   className="w-full h-full object-contain"
                   alt="logo"
                   src="cercle_section/cercle_logo.svg"
@@ -103,16 +103,16 @@ export const IntroductionSection = (): JSX.Element => {
         <div className="w-1/2 flex items-center justify-center">
           <div className="relative w-[500px] aspect-square rounded-full overflow-hidden">
             {/* Image cercle */}
-            <img
+            <img loading="lazy" decoding="async"
               className="w-full h-full object-cover"
               alt="image cercle"
-              src="/cercle_section/cercle_hands.png"
+              src="/cercle_section/cercle_hands.webp"
             />
 
             {/* Logo agrandi au centre */}
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="w-40 h-40 bg-transparent rounded-full flex items-center justify-center shadow-lg">
-                <img
+                <img loading="lazy" decoding="async"
                   className="w-full h-full object-contain"
                   alt="logo"
                   src="cercle_section/cercle_logo.svg"

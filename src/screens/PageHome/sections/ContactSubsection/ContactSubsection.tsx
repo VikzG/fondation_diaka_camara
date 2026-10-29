@@ -158,7 +158,7 @@ export const ContactSubsection = (): JSX.Element => {
             femmes d’Afrique.
           </p>
         ) : (
-          <img
+          <img loading="lazy" decoding="async"
             className="relative w-60 h-[247px]"
             alt="contact"
             src="/contact_section/logo_contact.svg"

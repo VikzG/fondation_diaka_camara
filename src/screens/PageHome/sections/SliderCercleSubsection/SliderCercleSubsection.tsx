@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "../../../../components/ui/button";
 import { Link } from "react-router-dom";
+import { usePreloadImages } from "../../../../lib/usePreloadImages";
 
 export const SliderCercleSubsection = (): JSX.Element => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -23,7 +24,7 @@ export const SliderCercleSubsection = (): JSX.Element => {
       buttonText: "Rejoindre le Cercle",
       buttonColor: "bg-carmin hover:bg-carmin/90",
       indicatorColor: "bg-carmin",
-      imageUrl: "/slider_cercle_section/slide_img_1.png",
+      imageUrl: "/slider_cercle_section/slide_img_1.webp",
       link: "/cercle",
     },
     {
@@ -34,12 +35,13 @@ export const SliderCercleSubsection = (): JSX.Element => {
       buttonText: "En savoir plus",
       buttonColor: "bg-blue-600 hover:bg-blue-500",
       indicatorColor: "bg-blue-600",
-      imageUrl: "/slider_cercle_section/slide_img_2.png",
+      imageUrl: "/slider_cercle_section/slide_img_2.webp",
       link: "/gala2025",
     },
   ];
 
   const currentState = states[activeIndex];
+  usePreloadImages(states.map((s) => s.imageUrl));
 
   // Auto-slide toutes les 5s avec fade
   useEffect(() => {

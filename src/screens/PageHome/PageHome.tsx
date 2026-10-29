@@ -9,15 +9,12 @@ import { HeroSliderSubsection } from "./sections/HeroSliderSubsection/HeroSlider
 import { ImpactSubsection } from "./sections/ImpactSubsection/ImpactSubsection";
 import { PreActusSubsection } from "./sections/PreActusSubsection/PreActusSubsection";
 import { SliderCercleSubsection } from "./sections/SliderCercleSubsection";
-import { TopBarSubsection } from "./sections/TopBarSubsection/TopBarSubsection";
 import { ValeursSubsection } from "./sections/ValeursSubsection/ValeursSubsection";
 
 export const PageHome = (): JSX.Element => {
   return (
     <div className="bg-white flex flex-col items-center w-screen">
-      <div className="bg-blanc w-full flex flex-col">
-        <TopBarSubsection />
-        <HeroSliderSubsection />
+      <div className="bg-blanc w-full flex flex-col">        <HeroSliderSubsection />
         <PreActusSubsection />
         <FondationSubsection />
         <ValeursSubsection />

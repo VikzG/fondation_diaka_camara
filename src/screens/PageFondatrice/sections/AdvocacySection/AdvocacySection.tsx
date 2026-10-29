@@ -19,7 +19,7 @@ export const AdvocacySection = (): JSX.Element => {
         <div className="flex items-center justify-between gap-20 w-full max-w-[1600px]">
           {/* Colonne gauche */}
           <div className="flex items-center justify-center gap-[50px] flex-1 flex-col">
-            <img
+            <img loading="lazy" decoding="async"
               className="w-[47px] h-[25px]"
               alt="Vector"
               src="/actualites_section/red_top_arrow.svg"
@@ -49,7 +49,7 @@ export const AdvocacySection = (): JSX.Element => {
                       Participer au Gala 2025
                     </span>
                     <div className="border-2 border-vanilla group-hover:border-transparent absolute right-[calc(100%-50px)] group-hover:right-[10px] top-1/2 -translate-y-1/2 w-[50px] h-[50px] flex items-center justify-center rounded-full transition-all duration-500 ease-in-out bg-carmin ">
-                      <img className="w-7 h-7" alt="Icon" src="/gala_arrow_button.svg" />
+                      <img loading="lazy" decoding="async" className="w-7 h-7" alt="Icon" src="/gala_arrow_button.svg" />
                     </div>
                   </Button>
                 </Link>
@@ -60,15 +60,15 @@ export const AdvocacySection = (): JSX.Element => {
           {/* Colonne droite */}
           <div className="w-1/2 flex items-center justify-center">
             <div className="relative w-[500px] aspect-square rounded-full overflow-hidden group">
-              <img
+              <img loading="lazy" decoding="async"
                 className="w-full h-full object-cover"
                 alt="image cercle"
-                src="/cercle_section/cercle_bg.png"
+                src="/cercle_section/cercle_bg.webp"
               />
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="relative flex items-center justify-center">
                   <div className="w-40 h-40 bg-transparent rounded-full flex items-center justify-center shadow-lg transition-transform duration-500 ease-in-out group-hover:scale-[1.2] group-hover:mix-blend-color-dodge">
-                    <img
+                    <img loading="lazy" decoding="async"
                       className="w-full h-full object-contain"
                       alt="logo"
                       src="cercle_section/cercle_logo.svg"
@@ -97,7 +97,7 @@ export const AdvocacySection = (): JSX.Element => {
       <div className="flex flex-col items-center gap-12 w-full max-w-[1000px]">
         {/* Partie texte en haut */}
         <div className="flex flex-col items-center gap-6">
-          <img
+          <img loading="lazy" decoding="async"
             className="w-[40px] h-[20px]"
             alt="Vector"
             src="/actualites_section/red_top_arrow.svg"
@@ -127,7 +127,7 @@ export const AdvocacySection = (): JSX.Element => {
                     Participer au Gala 2025
                   </span>
                   <div className="border-2 border-vanilla group-hover:border-transparent absolute right-[calc(100%-40px)] group-hover:right-[10px] top-1/2 -translate-y-1/2 w-[40px] h-[40px] flex items-center justify-center rounded-full transition-all duration-500 ease-in-out bg-carmin">
-                    <img className="w-6 h-6" alt="Icon" src="/gala_arrow_button.svg" />
+                    <img loading="lazy" decoding="async" className="w-6 h-6" alt="Icon" src="/gala_arrow_button.svg" />
                   </div>
                 </Button>
               </Link>
@@ -138,15 +138,15 @@ export const AdvocacySection = (): JSX.Element => {
         {/* Cercle en bas */}
         <div className="flex justify-center">
           <div className="relative w-[280px] sm:w-[350px] aspect-square rounded-full overflow-hidden group">
-            <img
+            <img loading="lazy" decoding="async"
               className="w-full h-full object-cover"
               alt="image cercle"
-              src="/cercle_section/cercle_bg.png"
+              src="/cercle_section/cercle_bg.webp"
             />
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="relative flex items-center justify-center">
                 <div className="w-28 h-28 bg-transparent rounded-full flex items-center justify-center shadow-lg transition-transform duration-500 ease-in-out group-hover:scale-[1.2] group-hover:mix-blend-color-dodge">
-                  <img
+                  <img loading="lazy" decoding="async"
                     className="w-full h-full object-contain"
                     alt="logo"
                     src="cercle_section/cercle_logo.svg"

@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { Card, CardContent } from "../../../../components/ui/card";
 import { Button } from "../../../../components/ui/button";
+import { usePreloadImages } from "../../../../lib/usePreloadImages";
 
 export const EncheresSubsection = (): JSX.Element => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1200);
@@ -23,19 +24,19 @@ export const EncheresSubsection = (): JSX.Element => {
 
   const auctionStates = [
     {
-      image: "/page_gala_section/mali_art.jpg",
+      image: "/page_gala_section/mali_art.webp",
       artist: "Mali Watta",
       description: "Cette œuvre de Mali Watta rend hommage à toutes les filles dont l’avenir peut basculer grâce à l’éducation, symbolisée par la figure bleue portant dignement son histoire et les six livres représentant apprentissage, curiosité, créativité et liberté. Le septième livre, ouvert entre ses mains, incarne le pouvoir de choisir, de se protéger et de se projeter, tandis que les couleurs profondes traduisent à la fois la mémoire, la sensibilité et les défis auxquels elles font face, affirmant que l’éducation est le plus puissant outil de transformation.",
       statut: "- VENDUE -",
     },
     {
-      image: "/page_gala_section/serge_art.jpg",
+      image: "/page_gala_section/serge_art.webp",
       artist: "Ousmane Mbaye",
       description: "Chef-d’œuvre M’Blo Baoulé du Goli de Béoumi, véritable emblème de la grâce et de l’esthétique baoulé. Issue de la prestigieuse collection Stanzi, l’un des plus grands collectionneurs de Côte d’Ivoire, puis du cabinet Glory Art First de Serge, figure incontournable du marché de l’art international, la pièce est accompagnée d’un certificat d’authenticité signé par le Directeur du Musée des Civilisations de Côte d’Ivoire. L’an dernier, un masque comparable provenant du même collectionneur s’est envolé à plus de 90 millions de FCFA lors d’une vente caritative d’exception.",
       statut: "- VENDUE - ",
     },
     {
-      image: "/page_gala_section/ousmane_art.jpg",
+      image: "/page_gala_section/ousmane_art.webp",
       artist: "Serge Hié",
       description: "Au design industriel et artistique, avec assise arquée en plaques colorées issues de matériaux recyclés, reposant sur une structure métallique robuste.Polyvalent, il peut servir de siège, de repose-pieds ou d’objet décoratif au charme unique.",
       statut: "- VENDUE -  ",
@@ -44,6 +45,7 @@ export const EncheresSubsection = (): JSX.Element => {
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const currentState = auctionStates[currentIndex];
+  usePreloadImages(auctionStates.map((s) => s.image));
 
   // ✅ auto-rotation toutes les 3 sec
   useEffect(() => {
@@ -163,8 +165,8 @@ export const EncheresSubsection = (): JSX.Element => {
           <CardContent className="flex flex-col w-full p-0 h-[500px] relative">
             {/* Partie image en haut (1/3) avec texte centré */}
             <div className="w-full h-1/3 relative overflow-hidden">
-              <img
-                src="/slider_cercle_section/slide_img_2.png"
+              <img loading="lazy" decoding="async"
+                src="/slider_cercle_section/slide_img_2.webp"
                 alt="Catalogue"
                 className="w-full h-full object-cover"
               />
@@ -185,7 +187,7 @@ export const EncheresSubsection = (): JSX.Element => {
             {/* Partie features en bas (2/3) */}
             <div className="flex flex-col items-center bg-white justify-around gap-2 p-4 h-2/3 w-full">
               {/* Flèche top */}
-              <img
+              <img loading="lazy" decoding="async"
                 src="/blue_arrow_top.svg"
                 alt="Top arrow"
                 className="w-[47px] h-[25px] mb-2"
@@ -207,7 +209,7 @@ export const EncheresSubsection = (): JSX.Element => {
               </div>
 
               {/* Flèche bottom */}
-              <img
+              <img loading="lazy" decoding="async"
                 src="/blue_arrow_bottom.svg"
                 alt="Bottom arrow"
                 className="w-[47px] h-[25px] mt-2"
@@ -350,7 +352,7 @@ return (
         <CardContent className="flex p-0">
           {/* Colonne gauche */}
           <div className="flex flex-col w-1/2 h-[390px] items-center gap-[30px] p-[50px]">
-            <img
+            <img loading="lazy" decoding="async"
               className="w-[47px] h-[25px]"
               alt="blue arrow top"
               src="/blue_arrow_top.svg"
@@ -371,7 +373,7 @@ return (
                   ))}
               </AnimatePresence>
             </div>
-            <img
+            <img loading="lazy" decoding="async"
               className="w-[47px] h-[25px]"
               alt="blue arrow bottom"
               src="/blue_arrow_bottom.svg"
@@ -379,7 +381,7 @@ return (
           </div>
 
           {/* Colonne droite */}
-          <div className="flex flex-col w-1/2 items-center justify-between gap-[50px] p-[50px] bg-[url(/slider_cercle_section/slide_img_2.png)] bg-cover bg-[50%_50%] rounded-[0px_20px_20px_0px] overflow-hidden">
+          <div className="flex flex-col w-1/2 items-center justify-between gap-[50px] p-[50px] bg-[url(/slider_cercle_section/slide_img_2.webp)] bg-cover bg-[50%_50%] rounded-[0px_20px_20px_0px] overflow-hidden">
             {/* Texte catalogue */}
             <AnimatePresence>
               {showCatalogue && (

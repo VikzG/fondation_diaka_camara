@@ -18,7 +18,7 @@ export const PartenaireSubsection = (): JSX.Element => {
     return (
     <section
       id="cercle_gala"
-      className="flex flex-col w-full items-center justify-center bg-[url(/cercle_section/cercle_bg.png)] bg-cover bg-center bg-no-repeat gap-28 px-6 py-12 relative"
+      className="flex flex-col w-full items-center justify-center bg-[url(/cercle_section/cercle_bg.webp)] bg-cover bg-center bg-no-repeat gap-28 px-6 py-12 relative"
     >
       {/* Titre principal */}
       <h2 className="text-vanilla text-center font-[beautique-display-bold] text-3xl md:text-4xl lg:text-5xl leading-tight">
@@ -48,7 +48,7 @@ export const PartenaireSubsection = (): JSX.Element => {
           </span>
 
           <div className="border-2 border-vanilla group-hover:border-transparent absolute right-[calc(100%-40px)] group-hover:right-[10px] top-1/2 -translate-y-1/2 w-[40px] h-[40px] md:w-[50px] md:h-[50px] flex items-center justify-center rounded-full transition-all duration-500 ease-in-out bg-pumpkin">
-            <img className="w-5 h-5 md:w-7 md:h-7" alt="Icon" src="/gala_arrow_button.svg" />
+            <img loading="lazy" decoding="async" className="w-5 h-5 md:w-7 md:h-7" alt="Icon" src="/gala_arrow_button.svg" />
           </div>
         </Button>
       </Link>
@@ -59,7 +59,7 @@ export const PartenaireSubsection = (): JSX.Element => {
   return (
       <section
         id="cercle_gala"
-        className="flex flex-col w-full items-start justify-center bg-[url(/cercle_section/cercle_bg.png)] bg-cover bg-no-repeat gap-40 p-28 relative"
+        className="flex flex-col w-full items-start justify-center bg-[url(/cercle_section/cercle_bg.webp)] bg-cover bg-no-repeat gap-40 p-28 relative"
       >
         <h2 className="text-vanilla text-center relative self-stretch font-[beautique-display-bold] text-5xl">
         LE CERCLE DES ALLIANCES
@@ -85,7 +85,7 @@ export const PartenaireSubsection = (): JSX.Element => {
           </span>
 
           <div className="border-2 border-vanilla group-hover:border-transparent absolute right-[calc(100%-50px)] group-hover:right-[10px] top-1/2 -translate-y-1/2 w-[50px] h-[50px] flex items-center justify-center rounded-full transition-all duration-500 ease-in-out bg-pumpkin">
-            <img className="w-7 h-7" alt="Icon" src="/gala_arrow_button.svg" />
+            <img loading="lazy" decoding="async" className="w-7 h-7" alt="Icon" src="/gala_arrow_button.svg" />
           </div>
         </Button>
       </Link>

@@ -39,14 +39,14 @@ export const EquipeSubsection = (): JSX.Element => {
                   Lire le mot de la présidente
                 </span>
                 <div className="border-2 border-vanilla group-hover:border-transparent absolute right-[calc(100%-50px)] group-hover:right-[10px] top-1/2 -translate-y-1/2 w-[50px] h-[50px] flex items-center justify-center rounded-full transition-all duration-500 ease-in-out bg-pumpkin">
-                  <img className="w-7 h-7" alt="Icon" src="/gala_arrow_button.svg" />
+                  <img loading="lazy" decoding="async" className="w-7 h-7" alt="Icon" src="/gala_arrow_button.svg" />
                 </div>
               </Button>
             </Link>
           </div>
 
           {/* Image */}
-          <div className="w-[300px] h-[467px] rounded-[500px] bg-[url(/equipe_section/fondation_presidente.jpg)] bg-cover bg-center" />
+          <div className="w-[300px] h-[467px] rounded-[500px] bg-[url(/equipe_section/fondation_presidente.webp)] bg-cover bg-center" />
 
           {/* Équipe */}
           <div className="flex flex-col items-center flex-1 gap-32">
@@ -56,7 +56,7 @@ export const EquipeSubsection = (): JSX.Element => {
                   Rencontrez notre équipe
                 </span>
                 <div className="border-2 border-vanilla group-hover:border-transparent absolute right-[calc(100%-50px)] group-hover:right-[10px] top-1/2 -translate-y-1/2 w-[50px] h-[50px] flex items-center justify-center rounded-full transition-all duration-500 ease-in-out bg-[#0A4BA5]">
-                  <img className="w-7 h-7" alt="Icon" src="/gala_arrow_button.svg" />
+                  <img loading="lazy" decoding="async" className="w-7 h-7" alt="Icon" src="/gala_arrow_button.svg" />
                 </div>
               </Button>
             </Link>
@@ -85,7 +85,7 @@ export const EquipeSubsection = (): JSX.Element => {
   return (
   <section className="w-full flex flex-col items-center gap-12 px-6 py-10">
     {/* Image en cercle */}
-    <div className="w-[220px] h-[220px] rounded-full bg-[length:150%] bg-[50%_20%] bg-[url(/equipe_section/fondation_presidente.jpg)]" />
+    <div className="w-[220px] h-[220px] rounded-full bg-[length:150%] bg-[50%_20%] bg-[url(/equipe_section/fondation_presidente.webp)]" />
 
     {/* Présidente */}
     <div className="flex flex-col items-center gap-6 w-full">
@@ -107,7 +107,7 @@ export const EquipeSubsection = (): JSX.Element => {
   </span>
 
   <div className="border-2 border-vanilla group-hover:border-transparent absolute right-[calc(100%-50px)] group-hover:right-[10px] top-1/2 -translate-y-1/2 w-[50px] h-[50px] flex items-center justify-center rounded-full transition-all duration-500 ease-in-out bg-pumpkin">
-    <img className="w-7 h-7" alt="Icon" src="/gala_arrow_button.svg" />
+    <img loading="lazy" decoding="async" className="w-7 h-7" alt="Icon" src="/gala_arrow_button.svg" />
   </div>
 </Button>
 
@@ -134,7 +134,7 @@ export const EquipeSubsection = (): JSX.Element => {
   </span>
 
   <div className="border-2 border-vanilla group-hover:border-transparent absolute right-[calc(100%-50px)] group-hover:right-[10px] top-1/2 -translate-y-1/2 w-[50px] h-[50px] flex items-center justify-center rounded-full transition-all duration-500 ease-in-out bg-[#0A4BA5]">
-    <img className="w-7 h-7" alt="Icon" src="/gala_arrow_button.svg" />
+    <img loading="lazy" decoding="async" className="w-7 h-7" alt="Icon" src="/gala_arrow_button.svg" />
   </div>
 </Button>
 

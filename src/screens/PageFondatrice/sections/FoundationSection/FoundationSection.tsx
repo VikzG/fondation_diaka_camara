@@ -75,7 +75,7 @@ export const FoundationSection = (): JSX.Element => {
       >
         <div className="flex flex-col items-center justify-center gap-10 w-full">
           <header className="flex flex-col items-center justify-center gap-6 w-full">
-            <img
+            <img loading="lazy" decoding="async"
               className="w-[150px] h-[50px]"
               alt="Logo primaire"
               src="/page_equipe_section/logo-primaire.svg"
@@ -104,7 +104,7 @@ export const FoundationSection = (): JSX.Element => {
                 className="w-full bg-vanilla rounded-[20px] overflow-hidden border-none shadow-none"
               >
                 <CardContent className="flex flex-col items-center justify-center gap-4 p-6">
-                  <img
+                  <img loading="lazy" decoding="async"
                     className="w-[90px] h-[90px]"
                     alt="Icone"
                     src={card.icon}
@@ -140,25 +140,25 @@ export const FoundationSection = (): JSX.Element => {
               </div>
 
               <div className="flex flex-wrap items-center justify-center gap-6 px-6 py-6 bg-white rounded-b-[20px]">
-                <img
+                <img loading="lazy" decoding="async"
                   className="max-h-16 object-contain"
                   alt="Logo UNICEF"
-                  src="/page_presidente_section/unicef.png"
+                  src="/page_presidente_section/unicef.webp"
                 />
-                <img
+                <img loading="lazy" decoding="async"
                   className="max-h-16 object-contain"
                   alt="Logo Frontline womens fund"
-                  src="/page_presidente_section/frontline.png"
+                  src="/page_presidente_section/frontline.webp"
                 />
-                <img
+                <img loading="lazy" decoding="async"
                   className="max-h-16 object-contain"
                   alt="Logo UMS"
-                  src="/page_presidente_section/ums.png"
+                  src="/page_presidente_section/ums.webp"
                 />
-                <img
+                <img loading="lazy" decoding="async"
                   className="max-h-16 object-contain"
                   alt="Logo jeunes filles leaders"
-                  src="/page_presidente_section/jfl.png"
+                  src="/page_presidente_section/jfl.webp"
                 />
               </div>
             </CardContent>
@@ -176,7 +176,7 @@ export const FoundationSection = (): JSX.Element => {
     >
       <div className="flex flex-col items-center justify-center gap-20 w-full">
         <header className="flex flex-col items-center justify-center gap-10 px-60 py-0 w-full">
-          <img
+          <img loading="lazy" decoding="async"
             className="w-[185px] h-[60px]"
             alt="Logo primaire"
             src="/page_equipe_section/logo-primaire.svg"
@@ -206,7 +206,7 @@ export const FoundationSection = (): JSX.Element => {
                 className="flex-1 bg-vanilla rounded-[20px] overflow-hidden border-none shadow-none"
               >
                 <CardContent className="flex flex-col items-center justify-center gap-5 p-10 h-[350px]">
-                  <img
+                  <img loading="lazy" decoding="async"
                     className="w-[110px] h-[110px]"
                     alt="Icone"
                     src={card.icon}
@@ -241,25 +241,25 @@ export const FoundationSection = (): JSX.Element => {
               </div>
 
               <div className="flex items-center justify-center gap-10 px-20 py-10 w-full bg-white rounded-b-[20px]">
-                <img
+                <img loading="lazy" decoding="async"
                   className="max-h-20 xl:max-h-28 object-contain"
                   alt="Logo UNICEF"
-                  src="/page_presidente_section/unicef.png"
+                  src="/page_presidente_section/unicef.webp"
                 />
-                <img
+                <img loading="lazy" decoding="async"
                   className="max-h-20 xl:max-h-28 object-contain"
                   alt="Logo Frontline womens fund"
-                  src="/page_presidente_section/frontline.png"
+                  src="/page_presidente_section/frontline.webp"
                 />
-                <img
+                <img loading="lazy" decoding="async"
                   className="max-h-20 xl:max-h-28 object-contain"
                   alt="Logo UMS"
-                  src="/page_presidente_section/ums.png"
+                  src="/page_presidente_section/ums.webp"
                 />
-                <img
+                <img loading="lazy" decoding="async"
                   className="max-h-20 xl:max-h-28 object-contain"
                   alt="Logo jeunes filles leaders"
-                  src="/page_presidente_section/jfl.png"
+                  src="/page_presidente_section/jfl.webp"
                 />
               </div>
             </CardContent>

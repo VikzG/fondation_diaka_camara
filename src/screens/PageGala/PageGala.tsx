@@ -10,15 +10,12 @@ import { IntervenantsSubsection } from "./sections/IntervenantsSubsection/Interv
 import { MaitressesCeremonieSubsection } from "./sections/MaitressesCeremonieSubsection/MaitressesCeremonieSubsection";
 import { ObjectifsSubsection } from "./sections/ObjectifsSubsection/ObjectifsSubsection";
 import { PartenaireSubsection } from "./sections/PartenaireSubsection/PartenaireSubsection";
-import { TopBarSubsection } from "../PageHome/sections/TopBarSubsection/TopBarSubsection";
 import { MatchtombolaSubsection } from "./sections/MatchtombolaSubsection/MatchtombolaSubsection";
 
 export const PageGala = (): JSX.Element => {
   return (
     <div className="bg-white w-full min-h-screen">
-      <div className="bg-blanc w-full flex flex-col">
-        <TopBarSubsection />
-        <HeroSubsection />
+      <div className="bg-blanc w-full flex flex-col">        <HeroSubsection />
         <GalaSubsection />
         <ObjectifsSubsection />
         <FrameSubsection />

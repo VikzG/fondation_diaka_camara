@@ -39,7 +39,7 @@ export const FondationSubsection = (): JSX.Element => {
             justify-center min-[1200px]:justify-between
           "
         >
-          <img
+          <img loading="lazy" decoding="async"
             className="w-[25px] h-[47px]"
             alt="arrow_left"
             src="/orange_arrows/arrow_orange_left.svg"
@@ -47,7 +47,7 @@ export const FondationSubsection = (): JSX.Element => {
           <h2 className="font-[beautique-display-bold] text-5xl text-licorice text-center whitespace-nowrap">
             LA FONDATION
           </h2>
-          <img
+          <img loading="lazy" decoding="async"
             className="w-[25px] h-[47px]"
             alt="arrow_right"
             src="/orange_arrows/arrow_orange_right.svg"
@@ -59,7 +59,7 @@ export const FondationSubsection = (): JSX.Element => {
           <h2 className="font-[beautique-display-bold] text-3xl text-licorice text-center">
             LA FONDATION
           </h2>
-          <img
+          <img loading="lazy" decoding="async"
             className="w-[35px] h-[35px]"
             alt="arrow_down"
             src="/orange_arrows/orange_arrow_bottom.svg"
@@ -87,7 +87,7 @@ export const FondationSubsection = (): JSX.Element => {
               key={index}
               className="flex flex-col items-center justify-center gap-5 flex-1"
             >
-              <img
+              <img loading="lazy" decoding="async"
                 className={`w-[110px] h-[110px] ${
                   index === 2 ? "mt-[-0.5px]" : ""
                 }`}
@@ -107,7 +107,7 @@ export const FondationSubsection = (): JSX.Element => {
         <div className="flex flex-col gap-12 w-full min-[1200px]:hidden px-10 font-bold">
           {/* Premier seul */}
           <div className="flex flex-col items-center justify-center gap-5">
-            <img
+            <img loading="lazy" decoding="async"
               className="w-[80px] h-[80px]"
               alt={pillarsData[0].iconAlt}
               src={pillarsData[0].iconSrc}
@@ -126,7 +126,7 @@ export const FondationSubsection = (): JSX.Element => {
                 key={index}
                 className="flex flex-col items-center justify-center gap-5 w-1/2"
               >
-                <img
+                <img loading="lazy" decoding="async"
                   className="w-[80px] h-[80px]"
                   alt={pillar.iconAlt}
                   src={pillar.iconSrc}
@@ -146,7 +146,7 @@ export const FondationSubsection = (): JSX.Element => {
       <div
         className="
           max-w-[1300px] mx-auto
-          bg-[linear-gradient(0deg,rgba(0,0,0,0.5)_0%,rgba(0,0,0,0.5)_100%),url(/foundation_section/foundation_bg_img.png)]
+          bg-[linear-gradient(0deg,rgba(0,0,0,0.5)_0%,rgba(0,0,0,0.5)_100%),url(/foundation_section/foundation_bg_img.webp)]
           bg-blend-luminosity bg-center bg-cover bg-no-repeat sepia-[0.5]
           flex items-center justify-center py-10 px-6 w-full 
           rounded-[500px] max-[1200px]:rounded-none max-[1200px]:w-full max-[1200px]:py-14

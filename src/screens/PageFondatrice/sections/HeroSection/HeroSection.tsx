@@ -16,9 +16,9 @@ export const HeroSection = (): JSX.Element => {
   if (isMobile) {
     return (
       <section
-        className="flex w-full min-h-[800px] mt-12 p-6 lg:p-20 items-start justify-center relative bg-[url('/page_presidente_section/banner_presidente.jpg')] bg-cover bg-[60%_50%] lg:mt-20"
+        className="flex w-full min-h-[800px] mt-12 p-6 lg:p-20 items-start justify-center relative bg-[url('/page_presidente_section/banner_presidente.webp')] bg-cover bg-[60%_50%] lg:mt-20"
         style={{
-          backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('/page_presidente_section/banner_presidente.jpg')`,
+          backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('/page_presidente_section/banner_presidente.webp')`,
         }}
       >
         <div className="flex flex-col items-center gap-16 lg:gap-[100px] p-6 lg:p-[100px] relative flex-1 self-stretch grow">
@@ -83,9 +83,9 @@ export const HeroSection = (): JSX.Element => {
   }
   return (
     <section
-      className="flex w-full min-h-[1000px] p-20 items-start justify-center relative bg-[url('/page_presidente_section/banner_presidente.jpg')] bg-cover bg-[center_top] lg:mt-20"
+      className="flex w-full min-h-[1000px] p-20 items-start justify-center relative bg-[url('/page_presidente_section/banner_presidente.webp')] bg-cover bg-[center_top] lg:mt-20"
       style={{
-        backgroundImage: `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('/page_presidente_section/banner_presidente.jpg')`,
+        backgroundImage: `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('/page_presidente_section/banner_presidente.webp')`,
       }}
     >
       <div className="flex flex-col items-center gap-[100px] p-[100px] relative flex-1 self-stretch grow">

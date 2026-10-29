@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Card, CardContent } from "../../../../components/ui/card";
+import { usePreloadImages } from "../../../../lib/usePreloadImages";
 
 export const FrameSubsection = (): JSX.Element => {
     const [isMobile, setIsMobile] = useState(window.innerWidth < 1200);
@@ -24,7 +25,7 @@ export const FrameSubsection = (): JSX.Element => {
           <b>Conférence de Presse à l'Hôtel Le Palm-Camayenne</b>
         </div>
       ),
-      activeBg: "url('/page_gala_section/slider_1_img.png')",
+      activeBg: "url('/page_gala_section/slider_1_img.webp')",
     },
     {
       date: "14",
@@ -67,7 +68,7 @@ export const FrameSubsection = (): JSX.Element => {
           </div>
         </div>
       ),
-      activeBg: "url('/page_gala_section/slider_2_img.png')",
+      activeBg: "url('/page_gala_section/slider_2_img.webp')",
     },
     {
       date: "15",
@@ -122,11 +123,12 @@ export const FrameSubsection = (): JSX.Element => {
           </div>
         </>
       ),
-      activeBg: "url('/page_gala_section/slider_3_img.png')",
+      activeBg: "url('/page_gala_section/slider_3_img.webp')",
     },
   ];
   const [current, setCurrent] = useState(0);
   const [paused, setPaused] = useState(false);
+  usePreloadImages(eventData.map((e) => e.activeBg.replace(/^url\('(.*)'\)$/, "$1")));
 
   // Auto-slide toutes les 5s si non en pause
   useEffect(() => {

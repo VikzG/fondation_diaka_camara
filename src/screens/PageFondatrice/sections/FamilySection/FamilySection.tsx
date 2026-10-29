@@ -13,13 +13,13 @@ export const FamilySection = (): JSX.Element => {
     return (
       <section className="flex flex-col w-full items-center justify-center gap-12 p-10 bg-vanilla">
         <div className="flex flex-col items-center gap-6">
-          <img
+          <img loading="lazy" decoding="async"
             className="w-[180px]"
             alt="Logo Diaka Camara"
             src="/page_presidente_section/logo_camara_presidente.svg"
           />
         </div>
-                  <img
+                  <img loading="lazy" decoding="async"
             className="w-10"
             alt="fleche bas"
             src="/orange_arrows/orange_arrow_bottom.svg"
@@ -51,17 +51,17 @@ export const FamilySection = (): JSX.Element => {
   return (
     <section className="flex flex-col w-full items-center justify-center gap-20 p-[100px] relative bg-vanilla">
       <div className="flex flex-row items-center justify-between w-full">
-        <img
+        <img loading="lazy" decoding="async"
           className="flex-[0_0_auto]"
           alt="fleche gauche"
           src="/orange_arrows/arrow_orange_left.svg"
         />
-        <img
+        <img loading="lazy" decoding="async"
           className="flex-[0_0_auto]"
           alt="Logo Diaka Camara"
           src="/page_presidente_section/logo_camara_presidente.svg"
         />
-        <img
+        <img loading="lazy" decoding="async"
           className="flex-[0_0_auto]"
           alt="fleche droite"
           src="/orange_arrows/arrow_orange_right.svg"

@@ -57,7 +57,7 @@ export const GalaSubsection = (): JSX.Element => {
     return (
       <section
         id="actualites_home"
-        className="flex flex-col w-full items-center relative bg-[url(/actualites_section/bg_actualites.png)] bg-cover bg-[50%_50%]"
+        className="flex flex-col w-full items-center relative bg-[url(/actualites_section/bg_actualites.webp)] bg-cover bg-[50%_50%]"
       >
         {/* Bloc ACTUALITÉS en haut */}
         <div className="flex flex-col items-center gap-8 px-6 py-10 w-full max-w-[600px]">
@@ -65,9 +65,9 @@ export const GalaSubsection = (): JSX.Element => {
             ACTUALITÉS
           </h2>
 
-          <img
+          <img loading="lazy" decoding="async"
             className="w-full max-h-[400px] object-cover rounded-md"
-            src="/gala_section/enveloppe_gala_anim.gif"
+            src="/gala_section/enveloppe_gala_anim.webp"
             alt="Enveloppe animation"
           />
           <Link to="/gala2025" className="w-full">
@@ -77,7 +77,7 @@ export const GalaSubsection = (): JSX.Element => {
               </span>
 
               <div className="border-2 border-vanilla group-hover:border-transparent absolute right-[calc(100%-50px)] group-hover:right-[10px] top-1/2 -translate-y-1/2 w-[50px] h-[50px] flex items-center justify-center rounded-full transition-all duration-500 ease-in-out bg-[#C30F28]">
-                <img
+                <img loading="lazy" decoding="async"
                   className="w-7 h-7"
                   alt="Icon"
                   src="/gala_arrow_button.svg"
@@ -94,7 +94,7 @@ export const GalaSubsection = (): JSX.Element => {
               Programme
             </h3>
 
-            <img
+            <img loading="lazy" decoding="async"
               className="w-[30px] h-[15px]"
               alt="top arrow"
               src="/actualites_section/red_top_arrow.svg"
@@ -113,7 +113,7 @@ export const GalaSubsection = (): JSX.Element => {
               ))}
             </div>
 
-            <img
+            <img loading="lazy" decoding="async"
               className="w-[30px] h-[15px]"
               alt="bottom arrow"
               src="/actualites_section/red_bottom_arrow.svg"
@@ -138,7 +138,7 @@ export const GalaSubsection = (): JSX.Element => {
   return (
     <section
       id="actualites_home"
-      className="flex flex-col w-full items-center relative bg-[url(/actualites_section/bg_actualites.png)] bg-cover bg-[50%_50%]"
+      className="flex flex-col w-full items-center relative bg-[url(/actualites_section/bg_actualites.webp)] bg-cover bg-[50%_50%]"
     >
       <div className="flex items-start justify-center max-w-[1400px] gap-20 px-20 py-20 self-stretch m-auto w-full flex-[0_0_auto]">
         <div className="items-start gap-[30px] pl-0 pr-[30px] py-0 flex flex-col relative flex-1 grow">
@@ -147,9 +147,9 @@ export const GalaSubsection = (): JSX.Element => {
           </h2>
 
           <div className="flex h-[619.73px] items-center gap-2.5 relative self-stretch w-full">
-            <img
+            <img loading="lazy" decoding="async"
               className="relative flex-1 grow h-[619.73px] object-cover"
-              src="/gala_section/enveloppe_gala_anim.gif"
+              src="/gala_section/enveloppe_gala_anim.webp"
               alt="Enveloppe animation"
             />
           </div>
@@ -160,7 +160,7 @@ export const GalaSubsection = (): JSX.Element => {
               </span>
 
               <div className="border-2 border-vanilla group-hover:border-transparent absolute right-[calc(100%-50px)] group-hover:right-[10px] top-1/2 -translate-y-1/2 w-[50px] h-[50px] flex items-center justify-center rounded-full transition-all duration-500 ease-in-out bg-[#C30F28]">
-                <img
+                <img loading="lazy" decoding="async"
                   className="w-7 h-7"
                   alt="Icon"
                   src="/gala_arrow_button.svg"
@@ -176,7 +176,7 @@ export const GalaSubsection = (): JSX.Element => {
               Programme
             </h3>
 
-            <img
+            <img loading="lazy" decoding="async"
               className="relative w-[47px] h-[25px]"
               alt="top arrow"
               src="/actualites_section/red_top_arrow.svg"
@@ -198,7 +198,7 @@ export const GalaSubsection = (): JSX.Element => {
               ))}
             </div>
 
-            <img
+            <img loading="lazy" decoding="async"
               className="relative w-[47px] h-[25px]"
               alt="bottom arrow"
               src="/actualites_section/red_bottom_arrow.svg"

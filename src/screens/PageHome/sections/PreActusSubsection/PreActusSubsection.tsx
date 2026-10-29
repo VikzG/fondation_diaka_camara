@@ -17,7 +17,7 @@ export const PreActusSubsection = (): JSX.Element => {
       "
     >
       {/* Symbole uniquement en desktop */}
-      <img
+      <img loading="lazy" decoding="async"
         alt="Actus"
         src="/dc_symbole.svg"
         className="justify-self-start max-[1200px]:hidden"

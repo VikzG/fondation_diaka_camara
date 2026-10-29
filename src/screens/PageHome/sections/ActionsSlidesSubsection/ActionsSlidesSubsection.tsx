@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Button } from "../../../../components/ui/button";
 import { Card, CardContent } from "../../../../components/ui/card";
 import { AnimatedCircles } from "../../../../components/AnimatedCircles";
-import { AnimatePresence, motion } from "framer-motion";
+import { CrossfadeStack } from "../../../../components/CrossfadeStack";
 import { Link } from "react-router-dom";
 
 const slides = [
@@ -11,7 +11,7 @@ const slides = [
     subtitle: "45 jeunes filles déjà prises en charge en 2024",
     description:
       "Cette année, nous avons scolarisé 45 jeunes filles issues de milieux défavorisés, en leur offrant la Bourse Zenab Soumah.",
-    image: "/actions_section/action_img_1.png",
+    image: "/actions_section/action_img_1.webp",
   },
   {
     title: "Une École, une Bibliothèque",
@@ -19,7 +19,7 @@ const slides = [
       "Rénovation de la bibliothèque de l’école Château d’Eau, impactant 1 200 élèves",
     description:
       "Le projet a pour but, la mise en place de bibliothèques modernes dans les écoles publiques à travers les cinq communes de Conakry.",
-    image: "/actions_section/action_img_2.png",
+    image: "/actions_section/action_img_2.webp",
   },
   {
     title: "#BrisonsleSilence",
@@ -27,14 +27,14 @@ const slides = [
       "450 000 personnes sensibilisées aux VBG (Violences Basées sur Le Genre)",
     description:
       "Brisons le silence pour les femmes victimes de violence. Leur voix compte, leur sécurité importe. En parlant, en écoutant, en agissant, nous pouvons mettre fin à ces injustices.",
-    image: "/actions_section/action_img_3.png",
+    image: "/actions_section/action_img_3.webp",
   },
   {
     title: "Partenariats Culturels",
     subtitle: "72 Heures du Livre, concours Plumes Fines, FestiKids",
     description:
       "Un résumé court en trois lignes à rédiger ici pour donner plus de détails au lecteur/ potentiel donneur sur le but de l’action introduite sur cette slide.",
-    image: "/actions_section/action_img_4.png",
+    image: "/actions_section/action_img_4.webp",
   },
   {
     title: "Actions Solidaires",
@@ -42,21 +42,21 @@ const slides = [
       "Interventions chirurgicales pour 4 enfants, dons aux orphelins, soutien à 14 enfants supplémentaires via partenariats",
     description:
       "Un résumé court en trois lignes à rédiger ici pour donner plus de détails au lecteur/ potentiel donneur sur le but de l’action introduite sur cette slide.",
-    image: "/actions_section/action_img_5.png",
+    image: "/actions_section/action_img_5.webp",
   },
   {
     title: "Santé publique",
     subtitle: "Forum Rose sur le cancer du sein",
     description:
       "La Fondation Diaka Camara était partenaire sur le Forum Rose, un événement exceptionnel organisé par Women's Meeting Day  pour sensibiliser contre le cancer du sein",
-    image: "/actions_section/action_img_6.png",
+    image: "/actions_section/action_img_6.webp",
   },
   {
     title: "Inclusion",
     subtitle: "Production d’un documentaire sur l’autisme",
     description:
       "“Voix au-delà du Spectre – L’Afrique en Voix”, le premier documentaire qui explore l’autisme en Afrique, en montrant que loin d’être une barrière, l’autisme offre une perception unique.",
-    image: "/actions_section/action_img_7.png",
+    image: "/actions_section/action_img_7.webp",
   },
 ];
 
@@ -90,19 +90,17 @@ export const ActionsSlidesSubsection = (): JSX.Element => {
 
 {/* Cercle image (mobile) */}
 <div className="relative flex items-center justify-center mx-auto shrink-0 w-[300px] h-[300px] overflow-hidden">
-  {/* Image */}
-  <AnimatePresence mode="wait">
-    <motion.img
-      key={currentSlide}
-      className="w-[240px] h-[240px] object-cover rounded-full border-2 border-[#0A4BA5] absolute"
-      alt="Actions"
-      src={slide.image}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.6, ease: 'easeInOut' }}
+  {/* Images empilées : fondu enchaîné sans remonter l'image */}
+  {slides.map((s, index) => (
+    <img
+      key={s.image}
+      className="w-[240px] h-[240px] object-cover rounded-full border-2 border-[#0A4BA5] absolute transition-opacity duration-700 ease-in-out"
+      style={{ opacity: index === currentSlide ? 1 : 0 }}
+      alt={index === currentSlide ? "Actions" : ""}
+      aria-hidden={index !== currentSlide}
+      src={s.image}
     />
-  </AnimatePresence>
+  ))}
 
   {/* Cercles animés */}
   <div className="absolute inset-0 flex items-center justify-center">
@@ -112,28 +110,31 @@ export const ActionsSlidesSubsection = (): JSX.Element => {
 
 
         {/* Texte animé */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={currentSlide}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.6, ease: "easeInOut" }}
-            className="flex flex-col gap-3"
-          >
-            <div className="font-[beautique-display] text-pumpkin text-2xl">
-              {slide.title}
+        <CrossfadeStack
+          items={slides}
+          current={currentSlide}
+          render={(s) => (
+            <div className="flex flex-col gap-3">
+              <div className="font-[beautique-display] text-pumpkin text-2xl">
+                {s.title}
+              </div>
+              <div className="[font-family:'Mona_Sans',Helvetica] text-licorice text-base font-bold">
+                {s.subtitle}
+              </div>
             </div>
-            <div className="[font-family:'Mona_Sans',Helvetica] text-licorice text-base font-bold">
-              {slide.subtitle}
-            </div>
-          </motion.div>
-        </AnimatePresence>
+          )}
+        />
 
         {/* Description */}
-        <p className="font-corps text-sm text-licorice leading-6 px-4">
-          {slide.description}
-        </p>
+        <CrossfadeStack
+          items={slides}
+          current={currentSlide}
+          render={(s) => (
+            <p className="font-corps text-sm text-licorice leading-6 px-4">
+              {s.description}
+            </p>
+          )}
+        />
 
         {/* CTA Rapport + Don */}
         <div className="flex flex-col items-center gap-4 w-full max-w-[320px]">
@@ -146,12 +147,12 @@ export const ActionsSlidesSubsection = (): JSX.Element => {
           <Link to="/don" className="w-full">
             <Card className="group bg-[#ffffffcc] rounded-[10px] cursor-pointer shadow-[0px_1px_2px_#00000040] backdrop-blur-[7.5px] border-0 hover:underline hover:-translate-y-1 transition-all duration-300 ease-in-out w-full">
               <CardContent className="flex items-center gap-5 px-5 py-2.5">
-                <img
+                <img loading="lazy" decoding="async"
                   className="w-[40px] h-[42px] transition-all duration-300 group-hover:opacity-0"
                   alt="don icon"
                   src="/nav_icons/nav_don_icon.svg"
                 />
-                <img
+                <img loading="lazy" decoding="async"
                   className="w-[40px] h-[42px] absolute transition-all duration-300 opacity-0 group-hover:opacity-100"
                   alt="don icon hover"
                   src="/nav_icons/nav_don_icon_2.svg"
@@ -180,37 +181,38 @@ export const ActionsSlidesSubsection = (): JSX.Element => {
             </h2>
           </div>
 
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={currentSlide}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.6, ease: "easeInOut" }}
-              className="flex flex-col gap-5"
-            >
-              <div className="font-[beautique-display] text-pumpkin text-5xl">
-                {slide.title}
+          <CrossfadeStack
+            items={slides}
+            current={currentSlide}
+            render={(s) => (
+              <div className="flex flex-col gap-5">
+                <div className="font-[beautique-display] text-pumpkin text-5xl">
+                  {s.title}
+                </div>
+                <div className="[font-family:'Mona_Sans',Helvetica] text-licorice text-lg font-bold">
+                  {s.subtitle}
+                </div>
               </div>
-              <div className="[font-family:'Mona_Sans',Helvetica] text-licorice text-lg font-bold">
-                {slide.subtitle}
-              </div>
-            </motion.div>
-          </AnimatePresence>
+            )}
+          />
 
           <div className="flex flex-col gap-10">
-            <p className="font-corps text-licorice">
-              {slide.description}
-            </p>
+            <CrossfadeStack
+              items={slides}
+              current={currentSlide}
+              render={(s) => (
+                <p className="font-corps text-licorice">{s.description}</p>
+              )}
+            />
             <Link to="/don" className="w-full">
               <Card className="group bg-[#ffffffcc] rounded-[10px] cursor-pointer shadow backdrop-blur-[7.5px] border-0 hover:underline hover:-translate-y-1 transition-all duration-300 ease-in-out">
                 <CardContent className="flex items-center gap-5 px-5 py-2.5">
-                  <img
+                  <img loading="lazy" decoding="async"
                     className="w-[52px] h-[55px] transition-all duration-300 group-hover:opacity-0"
                     alt="don icon"
                     src="/nav_icons/nav_don_icon.svg"
                   />
-                  <img
+                  <img loading="lazy" decoding="async"
                     className="w-[52px] h-[55px] absolute transition-all duration-300 opacity-0 group-hover:opacity-100"
                     alt="don icon hover"
                     src="/nav_icons/nav_don_icon_2.svg"
@@ -227,18 +229,17 @@ export const ActionsSlidesSubsection = (): JSX.Element => {
         {/* Colonne droite */}
         <div className="flex flex-col w-[570px] h-[709px] items-center justify-end gap-16">
           <div className="relative flex items-center justify-center w-[450px] h-[450px]">
-            <AnimatePresence mode="wait">
-              <motion.img
-                key={currentSlide}
-                className="w-[360px] h-[360px] object-cover rounded-full border-2 border-[#0A4BA5] absolute"
-                alt="Actions"
-                src={slide.image}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.6, ease: "easeInOut" }}
+            {/* Images empilées : fondu enchaîné sans remonter l'image */}
+            {slides.map((s, index) => (
+              <img
+                key={s.image}
+                className="w-[360px] h-[360px] object-cover rounded-full border-2 border-[#0A4BA5] absolute transition-opacity duration-700 ease-in-out"
+                style={{ opacity: index === currentSlide ? 1 : 0 }}
+                alt={index === currentSlide ? "Actions" : ""}
+                aria-hidden={index !== currentSlide}
+                src={s.image}
               />
-            </AnimatePresence>
+            ))}
             <AnimatedCircles currentSlide={currentSlide} />
           </div>
 

@@ -1,5 +1,4 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Libertinus+Sans:ital,wght@0,400;0,700;1,400&display=swap');
 @tailwind components;
 @tailwind utilities;
 
@@ -72,6 +71,18 @@
 .fade-image {
   opacity: 0;
   animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+/* Fondu d'entrée des pages : animation CSS jouée par le navigateur dès le premier affichage,
+   sans attendre que le JavaScript de la page ait fini de s'exécuter */
+.page-fade-in {
+  animation: fadeIn 0.3s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-fade-in {
+    animation: none;
+  }
 }
 
 

@@ -6,13 +6,13 @@ export const PageNotFound = (): JSX.Element => {
     <section
       className="relative w-full min-h-screen flex items-center justify-center bg-cover bg-center"
       style={{
-        backgroundImage: `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('/page_presidente_section/banner_presidente.jpg')`,
+        backgroundImage: `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('/page_presidente_section/banner_presidente.webp')`,
       }}
     >
       {/* Contenu */}
       <div className="relative z-10 flex flex-col items-center text-center gap-16 px-6">
         {/* Logo */}
-        <img
+        <img loading="lazy" decoding="async"
           src="/logo_gala.svg"
           alt="Logo Fondation"
           className="w-52 h-auto mb-4"
@@ -20,7 +20,7 @@ export const PageNotFound = (): JSX.Element => {
 
         {/* Code erreur avec flèches décoratives */}
         <div className="flex items-center justify-center gap-14">
-          <img
+          <img loading="lazy" decoding="async"
             src="/orange_arrows/arrow_orange_left.svg"
             alt="Décor gauche"
             className="w-7 opacity-80 hidden md:block"
@@ -28,7 +28,7 @@ export const PageNotFound = (): JSX.Element => {
           <h1 className="font-[beautique-display-bold] text-9xl text-vanilla tracking-wide">
             404
           </h1>
-          <img
+          <img loading="lazy" decoding="async"
             src="/orange_arrows/arrow_orange_right.svg"
             alt="Décor droit"
             className="w-7 opacity-80 hidden md:block"
@@ -48,7 +48,7 @@ export const PageNotFound = (): JSX.Element => {
             </span>
 
             <div className="border-2 border-vanilla group-hover:border-transparent absolute right-[calc(100%-50px)] group-hover:right-[10px] top-1/2 -translate-y-1/2 w-[50px] h-[50px] flex items-center justify-center rounded-full transition-all duration-500 ease-in-out bg-pumpkin ">
-              <img
+              <img loading="lazy" decoding="async"
                 className="w-7 h-7"
                 alt="Icon"
                 src="/gala_arrow_button.svg"

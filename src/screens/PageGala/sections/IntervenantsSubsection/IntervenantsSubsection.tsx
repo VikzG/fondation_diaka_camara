@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "../../../../components/ui/button";
-import { motion, AnimatePresence } from "framer-motion";
+import { CrossfadeStack } from "../../../../components/CrossfadeStack";
 
 export const IntervenantsSubsection = (): JSX.Element => {
   const slides = [
@@ -10,7 +10,7 @@ export const IntervenantsSubsection = (): JSX.Element => {
         "Alliant avec finesse tradition mandingue et sonorités contemporaines, cette fusion a permis à la chanteuse guinéenne de se distinguer sur la scène musicale africaine, où elle s’impose comme une voix singulière et engagée.",
       legend: "PERFORMANCE MUSICALE",
       color: "text-pumpkin",
-      image: "/page_gala_section/gala_slider/slide_1.png",
+      image: "/page_gala_section/gala_slider/slide_1.webp",
       icon: "/page_gala_section/gala_slider/slide_1_icon.svg",
     },
     {
@@ -19,7 +19,7 @@ export const IntervenantsSubsection = (): JSX.Element => {
         "Précurseur du cirque ouest-africain, Circus Baobab parcourt le monde depuis 25 ans. Originaire de Guinée, cette compagnie cultive une identité singulière mêlant danses rituelles et nouvelles écritures contemporaines.",
       legend: "SPECTACLE ACROBATIQUE",
       color: "text-colbat",
-      image: "/page_gala_section/gala_slider/slide_2.png",
+      image: "/page_gala_section/gala_slider/slide_2.webp",
       icon: "/page_gala_section/gala_slider/slide_2_icon.svg",
     },
     {
@@ -28,7 +28,7 @@ export const IntervenantsSubsection = (): JSX.Element => {
         "Actrice, présentatrice, chroniqueuse culturelle, Prissy la Dégameuse est une constellation de talents. Elle s’est fait connaître grâce à ses vidéos humoristiques, où elle dépeint avec ironie et dérision les réalités de la société ivoirienne.",
       legend: "INTERLUDE HUMORISTIQUE",
       color: "text-carmin",
-      image: "/page_gala_section/gala_slider/slide_3.png",
+      image: "/page_gala_section/gala_slider/slide_3.webp",
       icon: "/page_gala_section/gala_slider/slide_3_icon.svg",
     },
     {
@@ -37,7 +37,7 @@ export const IntervenantsSubsection = (): JSX.Element => {
         "Bappa Oumar est une étoile montante de l'humour guinéen, dont le talent et la créativité l'ont rapidement propulsé sur la scène internationale, où il sait transformer les réalités sociales en rires tout en incitant à la réflexion.",
       legend: "INTERLUDE HUMORISTIQUE",
       color: "text-pumpkin",
-      image: "/page_gala_section/gala_slider/slide_4.png",
+      image: "/page_gala_section/gala_slider/slide_4.webp",
       icon: "/page_gala_section/gala_slider/slide_4_icon.svg",
     },
     {
@@ -46,7 +46,7 @@ export const IntervenantsSubsection = (): JSX.Element => {
         "La peinture de Mali Watta est un voyage spirituel et sensoriel, un dialogue entre la matière et l’immatériel, une invitation à explorer l’invisible, avec l’œil et le cœur. Une artiste en quête de vérité, dont l’œuvre vibrante captive les amateurs d’art.",
       legend: "LIVE-PAINTING",
       color: "text-colbat",
-      image: "/page_gala_section/gala_slider/slide_5.png",
+      image: "/page_gala_section/gala_slider/slide_5.webp",
       icon: "/page_gala_section/gala_slider/slide_5_icon.svg",
     },
     {
@@ -54,30 +54,18 @@ export const IntervenantsSubsection = (): JSX.Element => {
       description: "Pour cloturer le Gala en beauté.",
       legend: "",
       color: "text-carmin",
-      image: "/page_gala_section/gala_slider/slide_6.png",
+      image: "/page_gala_section/gala_slider/slide_6.webp",
       icon: "/page_gala_section/gala_slider/slide_6_icon.svg",
     },
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [fade, setFade] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
-  const nextSlide = () => {
-    setFade(true);
-    setTimeout(() => {
-      setCurrentIndex((prev) => (prev + 1) % slides.length);
-      setFade(false);
-    }, 300);
-  };
-
-  const prevSlide = () => {
-    setFade(true);
-    setTimeout(() => {
-      setCurrentIndex((prev) => (prev - 1 + slides.length) % slides.length);
-      setFade(false);
-    }, 300);
-  };
+  const goToSlide = (index: number) => setCurrentIndex(index);
+  const nextSlide = () => goToSlide((currentIndex + 1) % slides.length);
+  const prevSlide = () =>
+    goToSlide((currentIndex - 1 + slides.length) % slides.length);
 
   const currentSlide = slides[currentIndex];
   const prevSlideData = slides[(currentIndex - 1 + slides.length) % slides.length];
@@ -97,55 +85,60 @@ export const IntervenantsSubsection = (): JSX.Element => {
     return "/orange_arrows/arrow_orange_right.svg";
   };
 
+  // Opacité d'un élément empilé : seul celui de la slide courante est visible
+  const fadeClass = (index: number) =>
+    index === currentIndex ? "opacity-100" : "opacity-0 pointer-events-none";
+
   // === VERSION MOBILE ===
   if (isMobile) {
     return (
 <section className="h-[800px] bg-vanilla w-full relative px-6 py-12 flex flex-col items-center justify-around">
-  {/* Grande image ronde animée */}
-  <AnimatePresence mode="wait">
-    <motion.div
-      key={currentSlide.image}
-      initial={{ opacity: 0, scale: 0.8 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.8 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className="w-[280px] h-[280px] rounded-full shadow-lg bg-cover bg-center"
-      style={{ backgroundImage: `url(${currentSlide.image})` }}
-    />
-  </AnimatePresence>
+  {/* Grande image ronde : images empilées en fondu enchaîné */}
+  <div className="relative w-[280px] h-[280px] shrink-0">
+    {slides.map((slide, index) => (
+      <div
+        key={slide.image}
+        className={`absolute inset-0 rounded-full shadow-lg bg-cover bg-center transition-opacity duration-700 ease-in-out ${fadeClass(index)}`}
+        style={{ backgroundImage: `url(${slide.image})` }}
+        aria-hidden={index !== currentIndex}
+      />
+    ))}
+  </div>
 
-  {/* Légende animée */}
-  <AnimatePresence mode="wait">
-    <motion.div
-      key={currentSlide.legend + currentIndex}
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -20 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
-      className={`font-legendes-categories ${currentSlide.color} text-center`}
-    >
-      {currentSlide.legend}
-    </motion.div>
-  </AnimatePresence>
+  {/* Légende */}
+  <CrossfadeStack
+    items={slides}
+    current={currentIndex}
+    render={(slide) => (
+      <div className={`font-legendes-categories ${slide.color} text-center`}>
+        {slide.legend}
+      </div>
+    )}
+  />
 
-  {/* Titre animé */}
-  <AnimatePresence mode="wait">
-    <motion.h2
-      key={currentSlide.title + currentIndex}
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -20 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`whitespace-pre-line font-[beautique-display-bold] text-3xl text-center ${currentSlide.color}`}
-    >
-      {currentSlide.title}
-    </motion.h2>
-  </AnimatePresence>
+  {/* Titre */}
+  <CrossfadeStack
+    items={slides}
+    current={currentIndex}
+    render={(slide) => (
+      <h2
+        className={`whitespace-pre-line font-[beautique-display-bold] text-3xl text-center ${slide.color}`}
+      >
+        {slide.title}
+      </h2>
+    )}
+  />
 
-  {/* Description (fixe, pas animée comme tu veux garder stable) */}
-  <p className="font-[Mona_Sans] text-licorice text-base text-center leading-6">
-    {currentSlide.description}
-  </p>
+  {/* Description */}
+  <CrossfadeStack
+    items={slides}
+    current={currentIndex}
+    render={(slide) => (
+      <p className="font-[Mona_Sans] text-licorice text-base text-center leading-6">
+        {slide.description}
+      </p>
+    )}
+  />
 
   {/* Navigation */}
   <div className="flex items-center justify-center w-full max-w-md mt-6 gap-10">
@@ -160,8 +153,8 @@ export const IntervenantsSubsection = (): JSX.Element => {
     <Button
       onClick={nextSlide}
       variant="outline"
-      className="group inline-flex items-center px-6 py-2.5 rounded-[50px] 
-        border border-solid border-licorice bg-transparent hover:bg-vanilla h-auto 
+      className="group inline-flex items-center px-6 py-2.5 rounded-[50px]
+        border border-solid border-licorice bg-transparent hover:bg-vanilla h-auto
         transition-all duration-300"
     >
       <img
@@ -194,15 +187,9 @@ export const IntervenantsSubsection = (): JSX.Element => {
                 {slides.map((slide, index) => (
                   <div
                     key={`small-image-${index}`}
-                    onClick={() => {
-                      setFade(true);
-                      setTimeout(() => {
-                        setCurrentIndex(index);
-                        setFade(false);
-                      }, 300);
-                    }}
+                    onClick={() => goToSlide(index)}
                     className={`
-                      w-[125px] h-[125px] rounded-[100px] shadow-[0px_1px_2px_#00000080] 
+                      w-[125px] h-[125px] rounded-[100px] shadow-[0px_1px_2px_#00000080]
                       bg-cover bg-[50%_50%] cursor-pointer transition-all duration-300
                       ${currentIndex === index ? "grayscale-0" : "grayscale hover:grayscale-0"}
                     `}
@@ -219,30 +206,39 @@ export const IntervenantsSubsection = (): JSX.Element => {
         <div className="flex items-center w-full relative">
           {/* Texte gauche */}
           <div className="flex flex-col flex-1 relative">
-            <div className="flex flex-col items-center justify-center gap-[50px] p-20 w-full h-full">
-              <h2
-                className={`text-center whitespace-pre-line font-[beautique-display-bold] text-5xl ${currentSlide.color}`}
-              >
-                {currentSlide.title}
-              </h2>
+            <CrossfadeStack
+              items={slides}
+              current={currentIndex}
+              className="w-full h-full"
+              render={(slide) => (
+                <div className="flex flex-col items-center justify-center gap-[50px] px-20 pt-20 h-full w-full">
+                  <h2
+                    className={`text-center whitespace-pre-line font-[beautique-display-bold] text-5xl ${slide.color}`}
+                  >
+                    {slide.title}
+                  </h2>
 
-              <p className="font-[Mona_Sans] text-licorice text-[17.5px] text-center leading-7">
-                {currentSlide.description}
-              </p>
+                  <p className="font-[Mona_Sans] text-licorice text-[17.5px] text-center leading-7">
+                    {slide.description}
+                  </p>
 
-              <div className={`font-legendes-categories ${currentSlide.color}`}>
-                {currentSlide.legend}
-              </div>
+                  <div className={`font-legendes-categories ${slide.color}`}>
+                    {slide.legend}
+                  </div>
+                </div>
+              )}
+            />
 
+            <div className="flex justify-center px-20 pt-[50px] pb-20">
               <Button
                 onClick={nextSlide}
                 variant="outline"
-                className="group inline-flex items-center px-6 py-2.5 rounded-[50px] 
-                border border-solid border-licorice bg-transparent hover:bg-vanilla h-auto 
+                className="group inline-flex items-center px-6 py-2.5 rounded-[50px]
+                border border-solid border-licorice bg-transparent hover:bg-vanilla h-auto
                 transition-all duration-300"
               >
                 <span
-                  className="font-[beautique-display] text-3xl w-0 opacity-0 overflow-hidden 
+                  className="font-[beautique-display] text-3xl w-0 opacity-0 overflow-hidden
                   group-hover:w-auto group-hover:opacity-100 transition-all duration-300"
                 >
                   Next
@@ -256,27 +252,37 @@ export const IntervenantsSubsection = (): JSX.Element => {
             </div>
           </div>
 
-          {/* Icône dynamique */}
-          <img
-            key={currentSlide.icon}
-            className={`absolute h-[321px] left-1/2 transform -translate-x-1/2 z-10
-              ${[2, 3].includes(currentIndex) ? "bottom-0" : "bottom-10"} fade-image`}
-            alt="slide icon"
-            src={currentSlide.icon}
-          />
+          {/* Icônes empilées en fondu enchaîné */}
+          {slides.map((slide, index) => (
+            <img
+              key={slide.icon}
+              className={`absolute h-[321px] left-1/2 transform -translate-x-1/2 z-10 transition-opacity duration-700 ease-in-out
+                ${[2, 3].includes(index) ? "bottom-0" : "bottom-10"} ${fadeClass(index)}`}
+              alt={index === currentIndex ? "slide icon" : ""}
+              aria-hidden={index !== currentIndex}
+              src={slide.icon}
+            />
+          ))}
 
-          {/* Image droite */}
+          {/* Image droite : images empilées en fondu enchaîné */}
           <div className="flex items-center p-32 flex-1 relative overflow-hidden">
             <div
-              key={currentSlide.image}
-              className={`flex-1 h-[550px] rounded-[500px] shadow-[0px_4px_4px_#00000080] 
-                bg-cover bg-[50%_50%] relative fade-image
-                ${[0, 1, 4].includes(currentIndex) ? "z-10" : "z-0"}`}
-              style={{
-                backgroundImage: `url(${currentSlide.image})`,
-                backgroundPosition: currentIndex === 3 ? "center top" : "center",
-              }}
-            />
+              className={`flex-1 h-[550px] relative ${
+                [0, 1, 4].includes(currentIndex) ? "z-10" : "z-0"
+              }`}
+            >
+              {slides.map((slide, index) => (
+                <div
+                  key={slide.image}
+                  className={`absolute inset-0 rounded-[500px] shadow-[0px_4px_4px_#00000080] bg-cover transition-opacity duration-700 ease-in-out ${fadeClass(index)}`}
+                  style={{
+                    backgroundImage: `url(${slide.image})`,
+                    backgroundPosition: index === 3 ? "center top" : "center",
+                  }}
+                  aria-hidden={index !== currentIndex}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </div>

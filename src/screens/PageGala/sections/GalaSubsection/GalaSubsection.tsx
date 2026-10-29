@@ -23,9 +23,9 @@ export const GalaSubsection = (): JSX.Element => {
             événement exclusif
           </h2>
           <div className="flex flex-col items-center gap-4 w-full max-w-sm">
-            <img
+            <img loading="lazy" decoding="async"
               className="w-full h-auto object-contain"
-              src="/gala_section/enveloppe_gala_anim.gif"
+              src="/gala_section/enveloppe_gala_anim.webp"
               alt="Enveloppe animation"
             />
             <HashLink smooth to="#billeterie_gala" className="w-full">
@@ -40,7 +40,7 @@ export const GalaSubsection = (): JSX.Element => {
       <Card className="flex flex-col w-full bg-vanilla overflow-hidden border-0">
         <CardContent className="flex flex-col items-center gap-10 px-6 py-14">
           {/* Arrow top */}
-          <img
+          <img loading="lazy" decoding="async"
             className="w-[47px] h-[25px]"
             alt="orange arrow"
             src="/orange_arrows/orange_arrow_top.svg"
@@ -83,9 +83,9 @@ export const GalaSubsection = (): JSX.Element => {
         {/* Colonne gauche */}
         <div className="flex flex-col items-start gap-[30px] flex-1">
           <div className="flex h-[619.73px] w-full">
-            <img
+            <img loading="lazy" decoding="async"
               className="flex-1 object-cover h-full w-full"
-              src="/gala_section/enveloppe_gala_anim.gif"
+              src="/gala_section/enveloppe_gala_anim.webp"
               alt="Enveloppe animation"
             />
           </div>
@@ -99,7 +99,7 @@ export const GalaSubsection = (): JSX.Element => {
         {/* Colonne droite */}
         <Card className="flex flex-col max-h-[700px] justify-between flex-1 h-full self-stretch bg-vanilla rounded-[15px] overflow-hidden border-0">
           <CardContent className="flex flex-col items-center justify-between h-full w-full px-10 py-14 gap-14">
-            <img
+            <img loading="lazy" decoding="async"
               className="w-[47px] h-[25px]"
               alt="orange arrow"
               src="/orange_arrows/orange_arrow_top.svg"
@@ -135,7 +135,7 @@ export const GalaSubsection = (): JSX.Element => {
                 {" "}ET MARQUERA UN TOURNANT DANS NOTRE CAPACITÉ À AGIR À GRANDE ÉCHELLE.
               </span>
             </div>
-            <img
+            <img loading="lazy" decoding="async"
               className="w-[47px] h-[25px]"
               alt="orange arrow"
               src="/orange_arrows/orange_arrow_bottom.svg"

@@ -23,45 +23,45 @@ export const PresidentDetailsSection = (): JSX.Element => {
     description:
       "Homme de conviction et de vision, Boubacar Sidiqui Barry accompagne la gouvernance de la Fondation, garantissant la rigueur, la transparence et la mise en œuvre des projets structurants.",
     image:
-      "bg-[url(/page_equipe_section/conseil_img/boubacar_sidiqui_barry.png)]",
+      "bg-[url(/page_equipe_section/conseil_img/boubacar_sidiqui_barry.webp)]",
   };
 
   const teamMembers = [
     {
       name: "Ibrahima Camara",
       role: "ENTREPRENEUR ENGAGÉ POUR LE DÉVELOPPEMENT LOCAL",
-      image: "bg-[url(/page_equipe_section/conseil_img/ibrahima_camara.png)]",
+      image: "bg-[url(/page_equipe_section/conseil_img/ibrahima_camara.webp)]",
     },
     {
       name: "Komba Bijou Camara",
       role: "MILITANTE ASSOCIATIVE ET PROMOTRICE DE L'AUTONOMISATION DES FEMMES",
       image:
-        "bg-[url(/page_equipe_section/conseil_img/komba_bijou_camara.png)]",
+        "bg-[url(/page_equipe_section/conseil_img/komba_bijou_camara.webp)]",
     },
     {
       name: "Anna Barry",
       role: "SPÉCIALISTE EN GESTION ET FINANCES, ACTRICE DU CHANGEMENT SOCIAL",
-      image: "bg-[url(/page_equipe_section/conseil_img/anna_barry.png)]",
+      image: "bg-[url(/page_equipe_section/conseil_img/anna_barry.webp)]",
     },
     {
       name: "Abdoulaye Touré",
       role: "DÉFENSEUR DES DROITS DES ENFANTS ET ACTEUR DU MONDE ÉDUCATIF",
-      image: "bg-[url(/page_equipe_section/conseil_img/abdoulaye_toure.png)]",
+      image: "bg-[url(/page_equipe_section/conseil_img/abdoulaye_toure.webp)]",
     },
     {
       name: "Dr Aboudoulaye Bah",
       role: "MÉDECIN HUMANITAIRE, ENGAGÉ DANS LA SANTÉ PUBLIQUE",
-      image: "bg-[url(/page_equipe_section/conseil_img/aboudoulaye_bah.png)]",
+      image: "bg-[url(/page_equipe_section/conseil_img/aboudoulaye_bah.webp)]",
     },
     {
       name: "Chaikou Bah",
       role: "ACTEUR DE LA SOCIÉTÉ CIVILE, MOBILISÉ POUR LA JEUNESSE GUINÉENNE",
-      image: "bg-[url(/page_equipe_section/conseil_img/chaikou_bah.png)]",
+      image: "bg-[url(/page_equipe_section/conseil_img/chaikou_bah.webp)]",
     },
     {
       name: "Déborah Mutund",
       role: "STRATEGIC DIRECTOR & COMMUNICATION SPECIALIST",
-      image: "bg-[url(/page_equipe_section/conseil_img/deborah_mutund.jpg)]",
+      image: "bg-[url(/page_equipe_section/conseil_img/deborah_mutund.webp)]",
     },
   ];
   if (isMobile) {

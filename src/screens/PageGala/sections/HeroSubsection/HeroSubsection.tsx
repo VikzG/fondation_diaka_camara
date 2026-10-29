@@ -14,7 +14,7 @@ export const HeroSubsection = (): JSX.Element => {
   // === MOBILE ===
   if (isMobile) {
     return (
-      <section className="flex flex-col w-full mt-14 h-[800px] justify-around px-6 py-20 bg-[url(/page_gala_section/gala_2025_bg.png)] bg-cover bg-[center_right_20%]">
+      <section className="flex flex-col w-full mt-14 h-[800px] justify-around px-6 py-20 bg-[url(/page_gala_section/gala_2025_bg.webp)] bg-cover bg-[center_right_20%]">
         {/* Titre centré en haut */}
         <div className="flex flex-col items-center justify-start gap-10 text-center">
           <h1 className="font-[beautique-display-bold] text-5xl text-vanilla leading-[0.9]">
@@ -79,7 +79,7 @@ export const HeroSubsection = (): JSX.Element => {
 
   // === DESKTOP ===
   return (
-    <section className="flex flex-col w-full min-h-[1000px] justify-between px-0 py-[70px] bg-[url(/page_gala_section/gala_2025_bg.png)] bg-cover bg-[50%_50%]">
+    <section className="flex flex-col w-full min-h-[1000px] justify-between px-0 py-[70px] bg-[url(/page_gala_section/gala_2025_bg.webp)] bg-cover bg-[50%_50%]">
       <div className="flex justify-end px-28 py-40 w-full">
         <div className="flex flex-col items-center justify-center gap-[30px] flex-1">
           <h1 className="w-full font-[beautique-display-bold] text-vanilla text-[200px] text-right leading-[0.9]">

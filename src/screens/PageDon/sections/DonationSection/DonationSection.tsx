@@ -140,7 +140,7 @@ if (selectedMethod === "Par virement") {
       </Card>
 
       {/* Montants */}
-      <div className="w-full bg-[url(/donation_section/don_bg.png)] bg-cover bg-center px-6 py-12">
+      <div className="w-full bg-[url(/donation_section/don_bg.webp)] bg-cover bg-center px-6 py-12">
         <h2 className="text-vanilla font-legendes-bold text-center text-lg mb-8">
           VOTRE DON FAIT LA DIFFÉRENCE : CHAQUE MONTANT COMPTE.
         </h2>
@@ -201,7 +201,7 @@ if (selectedMethod === "Par virement") {
 
       {/* Engagement */}
       <div className="w-full bg-antiflash flex flex-col">
-        <div className="h-[200px] flex items-center justify-center bg-[url(/donation_section/don_bg_2.png)] bg-cover bg-center">
+        <div className="h-[200px] flex items-center justify-center bg-[url(/donation_section/don_bg_2.webp)] bg-cover bg-center">
           <h2 className="text-blanc text-2xl font-[beautique-display] text-center">
             Nous croyons en la transparence
           </h2>
@@ -330,7 +330,7 @@ if (selectedMethod === "Par virement") {
         </Card>
       </div>
 
-      <div className="flex flex-col items-start gap-[30px] p-20 px-32 w-full [background:url(/donation_section/don_bg.png)_50%_50%_/_cover]">
+      <div className="flex flex-col items-start gap-[30px] p-20 px-32 w-full [background:url(/donation_section/don_bg.webp)_50%_50%_/_cover]">
         <h2 className="w-full font-legendes-bold text-vanilla text-center text-xl">
           VOTRE DON FAIT LA DIFFÉRENCE : CHAQUE MONTANT COMPTE. CHAQUE GESTE EST
           UN PAS VERS UN AVENIR MEILLEUR.
@@ -401,7 +401,7 @@ if (selectedMethod === "Par virement") {
 
       <div className="flex flex-col w-full bg-blanc">
         <div className="flex flex-col w-full bg-antiflash">
-          <div className="flex flex-col h-[361px] items-center justify-center gap-2.5 p-[100px] w-full [background:url(/donation_section/don_bg_2.png)_50%_50%_/_cover]">
+          <div className="flex flex-col h-[361px] items-center justify-center gap-2.5 p-[100px] w-full [background:url(/donation_section/don_bg_2.webp)_50%_50%_/_cover]">
             <h2 className="w-full font-[beautique-display] text-blanc text-center text-5xl">
               Nous croyons en la transparence
             </h2>

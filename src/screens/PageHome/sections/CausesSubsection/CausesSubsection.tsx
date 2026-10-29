@@ -12,7 +12,7 @@ export const CausesSubsection = (): JSX.Element => {
       id: "item-1",
       number: "1",
       title: "Autonomisation des femmes",
-      backgroundImage: "/causes_section/causes_img_1.png",
+      backgroundImage: "/causes_section/causes_img_1.webp",
       content: {
         description: (
           <>
@@ -33,7 +33,7 @@ export const CausesSubsection = (): JSX.Element => {
       id: "item-2",
       number: "2",
       title: "Accès à l'éducation",
-      backgroundImage: "/causes_section/causes_img_2.png",
+      backgroundImage: "/causes_section/causes_img_2.webp",
       content: {
         description: (
           <>
@@ -54,7 +54,7 @@ export const CausesSubsection = (): JSX.Element => {
       id: "item-3",
       number: "3",
       title: "Santé et protection",
-      backgroundImage: "/causes_section/causes_img_3.png",
+      backgroundImage: "/causes_section/causes_img_3.webp",
       content: {
         description: (
           <>

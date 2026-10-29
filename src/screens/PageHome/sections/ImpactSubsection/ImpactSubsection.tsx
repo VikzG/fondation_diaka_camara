@@ -22,6 +22,7 @@ import { Pagination } from "swiper/modules";
 import { createRoot } from "react-dom/client";
 import "swiper/css";
 import "swiper/css/pagination";
+import { usePreloadImages } from "../../../../lib/usePreloadImages";
 
 // ================== tes catégories et stats (inchangés) ==================
 const categories = [
@@ -34,7 +35,7 @@ const categories = [
 
 const statsMap: Record<string, any> = {
   education: {
-    image: "/impact_section/education-image.png",
+    image: "/impact_section/education-image.webp",
     icon: "/impact_section/book.svg",
     left: [
       {
@@ -62,7 +63,7 @@ const statsMap: Record<string, any> = {
     ],
   },
   culture: {
-    image: "/impact_section/culture-image.png",
+    image: "/impact_section/culture-image.webp",
     icon: "/impact_section/culture.svg",
     left: {
       number: "72",
@@ -83,7 +84,7 @@ const statsMap: Record<string, any> = {
     ],
   },
   protection: {
-    image: "/impact_section/protection-image.png",
+    image: "/impact_section/protection-image.webp",
     icon: "/impact_section/hands.svg",
     left: {
       number: "450",
@@ -104,7 +105,7 @@ const statsMap: Record<string, any> = {
     ],
   },
   solidarite: {
-    image: "/impact_section/solidarite-image.png",
+    image: "/impact_section/solidarite-image.webp",
     icon: "/impact_section/solidarite.svg",
     left: {
       number: "7",
@@ -125,7 +126,7 @@ const statsMap: Record<string, any> = {
     ],
   },
   partenariats: {
-    image: "/impact_section/partenariats-image.png",
+    image: "/impact_section/partenariats-image.webp",
     icon: "/impact_section/partenaire.svg",
     left: { number: "10", title: "Partenaires\nmajeurs" },
     right: [{ number: "7", title: "Mentors\nbénévoles" }],
@@ -137,6 +138,7 @@ export const ImpactSubsection = (): JSX.Element => {
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 1200);
   const [activeTab, setActiveTab] = useState("education");
   const [fade, setFade] = useState(false);
+  usePreloadImages(Object.values(statsMap).map((s) => s.image));
 
   useEffect(() => {
     const handleResize = () => setIsDesktop(window.innerWidth >= 1200);
@@ -158,7 +160,7 @@ export const ImpactSubsection = (): JSX.Element => {
         <div className="max-w-[1300px] mx-auto flex flex-col items-center gap-32 px-10">
           <header className="items-start justify-between self-stretch w-full flex-[0_0_auto] flex">
             <div className="inline-flex items-start gap-[70px] flex-[0_0_auto]">
-              <img
+              <img loading="lazy" decoding="async"
                 className="self-stretch"
                 alt="Logo submark"
                 src="/impact_section/logo-submark.svg"
@@ -219,7 +221,7 @@ export const ImpactSubsection = (): JSX.Element => {
                       <CardContent className="flex items-center justify-between w-full h-full p-8 gap-8">
                         {/* Image gauche avec fade */}
                         <div className="w-[30%] relative h-full flex items-center justify-center">
-                          <img
+                          <img loading="lazy" decoding="async"
                             src={stats.image}
                             alt={`${category.label} image`}
                             className={`w-full h-full object-cover rounded-xl transition-opacity duration-200 ${
@@ -301,7 +303,7 @@ export const ImpactSubsection = (): JSX.Element => {
                             )}
                           </div>
 
-                          <img
+                          <img loading="lazy" decoding="async"
                             src={stats.icon}
                             alt={`${category.label} icon`}
                             className={`${fade ? "" : "icon-rotate"}`}
@@ -435,7 +437,7 @@ export const ImpactSubsection = (): JSX.Element => {
                   {category.label}
                 </h3>
 
-                <img
+                <img loading="lazy" decoding="async"
                   src={stats.image}
                   alt={category.label}
                   className="w-full h-52 object-cover"

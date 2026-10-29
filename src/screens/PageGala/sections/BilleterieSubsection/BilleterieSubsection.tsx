@@ -54,7 +54,7 @@ useEffect(() => {
     return (
 <section
   id="billeterie_gala"
-  className="flex flex-col h-[650px] w-full items-center justify-around gap-6 pt-8 px-6 relative bg-[url(/page_gala_section/bg_billeterie.png)] bg-cover bg-no-repeat bg-center overflow-hidden"
+  className="flex flex-col h-[650px] w-full items-center justify-around gap-6 pt-8 px-6 relative bg-[url(/page_gala_section/bg_billeterie.webp)] bg-cover bg-no-repeat bg-center overflow-hidden"
 >
   <h2 className="font-[beautique-display-bold] text-3xl text-licorice text-center mb-8 relative z-20">
     BILLETERIE
@@ -92,7 +92,7 @@ useEffect(() => {
         <div
           className={`border-2 ${currentState.borderClass} w-[36px] h-[36px] flex items-center justify-center rounded-full ${currentState.bgClass}`}
         >
-          <img className="w-5 h-5" alt="Prev" src="/gala_arrow_button.svg" />
+          <img loading="lazy" decoding="async" className="w-5 h-5" alt="Prev" src="/gala_arrow_button.svg" />
         </div>
       </Button>
 
@@ -105,7 +105,7 @@ useEffect(() => {
         <div
           className={`border-2 ${currentState.borderClass} w-[36px] h-[36px] flex items-center justify-center rounded-full ${currentState.bgClass}`}
         >
-          <img
+          <img loading="lazy" decoding="async"
             className="w-5 h-5 -rotate-180"
             alt="Next"
             src="/gala_arrow_button.svg"
@@ -138,7 +138,7 @@ useEffect(() => {
   return (
     <section
       id="billeterie_gala"
-      className="flex flex-col w-full items-center gap-11 py-28 px-20 relative bg-[url(/page_gala_section/bg_billeterie.png)] bg-cover bg-no-repeat"
+      className="flex flex-col w-full items-center gap-11 py-28 px-20 relative bg-[url(/page_gala_section/bg_billeterie.webp)] bg-cover bg-no-repeat"
     >
       <h2 className="relative self-stretch font-[beautique-display-bold] text-5xl text-licorice text-center">
         BILLETERIE
@@ -161,7 +161,7 @@ useEffect(() => {
                 <div
                   className={`border-2 ${currentState.borderClass} group-hover:border-transparent absolute right-[calc(100%-50px)] group-hover:right-[10px] top-1/2 -translate-y-1/2 w-[50px] h-[50px] flex items-center justify-center rounded-full transition-all duration-500 ease-in-out ${currentState.bgClass}`}
                 >
-                  <img
+                  <img loading="lazy" decoding="async"
                     className="w-7 h-7"
                     alt="Icon"
                     src="/gala_arrow_button.svg"
@@ -189,7 +189,7 @@ useEffect(() => {
                 <div
                   className={`border-2 ${currentState.borderClass} group-hover:border-transparent absolute right-[calc(100%-50px)] group-hover:right-[10px] top-1/2 -translate-y-1/2 w-[50px] h-[50px] flex items-center justify-center rounded-full transition-all duration-500 ease-in-out ${currentState.bgClass}`}
                 >
-                  <img
+                  <img loading="lazy" decoding="async"
                     className="w-7 h-7 -rotate-180"
                     alt="Icon"
                     src="/gala_arrow_button.svg"

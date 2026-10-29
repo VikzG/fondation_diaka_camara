@@ -44,7 +44,7 @@ export const WhyJoinSection = (): JSX.Element => {
 
   if (isMobile) {
     return (
-      <section className="flex flex-col gap-6 p-6 [background:url(../slider_cercle_section/slide_img_1.png)_50%_50%_/_cover] w-full">
+      <section className="flex flex-col gap-6 p-6 [background:url(../slider_cercle_section/slide_img_1.webp)_50%_50%_/_cover] w-full">
         {cardData.map((card, index) => (
           <Card
             key={index}
@@ -63,7 +63,7 @@ export const WhyJoinSection = (): JSX.Element => {
                 viewport={{ once: true }}
                 className="flex flex-col items-center gap-2"
               >
-                <img className="w-20 h-20" alt={card.alt} src={card.icon} />
+                <img loading="lazy" decoding="async" className="w-20 h-20" alt={card.alt} src={card.icon} />
                 <div className="font-legendes-bold text-licorice text-xl text-center">
                   {card.title}
                 </div>
@@ -91,7 +91,7 @@ export const WhyJoinSection = (): JSX.Element => {
   }
 
   return (
-    <section className="flex flex-col gap-5 p-[100px] [background:url(../slider_cercle_section/slide_img_1.png)_50%_50%_/_cover] w-full">
+    <section className="flex flex-col gap-5 p-[100px] [background:url(../slider_cercle_section/slide_img_1.webp)_50%_50%_/_cover] w-full">
       <div className="grid grid-cols-2 gap-5 w-full max-w-[1600px] mx-auto">
         {cardData.map((card, index) => (
           <Card
@@ -111,7 +111,7 @@ export const WhyJoinSection = (): JSX.Element => {
                 viewport={{ once: true }}
                 className="flex flex-col items-center gap-4"
               >
-                <img
+                <img loading="lazy" decoding="async"
                   className={`relative ${
                     index === 0 ? "flex-[0_0_auto]" : "w-[90px] h-[90px]"
                   }`}

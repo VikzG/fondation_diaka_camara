@@ -1,17 +1,8 @@
-import { motion } from "framer-motion";
-
 type Props = { children: React.ReactNode };
 
+// Fondu d'entrée en CSS (classe `page-fade-in` dans tailwind.css) plutôt qu'avec framer-motion :
+// l'animation JS ne démarrait qu'une fois toute la page construite, ce qui laissait l'écran
+// blanc jusqu'à une seconde. Pas de `transform` ici : il casserait les éléments en `position: fixed`.
 export default function PageTransition({ children }: Props) {
-  return (
-    <motion.div
-      initial={{ y: "100%", opacity: 0 }}   // commence en bas et transparent
-      animate={{ y: 0, opacity: 1 }}        // remonte et devient visible
-      exit={{ opacity: 0 }}                 // léger fade-out quand on quitte
-      transition={{ duration: 0.5, ease: [0, 0.71, 0.2, 1.01]}}
-      className="min-h-screen"
-    >
-      {children}
-    </motion.div>
-  );
+  return <div className="min-h-screen page-fade-in">{children}</div>;
 }

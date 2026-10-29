@@ -13,7 +13,7 @@ export const MatchtombolaSubsection = (): JSX.Element => {
   const events = [
     {
       title: "Le Match de la Solidarité",
-      image: "/page_gala_section/match_gala.jpg",
+      image: "/page_gala_section/match_gala.webp",
       description:
         "Rejoignez-nous pour un moment sportif et solidaire ! Le match du Gala rassemble personnalités, supporters et amis de la Fondation dans une ambiance festive.",
       link: "https://billetfacile.com/event/2025-11-14-1600-match-de-la-solidarite",
@@ -21,7 +21,7 @@ export const MatchtombolaSubsection = (): JSX.Element => {
     },
     {
       title: "La Tombola du Gala",
-      image: "/page_gala_section/tombola_gala.jpg",
+      image: "/page_gala_section/tombola_gala.webp",
       description:
         "Tentez votre chance et soutenez la Fondation ! De magnifiques lots sont à gagner lors de la tombola du Gala, au profit de nos actions éducatives et sociales.",
       link: "https://billetfacile.com/event/2025-11-15-0000-gala-tombola",
@@ -52,7 +52,7 @@ export const MatchtombolaSubsection = (): JSX.Element => {
             {/* === CARD === */}
             <div className="group relative overflow-hidden rounded-[25px] w-full shadow-lg hover:shadow-xl transition-shadow duration-500 bg-[#f3f3f3]">
               <div className="flex items-center justify-center w-full h-full bg-[#f3f3f3]">
-                <img
+                <img loading="lazy" decoding="async"
                   src={event.image}
                   alt={event.title}
                   className="w-full h-full object-contain transition-transform duration-700 ease-in-out group-hover:scale-[1.03]"
@@ -97,7 +97,7 @@ export const MatchtombolaSubsection = (): JSX.Element => {
             {/* === CARD === */}
             <div className="group relative overflow-hidden rounded-[30px] w-[600px]  shadow-xl hover:shadow-2xl transition-shadow duration-500 bg-[#f3f3f3]">
               <div className="flex items-center justify-center w-full h-full bg-[#f3f3f3]">
-                <img
+                <img loading="lazy" decoding="async"
                   src={event.image}
                   alt={event.title}
                   className="w-full h-full object-contain transition-transform duration-700 ease-in-out group-hover:scale-[1.03]"

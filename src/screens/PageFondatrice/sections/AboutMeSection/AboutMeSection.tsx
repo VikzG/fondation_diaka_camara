@@ -43,7 +43,7 @@ export const AboutMeSection = (): JSX.Element => {
     return (
       <section
         id="about_fondatrice"
-        className="w-full flex flex-col items-center justify-center gap-10 px-6 py-8 bg-[url(/page_presidente_section/presidente_bg.png)] bg-cover bg-[50%_40%] bg-no-repeat"
+        className="w-full flex flex-col items-center justify-center gap-10 px-6 py-8 bg-[url(/page_presidente_section/presidente_bg.webp)] bg-cover bg-[50%_40%] bg-no-repeat"
       >
         {aboutMeCards.map((card, index) => (
           <motion.div
@@ -56,7 +56,7 @@ export const AboutMeSection = (): JSX.Element => {
           >
             <CardContent className="flex flex-col items-center gap-6 p-8">
               <div className="flex flex-col items-center gap-6 w-full">
-                <img
+                <img loading="lazy" decoding="async"
                   className="w-[90px] h-[90px]"
                   alt={card.iconAlt}
                   src={card.icon}
@@ -78,7 +78,7 @@ export const AboutMeSection = (): JSX.Element => {
                 {card.description}
               </motion.p>
 
-              <img
+              <img loading="lazy" decoding="async"
                 className="w-8 h-4 mt-4"
                 alt="arrow bottom"
                 src={
@@ -98,7 +98,7 @@ export const AboutMeSection = (): JSX.Element => {
   return (
     <section
       id="about_fondatrice"
-      className="w-full flex flex-row items-center justify-center gap-20 p-10 bg-[url(/page_presidente_section/presidente_bg.png)] bg-cover bg-[50%_40%] bg-no-repeat min-h-[800px]"
+      className="w-full flex flex-row items-center justify-center gap-20 p-10 bg-[url(/page_presidente_section/presidente_bg.webp)] bg-cover bg-[50%_40%] bg-no-repeat min-h-[800px]"
     >
       {aboutMeCards.map((card, index) => (
         <motion.div
@@ -111,7 +111,7 @@ export const AboutMeSection = (): JSX.Element => {
         >
           <CardContent className="flex flex-col items-center gap-6 p-[50px]">
             <div className="flex flex-col items-center gap-[30px] w-full">
-              <img
+              <img loading="lazy" decoding="async"
                 className="w-[110px] h-[110px]"
                 alt={card.iconAlt}
                 src={card.icon}
@@ -133,7 +133,7 @@ export const AboutMeSection = (): JSX.Element => {
               {card.description}
             </motion.p>
 
-            <img
+            <img loading="lazy" decoding="async"
               className="w-[47px] h-[25px] mt-4"
               alt="arrow bottom"
               src={

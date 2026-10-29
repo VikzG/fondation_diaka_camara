@@ -22,22 +22,22 @@ export const ValeursSubsection = (): JSX.Element => {
     {
       title: "Solidarité",
       description: "LE PROGRÈS SE CONSTRUIT ENSEMBLE",
-      src: "/valeurs_section/valeur_img_1.png",
+      src: "/valeurs_section/valeur_img_1.webp",
     },
     {
       title: "Transparence",
       description: "CHAQUE DON EST TRAÇABLE",
-      src: "/valeurs_section/valeur_img_2.png",
+      src: "/valeurs_section/valeur_img_2.webp",
     },
     {
       title: "Excellence",
       description: "DES STANDARS ÉLEVÉS DANS L'EXÉCUTION",
-      src: "/valeurs_section/valeur_img_3.png",
+      src: "/valeurs_section/valeur_img_3.webp",
     },
     {
       title: "Impact durable",
       description: "DES SOLUTIONS CONCRÈTES ET PÉRENNES",
-      src: "/valeurs_section/valeur_img_4.png",
+      src: "/valeurs_section/valeur_img_4.webp",
     },
   ];
 

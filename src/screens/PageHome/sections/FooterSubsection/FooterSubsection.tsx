@@ -4,7 +4,7 @@ export const FooterSubsection = (): JSX.Element => {
       {/* Desktop */}
       <div className="hidden max-[1200px]:hidden lg:flex items-center justify-center gap-2.5 px-[60px] py-5 relative">
         <div className="flex items-center gap-[30px] relative flex-1 grow">
-          <img
+          <img loading="lazy" decoding="async"
             className="relative w-[52px] h-[38.21px]"
             alt="Footer logo"
             src="/footer_section/enveloppe_footer.svg"
@@ -30,13 +30,13 @@ export const FooterSubsection = (): JSX.Element => {
           </div>
           <div className="flex flex-row gap-7">
             <a href="https://www.instagram.com/" target="_blank" className="cursor-pointer">
-              <img src="/footer_section/instagram_logo.svg" alt="Logo Instagram" />
+              <img loading="lazy" decoding="async" src="/footer_section/instagram_logo.svg" alt="Logo Instagram" />
             </a>
             <a href="https://www.facebook.com/" target="_blank" className="cursor-pointer">
-              <img src="/footer_section/facebook_logo.svg" alt="Logo Facebook" />
+              <img loading="lazy" decoding="async" src="/footer_section/facebook_logo.svg" alt="Logo Facebook" />
             </a>
             <a href="https://fr.linkedin.com/" target="_blank" className="cursor-pointer">
-              <img src="/footer_section/linkedin_logo.svg" alt="Logo Linkedin" />
+              <img loading="lazy" decoding="async" src="/footer_section/linkedin_logo.svg" alt="Logo Linkedin" />
             </a>
           </div>
         </div>
@@ -57,13 +57,13 @@ export const FooterSubsection = (): JSX.Element => {
 
         <div className="flex flex-row gap-4 mt-2">
           <a href="https://www.instagram.com/" target="_blank">
-            <img className="w-6 h-6" src="/footer_section/instagram_logo.svg" alt="Logo Instagram" />
+            <img loading="lazy" decoding="async" className="w-6 h-6" src="/footer_section/instagram_logo.svg" alt="Logo Instagram" />
           </a>
           <a href="https://www.facebook.com/" target="_blank">
-            <img className="w-6 h-6" src="/footer_section/facebook_logo.svg" alt="Logo Facebook" />
+            <img loading="lazy" decoding="async" className="w-6 h-6" src="/footer_section/facebook_logo.svg" alt="Logo Facebook" />
           </a>
           <a href="https://fr.linkedin.com/" target="_blank">
-            <img className="w-6 h-6" src="/footer_section/linkedin_logo.svg" alt="Logo Linkedin" />
+            <img loading="lazy" decoding="async" className="w-6 h-6" src="/footer_section/linkedin_logo.svg" alt="Logo Linkedin" />
           </a>
         </div>
       </div>

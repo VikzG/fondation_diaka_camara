@@ -10,13 +10,13 @@ const DonateButton = () => (
         {/* Wrapper pour gérer le fade */}
         <div className="relative w-[52px] h-[55px]">
           {/* Image par défaut */}
-          <img
+          <img loading="lazy" decoding="async"
             className="absolute inset-0 w-full h-full object-contain opacity-100 transition-opacity duration-300 group-hover:opacity-0"
             alt="Don icon"
             src="/nav_icons/nav_don_icon.svg"
           />
           {/* Image au hover */}
-          <img
+          <img loading="lazy" decoding="async"
             className="absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-300 group-hover:opacity-100"
             alt="Don icon hover"
             src="/nav_icons/nav_don_icon_2.svg"

@@ -20,7 +20,7 @@ export const MissionSection = (): JSX.Element => {
           className="w-full h-[400px] bg-cover bg-top bg-no-repeat"
           style={{
             backgroundImage:
-              "url(/page_presidente_section/presidente_photo.jpg)",
+              "url(/page_presidente_section/presidente_photo.webp)",
           }}
         />
 
@@ -54,7 +54,7 @@ export const MissionSection = (): JSX.Element => {
                 Soutenir la Fondation
               </span>
               <div className="border-2 border-vanilla group-hover:border-transparent absolute right-[calc(100%-50px)] group-hover:right-[10px] top-1/2 -translate-y-1/2 w-[45px] md:w-[50px] h-[45px] md:h-[50px] flex items-center justify-center rounded-full transition-all duration-500 ease-in-out bg-[#0A4BA5]">
-                <img className="w-6 h-6 md:w-7 md:h-7" alt="Icon" src="/gala_arrow_button.svg" />
+                <img loading="lazy" decoding="async" className="w-6 h-6 md:w-7 md:h-7" alt="Icon" src="/gala_arrow_button.svg" />
               </div>
             </Button>
           </Link>
@@ -71,7 +71,7 @@ export const MissionSection = (): JSX.Element => {
         className="flex-1 h-[770px] bg-cover bg-top bg-no-repeat max-w-[750px]"
         style={{
           backgroundImage:
-            "url(/page_presidente_section/presidente_photo.jpg)",
+            "url(/page_presidente_section/presidente_photo.webp)",
         }}
       />
 
@@ -105,7 +105,7 @@ export const MissionSection = (): JSX.Element => {
               Soutenir la Fondation
             </span>
             <div className="border-2 border-vanilla group-hover:border-transparent absolute right-[calc(100%-50px)] group-hover:right-[10px] top-1/2 -translate-y-1/2 w-[50px] h-[50px] flex items-center justify-center rounded-full transition-all duration-500 ease-in-out bg-[#0A4BA5]">
-              <img className="w-7 h-7" alt="Icon" src="/gala_arrow_button.svg" />
+              <img loading="lazy" decoding="async" className="w-7 h-7" alt="Icon" src="/gala_arrow_button.svg" />
             </div>
           </Button>
         </Link>

@@ -26,7 +26,7 @@ export const MaitressesCeremonieSubsection = (): JSX.Element => {
       <section className="relative w-full pt-10 h-[700px] bg-antiflash overflow-hidden group">
         {/* Bloc texte */}
         <div className="flex flex-col items-center justify-start gap-6 px-6 text-center max-w-[800px] mx-auto h-full relative z-20 transform translate-y-10 opacity-0 transition-all duration-700 group-hover:translate-y-0 group-hover:opacity-100">
-          <img
+          <img loading="lazy" decoding="async"
             className="w-[47px] h-[25px]"
             alt="red arrow"
             src="/actualites_section/red_top_arrow.svg"
@@ -46,8 +46,8 @@ export const MaitressesCeremonieSubsection = (): JSX.Element => {
         </div>
 
         {/* Déborah */}
-        <img
-          src="/page_gala_section/deborah-detour.svg"
+        <img loading="lazy" decoding="async"
+          src="/page_gala_section/deborah-detour.webp"
           alt="Deborah"
           className={`absolute bottom-0 left-1/2 -translate-x-1/2 w-[45%] max-w-[350px] transition-opacity duration-1000 z-10 ${
             current === "deborah" ? "opacity-100" : "opacity-0"
@@ -55,8 +55,8 @@ export const MaitressesCeremonieSubsection = (): JSX.Element => {
         />
 
         {/* Aïcha */}
-        <img
-          src="/page_gala_section/aisha_mobile.svg"
+        <img loading="lazy" decoding="async"
+          src="/page_gala_section/aisha_mobile.webp"
           alt="Aïcha"
           className={`absolute bottom-0 left-1/2 -translate-x-1/2 w-[70%] max-w-[400px] transition-opacity duration-1000 z-10 ${
             current === "aisha" ? "opacity-100" : "opacity-0"
@@ -64,16 +64,16 @@ export const MaitressesCeremonieSubsection = (): JSX.Element => {
         />
 
         {/* Rideau droit */}
-        <img
+        <img loading="lazy" decoding="async"
           className="absolute w-[50%] h-full top-0 right-0 object-cover z-30 transform transition-transform duration-700 group-hover:translate-x-full"
-          src="/page_gala_section/rideau-rouge-1.svg"
+          src="/page_gala_section/rideau-rouge-1.webp"
           alt="Rideau rouge droite"
         />
 
         {/* Rideau gauche */}
-        <img
+        <img loading="lazy" decoding="async"
           className="absolute w-[50%] h-full top-0 left-0 object-cover z-30 transform transition-transform duration-700 group-hover:-translate-x-full"
-          src="/page_gala_section/rideau-rouge-2.svg"
+          src="/page_gala_section/rideau-rouge-2.webp"
           alt="Rideau rouge gauche"
         />
       </section>
@@ -85,7 +85,7 @@ export const MaitressesCeremonieSubsection = (): JSX.Element => {
     <section className="relative w-full h-[800px] bg-antiflash overflow-hidden group">
       {/* Bloc texte centré */}
       <div className="flex flex-col items-center justify-center gap-[50px] px-[10%] max-w-[1000px] mx-auto h-full relative z-20 transform translate-y-20 opacity-0 transition-all duration-700 group-hover:translate-y-0 group-hover:opacity-100">
-        <img
+        <img loading="lazy" decoding="async"
           className="w-[47px] h-[25px]"
           alt="red arrow"
           src="/actualites_section/red_top_arrow.svg"
@@ -104,7 +104,7 @@ export const MaitressesCeremonieSubsection = (): JSX.Element => {
           moment fort de la soirée, aux côtés des artistes et intervenants.
         </p>
 
-        <img
+        <img loading="lazy" decoding="async"
           className="w-[47px] h-[25px]"
           alt="red arrow"
           src="/actualites_section/red_bottom_arrow.svg"
@@ -112,28 +112,28 @@ export const MaitressesCeremonieSubsection = (): JSX.Element => {
       </div>
 
       {/* Deborah en bas à gauche */}
-      <img
+      <img loading="lazy" decoding="async"
         className="absolute w-[20%] max-w-[350px] h-auto bottom-0 left-0 object-cover z-10"
-        src="/page_gala_section/deborah-detour.svg"
+        src="/page_gala_section/deborah-detour.webp"
         alt="Deborah detour"
       />
 
       {/* Aisha en bas à droite */}
-      <img
+      <img loading="lazy" decoding="async"
         className="absolute w-[30%] max-w-[500px] h-auto bottom-0 right-0 object-cover z-10"
-        src="/page_gala_section/aisha-detour.svg"
+        src="/page_gala_section/aisha-detour.webp"
         alt="Aisha detour"
       />
 
       {/* Rideaux */}
-      <img
+      <img loading="lazy" decoding="async"
         className="absolute w-[50%] h-full top-0 right-0 object-cover z-30 transform transition-transform duration-700 group-hover:translate-x-full"
-        src="/page_gala_section/rideau-rouge-1.svg"
+        src="/page_gala_section/rideau-rouge-1.webp"
         alt="Rideau rouge droite"
       />
-      <img
+      <img loading="lazy" decoding="async"
         className="absolute w-[50%] h-full top-0 left-0 object-cover z-30 transform transition-transform duration-700 group-hover:-translate-x-full"
-        src="/page_gala_section/rideau-rouge-2.svg"
+        src="/page_gala_section/rideau-rouge-2.webp"
         alt="Rideau rouge gauche"
       />
     </section>
