@@ -1,7 +1,32 @@
 import { Button } from "../../../../components/ui/button";
 import { useEffect, useState } from "react";
+import { useTranslation } from "../../../../lib/i18n";
+
+const content = {
+  fr: {
+    matchTitle: "Le Match de la Solidarité",
+    matchText: "Rejoignez-nous pour un moment sportif et solidaire ! Le match du Gala rassemble personnalités, supporters et amis de la Fondation dans une ambiance festive.",
+    tombolaTitle: "La Tombola du Gala",
+    tombolaText: "Tentez votre chance et soutenez la Fondation ! De magnifiques lots sont à gagner lors de la tombola du Gala, au profit de nos actions éducatives et sociales.",
+    titleMobile: <>Les Événements<br/>du Gala</>,
+    title: "Les événements du Gala",
+    book: "Réserver",
+    bookNow: "Réserver maintenant",
+  },
+  en: {
+    matchTitle: "The Solidarity Match",
+    matchText: "Join us for a moment of sport and solidarity! The Gala match brings together public figures, supporters and friends of the Foundation in a festive atmosphere.",
+    tombolaTitle: "The Gala Raffle",
+    tombolaText: "Try your luck and support the Foundation! Wonderful prizes are up for grabs in the Gala raffle, with proceeds going to our educational and social work.",
+    titleMobile: <>The Gala<br/>Events</>,
+    title: "The Gala events",
+    book: "Book",
+    bookNow: "Book now",
+  },
+};
 
 export const MatchtombolaSubsection = (): JSX.Element => {
+  const t = useTranslation(content);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1300);
 
   useEffect(() => {
@@ -12,18 +37,18 @@ export const MatchtombolaSubsection = (): JSX.Element => {
 
   const events = [
     {
-      title: "Le Match de la Solidarité",
+      title: t.matchTitle,
       image: "/page_gala_section/match_gala.webp",
       description:
-        "Rejoignez-nous pour un moment sportif et solidaire ! Le match du Gala rassemble personnalités, supporters et amis de la Fondation dans une ambiance festive.",
+        t.matchText,
       link: "https://billetfacile.com/event/2025-11-14-1600-match-de-la-solidarite",
       color: "bg-carmin hover:bg-carmin/90",
     },
     {
-      title: "La Tombola du Gala",
+      title: t.tombolaTitle,
       image: "/page_gala_section/tombola_gala.webp",
       description:
-        "Tentez votre chance et soutenez la Fondation ! De magnifiques lots sont à gagner lors de la tombola du Gala, au profit de nos actions éducatives et sociales.",
+        t.tombolaText,
       link: "https://billetfacile.com/event/2025-11-15-0000-gala-tombola",
       color: "bg-pumpkin hover:bg-pumpkin/90",
     },
@@ -38,7 +63,7 @@ export const MatchtombolaSubsection = (): JSX.Element => {
       >
         {/* === SECTION TITLE === */}
         <h2 className="font-[beautique-display-bold] uppercase text-3xl sm:text-4xl text-licorice text-center">
-          Les Événements<br/>du Gala
+          {t.titleMobile}
         </h2>
         {events.map((event, i) => (
           <div
@@ -68,7 +93,7 @@ export const MatchtombolaSubsection = (): JSX.Element => {
               className={`${event.color} text-antiflash w-full max-w-[280px] [font-family:'Mona_Sans',Helvetica] font-extrabold text-lg px-8 py-2 rounded-lg shadow-[0px_1px_2px_#00000040] h-auto hover:underline hover:-translate-y-1 transition-all duration-300 ease-in-out`}
             >
               <a href={event.link} target="_blank" rel="noopener noreferrer">
-                Réserver
+                {t.book}
               </a>
             </Button>
           </div>
@@ -85,7 +110,7 @@ export const MatchtombolaSubsection = (): JSX.Element => {
     >
       {/* === SECTION TITLE === */}
       <h2 className="relative uppercase self-stretch font-[beautique-display-bold] text-5xl text-licorice text-center">
-        Les événements du Gala
+        {t.title}
       </h2>
       <div className="flex items-start justify-center gap-20 max-w-[1600px] w-full">
         {events.map((event, i) => (
@@ -113,7 +138,7 @@ export const MatchtombolaSubsection = (): JSX.Element => {
               className={`${event.color} text-antiflash w-full max-w-[320px] [font-family:'Mona_Sans',Helvetica] font-extrabold text-lg px-8 py-2 rounded-lg shadow-[0px_1px_2px_#00000040] h-auto hover:underline hover:-translate-y-1 transition-all duration-300 ease-in-out`}
             >
               <a href={event.link} target="_blank" rel="noopener noreferrer">
-                Réserver maintenant
+                {t.bookNow}
               </a>
             </Button>
           </div>

@@ -5,28 +5,71 @@ import { useNavigate } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import DonationForm from "../../../../components/DonationForm";
 import { CrossfadeStack } from "../../../../components/CrossfadeStack";
+import { useTranslation, type Lang } from "../../../../lib/i18n";
 
-interface SlideData {
-  id: number;
-  backgroundImage: string;
-  logo: string;
+interface SlideText {
   title: string;
   description: string;
   buttonText: string;
+}
+
+interface SlideData extends SlideText {
+  id: number;
+  backgroundImage: string;
+  logo: string;
   buttonIcon: string;
   buttonTextColor?: string;
   buttonIconBg?: string;
 }
 
-const slidesData: SlideData[] = [
+const slideTexts: Record<Lang, SlideText[]> = {
+  fr: [
+    {
+      title: "Unir les énergies, célébrer les engagements, financer l'impact.",
+      description:
+        "La Fondation Diaka Camara œuvre pour offrir à chaque enfant, et particulièrement aux filles, la possibilité d'apprendre, de s'épanouir et de contribuer à une société plus juste.",
+      buttonText: "Découvrir la Fondation",
+    },
+    {
+      title: "Ensemble, transformons les promesses en actions concrètes.",
+      description:
+        "Chaque contribution est un pas vers un avenir plus équitable. Avec votre aide, chaque don finance directement nos projets éducatifs, culturels et de protection.",
+      buttonText: "Faire un don",
+    },
+    {
+      title:
+        "Gala 2025 : Trois jours pour inspirer, mobiliser et financer des projets qui changent des vies.",
+      description: "",
+      buttonText: "Participer au Gala 2025",
+    },
+  ],
+  en: [
+    {
+      title: "Uniting energies, celebrating commitments, funding impact.",
+      description:
+        "The Diaka Camara Foundation works to give every child, and girls in particular, the chance to learn, to thrive and to contribute to a fairer society.",
+      buttonText: "Discover the Foundation",
+    },
+    {
+      title: "Together, let's turn promises into concrete action.",
+      description:
+        "Every contribution is a step towards a fairer future. With your help, every donation directly funds our education, culture and protection projects.",
+      buttonText: "Make a donation",
+    },
+    {
+      title:
+        "Gala 2025: Three days to inspire, mobilise and fund projects that change lives.",
+      description: "",
+      buttonText: "Join the Gala 2025",
+    },
+  ],
+};
+
+const slidesData: Omit<SlideData, keyof SlideText>[] = [
   {
     id: 1,
     backgroundImage: "/slider_section_1/img_slide_1.webp",
     logo: "/logo.svg",
-    title: "Unir les énergies, célébrer les engagements, financer l'impact.",
-    description:
-      "La Fondation Diaka Camara œuvre pour offrir à chaque enfant, et particulièrement aux filles, la possibilité d'apprendre, de s'épanouir et de contribuer à une société plus juste.",
-    buttonText: "Découvrir la Fondation",
     buttonIcon: "/gala_arrow_button.svg",
     buttonTextColor: "text-pumpkin",
     buttonIconBg: "bg-pumpkin",
@@ -35,10 +78,6 @@ const slidesData: SlideData[] = [
     id: 2,
     backgroundImage: "/slider_section_1/img_slide_2.webp",
     logo: "/logo.svg",
-    title: "Ensemble, transformons les promesses en actions concrètes.",
-    description:
-      "Chaque contribution est un pas vers un avenir plus équitable. Avec votre aide, chaque don finance directement nos projets éducatifs, culturels et de protection.",
-    buttonText: "Faire un don",
     buttonIcon: "/gala_arrow_button.svg",
     buttonTextColor: "text-colbat",
     buttonIconBg: "bg-colbat",
@@ -47,10 +86,6 @@ const slidesData: SlideData[] = [
     id: 3,
     backgroundImage: "/slider_section_1/img_slide_3.webp",
     logo: "/logo.svg",
-    title:
-      "Gala 2025 : Trois jours pour inspirer, mobiliser et financer des projets qui changent des vies.",
-    description: "",
-    buttonText: "Participer au Gala 2025",
     buttonIcon: "/gala_arrow_button.svg",
     buttonTextColor: "text-red-500",
     buttonIconBg: "bg-red-500",
@@ -151,6 +186,8 @@ export const HeroSliderSubsection = (): JSX.Element => {
   const [isFormEngaged, setIsFormEngaged] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1200);
   const navigate = useNavigate();
+  const texts = useTranslation(slideTexts);
+  const slides: SlideData[] = slidesData.map((slide, index) => ({ ...slide, ...texts[index] }));
 
   useEffect(() => {
     if (!isAutoPlaying || isFormEngaged) return;
@@ -224,7 +261,7 @@ export const HeroSliderSubsection = (): JSX.Element => {
 
         {/* Titre en haut */}
         <CrossfadeStack
-          items={slidesData}
+          items={slides}
           current={currentSlide}
           className="absolute top-48 left-1/2 -translate-x-1/2 w-11/12"
           render={(slide) => (
@@ -237,7 +274,7 @@ export const HeroSliderSubsection = (): JSX.Element => {
         {/* Bloc description + bouton + points en bas */}
         <div className="absolute bottom-16 left-1/2 -translate-x-1/2 flex flex-col items-center justify-center gap-8 w-11/12 px-4">
           <CrossfadeStack
-            items={slidesData}
+            items={slides}
             current={currentSlide}
             className="w-full items-end"
             render={(slide) => (
@@ -294,7 +331,7 @@ export const HeroSliderSubsection = (): JSX.Element => {
         </div>
 
         <CrossfadeStack
-          items={slidesData}
+          items={slides}
           current={currentSlide}
           className="flex-1 w-full"
           render={(slide) => (

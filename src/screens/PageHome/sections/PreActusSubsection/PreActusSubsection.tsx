@@ -1,7 +1,14 @@
 import { Button } from "../../../../components/ui/button";
 import { HashLink } from "react-router-hash-link";
+import { useTranslation } from "../../../../lib/i18n";
+
+const content = {
+  fr: { dates: "CONAKRY, DU 13 AU 15 NOVEMBRE", button: "Voir les actualités" },
+  en: { dates: "CONAKRY, 13 TO 15 NOVEMBER", button: "See the latest news" },
+};
 
 export const PreActusSubsection = (): JSX.Element => {
+  const t = useTranslation(content);
   return (
     <section
       className="
@@ -29,7 +36,7 @@ export const PreActusSubsection = (): JSX.Element => {
           GALA 2025
         </h1>
         <p className="[font-family:'Libertinus_Sans',Helvetica] font-bold text-antiflash text-base text-center max-[1200px]:text-sm">
-          CONAKRY, DU 13 AU 15 NOVEMBRE
+          {t.dates}
         </p>
       </div>
 
@@ -50,7 +57,7 @@ export const PreActusSubsection = (): JSX.Element => {
             transition-all duration-300 ease-in-out
           "
         >
-          Voir les actualités
+          {t.button}
         </Button>
       </HashLink>
     </section>

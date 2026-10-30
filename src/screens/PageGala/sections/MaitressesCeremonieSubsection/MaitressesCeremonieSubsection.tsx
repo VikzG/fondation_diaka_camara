@@ -1,6 +1,33 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "../../../../lib/i18n";
+
+const content = {
+  fr: {
+    title: "Les maitresses de cérémonie",
+    textMobile: <>La soirée de Gala sera animée par deux personnalités exceptionnelles : <b>Déborah Mutund</b>, entrepreneure et militante engagée, et <b>Aïcha Kaporo</b>, voix médiatique reconnue. Elles accompagneront chaque moment fort de la soirée avec talent et élégance.</>,
+    text: (
+      <>
+        La soirée de Gala sera animée par deux personnalités exceptionnelles:{" "}
+        <span className="font-bold">Déborah Mutund</span>, entrepreneure et militante engagée, et{" "}
+        <span className="font-bold">Aïcha Kaporo</span>, voix médiatique reconnue. Elles accompagneront avec talent, énergie et élégance chaque moment fort de la soirée, aux côtés des artistes et intervenants.
+      </>
+    ),
+  },
+  en: {
+    title: "The Mistresses of Ceremonies",
+    textMobile: <>The Gala evening will be hosted by two exceptional personalities: <b>Déborah Mutund</b>, entrepreneur and committed activist, and <b>Aïcha Kaporo</b>, a renowned media voice. They will guide every highlight of the evening with talent and elegance.</>,
+    text: (
+      <>
+        The Gala evening will be hosted by two exceptional personalities:{" "}
+        <span className="font-bold">Déborah Mutund</span>, entrepreneur and committed activist, and{" "}
+        <span className="font-bold">Aïcha Kaporo</span>, a renowned media voice. Alongside the artists and speakers, they will guide every highlight of the evening with talent, energy and elegance.
+      </>
+    ),
+  },
+};
 
 export const MaitressesCeremonieSubsection = (): JSX.Element => {
+  const t = useTranslation(content);
   const [isMobile, setIsMobile] = useState(false);
   const [current, setCurrent] = useState<"deborah" | "aisha">("deborah");
 
@@ -33,15 +60,11 @@ export const MaitressesCeremonieSubsection = (): JSX.Element => {
           />
 
           <h2 className="font-[beautique-display] text-carmin text-3xl">
-            Les maitresses de cérémonie
+            {t.title}
           </h2>
 
           <p className="font-corps text-licorice text-base leading-relaxed">
-            La soirée de Gala sera animée par deux personnalités
-            exceptionnelles : <b>Déborah Mutund</b>, entrepreneure et militante
-            engagée, et <b>Aïcha Kaporo</b>, voix médiatique reconnue. Elles
-            accompagneront chaque moment fort de la soirée avec talent et
-            élégance.
+            {t.textMobile}
           </p>
         </div>
 
@@ -92,16 +115,11 @@ export const MaitressesCeremonieSubsection = (): JSX.Element => {
         />
 
         <h2 className="relative font-[beautique-display] text-carmin text-4xl text-center">
-          Les maitresses de cérémonie
+          {t.title}
         </h2>
 
         <p className="relative font-corps font-normal text-licorice text-lg text-center">
-          La soirée de Gala sera animée par deux personnalités exceptionnelles:{" "}
-          <span className="font-bold">Déborah Mutund</span>, entrepreneure et
-          militante engagée, et{" "}
-          <span className="font-bold">Aïcha Kaporo</span>, voix médiatique
-          reconnue. Elles accompagneront avec talent, énergie et élégance chaque
-          moment fort de la soirée, aux côtés des artistes et intervenants.
+          {t.text}
         </p>
 
         <img loading="lazy" decoding="async"

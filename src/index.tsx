@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 
 import PageTransition from "./components/PageTransition";
+import { LanguageProvider } from "./lib/i18n";
 import { TopBarSubsection } from "./screens/PageHome/sections/TopBarSubsection/TopBarSubsection";
 
 import { PageHome } from "./screens/PageHome/PageHome";
@@ -89,8 +90,10 @@ function AnimatedRoutes() {
 
 createRoot(document.getElementById("app") as HTMLElement).render(
   <StrictMode>
-    <BrowserRouter>
-      <AnimatedRoutes />
-    </BrowserRouter>
+    <LanguageProvider>
+      <BrowserRouter>
+        <AnimatedRoutes />
+      </BrowserRouter>
+    </LanguageProvider>
   </StrictMode>
 );

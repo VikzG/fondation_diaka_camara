@@ -6,6 +6,46 @@ import { EffectCoverflow } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import { useTranslation } from "../../../../lib/i18n";
+
+const content = {
+  fr: {
+    heading: "NOS VALEURS",
+    intro: (
+      <>
+        Chaque projet est conçu pour créer un impact{" "}
+        <span className="font-bold text-[#0a4ba5]">
+          mesurable, transparent et durable
+        </span>
+        .
+      </>
+    ),
+    valeurs: [
+      { title: "Solidarité", description: "LE PROGRÈS SE CONSTRUIT ENSEMBLE" },
+      { title: "Transparence", description: "CHAQUE DON EST TRAÇABLE" },
+      { title: "Excellence", description: "DES STANDARS ÉLEVÉS DANS L'EXÉCUTION" },
+      { title: "Impact durable", description: "DES SOLUTIONS CONCRÈTES ET PÉRENNES" },
+    ],
+  },
+  en: {
+    heading: "OUR VALUES",
+    intro: (
+      <>
+        Every project is designed to create an impact that is{" "}
+        <span className="font-bold text-[#0a4ba5]">
+          measurable, transparent and lasting
+        </span>
+        .
+      </>
+    ),
+    valeurs: [
+      { title: "Solidarity", description: "PROGRESS IS BUILT TOGETHER" },
+      { title: "Transparency", description: "EVERY DONATION IS TRACEABLE" },
+      { title: "Excellence", description: "HIGH STANDARDS IN EVERYTHING WE DO" },
+      { title: "Lasting impact", description: "CONCRETE, SUSTAINABLE SOLUTIONS" },
+    ],
+  },
+};
 
 
 
@@ -18,28 +58,11 @@ export const ValeursSubsection = (): JSX.Element => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const valeurs = [
-    {
-      title: "Solidarité",
-      description: "LE PROGRÈS SE CONSTRUIT ENSEMBLE",
-      src: "/valeurs_section/valeur_img_1.webp",
-    },
-    {
-      title: "Transparence",
-      description: "CHAQUE DON EST TRAÇABLE",
-      src: "/valeurs_section/valeur_img_2.webp",
-    },
-    {
-      title: "Excellence",
-      description: "DES STANDARS ÉLEVÉS DANS L'EXÉCUTION",
-      src: "/valeurs_section/valeur_img_3.webp",
-    },
-    {
-      title: "Impact durable",
-      description: "DES SOLUTIONS CONCRÈTES ET PÉRENNES",
-      src: "/valeurs_section/valeur_img_4.webp",
-    },
-  ];
+  const t = useTranslation(content);
+  const valeurs = t.valeurs.map((valeur, index) => ({
+    ...valeur,
+    src: `/valeurs_section/valeur_img_${index + 1}.webp`,
+  }));
 
   // Variants pour desktop
   const containerVariants = {
@@ -62,14 +85,10 @@ export const ValeursSubsection = (): JSX.Element => {
       <section className="flex flex-col w-full items-center gap-10 py-[50px] bg-blanc">
         <div className="flex flex-col justify-center items-center gap-6 px-6 w-full">
           <h2 className="text-colbat font-[beautique-display-bold] text-4xl text-center">
-            NOS VALEURS
+            {t.heading}
           </h2>
           <p className="font-corps text-licorice text-base text-center leading-[26px]">
-            Chaque projet est conçu pour créer un impact{" "}
-            <span className="font-bold text-[#0a4ba5]">
-              mesurable, transparent et durable
-            </span>
-            .
+            {t.intro}
           </p>
         </div>
 
@@ -124,14 +143,10 @@ export const ValeursSubsection = (): JSX.Element => {
     <section className="flex flex-col w-full items-center gap-20 py-[70px] bg-blanc">
       <div className="flex flex-col justify-center items-center gap-10 px-60 w-full">
         <h2 className="text-colbat font-[beautique-display-bold] text-5xl text-center">
-          NOS VALEURS
+          {t.heading}
         </h2>
         <p className="font-corps text-licorice text-base text-center tracking-[0.5px] leading-[28px]">
-          Chaque projet est conçu pour créer un impact{" "}
-          <span className="font-bold text-[#0a4ba5]">
-            mesurable, transparent et durable
-          </span>
-          .
+          {t.intro}
         </p>
       </div>
 

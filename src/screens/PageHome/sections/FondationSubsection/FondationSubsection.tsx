@@ -1,3 +1,40 @@
+import { useTranslation } from "../../../../lib/i18n";
+
+const content = {
+  fr: {
+    heading: "LA FONDATION",
+    intro: (
+      <>
+        La Fondation Diaka Camara est née d&apos;une conviction :<br />
+        <span className="font-bold">
+          L&apos;éducation est le levier essentiel d&apos;un changement durable.
+        </span>
+        <br />
+        Nous rassemblons partenaires, mécènes et citoyens engagés pour agir
+        sur trois piliers :
+      </>
+    ),
+    pillars: ["ÉDUCATION & AUTONOMISATION", "ACCÈS À LA CULTURE", "PROTECTION & ÉGALITÉ"],
+    vision: "Une vision claire, un impact concret.",
+  },
+  en: {
+    heading: "THE FOUNDATION",
+    intro: (
+      <>
+        The Diaka Camara Foundation was born from one conviction:<br />
+        <span className="font-bold">
+          Education is the key lever for lasting change.
+        </span>
+        <br />
+        We bring together partners, patrons and committed citizens to act
+        on three pillars:
+      </>
+    ),
+    pillars: ["EDUCATION & EMPOWERMENT", "ACCESS TO CULTURE", "PROTECTION & EQUALITY"],
+    vision: "A clear vision, a tangible impact.",
+  },
+};
+
 const pillarsData = [
   {
     title: "ÉDUCATION & AUTONOMISATION",
@@ -20,6 +57,9 @@ const pillarsData = [
 ];
 
 export const FondationSubsection = (): JSX.Element => {
+  const t = useTranslation(content);
+  const pillars = pillarsData.map((pillar, index) => ({ ...pillar, title: t.pillars[index] }));
+
   return (
     <section
       id="fondation_home"
@@ -45,7 +85,7 @@ export const FondationSubsection = (): JSX.Element => {
             src="/orange_arrows/arrow_orange_left.svg"
           />
           <h2 className="font-[beautique-display-bold] text-5xl text-licorice text-center whitespace-nowrap">
-            LA FONDATION
+            {t.heading}
           </h2>
           <img loading="lazy" decoding="async"
             className="w-[25px] h-[47px]"
@@ -57,7 +97,7 @@ export const FondationSubsection = (): JSX.Element => {
         {/* ✅ Mobile version */}
         <div className="flex flex-col items-center gap-4 min-[1200px]:hidden">
           <h2 className="font-[beautique-display-bold] text-3xl text-licorice text-center">
-            LA FONDATION
+            {t.heading}
           </h2>
           <img loading="lazy" decoding="async"
             className="w-[35px] h-[35px]"
@@ -69,20 +109,14 @@ export const FondationSubsection = (): JSX.Element => {
         {/* Texte intro */}
         <div className="flex flex-col items-center justify-center gap-6 px-[60px] w-full max-[1200px]:px-[30px]">
           <p className="text-licorice font-corps text-center text-base leading-relaxed max-[1200px]:text-sm">
-            La Fondation Diaka Camara est née d&apos;une conviction :<br />
-            <span className="font-bold">
-              L&apos;éducation est le levier essentiel d&apos;un changement durable.
-            </span>
-            <br />
-            Nous rassemblons partenaires, mécènes et citoyens engagés pour agir
-            sur trois piliers :
+            {t.intro}
           </p>
         </div>
 
         {/* Pillars */}
         {/* Desktop: en ligne - Mobile: premier seul + les 2 autres côte à côte */}
         <div className="hidden min-[1200px]:flex w-full justify-around items-center gap-10">
-          {pillarsData.map((pillar, index) => (
+          {pillars.map((pillar, index) => (
             <div
               key={index}
               className="flex flex-col items-center justify-center gap-5 flex-1"
@@ -109,19 +143,19 @@ export const FondationSubsection = (): JSX.Element => {
           <div className="flex flex-col items-center justify-center gap-5">
             <img loading="lazy" decoding="async"
               className="w-[80px] h-[80px]"
-              alt={pillarsData[0].iconAlt}
-              src={pillarsData[0].iconSrc}
+              alt={pillars[0].iconAlt}
+              src={pillars[0].iconSrc}
             />
             <div
-              className={`${pillarsData[0].color} font-legendes-bold text-base text-center`}
+              className={`${pillars[0].color} font-legendes-bold text-base text-center`}
             >
-              {pillarsData[0].title}
+              {pillars[0].title}
             </div>
           </div>
 
           {/* Deuxième + troisième sur la même ligne */}
           <div className="flex justify-center items-start gap-10">
-            {pillarsData.slice(1).map((pillar, index) => (
+            {pillars.slice(1).map((pillar, index) => (
               <div
                 key={index}
                 className="flex flex-col items-center justify-center gap-5 w-1/2"
@@ -153,7 +187,7 @@ export const FondationSubsection = (): JSX.Element => {
         "
       >
         <div className="font-[beautique-display] text-vanilla text-4xl text-center max-[1200px]:text-2xl">
-          Une vision claire, un impact concret.
+          {t.vision}
         </div>
       </div>
     </section>

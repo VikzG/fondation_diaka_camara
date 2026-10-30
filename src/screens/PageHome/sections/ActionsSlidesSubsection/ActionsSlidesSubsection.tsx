@@ -4,6 +4,72 @@ import { Card, CardContent } from "../../../../components/ui/card";
 import { AnimatedCircles } from "../../../../components/AnimatedCircles";
 import { CrossfadeStack } from "../../../../components/CrossfadeStack";
 import { Link } from "react-router-dom";
+import { useTranslation } from "../../../../lib/i18n";
+
+const content = {
+  fr: {
+    heading: "NOS ACTIONS",
+    report: <>Télécharger le rapport d&apos;activité 2024</>,
+    reportShort: <>Télécharger le rapport<br/>d&apos;activité 2024</>,
+    donate: "Faire un don à la Fondation",
+    flagship: "NOS PROJETS PHARES 2024",
+    slides: [] as { title: string; subtitle: string; description: string }[], // textes déjà dans `slides`
+  },
+  en: {
+    heading: "OUR ACTIONS",
+    report: <>Download the 2024 activity report</>,
+    reportShort: <>Download the 2024<br/>activity report</>,
+    donate: "Donate to the Foundation",
+    flagship: "OUR FLAGSHIP PROJECTS 2024",
+    slides: [
+      {
+        title: "#Scolarisons100filles",
+        subtitle: "45 girls already supported in 2024",
+        description:
+          "This year, we put 45 girls from disadvantaged backgrounds through school by awarding them the Zenab Soumah Scholarship.",
+      },
+      {
+        title: "One School, One Library",
+        subtitle:
+          "Renovation of the Château d'Eau school library, benefiting 1,200 pupils",
+        description:
+          "The project aims to set up modern libraries in public schools across the five municipalities of Conakry.",
+      },
+      {
+        title: "#BrisonsleSilence",
+        subtitle:
+          "450,000 people made aware of GBV (Gender-Based Violence)",
+        description:
+          "Let's break the silence for women who are victims of violence. Their voices matter, their safety matters. By speaking up, listening and acting, we can put an end to these injustices.",
+      },
+      {
+        title: "Cultural Partnerships",
+        subtitle: "72 Heures du Livre, Plumes Fines competition, FestiKids",
+        description:
+          "A short three-line summary to be written here to give readers and potential donors more detail about the purpose of the action presented on this slide.",
+      },
+      {
+        title: "Solidarity Actions",
+        subtitle:
+          "Surgery for 4 children, donations to orphans, support for 14 more children through partnerships",
+        description:
+          "A short three-line summary to be written here to give readers and potential donors more detail about the purpose of the action presented on this slide.",
+      },
+      {
+        title: "Public Health",
+        subtitle: "Forum Rose on breast cancer",
+        description:
+          "The Diaka Camara Foundation was a partner of the Forum Rose, an outstanding event organised by Women's Meeting Day to raise awareness of breast cancer.",
+      },
+      {
+        title: "Inclusion",
+        subtitle: "Production of a documentary on autism",
+        description:
+          "\u201cVoix au-delà du Spectre – L'Afrique en Voix\u201d, the first documentary to explore autism in Africa, showing that far from being a barrier, autism offers a unique perception.",
+      },
+    ],
+  },
+};
 
 const slides = [
   {
@@ -77,7 +143,8 @@ export const ActionsSlidesSubsection = (): JSX.Element => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const slide = slides[currentSlide];
+  const t = useTranslation(content);
+  const translatedSlides = slides.map((s, index) => ({ ...s, ...t.slides[index] }));
 
   // === VERSION MOBILE ===
   if (isMobile) {
@@ -85,7 +152,7 @@ export const ActionsSlidesSubsection = (): JSX.Element => {
       <section className="w-full bg-antiflash px-6 py-10 flex flex-col items-center text-center gap-8">
         {/* Titre */}
         <h2 className="text-colbat font-[beautique-display-bold] text-3xl">
-          NOS ACTIONS
+          {t.heading}
         </h2>
 
 {/* Cercle image (mobile) */}
@@ -111,7 +178,7 @@ export const ActionsSlidesSubsection = (): JSX.Element => {
 
         {/* Texte animé */}
         <CrossfadeStack
-          items={slides}
+          items={translatedSlides}
           current={currentSlide}
           render={(s) => (
             <div className="flex flex-col gap-3">
@@ -127,7 +194,7 @@ export const ActionsSlidesSubsection = (): JSX.Element => {
 
         {/* Description */}
         <CrossfadeStack
-          items={slides}
+          items={translatedSlides}
           current={currentSlide}
           render={(s) => (
             <p className="font-corps text-sm text-licorice leading-6 px-4">
@@ -140,7 +207,7 @@ export const ActionsSlidesSubsection = (): JSX.Element => {
         <div className="flex flex-col items-center gap-4 w-full max-w-[320px]">
           {/* 🔵 Bouton bleu rapport */}
           <Button className="w-full bg-colbat text-antiflash font-extrabold text-base px-6 py-2 rounded-lg shadow h-auto hover:underline hover:-translate-y-1 transition-all duration-300 ease-in-out">
-            Télécharger le rapport<br/>d&apos;activité 2024
+            {t.reportShort}
           </Button>
 
           {/* 🟠 Bouton Don */}
@@ -158,7 +225,7 @@ export const ActionsSlidesSubsection = (): JSX.Element => {
                   src="/nav_icons/nav_don_icon_2.svg"
                 />
                 <div className="flex-1 font-extrabold text-base text-colbat text-center">
-                  Faire un don à la Fondation
+                  {t.donate}
                 </div>
               </CardContent>
             </Card>
@@ -177,12 +244,12 @@ export const ActionsSlidesSubsection = (): JSX.Element => {
         <div className="flex-1 min-w-0 flex flex-col justify-between h-[709px] px-10">
           <div className="flex flex-col gap-5">
             <h2 className="text-colbat font-[beautique-display-bold] text-5xl">
-              NOS ACTIONS
+              {t.heading}
             </h2>
           </div>
 
           <CrossfadeStack
-            items={slides}
+            items={translatedSlides}
             current={currentSlide}
             render={(s) => (
               <div className="flex flex-col gap-5">
@@ -198,7 +265,7 @@ export const ActionsSlidesSubsection = (): JSX.Element => {
 
           <div className="flex flex-col gap-10">
             <CrossfadeStack
-              items={slides}
+              items={translatedSlides}
               current={currentSlide}
               render={(s) => (
                 <p className="font-corps text-licorice">{s.description}</p>
@@ -218,7 +285,7 @@ export const ActionsSlidesSubsection = (): JSX.Element => {
                     src="/nav_icons/nav_don_icon_2.svg"
                   />
                   <div className="flex-1 font-extrabold text-lg text-colbat text-center">
-                    Faire un don à la Fondation
+                    {t.donate}
                   </div>
                 </CardContent>
               </Card>
@@ -245,10 +312,10 @@ export const ActionsSlidesSubsection = (): JSX.Element => {
 
           <div className="flex flex-col items-center gap-[30px] w-full">
             <div className="font-legendes-categories text-colbat">
-              NOS PROJETS PHARES 2024
+              {t.flagship}
             </div>
             <Button className="bg-colbat text-antiflash font-extrabold text-lg px-8 py-2 rounded-lg shadow h-auto hover:underline hover:-translate-y-1 transition-all duration-300 ease-in-out">
-              Télécharger le rapport d&apos;activité 2024
+              {t.report}
             </Button>
           </div>
         </div>

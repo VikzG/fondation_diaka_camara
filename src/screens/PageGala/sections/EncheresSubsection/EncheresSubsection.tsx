@@ -3,8 +3,91 @@ import { motion, AnimatePresence, useInView } from "framer-motion";
 import { Card, CardContent } from "../../../../components/ui/card";
 import { Button } from "../../../../components/ui/button";
 import { usePreloadImages } from "../../../../lib/usePreloadImages";
+import { useTranslation } from "../../../../lib/i18n";
+
+const content = {
+  fr: {
+    start: "DÉBUT",
+    end: "FIN",
+    f1: "• Catalogue en ligne avec photos, description et prix de départ",
+    f2: "• Enchères ouvertes 1 semaine avant le Gala et clôture le soir de l'événement",
+    f3: "• Participation possible sur place ou à distance",
+    d1: "Cette œuvre de Mali Watta rend hommage à toutes les filles dont l’avenir peut basculer grâce à l’éducation, symbolisée par la figure bleue portant dignement son histoire et les six livres représentant apprentissage, curiosité, créativité et liberté. Le septième livre, ouvert entre ses mains, incarne le pouvoir de choisir, de se protéger et de se projeter, tandis que les couleurs profondes traduisent à la fois la mémoire, la sensibilité et les défis auxquels elles font face, affirmant que l’éducation est le plus puissant outil de transformation.",
+    d2: "Chef-d’œuvre M’Blo Baoulé du Goli de Béoumi, véritable emblème de la grâce et de l’esthétique baoulé. Issue de la prestigieuse collection Stanzi, l’un des plus grands collectionneurs de Côte d’Ivoire, puis du cabinet Glory Art First de Serge, figure incontournable du marché de l’art international, la pièce est accompagnée d’un certificat d’authenticité signé par le Directeur du Musée des Civilisations de Côte d’Ivoire. L’an dernier, un masque comparable provenant du même collectionneur s’est envolé à plus de 90 millions de FCFA lors d’une vente caritative d’exception.",
+    d3: "Au design industriel et artistique, avec assise arquée en plaques colorées issues de matériaux recyclés, reposant sur une structure métallique robuste.Polyvalent, il peut servir de siège, de repose-pieds ou d’objet décoratif au charme unique.",
+    sold1: "- VENDUE -",
+    sold2: "- VENDUE - ",
+    sold3: "- VENDUE -  ",
+    titleMobile: (
+      <>
+        VENTE AUX
+        <br />
+        ENCHÈRES
+      </>
+    ),
+    title: "VENTE AUX ENCHÈRES",
+    intro: "Participez à nos enchères caritatives pour acquérir des pièces uniques et soutenir nos actions",
+    introDesktop: (
+      <>
+        Participez à nos enchères caritatives pour acquérir
+        <br />
+        des pièces uniques et soutenir nos actions
+      </>
+    ),
+    confidential: "Le prix des oeuvres est confidentiel.",
+    catalogueMobile: (
+      <>
+        LE LIEN DU CATALOGUE
+        <br />
+        S&apos;AFFICHERA ICI
+      </>
+    ),
+    catalogue: <>LE LIEN DU CATALOGUE S&apos;AFFICHERA ICI</>,
+    soon: "Bientôt disponible",
+  },
+  en: {
+    start: "START",
+    end: "END",
+    f1: "• Online catalogue with photos, descriptions and starting prices",
+    f2: "• Bidding opens 1 week before the Gala and closes on the evening of the event",
+    f3: "• Take part on site or remotely",
+    d1: "This work by Mali Watta pays tribute to all the girls whose future can be transformed by education, symbolised by the blue figure proudly carrying her story and the six books representing learning, curiosity, creativity and freedom. The seventh book, open in her hands, embodies the power to choose, to protect oneself and to look ahead, while the deep colours express memory, sensitivity and the challenges they face, affirming that education is the most powerful tool for transformation.",
+    d2: "A M’Blo Baoulé masterpiece from the Goli of Béoumi, a true emblem of Baoulé grace and aesthetics. From the prestigious Stanzi collection, one of the greatest collectors in Côte d’Ivoire, and then from Serge’s Glory Art First gallery, a leading figure of the international art market, the piece comes with a certificate of authenticity signed by the Director of the Museum of Civilisations of Côte d’Ivoire. Last year, a comparable mask from the same collector sold for more than 90 million FCFA at an exceptional charity sale.",
+    d3: "With an industrial and artistic design, its arched seat made of coloured panels from recycled materials rests on a sturdy metal frame. Versatile, it can be used as a seat, a footrest or a decorative object with unique charm.",
+    sold1: "- SOLD -",
+    sold2: "- SOLD - ",
+    sold3: "- SOLD -  ",
+    titleMobile: (
+      <>
+        CHARITY
+        <br />
+        AUCTION
+      </>
+    ),
+    title: "CHARITY AUCTION",
+    intro: "Take part in our charity auctions to acquire unique pieces and support our work",
+    introDesktop: (
+      <>
+        Take part in our charity auctions to acquire
+        <br />
+        unique pieces and support our work
+      </>
+    ),
+    confidential: "The price of the works is confidential.",
+    catalogueMobile: (
+      <>
+        THE CATALOGUE LINK
+        <br />
+        WILL APPEAR HERE
+      </>
+    ),
+    catalogue: "THE CATALOGUE LINK WILL APPEAR HERE",
+    soon: "Coming soon",
+  },
+};
 
 export const EncheresSubsection = (): JSX.Element => {
+  const t = useTranslation(content);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1200);
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 1200);
@@ -12,34 +95,34 @@ export const EncheresSubsection = (): JSX.Element => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
   const auctionDetails = [
-    { label: "DÉBUT", date: "13 NOV." },
-    { label: "FIN", date: "15 NOV." },
+    { label: t.start, date: "13 NOV." },
+    { label: t.end, date: "15 NOV." },
   ];
 
   const auctionFeatures = [
-    "• Catalogue en ligne avec photos, description et prix de départ",
-    "• Enchères ouvertes 1 semaine avant le Gala et clôture le soir de l'événement",
-    "• Participation possible sur place ou à distance",
+    t.f1,
+    t.f2,
+    t.f3,
   ];
 
   const auctionStates = [
     {
       image: "/page_gala_section/mali_art.webp",
       artist: "Mali Watta",
-      description: "Cette œuvre de Mali Watta rend hommage à toutes les filles dont l’avenir peut basculer grâce à l’éducation, symbolisée par la figure bleue portant dignement son histoire et les six livres représentant apprentissage, curiosité, créativité et liberté. Le septième livre, ouvert entre ses mains, incarne le pouvoir de choisir, de se protéger et de se projeter, tandis que les couleurs profondes traduisent à la fois la mémoire, la sensibilité et les défis auxquels elles font face, affirmant que l’éducation est le plus puissant outil de transformation.",
-      statut: "- VENDUE -",
+      description: t.d1,
+      statut: t.sold1,
     },
     {
       image: "/page_gala_section/serge_art.webp",
       artist: "Ousmane Mbaye",
-      description: "Chef-d’œuvre M’Blo Baoulé du Goli de Béoumi, véritable emblème de la grâce et de l’esthétique baoulé. Issue de la prestigieuse collection Stanzi, l’un des plus grands collectionneurs de Côte d’Ivoire, puis du cabinet Glory Art First de Serge, figure incontournable du marché de l’art international, la pièce est accompagnée d’un certificat d’authenticité signé par le Directeur du Musée des Civilisations de Côte d’Ivoire. L’an dernier, un masque comparable provenant du même collectionneur s’est envolé à plus de 90 millions de FCFA lors d’une vente caritative d’exception.",
-      statut: "- VENDUE - ",
+      description: t.d2,
+      statut: t.sold2,
     },
     {
       image: "/page_gala_section/ousmane_art.webp",
       artist: "Serge Hié",
-      description: "Au design industriel et artistique, avec assise arquée en plaques colorées issues de matériaux recyclés, reposant sur une structure métallique robuste.Polyvalent, il peut servir de siège, de repose-pieds ou d’objet décoratif au charme unique.",
-      statut: "- VENDUE -  ",
+      description: t.d3,
+      statut: t.sold3,
     },
   ];
 
@@ -147,16 +230,13 @@ export const EncheresSubsection = (): JSX.Element => {
         {/* Vente aux enchères */}
         <div className="flex flex-col items-center justify-center gap-4 w-full">
           <h2 className="font-[beautique-display-bold] text-3xl text-colbat text-center">
-            VENTE AUX
-            <br />
-            ENCHÈRES
+            {t.titleMobile}
           </h2>
           <p className="text-licorice font-[beautique-display] px-4 text-3xl text-center leading-7">
-            Participez à nos enchères caritatives pour acquérir des pièces
-            uniques et soutenir nos actions
+            {t.intro}
           </p>
                   <p className="font-legendes-categories italic text-xl text-colbat text-center">
-          Le prix des oeuvres est confidentiel.
+          {t.confidential}
         </p>
         </div>
 
@@ -177,9 +257,7 @@ export const EncheresSubsection = (): JSX.Element => {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.6 }}
                 >
-                  LE LIEN DU CATALOGUE
-                  <br />
-                  S&apos;AFFICHERA ICI
+                  {t.catalogueMobile}
                 </motion.div>
               )}
             </div>
@@ -335,15 +413,13 @@ return (
       {/* Texte central */}
       <div className="flex flex-col items-center justify-center gap-5 px-60 py-0 w-full">
         <h2 className="font-[beautique-display-bold] text-5xl text-colbat text-center">
-          VENTE AUX ENCHÈRES
+          {t.title}
         </h2>
         <p className="text-licorice font-[beautique-display] text-4xl text-center">
-          Participez à nos enchères caritatives pour acquérir
-          <br />
-          des pièces uniques et soutenir nos actions
+          {t.introDesktop}
         </p>
         <p className="font-legendes-categories italic text-2xl text-colbat text-center">
-          Le prix des oeuvres est confidentiel.
+          {t.confidential}
         </p>
       </div>
 
@@ -391,7 +467,7 @@ return (
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6 }}
                 >
-                  LE LIEN DU CATALOGUE S&apos;AFFICHERA ICI
+                  {t.catalogue}
                 </motion.div>
               )}
             </AnimatePresence>
@@ -406,7 +482,7 @@ return (
                   className="w-full"
                 >
                   <Button className="bg-[#FFCD50] font-corps text-colbat w-full font-bold text-lg px-8 py-2 rounded-lg shadow h-auto hover:underline hover:-translate-y-1 transition-all duration-300 ease-in-out">
-                    Bientôt disponible
+                    {t.soon}
                   </Button>
                 </motion.div>
               )}

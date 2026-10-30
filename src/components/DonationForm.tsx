@@ -1,12 +1,37 @@
 import { useState } from "react";
+import { useTranslation } from "../lib/i18n";
 
 const SLUG = "gala-2025-817496";
+
+const content = {
+  fr: {
+    title: "Faites un don",
+    monthly: "Don mensuel",
+    oneOff: "Don unique",
+    custom: "Montant personnalisé",
+    enterAmount: "Entrez le montant",
+    payComingSoon: <>Procéder au paiement<br/>(bientôt disponible)</>,
+    secureNote:
+      "Le bouton ouvrira une nouvelle page sécurisée via Donorbox (Carte bancaire ou PayPal).",
+  },
+  en: {
+    title: "Make a donation",
+    monthly: "Monthly gift",
+    oneOff: "One-off gift",
+    custom: "Custom amount",
+    enterAmount: "Enter the amount",
+    payComingSoon: <>Proceed to payment<br/>(coming soon)</>,
+    secureNote:
+      "The button will open a new secure page via Donorbox (bank card or PayPal).",
+  },
+};
 
 export default function PageDon() {
   const [selectedAmount, setSelectedAmount] = useState<number | null>(null);
   const [customAmount, setCustomAmount] = useState<string>("");
   const [interval, setIntervalValue] = useState<"o" | "m">("o");
   const [showCustomInput, setShowCustomInput] = useState(false);
+  const t = useTranslation(content);
 
   // Déterminer le montant final
   const getFinalAmount = () => {
@@ -50,7 +75,7 @@ export default function PageDon() {
     <div className="flex items-center justify-center px-6 py-10 lg:px-24 lg:py-[100px]">
       <div className="bg-white/50 backdrop-blur-md rounded-3xl p-6 sm:p-8 lg:p-12 w-full max-w-[700px] lg:min-w-[500px] shadow-2xl">
         <h3 className="text-3xl sm:text-4xl lg:text-5xl font-[beautique-display] text-gray-800 mb-6 lg:mb-10 text-center">
-          Faites un don
+          {t.title}
         </h3>
 
         <div className="space-y-6 lg:space-y-8 mb-6 lg:mb-8 font-mona">
@@ -69,7 +94,7 @@ export default function PageDon() {
                   : "text-white hover:text-gray-200"
               }`}
             >
-              Don mensuel
+              {t.monthly}
             </button>
             <button
               onClick={() => setIntervalValue("o")}
@@ -79,7 +104,7 @@ export default function PageDon() {
                   : "text-white hover:text-gray-200"
               }`}
             >
-              Don unique
+              {t.oneOff}
             </button>
           </div>
 
@@ -110,7 +135,7 @@ export default function PageDon() {
                   : "bg-antiflash text-colbat hover:bg-blue-100"
               }`}
             >
-              Montant personnalisé
+              {t.custom}
             </button>
 
             {showCustomInput && (
@@ -119,7 +144,7 @@ export default function PageDon() {
                   type="number"
                   value={customAmount}
                   onChange={(e) => setCustomAmount(e.target.value)}
-                  placeholder="Entrez le montant"
+                  placeholder={t.enterAmount}
                   className="flex-1 text-base sm:text-xl lg:text-2xl py-2 lg:py-3 px-3 rounded-2xl border-2 border-colbat bg-white focus:outline-none focus:ring-2 focus:ring-colbat focus:border-transparent"
                   min="1"
                   step="0.01"
@@ -144,12 +169,11 @@ export default function PageDon() {
           disabled
           className="text-base sm:text-xl lg:text-2xl w-full bg-gray-400 text-white font-semibold py-2 lg:py-3 px-3 rounded-2xl mt-2 cursor-not-allowed"
         >
-          Procéder au paiement<br/>(bientôt disponible)
+          {t.payComingSoon}
         </button>
 
         <p className="mt-3 text-xs sm:text-sm lg:text-base text-gray-600 text-center">
-          Le bouton ouvrira une nouvelle page sécurisée via Donorbox (Carte
-          bancaire ou PayPal).
+          {t.secureNote}
         </p>
       </div>
     </div>

@@ -7,6 +7,48 @@ import { useLocation } from "react-router-dom";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import emailjs from "emailjs-com";
+import { useTranslation } from "../../../../lib/i18n";
+
+const content = {
+  fr: {
+    contactUs: "CONTACTEZ-NOUS",
+    joinCircle: "REJOINDRE LE CERCLE",
+    circleText:
+      "Le Cercle des Alliances est un lieu de partage, de collaboration et de solidarité. Ensemble, nous pouvons créer des passerelles entre nos causes et bâtir un avenir plus équitable pour les enfants et les femmes d’Afrique.",
+    fullName: "Nom complet*",
+    organization: "Organisation",
+    email: "Adresse Email*",
+    phone: "N° de téléphone",
+    message: "Votre message*",
+    send: "Envoyer",
+    file: "Fichier :",
+    attachment: "* Pièce jointe facultative (Proposition ou Plaquette)",
+    attachmentShort: "* Pièce jointe facultative",
+    sent: "Votre message a bien été envoyé !",
+    fileTooBig: "⚠️ Le fichier est trop lourd (max 5 Mo).",
+    uploadFailed: "❌ Échec de l’upload du fichier.",
+    sendFailed: "❌ Une erreur est survenue. Merci de réessayer.",
+  },
+  en: {
+    contactUs: "CONTACT US",
+    joinCircle: "JOIN THE CIRCLE",
+    circleText:
+      "The Circle of Alliances is a place for sharing, collaboration and solidarity. Together, we can build bridges between our causes and create a fairer future for the children and women of Africa.",
+    fullName: "Full name*",
+    organization: "Organisation",
+    email: "Email address*",
+    phone: "Phone number",
+    message: "Your message*",
+    send: "Send",
+    file: "File:",
+    attachment: "* Optional attachment (Proposal or Brochure)",
+    attachmentShort: "* Optional attachment",
+    sent: "Your message has been sent!",
+    fileTooBig: "⚠️ The file is too large (max 5 MB).",
+    uploadFailed: "❌ The file upload failed.",
+    sendFailed: "❌ Something went wrong. Please try again.",
+  },
+};
 
 export const ContactSubsection = (): JSX.Element => {
   const [phone, setPhone] = useState("");
@@ -17,6 +59,7 @@ export const ContactSubsection = (): JSX.Element => {
   const [showConfirmation, setShowConfirmation] = useState(false);
 
   const location = useLocation();
+  const t = useTranslation(content);
   const isCerclePage = location.pathname === "/cercle";
   const fileInputRef = useRef<HTMLInputElement>(null);
   const fileInputMobileRef = useRef<HTMLInputElement>(null);
@@ -45,7 +88,7 @@ export const ContactSubsection = (): JSX.Element => {
 
     if (selectedFile) {
       if (selectedFile.size > 5 * 1024 * 1024) {
-        alert("⚠️ Le fichier est trop lourd (max 5Mo).");
+        alert(t.fileTooBig);
         setIsSending(false);
         return;
       }
@@ -68,7 +111,7 @@ export const ContactSubsection = (): JSX.Element => {
         fileUrl = data.secure_url;
       } catch (err) {
         console.error("Erreur Cloudinary :", err);
-        alert("❌ Échec de l’upload du fichier.");
+        alert(t.uploadFailed);
         setIsSending(false);
         return;
       }
@@ -102,7 +145,7 @@ export const ContactSubsection = (): JSX.Element => {
       setTimeout(() => setShowConfirmation(false), 4000);
     } catch (error) {
       console.error("Erreur EmailJS :", error);
-      alert("❌ Une erreur est survenue. Merci de réessayer.");
+      alert(t.sendFailed);
     } finally {
       setIsSending(false);
     }
@@ -111,14 +154,14 @@ export const ContactSubsection = (): JSX.Element => {
   const formFields = [
     {
       id: "fullName",
-      label: "Nom complet*",
+      label: t.fullName,
       type: "input",
       required: true,
       className: "flex-1",
     },
     {
       id: "organization",
-      label: "Organisation",
+      label: t.organization,
       type: "input",
       required: false,
       className: "flex-1",
@@ -126,11 +169,11 @@ export const ContactSubsection = (): JSX.Element => {
   ];
 
   const singleFields = [
-    { id: "email", label: "Adresse Email*", type: "input", required: true },
-    { id: "phone", label: "N° de téléphone", type: "input", required: false },
+    { id: "email", label: t.email, type: "input", required: true },
+    { id: "phone", label: t.phone, type: "input", required: false },
     {
       id: "message",
-      label: "Votre message*",
+      label: t.message,
       type: "textarea",
       required: true,
     },
@@ -148,14 +191,11 @@ export const ContactSubsection = (): JSX.Element => {
         }`}
       >
         <h2 className="relative w-fit font-[beautique-display-bold] text-5xl text-licorice">
-          {isCerclePage ? "REJOINDRE LE CERCLE" : "CONTACTEZ-NOUS"}
+          {isCerclePage ? t.joinCircle : t.contactUs}
         </h2>
         {isCerclePage ? (
           <p className="font-corps text-licorice text-lg text-justify leading-relaxed max-w-md">
-            Le Cercle des Alliances est un lieu de partage, de collaboration et
-            de solidarité. Ensemble, nous pouvons créer des passerelles entre
-            nos causes et bâtir un avenir plus équitable pour les enfants et les
-            femmes d’Afrique.
+            {t.circleText}
           </p>
         ) : (
           <img loading="lazy" decoding="async"
@@ -235,7 +275,7 @@ export const ContactSubsection = (): JSX.Element => {
               className="h-auto flex items-center justify-center gap-2.5 flex-1 grow bg-pumpkin rounded-[10px] hover:underline hover:-translate-y-1 transition-all duration-300 border-0 shadow-sm"
             >
               <span className="relative w-fit font-extrabold text-vanilla text-lg text-center leading-[30px] whitespace-nowrap">
-                Envoyer
+                {t.send}
               </span>
             </Button>
           </div>
@@ -250,7 +290,7 @@ export const ContactSubsection = (): JSX.Element => {
                 if (e.target.files && e.target.files[0]) {
                   const selectedFile = e.target.files[0];
                   if (selectedFile.size > 5 * 1024 * 1024) {
-                    alert("⚠️ Le fichier est trop lourd (max 5 Mo).");
+                    alert(t.fileTooBig);
                     return;
                   }
                   setFile(selectedFile);
@@ -263,8 +303,8 @@ export const ContactSubsection = (): JSX.Element => {
               className="relative w-fit font-corps font-medium text-licorice text-md hover:underline"
             >
               {file
-                ? `Fichier : ${file.name}`
-                : "* Pièce jointe facultative (Proposition ou Plaquette)"}
+                ? `${t.file} ${file.name}`
+                : t.attachment}
             </button>
           </div>
         </form>
@@ -280,7 +320,7 @@ export const ContactSubsection = (): JSX.Element => {
     >
       <div className="flex flex-col items-center gap-4 w-full">
         <h2 className="font-[beautique-display-bold] text-3xl text-licorice text-center">
-          {isCerclePage ? "REJOINDRE LE CERCLE" : "CONTACTEZ-NOUS"}
+          {isCerclePage ? t.joinCircle : t.contactUs}
         </h2>
       </div>
 
@@ -293,7 +333,7 @@ export const ContactSubsection = (): JSX.Element => {
             <div className="flex-1">
               <Input
                 name="organization"
-                placeholder="Organisation"
+                placeholder={t.organization}
                 className="bg-[#ffffffcc] shadow-sm !rounded-lg !border-none placeholder:text-sm placeholder:text-licorice"
               />
             </div>
@@ -301,7 +341,7 @@ export const ContactSubsection = (): JSX.Element => {
               <Input
                 name="fullName"
                 required
-                placeholder="Nom complet*"
+                placeholder={t.fullName}
                 className="bg-[#ffffffcc] shadow-sm  !rounded-lg !border-none placeholder:text-sm placeholder:text-licorice"
               />
             </div>
@@ -346,7 +386,7 @@ export const ContactSubsection = (): JSX.Element => {
             type="submit"
             className="mt-2 w-full py-3 bg-pumpkin rounded-lg text-vanilla font-extrabold text-lg hover:underline hover:-translate-y-1 transition-all shadow-sm"
           >
-            Envoyer
+            {t.send}
           </Button>
 
           {/* Pièce jointe mobile */}
@@ -359,7 +399,7 @@ export const ContactSubsection = (): JSX.Element => {
                 if (e.target.files && e.target.files[0]) {
                   const selectedFile = e.target.files[0];
                   if (selectedFile.size > 5 * 1024 * 1024) {
-                    alert("⚠️ Le fichier est trop lourd (max 5 Mo).");
+                    alert(t.fileTooBig);
                     return;
                   }
                   setFileMobile(selectedFile);
@@ -372,8 +412,8 @@ export const ContactSubsection = (): JSX.Element => {
               className="relative w-fit font-corps text-licorice text-sm hover:underline"
             >
               {fileMobile
-                ? `Fichier : ${fileMobile.name}`
-                : "* Pièce jointe facultative"}
+                ? `${t.file} ${fileMobile.name}`
+                : t.attachmentShort}
             </button>
           </div>
         </form>
@@ -395,7 +435,7 @@ export const ContactSubsection = (): JSX.Element => {
       {/* Confirmation */}
       {showConfirmation && (
         <div className="fixed text-center top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-pumpkin text-vanilla px-6 py-3 rounded-lg shadow-lg z-50 font-bold">
-          Votre message a bien été envoyé !
+          {t.sent}
         </div>
       )}
     </>

@@ -1,8 +1,39 @@
 import { Button } from "../../../../components/ui/button";
 import { HashLink } from "react-router-hash-link";
 import { useState, useEffect } from "react";
+import { useTranslation } from "../../../../lib/i18n";
+
+const content = {
+  fr: {
+    taglineMobile: <>Trois jours pour inspirer, unir et transformer l&apos;engagement en action</>,
+    tagline: (
+      <>
+        Trois jours pour inspirer, unir
+        <br />
+        et transformer l&apos;engagement en action
+      </>
+    ),
+    tickets: "Acheter vos places",
+    auction: "Participer aux enchères",
+    partner: "Devenir partenaire",
+  },
+  en: {
+    taglineMobile: "Three days to inspire, unite and turn commitment into action",
+    tagline: (
+      <>
+        Three days to inspire, unite
+        <br />
+        and turn commitment into action
+      </>
+    ),
+    tickets: "Buy your tickets",
+    auction: "Join the auction",
+    partner: "Become a partner",
+  },
+};
 
 export const HeroSubsection = (): JSX.Element => {
+  const t = useTranslation(content);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1200);
 
   useEffect(() => {
@@ -21,8 +52,7 @@ export const HeroSubsection = (): JSX.Element => {
             GALA 2025
           </h1>
           <p className="font-[beautique-display] font-medium italic text-vanilla text-3xl">
-            Trois jours pour inspirer, unir et transformer l&apos;engagement en
-            action
+            {t.taglineMobile}
           </p>
         </div>
 
@@ -31,7 +61,7 @@ export const HeroSubsection = (): JSX.Element => {
           <HashLink smooth to="#billeterie_gala" className="w-full max-w-md">
             <Button className="group relative flex items-center bg-vanilla justify-between w-full rounded-[500px] shadow-[0px_1px_2px_#00000040] h-auto py-2 overflow-hidden transition-all duration-500 hover:bg-carmin">
               <span className="flex-1 text-center [font-family:'Mona_Sans',Helvetica] font-extrabold text-lg tracking-[0] leading-[35px] text-carmin group-hover:text-antiflash">
-                Acheter vos places
+                {t.tickets}
               </span>
               <div className="border-2 border-vanilla group-hover:border-transparent absolute right-[calc(100%-50px)] group-hover:right-[10px] top-1/2 -translate-y-1/2 w-[50px] h-[50px] flex items-center justify-center rounded-full transition-all duration-500 ease-in-out bg-carmin">
                 <img
@@ -46,7 +76,7 @@ export const HeroSubsection = (): JSX.Element => {
           <HashLink smooth to="#encheres_gala" className="w-full max-w-md">
             <Button className="group relative flex items-center bg-antiflash justify-between w-full rounded-[500px] shadow-[0px_1px_2px_#00000040] h-auto py-2 overflow-hidden transition-all duration-500 hover:bg-[#0A4BA5]">
               <span className="flex-1 text-center [font-family:'Mona_Sans',Helvetica] font-extrabold text-lg tracking-[0] leading-[35px] text-[#0A4BA5] group-hover:text-antiflash">
-                Participer aux enchères
+                {t.auction}
               </span>
               <div className="border-2 border-vanilla group-hover:border-transparent absolute right-[calc(100%-50px)] group-hover:right-[10px] top-1/2 -translate-y-1/2 w-[50px] h-[50px] flex items-center justify-center rounded-full transition-all duration-500 ease-in-out bg-[#0A4BA5]">
                 <img
@@ -61,7 +91,7 @@ export const HeroSubsection = (): JSX.Element => {
           <HashLink smooth to="#cercle_gala" className="w-full max-w-md">
             <Button className="group relative flex items-center bg-vanilla justify-between w-full rounded-[500px] shadow-[0px_1px_2px_#00000040] h-auto py-2 overflow-hidden transition-all duration-500 hover:bg-pumpkin">
               <span className="flex-1 text-center [font-family:'Mona_Sans',Helvetica] font-extrabold text-lg tracking-[0] leading-[35px] text-pumpkin group-hover:text-vanilla">
-                Devenir partenaire
+                {t.partner}
               </span>
               <div className="border-2 border-vanilla group-hover:border-transparent absolute right-[calc(100%-50px)] group-hover:right-[10px] top-1/2 -translate-y-1/2 w-[50px] h-[50px] flex items-center justify-center rounded-full transition-all duration-500 ease-in-out bg-pumpkin">
                 <img
@@ -89,9 +119,7 @@ export const HeroSubsection = (): JSX.Element => {
             2025
           </h1>
           <p className="w-full font-[beautique-display] font-medium italic text-vanilla text-[32px] text-right">
-            Trois jours pour inspirer, unir
-            <br />
-            et transformer l&apos;engagement en action
+            {t.tagline}
           </p>
         </div>
       </div>
@@ -101,7 +129,7 @@ export const HeroSubsection = (): JSX.Element => {
         <HashLink smooth to="#billeterie_gala" className="w-full">
           <Button className="group relative flex items-center bg-vanilla justify-between w-full rounded-[500px] shadow-[0px_1px_2px_#00000040] h-auto py-2 overflow-hidden transition-all duration-500 hover:bg-carmin">
             <span className="flex-1 text-center [font-family:'Mona_Sans',Helvetica] font-extrabold text-lg tracking-[0] leading-[35px] text-carmin group-hover:text-antiflash">
-              Acheter vos places
+              {t.tickets}
             </span>
             <div className="border-2 border-vanilla group-hover:border-transparent absolute right-[calc(100%-50px)] group-hover:right-[10px] top-1/2 -translate-y-1/2 w-[50px] h-[50px] flex items-center justify-center rounded-full transition-all duration-500 ease-in-out bg-carmin">
               <img
@@ -115,7 +143,7 @@ export const HeroSubsection = (): JSX.Element => {
         <HashLink smooth to="#encheres_gala" className="w-full">
           <Button className="group relative flex items-center bg-antiflash justify-between w-full rounded-[500px] shadow-[0px_1px_2px_#00000040] h-auto py-2 overflow-hidden transition-all duration-500 hover:bg-[#0A4BA5]">
             <span className="flex-1 text-center [font-family:'Mona_Sans',Helvetica] font-extrabold text-lg tracking-[0] leading-[35px] text-[#0A4BA5] group-hover:text-antiflash">
-              Participer aux enchères
+              {t.auction}
             </span>
             <div className="border-2 border-vanilla group-hover:border-transparent absolute right-[calc(100%-50px)] group-hover:right-[10px] top-1/2 -translate-y-1/2 w-[50px] h-[50px] flex items-center justify-center rounded-full transition-all duration-500 ease-in-out bg-[#0A4BA5]">
               <img
@@ -129,7 +157,7 @@ export const HeroSubsection = (): JSX.Element => {
         <HashLink smooth to="#cercle_gala" className="w-full">
           <Button className="group relative flex items-center bg-vanilla justify-between w-full rounded-[500px] shadow-[0px_1px_2px_#00000040] h-auto py-2 overflow-hidden transition-all duration-500 hover:bg-pumpkin">
             <span className="flex-1 text-center [font-family:'Mona_Sans',Helvetica] font-extrabold text-lg tracking-[0] leading-[35px] text-pumpkin group-hover:text-vanilla">
-              Devenir partenaire
+              {t.partner}
             </span>
             <div className="border-2 border-vanilla group-hover:border-transparent absolute right-[calc(100%-50px)] group-hover:right-[10px] top-1/2 -translate-y-1/2 w-[50px] h-[50px] flex items-center justify-center rounded-full transition-all duration-500 ease-in-out bg-pumpkin">
               <img

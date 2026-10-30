@@ -2,8 +2,47 @@
 
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { useTranslation } from "../../../../lib/i18n";
+
+const content = {
+  fr: {
+    titleMobile: <>UNE CÉLÉBRATION ARTISTIQUE & CULTURELLE</>,
+    title1: "UNE",
+    title2: "CÉLÉBRATION",
+    title3: <>ARTISTIQUE &amp; CULTURELLE</>,
+    unforgettable: "Inoubliable",
+    artists: <>Les Artistes &amp; Intervenants</>,
+    text: (
+      <>
+        Le Gala 2025 ne sera pas seulement un moment de solidarité et de philanthropie, mais aussi{" "}
+        <span className="font-bold">
+        une célébration artistique et culturelle
+        </span>
+        . Des artistes de renommée internationale et des personnalités engagées offriront leurs voix et leurs talents pour amplifier notre message et créer une expérience mémorable.
+      </>
+    ),
+  },
+  en: {
+    titleMobile: <>AN ARTISTIC & CULTURAL CELEBRATION</>,
+    title1: "AN",
+    title2: <>ARTISTIC &amp; CULTURAL</>,
+    title3: "CELEBRATION",
+    unforgettable: "Unforgettable",
+    artists: <>Artists &amp; Speakers</>,
+    text: (
+      <>
+        The 2025 Gala will not only be a moment of solidarity and philanthropy, but also{" "}
+        <span className="font-bold">
+        an artistic and cultural celebration
+        </span>
+        . Internationally renowned artists and committed personalities will lend their voices and talents to amplify our message and create a memorable experience.
+      </>
+    ),
+  },
+};
 
 export const IntervenantsIntroSubsection = (): JSX.Element => {
+  const t = useTranslation(content);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -40,7 +79,7 @@ export const IntervenantsIntroSubsection = (): JSX.Element => {
           variants={fadeInUp}
           className="font-[beautique-display-bold] text-3xl sm:text-4xl text-licorice text-center"
         >
-          UNE CÉLÉBRATION ARTISTIQUE & CULTURELLE
+          {t.titleMobile}
         </motion.h1>
 
         {/* Animation "Inoubliable" */}
@@ -59,13 +98,13 @@ export const IntervenantsIntroSubsection = (): JSX.Element => {
             variants={fadeInUp}
             className="font-[beautique-display] text-vanilla text-4xl sm:text-5xl text-center"
           >
-            Inoubliable
+            {t.unforgettable}
           </motion.div>
         </motion.div>
 
         {/* Sous-titre */}
         <h2 className="font-[beautique-display] text-licorice text-2xl text-center">
-          Les Artistes &amp; Intervenants
+          {t.artists}
         </h2>
 
         {/* Arrow */}
@@ -77,14 +116,7 @@ export const IntervenantsIntroSubsection = (): JSX.Element => {
 
         {/* Paragraphe */}
         <p className="font-[Mona_Sans] text-licorice text-[16px] text-justify leading-7 px-2">
-          Le Gala 2025 ne sera pas seulement un moment de solidarité et de
-          philanthropie, mais aussi{" "}
-          <span className="font-bold">
-            une célébration artistique et culturelle
-          </span>
-          . Des artistes de renommée internationale et des personnalités
-          engagées offriront leurs voix et leurs talents pour amplifier notre
-          message et créer une expérience mémorable.
+          {t.text}
         </p>
       </section>
     );
@@ -103,7 +135,7 @@ export const IntervenantsIntroSubsection = (): JSX.Element => {
           className="font-[beautique-display-bold] text-5xl relative w-full  
           text-licorice text-center"
         >
-          UNE
+          {t.title1}
         </motion.h1>
 
         <motion.div
@@ -115,7 +147,7 @@ export const IntervenantsIntroSubsection = (): JSX.Element => {
           className="relative w-full font-[beautique-display-bold] text-5xl
           text-licorice text-center"
         >
-          CÉLÉBRATION
+          {t.title2}
         </motion.div>
 
         <motion.div
@@ -128,7 +160,7 @@ export const IntervenantsIntroSubsection = (): JSX.Element => {
           text-licorice text-center 
           font-[beautique-display-bold] text-5xl whitespace-nowrap"
         >
-          ARTISTIQUE &amp; CULTURELLE
+          {t.title3}
         </motion.div>
       </header>
 
@@ -151,7 +183,7 @@ export const IntervenantsIntroSubsection = (): JSX.Element => {
           variants={fadeInUp}
           className="relative flex-1 font-[beautique-display] text-vanilla text-6xl text-center"
         >
-          Inoubliable
+          {t.unforgettable}
         </motion.div>
       </motion.div>
 
@@ -165,7 +197,7 @@ export const IntervenantsIntroSubsection = (): JSX.Element => {
       >
         <div className="flex items-center gap-20 flex-1">
           <h2 className="font-[beautique-display] text-licorice text-4xl whitespace-nowrap">
-            Les Artistes &amp; Intervenants
+            {t.artists}
           </h2>
           <img loading="lazy" decoding="async"
             className="w-[47px] h-[25px]"
@@ -176,14 +208,7 @@ export const IntervenantsIntroSubsection = (): JSX.Element => {
 
         <div className="flex flex-col items-end gap-[30px] relative flex-1">
           <p className="[font-family:'Mona_Sans',Helvetica] font-normal text-licorice text-[17.5px] text-justify leading-7 relative w-full">
-            Le Gala 2025 ne sera pas seulement un moment de solidarité et de
-            philanthropie, mais aussi{" "}
-            <span className="font-bold">
-              une célébration artistique et culturelle
-            </span>
-            . Des artistes de renommée internationale et des personnalités
-            engagées offriront leurs voix et leurs talents pour amplifier notre
-            message et créer une expérience mémorable.
+            {t.text}
           </p>
         </div>
       </motion.div>

@@ -23,6 +23,7 @@ import { createRoot } from "react-dom/client";
 import "swiper/css";
 import "swiper/css/pagination";
 import { usePreloadImages } from "../../../../lib/usePreloadImages";
+import { useTranslation } from "../../../../lib/i18n";
 
 // ================== tes catégories et stats (inchangés) ==================
 const categories = [
@@ -133,11 +134,103 @@ const statsMap: Record<string, any> = {
   },
 };
 
+// Version anglaise : mêmes images et chiffres, seuls les textes changent
+const statsMapEn: Record<string, any> = {
+  education: {
+    ...statsMap.education,
+    left: [
+      { number: "45", title: "Girls", description: "fully schooled through\n#Scolarisons100filles" },
+      { number: "2", title: "Libraries", description: "renovated for 1,200\npupils" },
+    ],
+    right: [
+      { number: "100", title: "School Kits", description: "complete kits handed out\nto schoolchildren" },
+      { number: "45", title: "Beneficiaries", description: "of a monthly canteen\nallowance" },
+    ],
+  },
+  culture: {
+    ...statsMap.culture,
+    left: { number: "72", title: "Hours of Books", description: "Cultural partnership" },
+    right: [
+      { number: "26", title: "Schools", description: "taking part in the\n“Plumes fines” competition" },
+      { number: "300", title: "Children", description: "attending\nreading workshops" },
+    ],
+  },
+  protection: {
+    ...statsMap.protection,
+    left: { number: "450", title: "People", description: "reached by the\n#BrisonsLeSilence campaign" },
+    right: [
+      { number: "1", title: "Intervention", description: "emergency medical,\npsychological and legal" },
+      { number: "10", title: "Schools", description: "attended\nprevention workshops" },
+    ],
+  },
+  solidarite: {
+    ...statsMap.solidarite,
+    left: { number: "7", title: "Editions of\nOrphan’s Day", description: "Educational gifts and toys\nfor orphans" },
+    right: [
+      { number: "4", title: "Children", description: "successfully\noperated on" },
+      { number: "1", title: "Documentary", description: "made on autism (a first\nin Guinea)" },
+    ],
+  },
+  partenariats: {
+    ...statsMap.partenariats,
+    left: { number: "10", title: "Major\npartners" },
+    right: [{ number: "7", title: "Volunteer\nmentors" }],
+  },
+};
+
+const content = {
+  fr: {
+    heading: (
+      <>
+        NOTRE IMPACT <br />
+        <span className="font-[beautique-display] font-normal">en</span>{" "}
+        CHIFFRES
+      </>
+    ),
+    report: <>Télécharger le rapport d&apos;activité 2024</>,
+    intro: (
+      <>
+        Parce que chaque action compte, voici un
+        <br />
+        extrait de ce que nous avons réalisé en 2024 :
+      </>
+    ),
+    categories,
+    stats: statsMap,
+  },
+  en: {
+    heading: (
+      <>
+        OUR IMPACT <br />
+        <span className="font-[beautique-display] font-normal">in</span>{" "}
+        FIGURES
+      </>
+    ),
+    report: <>Download the 2024 activity report</>,
+    intro: (
+      <>
+        Because every action counts, here is a
+        <br />
+        snapshot of what we achieved in 2024:
+      </>
+    ),
+    categories: [
+      { id: "education", label: "EDUCATION" },
+      { id: "culture", label: "CULTURE" },
+      { id: "protection", label: "PROTECTION" },
+      { id: "solidarite", label: "SOLIDARITY" },
+      { id: "partenariats", label: "PARTNERSHIPS" },
+    ],
+    stats: statsMapEn,
+  },
+};
+
 // ================== COMPONENT ==================
 export const ImpactSubsection = (): JSX.Element => {
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 1200);
   const [activeTab, setActiveTab] = useState("education");
   const [fade, setFade] = useState(false);
+  const t = useTranslation(content);
   usePreloadImages(Object.values(statsMap).map((s) => s.image));
 
   useEffect(() => {
@@ -167,21 +260,15 @@ export const ImpactSubsection = (): JSX.Element => {
               />
               <div className="inline-flex flex-col items-start gap-5 flex-[0_0_auto]">
                 <Button className="bg-antiflash text-colbat [font-family:'Mona_Sans',Helvetica] font-extrabold text-lg px-8 py-2 rounded-lg shadow-[0px_1px_2px_#00000040] h-auto hover:underline hover:-translate-y-1 transition-all duration-300 ease-in-out">
-                  Télécharger le rapport d&apos;activité 2024
+                  {t.report}
                 </Button>
                 <p className="self-stretch text-antiflash text-md [font-family:'Mona_Sans',Helvetica]">
-                  Parce que chaque action compte, voici un
-                  <br />
-                  extrait de ce que nous avons réalisé en 2024 :
+                  {t.intro}
                 </p>
               </div>
             </div>
             <h2 className="flex-1 text-antiflash text-right font-titres text-5xl">
-              NOTRE IMPACT <br />
-              <span className="font-[beautique-display] font-normal">
-                en
-              </span>{" "}
-              CHIFFRES
+              {t.heading}
             </h2>
           </header>
 
@@ -192,7 +279,7 @@ export const ImpactSubsection = (): JSX.Element => {
               className="w-full"
             >
               <TabsList className="items-end justify-center gap-2.5 w-full flex bg-transparent">
-                {categories.map((category) => (
+                {t.categories.map((category) => (
                   <TabsTrigger
                     key={category.id}
                     value={category.id}
@@ -209,8 +296,8 @@ export const ImpactSubsection = (): JSX.Element => {
               </TabsList>
 
               {/* TabsContent simplifiés : on garde le fade seulement sur l'image */}
-              {categories.map((category) => {
-                const stats = statsMap[category.id];
+              {t.categories.map((category) => {
+                const stats = t.stats[category.id];
                 return (
                   <TabsContent
                     key={category.id}
@@ -383,14 +470,10 @@ export const ImpactSubsection = (): JSX.Element => {
       {/* relative ajouté ici */}
       <header className="flex flex-col items-center text-center gap-6">
         <h2 className="text-antiflash font-titres text-3xl">
-          NOTRE IMPACT <br />
-          <span className="font-[beautique-display] font-normal">en</span>{" "}
-          CHIFFRES
+          {t.heading}
         </h2>
         <p className="text-antiflash text-base font-corps">
-          Parce que chaque action compte, voici un
-          <br />
-          extrait de ce que nous avons réalisé en 2024 :
+          {t.intro}
         </p>
       </header>
       <div className="mt-10 w-full">
@@ -422,8 +505,8 @@ export const ImpactSubsection = (): JSX.Element => {
           }}
           className="w-full h-[700px]"
         >
-          {categories.map((category) => {
-            const stats = statsMap[category.id];
+          {t.categories.map((category) => {
+            const stats = t.stats[category.id];
             const items = [
               ...(Array.isArray(stats.left) ? stats.left : [stats.left]),
               ...(stats.right || []),

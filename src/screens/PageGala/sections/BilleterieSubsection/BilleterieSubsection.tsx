@@ -1,32 +1,53 @@
 import { useState, useEffect } from "react";
 import { Button } from "../../../../components/ui/button";
 import { Card, CardContent } from "../../../../components/ui/card";
+import { useTranslation } from "../../../../lib/i18n";
 
-const states = [
-  {
-    tableText: "Table VIP\n10 personnes.",
-    price: "$ 10 000",
-    bgClass: "bg-carmin",
-    borderClass: "border-carmin",
-    cardBorderClass: "border-carmin",
+const content = {
+  fr: {
+    vip: "Table VIP\n10 personnes.",
+    single: "Place\nIndividuelle",
+    support: "Place Soutien\n(Don sans présence)",
+    free: "$ LIBRE",
+    title: "BILLETERIE",
+    buy: "Acheter mes places",
   },
-  {
-    tableText: "Place\nIndividuelle",
-    price: "$ 1000",
-    bgClass: "bg-pumpkin",
-    borderClass: "border-pumpkin",
-    cardBorderClass: "border-pumpkin",
+  en: {
+    vip: "VIP Table\n10 people.",
+    single: "Individual\nSeat",
+    support: "Supporter Seat\n(Donation without attending)",
+    free: "$ FREE AMOUNT",
+    title: "TICKETING",
+    buy: "Buy my tickets",
   },
-  {
-    tableText: "Place Soutien\n(Don sans présence)",
-    price: "$ LIBRE",
-    bgClass: "bg-colbat",
-    borderClass: "border-colbat",
-    cardBorderClass: "border-colbat",
-  },
-];
+};
+
 
 export const BilleterieSubsection = (): JSX.Element => {
+  const t = useTranslation(content);
+  const states = [
+    {
+      tableText: t.vip,
+      price: "$ 10 000",
+      bgClass: "bg-carmin",
+      borderClass: "border-carmin",
+      cardBorderClass: "border-carmin",
+    },
+    {
+      tableText: t.single,
+      price: "$ 1000",
+      bgClass: "bg-pumpkin",
+      borderClass: "border-pumpkin",
+      cardBorderClass: "border-pumpkin",
+    },
+    {
+      tableText: t.support,
+      price: t.free,
+      bgClass: "bg-colbat",
+      borderClass: "border-colbat",
+      cardBorderClass: "border-colbat",
+    },
+  ];
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1000);
   const currentState = states[currentIndex];
@@ -57,7 +78,7 @@ useEffect(() => {
   className="flex flex-col h-[650px] w-full items-center justify-around gap-6 pt-8 px-6 relative bg-[url(/page_gala_section/bg_billeterie.webp)] bg-cover bg-no-repeat bg-center overflow-hidden"
 >
   <h2 className="font-[beautique-display-bold] text-3xl text-licorice text-center mb-8 relative z-20">
-    BILLETERIE
+    {t.title}
   </h2>
 
   {/* Billet géant en fond (IMMERSIF) */}
@@ -124,7 +145,7 @@ useEffect(() => {
       <Button
         className={`${currentState.bgClass} text-antiflash w-full [font-family:'Mona_Sans',Helvetica] font-extrabold text-lg px-8 py-2 rounded-lg shadow-[0px_1px_2px_#00000040] h-auto hover:underline hover:-translate-y-1 transition-all duration-300 ease-in-out`}
       >
-        Acheter mes places
+        {t.buy}
       </Button>
     </a>
   </div>
@@ -141,7 +162,7 @@ useEffect(() => {
       className="flex flex-col w-full items-center gap-11 py-28 px-20 relative bg-[url(/page_gala_section/bg_billeterie.webp)] bg-cover bg-no-repeat"
     >
       <h2 className="relative self-stretch font-[beautique-display-bold] text-5xl text-licorice text-center">
-        BILLETERIE
+        {t.title}
       </h2>
 
       <div className="relative w-[850px] h-[406px]">
@@ -210,7 +231,7 @@ useEffect(() => {
               <Button
                 className={`${currentState.bgClass} text-antiflash w-full [font-family:'Mona_Sans',Helvetica] font-extrabold text-lg px-8 py-2 rounded-lg shadow-[0px_1px_2px_#00000040] h-auto hover:underline hover:-translate-y-1 transition-all duration-300 ease-in-out`}
               >
-                Acheter mes places
+                {t.buy}
               </Button>
             </a>
           </div>

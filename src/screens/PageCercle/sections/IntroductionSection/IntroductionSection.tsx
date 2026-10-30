@@ -1,6 +1,45 @@
 import { useState, useEffect } from "react";
+import { useTranslation } from "../../../../lib/i18n";
+
+const content = {
+  fr: {
+    seg1: "Le ",
+    seg2: "Cercle des Alliances",
+    seg3: " (CDA) n'est pas seulement un réseau, c'est ",
+    seg4: "une communauté engagée",
+    seg5: " où fondations, philanthropes, entreprises et décideurs se rassemblent ",
+    seg6: "pour soutenir des causes communes et s'entraider mutuellement.",
+    secondParagraph: "En rejoignant le CDA, vous ne rejoignez pas seulement la Fondation Diaka Camara : vous devenez partie prenante d'un cercle de confiance, où les organisations invitées partagent leurs expériences, renforcent leur visibilité et créent ensemble un impact durable.",
+    heading: (
+      <>
+        Un réseau d&apos;exception,
+        <br />
+        Une solidarité partagée
+      </>
+    ),
+    why: "Pourquoi rejoindre le Cercle des Alliances ?",
+  },
+  en: {
+    seg1: "The ",
+    seg2: "Circle of Alliances",
+    seg3: " (CDA) is not just a network, it is ",
+    seg4: "a committed community",
+    seg5: " where foundations, philanthropists, businesses and decision-makers come together ",
+    seg6: "to support shared causes and help one another.",
+    secondParagraph: "By joining the CDA, you are not only joining the Diaka Camara Foundation: you become part of a circle of trust, where invited organisations share their experiences, raise their profile and create lasting impact together.",
+    heading: (
+      <>
+        An exceptional network,
+        <br />
+        Shared solidarity
+      </>
+    ),
+    why: "Why join the Circle of Alliances?",
+  },
+};
 
 export const IntroductionSection = (): JSX.Element => {
+  const t = useTranslation(content);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1200);
   useEffect(() => {
     const handleResize = () => {
@@ -11,33 +50,33 @@ export const IntroductionSection = (): JSX.Element => {
   }, []);
   const textContent = [
     {
-      text: "Le ",
+      text: t.seg1,
       isHighlighted: false,
     },
     {
-      text: "Cercle des Alliances",
+      text: t.seg2,
       isHighlighted: true,
     },
     {
-      text: " (CDA) n'est pas seulement un réseau, c'est ",
+      text: t.seg3,
       isHighlighted: false,
     },
     {
-      text: "une communauté engagée",
+      text: t.seg4,
       isHighlighted: true,
     },
     {
-      text: " où fondations, philanthropes, entreprises et décideurs se rassemblent ",
+      text: t.seg5,
       isHighlighted: false,
     },
     {
-      text: "pour soutenir des causes communes et s'entraider mutuellement.",
+      text: t.seg6,
       isHighlighted: true,
     },
   ];
 
   const secondParagraph =
-    "En rejoignant le CDA, vous ne rejoignez pas seulement la Fondation Diaka Camara : vous devenez partie prenante d'un cercle de confiance, où les organisations invitées partagent leurs expériences, renforcent leur visibilité et créent ensemble un impact durable.";
+    t.secondParagraph;
   if (isMobile) {
     return (
       <section
@@ -47,9 +86,7 @@ export const IntroductionSection = (): JSX.Element => {
         {/* Partie texte en haut */}
         <div className="w-full flex flex-col items-center gap-8 px-6">
           <h2 className="font-[beautique-display] text-2xl md:text-3xl text-licorice text-center">
-            Un réseau d&apos;exception,
-            <br />
-            Une solidarité partagée
+            {t.heading}
           </h2>
 
           <div className="w-full font-corps text-licorice text-base md:text-lg text-justify leading-6 md:leading-7">
@@ -90,7 +127,7 @@ export const IntroductionSection = (): JSX.Element => {
         {/* Bandeau dégradé */}
         <div className="w-full py-16 bg-[linear-gradient(270deg,rgba(240,100,25,1)_0%,rgba(195,15,40,1)_100%)] flex justify-center">
           <p className="font-[beautique-display] text-xl md:text-2xl text-antiflash text-center">
-            Pourquoi rejoindre le Cercle des Alliances ?
+            {t.why}
           </p>
         </div>
       </section>
@@ -125,9 +162,7 @@ export const IntroductionSection = (): JSX.Element => {
         {/* Côté texte */}
         <div className="w-1/2 flex flex-col items-center justify-center gap-12 px-12">
           <h2 className="w-full font-[beautique-display] text-licorice text-4xl text-center">
-            Un réseau d&apos;exception,
-            <br />
-            Une solidarité partagée
+            {t.heading}
           </h2>
 
           <div className="w-full font-corps text-licorice text-[length:var(--corps-font-size)] text-justify tracking-[var(--corps-letter-spacing)] leading-[var(--corps-line-height)] [font-style:var(--corps-font-style)]">
@@ -155,7 +190,7 @@ export const IntroductionSection = (): JSX.Element => {
         <div className="flex items-start gap-10 relative flex-1 self-stretch grow">
           <div className="flex flex-col items-center justify-center gap-5 relative flex-1 grow">
             <p className="relative self-stretch font-[beautique-display] text-4xl text-antiflash  text-center ">
-              Pourquoi rejoindre le Cercle des Alliances ?
+              {t.why}
             </p>
           </div>
         </div>

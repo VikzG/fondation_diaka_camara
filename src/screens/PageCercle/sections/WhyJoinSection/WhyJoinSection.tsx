@@ -1,8 +1,33 @@
 import { Card, CardContent } from "../../../../components/ui/card";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { useTranslation } from "../../../../lib/i18n";
+
+const content = {
+  fr: {
+    t1: "UNIR LES FORCES",
+    d1: "Chaque membre bénéficie du soutien d’un réseau solide et contribue en retour au développement des projets des autres partenaires.",
+    t2: "PARTAGER LES RESSOURCES",
+    d2: "Le Cercle favorise la mise en commun des expertises, des contacts et des moyens financiers pour maximiser l’impact de chaque initiative.",
+    t3: "BÉNÉFICIER D'UN ESPACE EXCLUSIF",
+    d3: "Le CDA met en lumière vos actions tout en vous donnant accès à celles d’autres acteurs, dans une logique de co-apprentissage et de soutien mutuel.",
+    t4: "INSPIRER ET ÊTRE INSPIRÉ",
+    d4: "Accès privilégié aux événements du CDA : Gala annuel, dîners de travail, forums d’échange entre fondations et partenaires.",
+  },
+  en: {
+    t1: "JOINING FORCES",
+    d1: "Every member benefits from the support of a strong network and, in return, contributes to the development of the other partners' projects.",
+    t2: "SHARING RESOURCES",
+    d2: "The Circle encourages the pooling of expertise, contacts and financial means to maximise the impact of every initiative.",
+    t3: "AN EXCLUSIVE SPACE",
+    d3: "The CDA showcases your work while giving you access to that of other stakeholders, in a spirit of shared learning and mutual support.",
+    t4: "INSPIRE AND BE INSPIRED",
+    d4: "Privileged access to CDA events: annual Gala, working dinners, exchange forums between foundations and partners.",
+  },
+};
 
 export const WhyJoinSection = (): JSX.Element => {
+  const t = useTranslation(content);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 900);
   useEffect(() => {
     const handleResize = () => {
@@ -14,31 +39,31 @@ export const WhyJoinSection = (): JSX.Element => {
   const cardData = [
     {
       icon: "/cercle_section/solidarite_cercle.svg",
-      title: "UNIR LES FORCES",
+      title: t.t1,
       alt: "Icone solidarite",
       description:
-        "Chaque membre bénéficie du soutien d’un réseau solide et contribue en retour au développement des projets des autres partenaires.",
+        t.d1,
     },
     {
       icon: "/cercle_section/partenaire_cercle.svg",
-      title: "PARTAGER LES RESSOURCES",
+      title: t.t2,
       alt: "Share",
       description:
-        "Le Cercle favorise la mise en commun des expertises, des contacts et des moyens financiers pour maximiser l’impact de chaque initiative.",
+        t.d2,
     },
     {
       icon: "/cercle_section/vip_cercle.svg",
-      title: "BÉNÉFICIER D'UN ESPACE EXCLUSIF",
+      title: t.t3,
       alt: "Vip",
       description:
-        "Le CDA met en lumière vos actions tout en vous donnant accès à celles d’autres acteurs, dans une logique de co-apprentissage et de soutien mutuel.",
+        t.d3,
     },
     {
       icon: "/cercle_section/ampoule_cercle.svg",
-      title: "INSPIRER ET ÊTRE INSPIRÉ",
+      title: t.t4,
       alt: "Inspi",
       description:
-        "Accès privilégié aux événements du CDA : Gala annuel, dîners de travail, forums d’échange entre fondations et partenaires.",
+        t.d4,
     },
   ];
 

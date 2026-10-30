@@ -29,13 +29,13 @@ export const FooterSubsection = (): JSX.Element => {
             </a>
           </div>
           <div className="flex flex-row gap-7">
-            <a href="https://www.instagram.com/" target="_blank" className="cursor-pointer">
+            <a href="https://www.instagram.com/fondationdiakacamara/" target="_blank" className="cursor-pointer">
               <img loading="lazy" decoding="async" src="/footer_section/instagram_logo.svg" alt="Logo Instagram" />
             </a>
-            <a href="https://www.facebook.com/" target="_blank" className="cursor-pointer">
+            <a href="https://www.facebook.com/fondationdiakacamara/?locale=fr_FR" target="_blank" className="cursor-pointer">
               <img loading="lazy" decoding="async" src="/footer_section/facebook_logo.svg" alt="Logo Facebook" />
             </a>
-            <a href="https://fr.linkedin.com/" target="_blank" className="cursor-pointer">
+            <a href="https://gn.linkedin.com/company/fondation-diaka-camara-pour-l-%C3%A9ducation" target="_blank" className="cursor-pointer">
               <img loading="lazy" decoding="async" src="/footer_section/linkedin_logo.svg" alt="Logo Linkedin" />
             </a>
           </div>
@@ -56,13 +56,13 @@ export const FooterSubsection = (): JSX.Element => {
         </div>
 
         <div className="flex flex-row gap-4 mt-2">
-          <a href="https://www.instagram.com/" target="_blank">
+          <a href="https://www.instagram.com/fondationdiakacamara/" target="_blank">
             <img loading="lazy" decoding="async" className="w-6 h-6" src="/footer_section/instagram_logo.svg" alt="Logo Instagram" />
           </a>
-          <a href="https://www.facebook.com/" target="_blank">
+          <a href="https://www.facebook.com/fondationdiakacamara/?locale=fr_FR" target="_blank">
             <img loading="lazy" decoding="async" className="w-6 h-6" src="/footer_section/facebook_logo.svg" alt="Logo Facebook" />
           </a>
-          <a href="https://fr.linkedin.com/" target="_blank">
+          <a href="https://gn.linkedin.com/company/fondation-diaka-camara-pour-l-%C3%A9ducation" target="_blank">
             <img loading="lazy" decoding="async" className="w-6 h-6" src="/footer_section/linkedin_logo.svg" alt="Logo Linkedin" />
           </a>
         </div>

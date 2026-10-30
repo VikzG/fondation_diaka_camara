@@ -5,8 +5,35 @@ import { EffectCoverflow, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
+import { useTranslation } from "../../../../lib/i18n";
+
+const content = {
+  fr: {
+    presidentRole: "PRÉSIDENT DU CONSEIL D'ADMINISTRATION",
+    presidentDescription: "Homme de conviction et de vision, Boubacar Sidiqui Barry accompagne la gouvernance de la Fondation, garantissant la rigueur, la transparence et la mise en œuvre des projets structurants.",
+    presidentName: "Monsieur Boubacar Sidiqui Barry",
+    role1: "ENTREPRENEUR ENGAGÉ POUR LE DÉVELOPPEMENT LOCAL",
+    role2: "MILITANTE ASSOCIATIVE ET PROMOTRICE DE L'AUTONOMISATION DES FEMMES",
+    role3: "SPÉCIALISTE EN GESTION ET FINANCES, ACTRICE DU CHANGEMENT SOCIAL",
+    role4: "DÉFENSEUR DES DROITS DES ENFANTS ET ACTEUR DU MONDE ÉDUCATIF",
+    role5: "MÉDECIN HUMANITAIRE, ENGAGÉ DANS LA SANTÉ PUBLIQUE",
+    role6: "ACTEUR DE LA SOCIÉTÉ CIVILE, MOBILISÉ POUR LA JEUNESSE GUINÉENNE",
+  },
+  en: {
+    presidentRole: "CHAIRMAN OF THE BOARD OF DIRECTORS",
+    presidentDescription: "A man of conviction and vision, Boubacar Sidiqui Barry supports the Foundation's governance, ensuring rigour, transparency and the delivery of its key projects.",
+    presidentName: "Mr Boubacar Sidiqui Barry",
+    role1: "ENTREPRENEUR COMMITTED TO LOCAL DEVELOPMENT",
+    role2: "COMMUNITY ACTIVIST AND ADVOCATE FOR WOMEN'S EMPOWERMENT",
+    role3: "MANAGEMENT AND FINANCE SPECIALIST, DRIVER OF SOCIAL CHANGE",
+    role4: "CHILDREN'S RIGHTS DEFENDER AND EDUCATION STAKEHOLDER",
+    role5: "HUMANITARIAN DOCTOR COMMITTED TO PUBLIC HEALTH",
+    role6: "CIVIL SOCIETY ACTOR, DEDICATED TO GUINEAN YOUTH",
+  },
+};
 
 export const PresidentDetailsSection = (): JSX.Element => {
+  const t = useTranslation(content);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1200);
 
   useEffect(() => {
@@ -18,10 +45,10 @@ export const PresidentDetailsSection = (): JSX.Element => {
   }, []);
 
   const presidentData = {
-    name: "Monsieur Boubacar Sidiqui Barry",
-    role: "PRÉSIDENT DU CONSEIL D'ADMINISTRATION",
+    name: t.presidentName,
+    role: t.presidentRole,
     description:
-      "Homme de conviction et de vision, Boubacar Sidiqui Barry accompagne la gouvernance de la Fondation, garantissant la rigueur, la transparence et la mise en œuvre des projets structurants.",
+      t.presidentDescription,
     image:
       "bg-[url(/page_equipe_section/conseil_img/boubacar_sidiqui_barry.webp)]",
   };
@@ -29,33 +56,33 @@ export const PresidentDetailsSection = (): JSX.Element => {
   const teamMembers = [
     {
       name: "Ibrahima Camara",
-      role: "ENTREPRENEUR ENGAGÉ POUR LE DÉVELOPPEMENT LOCAL",
+      role: t.role1,
       image: "bg-[url(/page_equipe_section/conseil_img/ibrahima_camara.webp)]",
     },
     {
       name: "Komba Bijou Camara",
-      role: "MILITANTE ASSOCIATIVE ET PROMOTRICE DE L'AUTONOMISATION DES FEMMES",
+      role: t.role2,
       image:
         "bg-[url(/page_equipe_section/conseil_img/komba_bijou_camara.webp)]",
     },
     {
       name: "Anna Barry",
-      role: "SPÉCIALISTE EN GESTION ET FINANCES, ACTRICE DU CHANGEMENT SOCIAL",
+      role: t.role3,
       image: "bg-[url(/page_equipe_section/conseil_img/anna_barry.webp)]",
     },
     {
       name: "Abdoulaye Touré",
-      role: "DÉFENSEUR DES DROITS DES ENFANTS ET ACTEUR DU MONDE ÉDUCATIF",
+      role: t.role4,
       image: "bg-[url(/page_equipe_section/conseil_img/abdoulaye_toure.webp)]",
     },
     {
       name: "Dr Aboudoulaye Bah",
-      role: "MÉDECIN HUMANITAIRE, ENGAGÉ DANS LA SANTÉ PUBLIQUE",
+      role: t.role5,
       image: "bg-[url(/page_equipe_section/conseil_img/aboudoulaye_bah.webp)]",
     },
     {
       name: "Chaikou Bah",
-      role: "ACTEUR DE LA SOCIÉTÉ CIVILE, MOBILISÉ POUR LA JEUNESSE GUINÉENNE",
+      role: t.role6,
       image: "bg-[url(/page_equipe_section/conseil_img/chaikou_bah.webp)]",
     },
     {

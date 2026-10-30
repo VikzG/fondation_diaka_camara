@@ -5,15 +5,24 @@ import {
   AccordionTrigger,
 } from "../../../../components/ui/accordion";
 import { cn } from "../../../../lib/utils";
+import { useTranslation } from "../../../../lib/i18n";
 
-export const CausesSubsection = (): JSX.Element => {
-  const causesData = [
-    {
-      id: "item-1",
-      number: "1",
-      title: "Autonomisation des femmes",
-      backgroundImage: "/causes_section/causes_img_1.webp",
-      content: {
+const content = {
+  fr: {
+    heading: "NOS CAUSES",
+    intro: (
+      <>
+        Nos programmes ciblent{" "}
+        <span className="font-bold text-pumpkin">
+          trois priorités stratégiques
+        </span>{" "}
+        pour améliorer la vie des filles et des communautés vulnérables en
+        Guinée.
+      </>
+    ),
+    causes: [
+      {
+        title: "Autonomisation des femmes",
         description: (
           <>
             <span className="font-corps">
@@ -28,13 +37,8 @@ export const CausesSubsection = (): JSX.Element => {
           </>
         ),
       },
-    },
-    {
-      id: "item-2",
-      number: "2",
-      title: "Accès à l'éducation",
-      backgroundImage: "/causes_section/causes_img_2.webp",
-      content: {
+      {
+        title: "Accès à l'éducation",
         description: (
           <>
             <span className="font-corps">
@@ -49,13 +53,8 @@ export const CausesSubsection = (): JSX.Element => {
           </>
         ),
       },
-    },
-    {
-      id: "item-3",
-      number: "3",
-      title: "Santé et protection",
-      backgroundImage: "/causes_section/causes_img_3.webp",
-      content: {
+      {
+        title: "Santé et protection",
         description: (
           <>
             <span className="font-corps">
@@ -70,6 +69,93 @@ export const CausesSubsection = (): JSX.Element => {
           </>
         ),
       },
+    ],
+  },
+  en: {
+    heading: "OUR CAUSES",
+    intro: (
+      <>
+        Our programmes target{" "}
+        <span className="font-bold text-pumpkin">
+          three strategic priorities
+        </span>{" "}
+        to improve the lives of girls and vulnerable communities in Guinea.
+      </>
+    ),
+    causes: [
+      {
+        title: "Women's empowerment",
+        description: (
+          <>
+            <span className="font-corps">
+              • Training and mentoring for women entrepreneurs
+            </span>
+            <br />
+            <span className="font-corps">
+              • Financial and logistical support for their projects <br />•
+              "Investing in a woman means investing in an entire community."
+            </span>
+          </>
+        ),
+      },
+      {
+        title: "Access to education",
+        description: (
+          <>
+            <span className="font-corps">
+              • Full schooling through the{" "}
+              <strong>Zenab Soumah Scholarship</strong>
+              <br />
+            </span>
+            <span className="font-corps">
+              • Creation of school libraries <br />• School supplies and
+              canteen allowances
+            </span>
+          </>
+        ),
+      },
+      {
+        title: "Health and protection",
+        description: (
+          <>
+            <span className="font-corps">
+              • Fighting gender-based violence{" "}
+              <strong>(#BrisonsLeSilence)</strong>
+            </span>
+            <br />
+            <span className="font-corps">
+              • Emergency medical interventions <br />• Awareness campaigns
+            </span>
+          </>
+        ),
+      },
+    ],
+  },
+};
+
+export const CausesSubsection = (): JSX.Element => {
+  const t = useTranslation(content);
+  const causesData = [
+    {
+      id: "item-1",
+      number: "1",
+      title: t.causes[0].title,
+      backgroundImage: "/causes_section/causes_img_1.webp",
+      content: { description: t.causes[0].description },
+    },
+    {
+      id: "item-2",
+      number: "2",
+      title: t.causes[1].title,
+      backgroundImage: "/causes_section/causes_img_2.webp",
+      content: { description: t.causes[1].description },
+    },
+    {
+      id: "item-3",
+      number: "3",
+      title: t.causes[2].title,
+      backgroundImage: "/causes_section/causes_img_3.webp",
+      content: { description: t.causes[2].description },
     },
   ];
 
@@ -77,15 +163,10 @@ export const CausesSubsection = (): JSX.Element => {
     <section className="w-full flex flex-col items-center gap-[70px] pt-0 pb-5 max-[1200px]:pb-0 px-0">
       <header className="flex flex-col w-full max-w-[1240px] items-center gap-10 px-60 max-[1200px]:px-6 py-0 relative">
         <h2 className="text-pumpkin text-center font-[beautique-display-bold] text-5xl max-[1200px]:text-3xl">
-          NOS CAUSES
+          {t.heading}
         </h2>
         <p className="text-licorice text-center font-corps max-[1200px]:text-sm">
-          Nos programmes ciblent{" "}
-          <span className="font-bold text-pumpkin">
-            trois priorités stratégiques
-          </span>{" "}
-          pour améliorer la vie des filles et des communautés vulnérables en
-          Guinée.
+          {t.intro}
         </p>
       </header>
 

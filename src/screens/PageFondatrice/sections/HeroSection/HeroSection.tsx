@@ -1,8 +1,29 @@
 import { Button } from "../../../../components/ui/button";
 import { HashLink } from "react-router-hash-link";
 import { useState, useEffect } from "react";
+import { useTranslation } from "../../../../lib/i18n";
+
+const content = {
+  fr: {
+    title: "UN MOT DE LA PRÉSIDENTE",
+    subtitle: <>Parcours d&apos;une femme de coeur</>,
+    bioShort: "La biographie",
+    ambitionsShort: "Les Ambitions",
+    bio: "Découvrir la biographie",
+    ambitions: "Fondation et Ambitions",
+  },
+  en: {
+    title: "A WORD FROM THE PRESIDENT",
+    subtitle: "The journey of a woman with heart",
+    bioShort: "The biography",
+    ambitionsShort: "The Ambitions",
+    bio: "Discover her biography",
+    ambitions: "Foundation and Ambitions",
+  },
+};
 
 export const HeroSection = (): JSX.Element => {
+  const t = useTranslation(content);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1200);
 
   useEffect(() => {
@@ -32,11 +53,11 @@ export const HeroSection = (): JSX.Element => {
 
             <div className="flex flex-col items-start gap-3 lg:gap-5 relative self-stretch w-full flex-[0_0_auto]">
               <h1 className="relative self-stretch font-[beautique-display-bold] text-3xl lg:text-5xl text-vanilla text-center">
-                UN MOT DE LA PRÉSIDENTE
+                {t.title}
               </h1>
 
               <h2 className="relative self-stretch font-[beautique-display] text-vanilla text-xl lg:text-4xl text-center tracking-[0.64px] leading-[28px] lg:leading-[38px]">
-                Parcours d&apos;une femme de coeur
+                {t.subtitle}
               </h2>
             </div>
           </div>
@@ -47,7 +68,7 @@ export const HeroSection = (): JSX.Element => {
             <HashLink smooth to="#about_fondatrice" className="w-full">
               <Button className="group relative flex items-center justify-between w-full rounded-[500px] shadow-[0px_1px_2px_#00000040] h-auto py-2 overflow-hidden transition-all duration-500 bg-vanilla hover:bg-pumpkin">
                 <span className="flex-1 text-center [font-family:'Mona_Sans',Helvetica] font-extrabold text-lg tracking-[0] leading-[35px] text-pumpkin group-hover:text-vanilla">
-                  La biographie
+                  {t.bioShort}
                 </span>
 
                 <div className="border-2 border-vanilla group-hover:border-transparent absolute right-[calc(100%-50px)] group-hover:right-[10px] top-1/2 -translate-y-1/2 w-[50px] h-[50px] flex items-center justify-center rounded-full transition-all duration-500 ease-in-out bg-pumpkin ">
@@ -64,7 +85,7 @@ export const HeroSection = (): JSX.Element => {
             <HashLink smooth to="#fondation_fondatrice" className="w-full">
               <Button className="group relative flex items-center bg-antiflash justify-between w-full rounded-[500px] shadow-[0px_1px_2px_#00000040] h-auto py-2 overflow-hidden transition-all duration-500 hover:bg-[#0A4BA5]">
                 <span className="flex-1 text-center [font-family:'Mona_Sans',Helvetica] font-extrabold text-lg tracking-[0] leading-[35px] text-[#0A4BA5] group-hover:text-antiflash">
-                  Les Ambitions
+                  {t.ambitionsShort}
                 </span>
 
                 <div className="border-2 border-vanilla group-hover:border-transparent absolute right-[calc(100%-50px)] group-hover:right-[10px] top-1/2 -translate-y-1/2 w-[50px] h-[50px] flex items-center justify-center rounded-full transition-all duration-500 ease-in-out bg-[#0A4BA5]">
@@ -98,11 +119,11 @@ export const HeroSection = (): JSX.Element => {
 
           <div className="flex flex-col items-start gap-5 relative self-stretch w-full flex-[0_0_auto]">
             <h1 className="relative self-stretch font-[beautique-display-bold] text-5xl text-vanilla text-center">
-              UN MOT DE LA PRÉSIDENTE
+              {t.title}
             </h1>
 
             <h2 className="relative self-stretch font-[beautique-display] text-vanilla text-4xl text-center tracking-[0.64px] leading-[38px]">
-              Parcours d&apos;une femme de coeur
+              {t.subtitle}
             </h2>
           </div>
         </div>
@@ -112,7 +133,7 @@ export const HeroSection = (): JSX.Element => {
           <HashLink smooth to="#about_fondatrice" className="w-full">
             <Button className="group relative flex items-center justify-between w-full rounded-[500px] shadow-[0px_1px_2px_#00000040] h-auto py-2 overflow-hidden transition-all duration-500 bg-vanilla hover:bg-pumpkin">
               <span className="flex-1 text-center [font-family:'Mona_Sans',Helvetica] font-extrabold text-xl tracking-[0] leading-[35px] text-pumpkin group-hover:text-vanilla">
-                Découvrir la biographie
+                {t.bio}
               </span>
 
               <div className="border-2 border-vanilla group-hover:border-transparent absolute right-[calc(100%-50px)] group-hover:right-[10px] top-1/2 -translate-y-1/2 w-[50px] h-[50px] flex items-center justify-center rounded-full transition-all duration-500 ease-in-out bg-pumpkin ">
@@ -129,7 +150,7 @@ export const HeroSection = (): JSX.Element => {
           <HashLink smooth to="#fondation_fondatrice" className="w-full">
             <Button className="group relative flex items-center bg-antiflash justify-between w-full rounded-[500px] shadow-[0px_1px_2px_#00000040] h-auto py-2 overflow-hidden transition-all duration-500 hover:bg-[#0A4BA5]">
               <span className="flex-1 text-center [font-family:'Mona_Sans',Helvetica] font-extrabold text-xl tracking-[0] leading-[35px] text-[#0A4BA5] group-hover:text-antiflash">
-                Fondation et Ambitions
+                {t.ambitions}
               </span>
 
               <div className="border-2 border-vanilla group-hover:border-transparent absolute right-[calc(100%-50px)] group-hover:right-[10px] top-1/2 -translate-y-1/2 w-[50px] h-[50px] flex items-center justify-center rounded-full transition-all duration-500 ease-in-out bg-[#0A4BA5]">

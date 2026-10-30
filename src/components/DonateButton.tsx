@@ -1,7 +1,15 @@
 import { Button } from "../components/ui/button";
 import { Link } from "react-router-dom";
+import { useTranslation } from "../lib/i18n";
 
-const DonateButton = () => (
+const content = {
+  fr: { donate: "Faire un don" },
+  en: { donate: "Donate" },
+};
+
+const DonateButton = () => {
+  const t = useTranslation(content);
+  return (
   <div className="absolute inset-0 flex items-end mb-5 justify-center">
     <Link to="/don">
       <Button
@@ -24,11 +32,12 @@ const DonateButton = () => (
         </div>
 
         <span className="text-colbat font-bold text-lg group-hover:underline decoration-inherit transition-colors duration-300">
-          Faire un don
+          {t.donate}
         </span>
       </Button>
     </Link>
   </div>
-);
+  );
+};
 
 export default DonateButton;

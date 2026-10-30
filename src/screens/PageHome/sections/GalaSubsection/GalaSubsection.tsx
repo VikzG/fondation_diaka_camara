@@ -2,9 +2,69 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "../../../../components/ui/button";
 import { Card, CardContent } from "../../../../components/ui/card";
+import { useLanguage, useTranslation } from "../../../../lib/i18n";
+
+const content = {
+  fr: {
+    heading: "ACTUALITÉS",
+    cta: "Informations & Participation",
+    ctaShort: "Infos & Participation",
+    programme: "Programme",
+    goalLabel: "OBJECTIF",
+    goal: <>Financer la scolarisation de 100 jeunes filles et l&apos;ouverture de nouvelles bibliothèques.</>,
+  },
+  en: {
+    heading: "NEWS",
+    cta: "Information & Participation",
+    ctaShort: "Info & Participation",
+    programme: "Programme",
+    goalLabel: "GOAL",
+    goal: <>Funding schooling for 100 girls and the opening of new libraries.</>,
+  },
+};
+
+const programmeEventsEn = [
+  {
+    date: "13 NOVEMBER",
+    description: "Press conference",
+  },
+  {
+    date: "14 NOVEMBER",
+    description: (
+      <>
+        <span className="font-normal text-[#160a00] text-base leading-6">
+          Morning visits to projects carried out by the Foundation{" "}
+        </span>
+        <span className="italic">
+          (Orphanages, Libraries, Meeting the girls in school)
+        </span>
+        <span className="font-normal text-[#160a00] text-base leading-6">
+          {" "}
+          + Friendly women's football match{" "}
+        </span>
+        <span className="italic">(1 goal = 1 donation)</span>
+      </>
+    ),
+  },
+  {
+    date: "15 NOVEMBER",
+    description: (
+      <>
+        <span className="font-corps">Morning round table by the </span>
+        <span className="font-corps">Circle of Alliances</span>
+        <span className="font-corps">
+          {" "}
+          on women&apos;s economic empowerment + Prestige gala evening at the{" "}
+        </span>
+        <span className="font-corps">Hôtel Le Palm Camayenne</span>
+      </>
+    ),
+  },
+];
 
 export const GalaSubsection = (): JSX.Element => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1200);
+  const { lang } = useLanguage();
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 1200);
@@ -12,7 +72,8 @@ export const GalaSubsection = (): JSX.Element => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const programmeEvents = [
+  const t = useTranslation(content);
+  const programmeEvents = lang === "en" ? programmeEventsEn : [
     {
       date: "13 NOVEMBRE",
       description: "Conférence de presse",
@@ -62,7 +123,7 @@ export const GalaSubsection = (): JSX.Element => {
         {/* Bloc ACTUALITÉS en haut */}
         <div className="flex flex-col items-center gap-8 px-6 py-10 w-full max-w-[600px]">
           <h2 className="font-[beautique-display-bold] text-3xl text-carmin text-center">
-            ACTUALITÉS
+            {t.heading}
           </h2>
 
           <img loading="lazy" decoding="async"
@@ -73,7 +134,7 @@ export const GalaSubsection = (): JSX.Element => {
           <Link to="/gala2025" className="w-full">
             <Button className="group relative flex items-center justify-between w-full rounded-[500px] shadow-[0px_1px_2px_#00000040] h-auto py-2 overflow-hidden transition-all duration-500 bg-vanilla hover:bg-[#C30F28]">
               <span className="flex-1 text-center font-mona font-bold text-xl tracking-[0] leading-[35px] text-[#C30F28] transition-colors duration-500 group-hover:text-vanilla">
-                Infos & Participation
+                {t.ctaShort}
               </span>
 
               <div className="border-2 border-vanilla group-hover:border-transparent absolute right-[calc(100%-50px)] group-hover:right-[10px] top-1/2 -translate-y-1/2 w-[50px] h-[50px] flex items-center justify-center rounded-full transition-all duration-500 ease-in-out bg-[#C30F28]">
@@ -91,7 +152,7 @@ export const GalaSubsection = (): JSX.Element => {
         <Card className="flex flex-col items-center gap-5 p-6 mx-6 mb-6 w-[90%] bg-[#faf2d7d9] rounded-[15px] shadow backdrop-blur border-0">
           <CardContent className="flex flex-col items-center gap-6 w-full p-0">
             <h3 className="font-[beautique-display] text-2xl text-carmin text-center">
-              Programme
+              {t.programme}
             </h3>
 
             <img loading="lazy" decoding="async"
@@ -124,11 +185,10 @@ export const GalaSubsection = (): JSX.Element => {
         {/* Bloc Objectif en bas */}
         <div className="flex flex-col items-center gap-4 px-6 py-10 w-full bg-gradient-to-r from-[#F06419] to-[#C30F28]">
           <h4 className="libertinus-sans-bold text-base text-antiflash text-center">
-            OBJECTIF
+            {t.goalLabel}
           </h4>
           <p className="font-[beautique-display] text-xl text-antiflash text-center">
-            Financer la scolarisation de 100 jeunes filles et l&apos;ouverture
-            de nouvelles bibliothèques.
+            {t.goal}
           </p>
         </div>
       </section>
@@ -143,7 +203,7 @@ export const GalaSubsection = (): JSX.Element => {
       <div className="flex items-start justify-center max-w-[1400px] gap-20 px-20 py-20 self-stretch m-auto w-full flex-[0_0_auto]">
         <div className="items-start gap-[30px] pl-0 pr-[30px] py-0 flex flex-col relative flex-1 grow">
           <h2 className="relative self-stretch font-[beautique-display-bold] text-5xl  text-carmin text-center whitespace-nowrap">
-            ACTUALITÉS
+            {t.heading}
           </h2>
 
           <div className="flex h-[619.73px] items-center gap-2.5 relative self-stretch w-full">
@@ -156,7 +216,7 @@ export const GalaSubsection = (): JSX.Element => {
           <Link to="/gala2025" className="w-full">
             <Button className="group relative flex items-center justify-between w-full rounded-[500px] shadow-[0px_1px_2px_#00000040] h-auto py-2 overflow-hidden transition-all duration-500 bg-vanilla hover:bg-[#C30F28]">
               <span className="flex-1 text-center [font-family:'Mona_Sans',Helvetica] font-extrabold text-xl tracking-[0] leading-[35px] text-[#C30F28] group-hover:text-vanilla">
-                Informations & Participation
+                {t.cta}
               </span>
 
               <div className="border-2 border-vanilla group-hover:border-transparent absolute right-[calc(100%-50px)] group-hover:right-[10px] top-1/2 -translate-y-1/2 w-[50px] h-[50px] flex items-center justify-center rounded-full transition-all duration-500 ease-in-out bg-[#C30F28]">
@@ -173,7 +233,7 @@ export const GalaSubsection = (): JSX.Element => {
         <Card className="flex flex-col items-center justify-between p-10 relative flex-1 self-stretch bg-[#faf2d7d9] rounded-[15px] overflow-hidden shadow-[0px_2px_3px_#00000040] backdrop-blur-[5px] backdrop-brightness-[100%] [-webkit-backdrop-filter:blur(5px)_brightness(100%)] border-0">
           <CardContent className="flex flex-col items-center justify-between w-full h-full p-0">
             <h3 className="relative font-[beautique-display] text-4xl text-carmin text-center whitespace-nowrap">
-              Programme
+              {t.programme}
             </h3>
 
             <img loading="lazy" decoding="async"
@@ -211,11 +271,10 @@ export const GalaSubsection = (): JSX.Element => {
         <div className="flex items-start gap-10 relative flex-1 self-stretch grow">
           <div className="flex flex-col items-center justify-center gap-5 relative flex-1 grow">
             <h4 className="relative self-stretch libertinus-sans-bold text-lg text-antiflash text-center">
-              OBJECTIF
+              {t.goalLabel}
             </h4>
             <p className="relative self-stretch font-[beautique-display] text-3xl text-antiflash  text-center ">
-              Financer la scolarisation de 100 jeunes filles et l&apos;ouverture
-              de nouvelles bibliothèques.
+              {t.goal}
             </p>
           </div>
         </div>

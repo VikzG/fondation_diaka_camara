@@ -9,18 +9,26 @@ import {
   NavigationMenuList,
 } from "../../../../components/ui/navigation-menu";
 import { Menu, X } from "lucide-react"; // icônes burger + croix
+import { LanguageSwitch } from "../../../../components/LanguageSwitch";
+import { useTranslation } from "../../../../lib/i18n";
+
+const navigationLabels = {
+  fr: ["LA FONDATION", "GALA 2025", "CERCLE DES ALLIANCES", "NOTRE ÉQUIPE", "LA PRÉSIDENTE"],
+  en: ["THE FOUNDATION", "GALA 2025", "CIRCLE OF ALLIANCES", "OUR TEAM", "THE PRESIDENT"],
+};
 
 export const TopBarSubsection = (): JSX.Element => {
   const location = useLocation();
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1200);
   const [menuOpen, setMenuOpen] = useState(false);
+  const labels = useTranslation(navigationLabels);
 
   const navigationItems = [
-    { label: "LA FONDATION", to: "/" },
-    { label: "GALA 2025", to: "/gala2025" },
-    { label: "CERCLE DES ALLIANCES", to: "/cercle" },
-    { label: "NOTRE ÉQUIPE", to: "/equipe" },
-    { label: "LA PRÉSIDENTE", to: "/fondatrice" },
+    { label: labels[0], to: "/" },
+    { label: labels[1], to: "/gala2025" },
+    { label: labels[2], to: "/cercle" },
+    { label: labels[3], to: "/equipe" },
+    { label: labels[4], to: "/fondatrice" },
   ];
 
   const socialIcons = [
@@ -59,6 +67,9 @@ export const TopBarSubsection = (): JSX.Element => {
             />
           </HashLink>
 
+          <div className="flex items-center gap-4">
+          <LanguageSwitch />
+
           {/* Bouton burger animé */}
           <motion.button
             onClick={() => setMenuOpen(!menuOpen)}
@@ -74,6 +85,7 @@ export const TopBarSubsection = (): JSX.Element => {
               {menuOpen ? <X size={28} /> : <Menu size={28} />}
             </motion.div>
           </motion.button>
+          </div>
         </nav>
 
         {/* Panneau menu mobile animé */}
@@ -211,6 +223,7 @@ export const TopBarSubsection = (): JSX.Element => {
               );
             })}
           </NavigationMenuList>
+          <LanguageSwitch className="ml-8" />
         </NavigationMenu>
       </nav>
 

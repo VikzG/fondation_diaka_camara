@@ -1,8 +1,97 @@
 import { useState, useEffect } from "react";
 import { Card, CardContent } from "../../../../components/ui/card";
 import { usePreloadImages } from "../../../../lib/usePreloadImages";
+import { useTranslation } from "../../../../lib/i18n";
+
+const content = {
+  fr: {
+    month: "NOVEMBRE",
+    t1: "Présentation",
+    t2: "Sport & Solidarité",
+    t3: "Soirée Gala",
+    press: <><b>Conférence de Presse à l'Hôtel Le Palm-Camayenne</b></>,
+    morning: "LE MATIN",
+    afternoon: "L’après-midi",
+    visits: (
+      <>
+        <b>• Découverte des projets éducatifs en cours</b> par la visite d’orphelinats, bibliothèques réhabilitées, les filles scolarisées, etc.
+        <br />
+        <b>• Rencontre privilégiée avec les bénéficiaires et partenaires</b>
+      </>
+    ),
+    match: (
+      <>
+        <b>• Match de football féminin amical</b>
+        <br />1 but = 1 don
+      </>
+    ),
+    lunch: <>MATIN &amp; DÉJEUNER</>,
+    roundTable: (
+      <>
+        <b>• Table ronde du Cercle des Alliances</b>, consacrée à l&apos;autonomisation économique des femmes
+        <br />
+        <b>• Cocktail déjeunatoire de networking</b> entre partenaires et personnalités invitées
+      </>
+    ),
+    evening: "SOIRÉE DE GALA",
+    programme: (
+      <>
+        <b>• Accueil et dîner</b> de gala
+        <br />
+        <b>• Vente aux enchères caritatives</b> : objets rares, expériences exclusives & œuvres d&apos;art
+        <br />
+        <b>• Remise de distinctions honorifiques</b> aux personnalités engagées
+        <br />
+        <b>• Grand concert de clôture</b> par des artistes de renommée internationale
+      </>
+    ),
+  },
+  en: {
+    month: "NOVEMBER",
+    t1: "Presentation",
+    t2: "Sport & Solidarity",
+    t3: "Gala Evening",
+    press: <><b>Press Conference at the Hôtel Le Palm-Camayenne</b></>,
+    morning: "IN THE MORNING",
+    afternoon: "In the afternoon",
+    visits: (
+      <>
+        <b>• Discovery of ongoing educational projects</b> through visits to orphanages, renovated libraries, schooled girls, etc.
+        <br />
+        <b>• Exclusive meeting with beneficiaries and partners</b>
+      </>
+    ),
+    match: (
+      <>
+        <b>• Friendly women's football match</b>
+        <br />1 goal = 1 donation
+      </>
+    ),
+    lunch: <>MORNING &amp; LUNCH</>,
+    roundTable: (
+      <>
+        <b>• Circle of Alliances round table</b> on women&apos;s economic empowerment
+        <br />
+        <b>• Networking lunch reception</b> for partners and invited guests
+      </>
+    ),
+    evening: "GALA EVENING",
+    programme: (
+      <>
+        <b>• Welcome and gala</b> dinner
+        <br />
+        <b>• Charity auction</b>: rare objects, exclusive experiences & works of art
+        <br />
+        <b>• Honorary awards</b> for committed personalities
+        <br />
+        <b>• Grand closing concert</b> by internationally renowned artists
+      </>
+    ),
+  },
+};
 
 export const FrameSubsection = (): JSX.Element => {
+  const t = useTranslation(content);
     const [isMobile, setIsMobile] = useState(window.innerWidth < 1200);
 
   useEffect(() => {
@@ -14,23 +103,23 @@ export const FrameSubsection = (): JSX.Element => {
   const eventData = [
     {
       date: "13",
-      month: "NOVEMBRE",
-      title: "Présentation",
+      month: t.month,
+      title: t.t1,
       details: (
         <div
           className={`flex flex-col items-center gap-5 w-full font-sans text-[17.5px] text-center leading-7 ${
             isMobile ? "text-licorice" : "text-vanilla"
           }`}
         >
-          <b>Conférence de Presse à l'Hôtel Le Palm-Camayenne</b>
+          {t.press}
         </div>
       ),
       activeBg: "url('/page_gala_section/slider_1_img.webp')",
     },
     {
       date: "14",
-      month: "NOVEMBRE",
-      title: "Sport & Solidarité",
+      month: t.month,
+      title: t.t2,
       details: (
         <div className="flex flex-col items-center gap-5 w-full">
           <div
@@ -38,33 +127,28 @@ export const FrameSubsection = (): JSX.Element => {
               isMobile ? "text-licorice" : "text-vanilla"
             }`}
           >
-            LE MATIN
+            {t.morning}
           </div>
           <div
             className={`font-sans text-[17.5px] text-center leading-7 ${
               isMobile ? "text-licorice" : "text-vanilla"
             }`}
           >
-            <b>• Découverte des projets éducatifs en cours</b> par la visite
-            d’orphelinats, bibliothèques réhabilitées, les filles scolarisées,
-            etc.
-            <br />
-            <b>• Rencontre privilégiée avec les bénéficiaires et partenaires</b>
+            {t.visits}
           </div>
           <div
             className={`font-legendes-bold uppercase font-bold text-center ${
               isMobile ? "text-licorice" : "text-vanilla"
             }`}
           >
-            L’après-midi
+            {t.afternoon}
           </div>
           <div
             className={`font-sans text-[17.5px] text-center leading-7 ${
               isMobile ? "text-licorice" : "text-vanilla"
             }`}
           >
-            <b>• Match de football féminin amical</b>
-            <br />1 but = 1 don
+            {t.match}
           </div>
         </div>
       ),
@@ -72,8 +156,8 @@ export const FrameSubsection = (): JSX.Element => {
     },
     {
       date: "15",
-      month: "NOVEMBRE",
-      title: "Soirée Gala",
+      month: t.month,
+      title: t.t3,
       details: (
         <>
           <div className="flex flex-col items-center gap-5 w-full">
@@ -82,18 +166,14 @@ export const FrameSubsection = (): JSX.Element => {
                 isMobile ? "text-licorice" : "text-vanilla"
               }`}
             >
-              MATIN &amp; DÉJEUNER
+              {t.lunch}
             </div>
             <div
               className={`font-sans text-[17.5px] text-center leading-7 ${
                 isMobile ? "text-licorice" : "text-vanilla"
               }`}
             >
-              <b>• Table ronde du Cercle des Alliances</b>, consacrée à
-              l&apos;autonomisation économique des femmes
-              <br />
-              <b>• Cocktail déjeunatoire de networking</b> entre partenaires et
-              personnalités invitées
+              {t.roundTable}
             </div>
           </div>
           <div className="flex flex-col items-center gap-5 w-full">
@@ -102,23 +182,14 @@ export const FrameSubsection = (): JSX.Element => {
                 isMobile ? "text-licorice" : "text-vanilla"
               }`}
             >
-              SOIRÉE DE GALA
+              {t.evening}
             </div>
             <div
               className={`font-sans text-[17.5px] text-center leading-7 ${
                 isMobile ? "text-licorice" : "text-vanilla"
               }`}
             >
-              <b>• Accueil et dîner</b> de gala
-              <br />
-              <b>• Vente aux enchères caritatives</b> : objets rares,
-              expériences exclusives & œuvres d&apos;art
-              <br />
-              <b>• Remise de distinctions honorifiques</b> aux personnalités
-              engagées
-              <br />
-              <b>• Grand concert de clôture</b> par des artistes de renommée
-              internationale
+              {t.programme}
             </div>
           </div>
         </>

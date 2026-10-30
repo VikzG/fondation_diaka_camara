@@ -1,22 +1,39 @@
 import { useState, useEffect } from "react";
 import { CardContent } from "../../../../components/ui/card";
 import { motion } from "framer-motion";
+import { useTranslation } from "../../../../lib/i18n";
+
+const content = {
+  fr: {
+    t1: "Études & Formation",
+    d1: "Diaka Camara a poursuivi ses études aux États-Unis, où elle s’est spécialisée en journalisme et communication. Cette formation académique internationale lui a permis d’acquérir une solide expertise dans la création de contenus et la gestion d’initiatives médiatiques et culturelles, qu’elle mettra plus tard au service du développement et de la philanthropie.",
+    t2: "Parcours Professionnel",
+    d2: "De retour en Guinée, Diaka Camara fonde CBC Worldwide, une société de production à travers laquelle elle produit et présente des émissions qui modernisent le paysage médiatique guinéen. Sa créativité et son professionnalisme en font rapidement une figure reconnue du secteur audiovisuel, capable de bâtir des passerelles entre culture, entrepreneuriat et engagement citoyen.",
+  },
+  en: {
+    t1: "Education & Training",
+    d1: "Diaka Camara studied in the United States, where she specialised in journalism and communication. This international academic background gave her solid expertise in content creation and in managing media and cultural initiatives, which she would later put to work for development and philanthropy.",
+    t2: "Professional Career",
+    d2: "Back in Guinea, Diaka Camara founded CBC Worldwide, a production company through which she produces and hosts programmes that are modernising the Guinean media landscape. Her creativity and professionalism quickly made her a recognised figure in the audiovisual sector, able to build bridges between culture, entrepreneurship and civic engagement.",
+  },
+};
 
 export const AboutMeSection = (): JSX.Element => {
+  const t = useTranslation(content);
   const aboutMeCards = [
     {
       icon: "/page_presidente_section/orange_books.svg",
       iconAlt: "Icone study",
-      title: "Études & Formation",
+      title: t.t1,
       description:
-        "Diaka Camara a poursuivi ses études aux États-Unis, où elle s’est spécialisée en journalisme et communication. Cette formation académique internationale lui a permis d’acquérir une solide expertise dans la création de contenus et la gestion d’initiatives médiatiques et culturelles, qu’elle mettra plus tard au service du développement et de la philanthropie.",
+        t.d1,
     },
     {
       icon: "/page_presidente_section/blue_case.svg",
       iconAlt: "Icone pro",
-      title: "Parcours Professionnel",
+      title: t.t2,
       description:
-        "De retour en Guinée, Diaka Camara fonde CBC Worldwide, une société de production à travers laquelle elle produit et présente des émissions qui modernisent le paysage médiatique guinéen. Sa créativité et son professionnalisme en font rapidement une figure reconnue du secteur audiovisuel, capable de bâtir des passerelles entre culture, entrepreneuriat et engagement citoyen.",
+        t.d2,
     },
   ];
 
@@ -50,9 +67,6 @@ export const AboutMeSection = (): JSX.Element => {
             key={index}
             onMouseEnter={() => handleHover(index)}
             className="w-full bg-[#ffffffcc] rounded-[20px] shadow-[0px_1px_3px_#00000040] backdrop-blur-[7.5px] overflow-hidden"
-            initial={{ height: 300 }}
-            animate={{ height: openedCards[index] ? "auto" : 300 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
           >
             <CardContent className="flex flex-col items-center gap-6 p-8">
               <div className="flex flex-col items-center gap-6 w-full">
@@ -67,19 +81,19 @@ export const AboutMeSection = (): JSX.Element => {
               </div>
 
               <motion.p
-                className="text-licorice text-base leading-6 text-justify w-full"
-                initial={{ opacity: 0, y: -8 }}
+                className="text-licorice text-base leading-6 text-justify w-full overflow-hidden"
+                initial={{ opacity: 0, height: 0 }}
                 animate={{
                   opacity: openedCards[index] ? 1 : 0,
-                  y: openedCards[index] ? 0 : -8,
+                  height: openedCards[index] ? "auto" : 0,
                 }}
-                transition={{ duration: 0.5 }}
+                transition={{ duration: 0.5, ease: "easeOut" }}
               >
                 {card.description}
               </motion.p>
 
               <img loading="lazy" decoding="async"
-                className="w-8 h-4 mt-4"
+                className="w-8 h-4"
                 alt="arrow bottom"
                 src={
                   index === 1
@@ -105,9 +119,6 @@ export const AboutMeSection = (): JSX.Element => {
           key={index}
           onMouseEnter={() => handleHover(index)}
           className="group flex-1 max-w-[700px] bg-[#ffffffcc] rounded-[20px] shadow-[0px_1px_3px_#00000040] backdrop-blur-[7.5px] border-0 overflow-hidden"
-          initial={{ height: 350 }}
-          animate={{ height: openedCards[index] ? "auto" : 350 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
         >
           <CardContent className="flex flex-col items-center gap-6 p-[50px]">
             <div className="flex flex-col items-center gap-[30px] w-full">
@@ -122,19 +133,19 @@ export const AboutMeSection = (): JSX.Element => {
             </div>
 
             <motion.p
-              className="text-licorice text-[16px] leading-7 text-justify w-full"
-              initial={{ opacity: 0, y: -8 }}
+              className="text-licorice text-[16px] leading-7 text-justify w-full overflow-hidden"
+              initial={{ opacity: 0, height: 0 }}
               animate={{
                 opacity: openedCards[index] ? 1 : 0,
-                y: openedCards[index] ? 0 : -8,
+                height: openedCards[index] ? "auto" : 0,
               }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
             >
               {card.description}
             </motion.p>
 
             <img loading="lazy" decoding="async"
-              className="w-[47px] h-[25px] mt-4"
+              className="w-[47px] h-[25px]"
               alt="arrow bottom"
               src={
                 index === 1

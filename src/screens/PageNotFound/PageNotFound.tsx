@@ -1,7 +1,20 @@
 import { Button } from "../../components/ui/button";
 import { HashLink } from "react-router-hash-link";
+import { useTranslation } from "../../lib/i18n";
+
+const content = {
+  fr: {
+    message: "Oups ! La page que vous cherchez semble avoir disparu ou n’existe pas.",
+    back: "Retourner à l'accueil",
+  },
+  en: {
+    message: "Oops! The page you are looking for seems to have disappeared or does not exist.",
+    back: "Back to the home page",
+  },
+};
 
 export const PageNotFound = (): JSX.Element => {
+  const t = useTranslation(content);
   return (
     <section
       className="relative w-full min-h-screen flex items-center justify-center bg-cover bg-center"
@@ -37,14 +50,14 @@ export const PageNotFound = (): JSX.Element => {
 
         {/* Message */}
         <p className="font-corps text-lg text-[#faf2d7] leading-7">
-          Oups ! La page que vous cherchez semble avoir disparu ou n’existe pas.
+          {t.message}
         </p>
 
         {/* Bouton retour */}
         <HashLink smooth to="/" className="w-full max-w-sm">
           <Button className="group relative flex items-center justify-between w-full rounded-[500px] shadow-[0px_1px_2px_#00000040] h-auto py-2 overflow-hidden transition-all duration-500 bg-vanilla hover:bg-pumpkin">
             <span className="flex-1 text-center [font-family:'Mona_Sans',Helvetica] font-extrabold text-lg tracking-[0] leading-[35px] text-pumpkin group-hover:text-vanilla">
-              Retourner à l'accueil
+              {t.back}
             </span>
 
             <div className="border-2 border-vanilla group-hover:border-transparent absolute right-[calc(100%-50px)] group-hover:right-[10px] top-1/2 -translate-y-1/2 w-[50px] h-[50px] flex items-center justify-center rounded-full transition-all duration-500 ease-in-out bg-pumpkin ">

@@ -1,6 +1,37 @@
 import { useState, useEffect } from "react";
+import { useTranslation } from "../../../../lib/i18n";
+
+const content = {
+  fr: {
+    title: <>Famille &amp; Origines</>,
+    text: (
+      <>
+        <span className="leading-7">Née à Conakry, </span>
+        <span className="font-bold leading-7">Diaka Camara</span>
+        <span className="leading-7">
+        {" "}
+        est une femme de médias, entrepreneure culturelle et philanthrope, reconnue pour son engagement en faveur de l&apos;éducation, de la culture et de la protection des jeunes filles. Profondément attachée à ses racines guinéennes, elle incarne une nouvelle génération de leaders africains : audacieux, visionnaires et engagés.
+        </span>
+      </>
+    ),
+  },
+  en: {
+    title: <>Family &amp; Roots</>,
+    text: (
+      <>
+        <span className="leading-7">Born in Conakry, </span>
+        <span className="font-bold leading-7">Diaka Camara</span>
+        <span className="leading-7">
+        {" "}
+        is a media figure, cultural entrepreneur and philanthropist, recognised for her commitment to education, culture and the protection of girls. Deeply attached to her Guinean roots, she embodies a new generation of African leaders: bold, visionary and committed.
+        </span>
+      </>
+    ),
+  },
+};
 
 export const FamilySection = (): JSX.Element => {
+  const t = useTranslation(content);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1200);
 
   useEffect(() => {
@@ -27,20 +58,10 @@ export const FamilySection = (): JSX.Element => {
 
         <div className="flex flex-col items-center gap-6 w-full">
           <h2 className="font-[beautique-display] text-2xl text-center">
-            Famille &amp; Origines
+            {t.title}
           </h2>
           <p className="font-[Mona_Sans] text-base text-licorice text-center leading-6">
-            <span className="leading-7">Née à Conakry, </span>
-            <span className="font-bold leading-7">Diaka Camara</span>
-            <span className="leading-7">
-              {" "}
-              est une femme de médias, entrepreneure culturelle et philanthrope,
-              reconnue pour son engagement en faveur de l&apos;éducation, de la
-              culture et de la protection des jeunes filles. Profondément
-              attachée à ses racines guinéennes, elle incarne une nouvelle
-              génération de leaders africains : audacieux, visionnaires et
-              engagés.
-            </span>
+            {t.text}
           </p>
         </div>
       </section>
@@ -70,20 +91,11 @@ export const FamilySection = (): JSX.Element => {
 
       <div className="flex flex-col items-center justify-center gap-10 px-60 py-0 relative self-stretch w-full flex-[0_0_auto]">
         <h2 className="relative self-stretch font-[beautique-display] text-4xl text-center">
-          Famille &amp; Origines
+          {t.title}
         </h2>
 
         <p className="relative self-stretch [font-family:'Mona_Sans',Helvetica] font-normal text-licorice text-[17.5px] text-center tracking-[0] leading-[17.5px]">
-          <span className="leading-7">Née à Conakry, </span>
-          <span className="font-bold leading-7">Diaka Camara</span>
-          <span className="leading-7">
-            {" "}
-            est une femme de médias, entrepreneure culturelle et philanthrope,
-            reconnue pour son engagement en faveur de l&apos;éducation, de la
-            culture et de la protection des jeunes filles. Profondément attachée
-            à ses racines guinéennes, elle incarne une nouvelle génération de
-            leaders africains : audacieux, visionnaires et engagés.
-          </span>
+          {t.text}
         </p>
       </div>
     </section>

@@ -2,8 +2,43 @@ import { useEffect, useState } from "react";
 import { Button } from "../../../../components/ui/button";
 import { Card, CardContent } from "../../../../components/ui/card";
 import { Link } from "react-router-dom";
+import { useTranslation } from "../../../../lib/i18n";
+
+const content = {
+  fr: {
+    title: "Plaidoyer et rayonnement",
+    text: (
+      <>
+        Diaka Camara est également à l&apos;initiative du{" "}
+        <span className="font-bold">Gala de la Fondation</span>, un rendez-vous caritatif de prestige qui réunit chaque année à Conakry des personnalités publiques, des fondations internationales et des mécènes. Ce Gala deviendra une plateforme de levée de fonds et de plaidoyer, tournée vers des projets concrets et mesurables.
+        <br />
+        <br />
+        Elle est aussi à l&apos;origine du{" "}
+        <span className="font-bold">Cercle des Alliances (CDA)</span>, un espace unique de collaboration et de solidarité entre fondations, philanthropes et décideurs, destiné à amplifier l&apos;impact collectif.
+      </>
+    ),
+    gala: "Participer au Gala 2025",
+    circle: "Rejoindre le Cercle des Alliances",
+  },
+  en: {
+    title: "Advocacy and outreach",
+    text: (
+      <>
+        Diaka Camara is also the initiator of the{" "}
+        <span className="font-bold">Foundation Gala</span>, a prestigious charity event that brings together public figures, international foundations and patrons in Conakry every year. The Gala will become a platform for fundraising and advocacy, focused on concrete, measurable projects.
+        <br />
+        <br />
+        She is also behind the{" "}
+        <span className="font-bold">Circle of Alliances (CDA)</span>, a unique space for collaboration and solidarity between foundations, philanthropists and decision-makers, designed to amplify collective impact.
+      </>
+    ),
+    gala: "Join the Gala 2025",
+    circle: "Join the Circle of Alliances",
+  },
+};
 
 export const AdvocacySection = (): JSX.Element => {
+  const t = useTranslation(content);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1200);
 
   useEffect(() => {
@@ -25,28 +60,17 @@ export const AdvocacySection = (): JSX.Element => {
               src="/actualites_section/red_top_arrow.svg"
             />
             <h2 className="self-stretch font-[beautique-display] text-licorice text-4xl text-center">
-              Plaidoyer et rayonnement
+              {t.title}
             </h2>
             <div className="self-stretch [font-family:'Mona_Sans',Helvetica] font-normal text-licorice text-[17.5px] text-justify leading-7">
-              Diaka Camara est également à l&apos;initiative du{" "}
-              <span className="font-bold">Gala de la Fondation</span>, un
-              rendez-vous caritatif de prestige qui réunit chaque année à Conakry des
-              personnalités publiques, des fondations internationales et des mécènes.
-              Ce Gala deviendra une plateforme de levée de fonds et de plaidoyer,
-              tournée vers des projets concrets et mesurables.
-              <br />
-              <br />
-              Elle est aussi à l&apos;origine du{" "}
-              <span className="font-bold">Cercle des Alliances (CDA)</span>, un espace
-              unique de collaboration et de solidarité entre fondations,
-              philanthropes et décideurs, destiné à amplifier l&apos;impact collectif.
+              {t.text}
             </div>
             <Card className="self-stretch w-full bg-vanilla rounded-[500px] shadow-[0px_1px_2px_#00000040] border-0">
               <CardContent className="p-0">
                 <Link to="/gala2025">
                   <Button className="group relative flex items-center justify-between w-full rounded-[500px] shadow-[0px_1px_2px_#00000040] h-auto py-2 overflow-hidden transition-all duration-500 bg-vanilla hover:bg-carmin">
                     <span className="flex-1 text-center font-extrabold text-xl text-carmin group-hover:text-vanilla">
-                      Participer au Gala 2025
+                      {t.gala}
                     </span>
                     <div className="border-2 border-vanilla group-hover:border-transparent absolute right-[calc(100%-50px)] group-hover:right-[10px] top-1/2 -translate-y-1/2 w-[50px] h-[50px] flex items-center justify-center rounded-full transition-all duration-500 ease-in-out bg-carmin ">
                       <img loading="lazy" decoding="async" className="w-7 h-7" alt="Icon" src="/gala_arrow_button.svg" />
@@ -79,7 +103,7 @@ export const AdvocacySection = (): JSX.Element => {
                         -translate-x-1/2 -translate-y-1/2 z-10 bg-antiflash
                         text-carmin font-bold text-lg px-8 py-2 rounded-lg shadow-[0px_1px_2px_#00000040]
                         transition-all duration-300 ease-in-out hover:underline">
-                      Rejoindre le Cercle des Alliances
+                      {t.circle}
                     </Button>
                   </Link>
                 </div>
@@ -103,28 +127,17 @@ export const AdvocacySection = (): JSX.Element => {
             src="/actualites_section/red_top_arrow.svg"
           />
           <h2 className="font-[beautique-display] text-licorice text-3xl text-center">
-            Plaidoyer et rayonnement
+            {t.title}
           </h2>
           <div className="text-licorice text-base text-justify leading-6">
-            Diaka Camara est également à l&apos;initiative du{" "}
-            <span className="font-bold">Gala de la Fondation</span>, un rendez-vous
-            caritatif de prestige qui réunit chaque année à Conakry des personnalités
-            publiques, des fondations internationales et des mécènes. Ce Gala deviendra
-            une plateforme de levée de fonds et de plaidoyer, tournée vers des projets
-            concrets et mesurables.
-            <br />
-            <br />
-            Elle est aussi à l&apos;origine du{" "}
-            <span className="font-bold">Cercle des Alliances (CDA)</span>, un espace
-            unique de collaboration et de solidarité entre fondations, philanthropes et
-            décideurs, destiné à amplifier l&apos;impact collectif.
+            {t.text}
           </div>
           <Card className="w-full bg-vanilla rounded-[500px] shadow-[0px_1px_2px_#00000040] border-0">
             <CardContent className="p-0">
               <Link to="/gala2025">
                 <Button className="group relative flex items-center justify-between w-full rounded-[500px] shadow-[0px_1px_2px_#00000040] h-auto py-2 overflow-hidden transition-all duration-500 bg-vanilla hover:bg-carmin">
                   <span className="flex-1 text-center font-extrabold text-lg text-carmin group-hover:text-vanilla">
-                    Participer au Gala 2025
+                    {t.gala}
                   </span>
                   <div className="border-2 border-vanilla group-hover:border-transparent absolute right-[calc(100%-40px)] group-hover:right-[10px] top-1/2 -translate-y-1/2 w-[40px] h-[40px] flex items-center justify-center rounded-full transition-all duration-500 ease-in-out bg-carmin">
                     <img loading="lazy" decoding="async" className="w-6 h-6" alt="Icon" src="/gala_arrow_button.svg" />
@@ -157,7 +170,7 @@ export const AdvocacySection = (): JSX.Element => {
                       -translate-x-1/2 -translate-y-1/2 z-10 bg-antiflash
                       text-carmin font-bold text-sm px-6 py-2 rounded-lg shadow-[0px_1px_2px_#00000040]
                       transition-all duration-300 ease-in-out hover:underline">
-                    Rejoindre le Cercle des Alliances
+                    {t.circle}
                   </Button>
                 </Link>
               </div>

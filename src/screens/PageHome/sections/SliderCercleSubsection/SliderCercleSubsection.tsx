@@ -2,6 +2,38 @@ import { useState, useEffect } from "react";
 import { Button } from "../../../../components/ui/button";
 import { Link } from "react-router-dom";
 import { usePreloadImages } from "../../../../lib/usePreloadImages";
+import { useTranslation } from "../../../../lib/i18n";
+
+const content = {
+  fr: [
+    {
+      title: "LE CERCLE DES ALLIANCES",
+      paragraph:
+        "Un réseau d'exception qui rassemble fondations, philanthropes, entreprises et décideurs",
+      buttonText: "Rejoindre le Cercle",
+    },
+    {
+      title: "VENTE AUX ENCHERES",
+      paragraph:
+        "Participez à nos enchères caritatives pour acquérir des pièces uniques et soutenir nos actions",
+      buttonText: "En savoir plus",
+    },
+  ],
+  en: [
+    {
+      title: "THE CIRCLE OF ALLIANCES",
+      paragraph:
+        "An exceptional network bringing together foundations, philanthropists, businesses and decision-makers",
+      buttonText: "Join the Circle",
+    },
+    {
+      title: "CHARITY AUCTION",
+      paragraph:
+        "Take part in our charity auctions to acquire unique pieces and support our work",
+      buttonText: "Learn more",
+    },
+  ],
+};
 
 export const SliderCercleSubsection = (): JSX.Element => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -40,7 +72,8 @@ export const SliderCercleSubsection = (): JSX.Element => {
     },
   ];
 
-  const currentState = states[activeIndex];
+  const t = useTranslation(content);
+  const currentState = { ...states[activeIndex], ...t[activeIndex] };
   usePreloadImages(states.map((s) => s.imageUrl));
 
   // Auto-slide toutes les 5s avec fade
