@@ -4,7 +4,7 @@ import { HashLink } from "react-router-hash-link";
 import { ArrowLeft } from "lucide-react";
 import { FooterSubsection } from "../PageHome/sections/FooterSubsection/FooterSubsection";
 import { useLanguage, useTranslation } from "../../lib/i18n";
-import { lots, RESERVATIONS_OPEN, type Lot } from "./lots";
+import { lots, RESERVATIONS_OPEN, TOMBOLA_BACKGROUND, type Lot } from "./lots";
 import { ReservationForm } from "./ReservationForm";
 
 const content = {
@@ -251,9 +251,12 @@ export const PageTombola = (): JSX.Element => {
   return (
     <div className="flex min-h-screen w-full flex-col bg-vanilla pb-20 min-[1200px]:pb-0">
       {/* En-tête court : au scan du QR code, les lots doivent apparaître tout de suite */}
-      <header className="flex flex-col items-center gap-3 bg-licorice px-6 pb-8 pt-24 text-center text-vanilla min-[1200px]:gap-4 min-[1200px]:pb-12 min-[1200px]:pt-32">
+      <header
+        style={{ backgroundImage: TOMBOLA_BACKGROUND }}
+        className="flex flex-col items-center gap-3 bg-licorice bg-cover bg-center px-6 pb-8 pt-24 text-center text-vanilla min-[1200px]:gap-4 min-[1200px]:pb-12 min-[1200px]:pt-32"
+      >
         <h1 className="font-[beautique-display-bold] text-3xl leading-tight min-[1200px]:text-5xl">{t.title}</h1>
-        <div className="font-legendes-bold tracking-[0.2em] text-pumpkin">{t.edition}</div>
+        <div className="font-legendes-bold tracking-[0.2em] text-vanilla">{t.edition}</div>
         <p className="max-w-2xl font-[beautique-display] text-xl min-[1200px]:text-3xl">{t.tagline}</p>
         <p className="font-corps font-bold">{t.price}</p>
         <div className="hidden flex-col items-center gap-2 min-[1200px]:flex">

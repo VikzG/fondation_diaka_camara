@@ -17,6 +17,10 @@ export interface Lot {
   hidden?: boolean; // lot sans visuel ou pas encore confirmé : masqué du site
 }
 
+// Fond de l'en-tête de la tombola et de sa carte sur la page Gala : le voile sombre garde le texte lisible
+export const TOMBOLA_BACKGROUND =
+  "linear-gradient(rgba(25, 10, 5, 0.72), rgba(25, 10, 5, 0.72)), url(/page_gala_section/gala_2025_bg.webp)";
+
 // Tant que c'est false, le formulaire est masqué et les boutons affichent « Vente des tickets bientôt ouverte ».
 // Passer à true pour ouvrir les réservations.
 export const RESERVATIONS_OPEN = false;

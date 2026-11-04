@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useTranslation } from "../../../../lib/i18n";
+import { TOMBOLA_BACKGROUND } from "../../../PageTombola/lots";
 
 const content = {
   fr: {
@@ -32,6 +33,7 @@ const ActionCard = ({
   to,
   className,
   buttonClassName,
+  backgroundImage,
 }: {
   title: string;
   tagline: string;
@@ -40,8 +42,9 @@ const ActionCard = ({
   to: string;
   className: string;
   buttonClassName: string;
+  backgroundImage?: string;
 }): JSX.Element => (
-  <div className={`flex flex-1 flex-col items-center justify-between gap-5 rounded-2xl p-8 text-center xl:p-12 ${className}`}>
+  <div style={{ backgroundImage }} className={`flex flex-1 flex-col items-center justify-between gap-5 rounded-2xl p-8 text-center xl:p-12 ${className}`}>
     <h2 className="font-[beautique-display-bold] text-2xl uppercase xl:text-3xl">{title}</h2>
     <p className="font-[beautique-display] text-2xl">{tagline}</p>
     <p className="font-corps font-bold">{text}</p>
@@ -66,7 +69,8 @@ export const GalaActionsSubsection = (): JSX.Element => {
           text={t.tombolaPrice}
           button={t.tombolaButton}
           to="/tombola"
-          className="bg-licorice text-vanilla"
+          className="bg-licorice bg-cover bg-center text-vanilla"
+          backgroundImage={TOMBOLA_BACKGROUND}
           buttonClassName="bg-pumpkin text-vanilla"
         />
         <ActionCard
