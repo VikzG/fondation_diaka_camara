@@ -1,7 +1,6 @@
 import { FormEvent, useEffect, useId, useRef, useState } from "react";
 import { ExternalLink } from "lucide-react";
 import {
-  CONTACT_EMAIL,
   InfoRow,
   ORANGE_MONEY,
   PAYPAL_URL,
@@ -14,6 +13,7 @@ import { useLanguage, useTranslation } from "../../lib/i18n";
 // Application Web Google Apps Script reliée au Google Sheet de la tombola (voir tombola_apps_script/Code.gs)
 const RESERVATION_URL =
   "https://script.google.com/macros/s/AKfycbz0obBjb-gYUVwBmjWqe4CKZjhEMmI8n3VtBRhTYq23Ms3u7Vwdi1GMjzvANMM-hmoz/exec";
+const TOMBOLA_EMAIL = "tombola.fondationdiakacamara@gmail.com";
 const TICKET_PRICE_USD = 100;
 const TICKET_PRICE_GNF = 880000; // conversion arrondie de 100 USD, à garder identique dans Code.gs
 const MAX_TICKETS = 20;
@@ -42,7 +42,9 @@ const content = {
     redirecting: "Redirection vers PayPal...",
     paypalOpened: "La page PayPal s'ouvre dans un nouvel onglet. Si elle ne s'est pas ouverte, utilisez ce bouton :",
     paypalNote: "Indiquez votre référence dans la note du paiement si PayPal vous le propose.",
-    orangeNote: "Depuis Orange Money, réglez ce montant au code marchand ci-dessous.",
+    orangeNote: "Depuis Orange Money, scannez le QR code ou utilisez le code marchand ci-dessous, puis réglez ce montant.",
+    orangeNoteCode: "Depuis Orange Money, réglez ce montant au code marchand ci-dessous.",
+    orangeQrAlt: "QR code Orange Money de la Fondation Diaka Camara",
     zelleNote: "Depuis votre application bancaire compatible Zelle, indiquez votre référence dans la note du paiement.",
     account: "Nom du compte",
     merchantCode: "Code marchand",
@@ -76,7 +78,9 @@ const content = {
     redirecting: "Redirecting to PayPal...",
     paypalOpened: "The PayPal page opens in a new tab. If it did not open, use this button:",
     paypalNote: "Please include your reference in the payment note if PayPal offers this option.",
-    orangeNote: "In Orange Money, pay this amount to the merchant code below.",
+    orangeNote: "In Orange Money, scan the QR code or use the merchant code below, then pay this amount.",
+    orangeNoteCode: "In Orange Money, pay this amount to the merchant code below.",
+    orangeQrAlt: "Diaka Camara Foundation Orange Money QR code",
     zelleNote: "In your Zelle-enabled banking app, please include your reference in the payment note.",
     account: "Account name",
     merchantCode: "Merchant code",
@@ -144,8 +148,11 @@ const ReservationDone = ({
 
       {method === "orange" && (
         <>
-          <p className="text-licorice">{t.orangeNote}</p>
+          <p className="text-licorice">{ORANGE_MONEY.qrCode ? t.orangeNote : t.orangeNoteCode}</p>
           <InfoRow label={t.amount} value={`${formatGnf(quantity * TICKET_PRICE_GNF)} GNF`} />
+          {ORANGE_MONEY.qrCode && (
+            <img src={ORANGE_MONEY.qrCode} alt={t.orangeQrAlt} className="h-48 w-48 object-contain" />
+          )}
           <InfoRow label={t.account} value={ORANGE_MONEY.account} />
           <InfoRow label={t.merchantCode} value={ORANGE_MONEY.merchantCode} copyable />
           <InfoRow label={t.number} value={ORANGE_MONEY.number} copyable />
@@ -163,8 +170,8 @@ const ReservationDone = ({
 
       <p className="text-sm text-licorice">
         {t.proof}{" "}
-        <a href={`mailto:${CONTACT_EMAIL}`} className="break-all font-bold text-colbat underline">
-          {CONTACT_EMAIL}
+        <a href={`mailto:${TOMBOLA_EMAIL}`} className="break-all font-bold text-colbat underline">
+          {TOMBOLA_EMAIL}
         </a>
       </p>
       <p className="text-sm font-bold text-licorice">{emailSent ? t.emailSent : t.emailFailed}</p>
@@ -178,7 +185,8 @@ const ReservationDone = ({
 export const ReservationForm = (): JSX.Element => {
   const t = useTranslation(content);
   const { lang } = useLanguage();
-  const methods = useDonationMethods();
+  // Ecobank Pay n'est proposé que pour les dons : le script de la tombola ne l'accepte pas
+  const methods = useDonationMethods().filter((method) => method.id !== "ecobank");
   const id = useId();
   const [quantity, setQuantity] = useState(1);
   const [sending, setSending] = useState(false);
@@ -310,7 +318,7 @@ export const ReservationForm = (): JSX.Element => {
         {error === "generic" && (
           <>
             {t.errorGeneric}{" "}
-            <a href={`mailto:${CONTACT_EMAIL}`} className="break-all underline">{CONTACT_EMAIL}</a>
+            <a href={`mailto:${TOMBOLA_EMAIL}`} className="break-all underline">{TOMBOLA_EMAIL}</a>
           </>
         )}
       </div>

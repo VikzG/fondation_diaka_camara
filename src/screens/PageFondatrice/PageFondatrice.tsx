@@ -9,7 +9,7 @@ import { MissionSection } from "./sections/MissionSection/MissionSection.tsx";
 
 export const PageFondatrice = (): JSX.Element => {
   return (
-    <div className="bg-white flex flex-col items-center w-screen">
+    <div className="bg-white flex flex-col items-center w-full">
       <div className="bg-blanc w-full flex flex-col">        <HeroSection />
         <FamilySection />
         <AboutMeSection />

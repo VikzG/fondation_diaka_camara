@@ -157,7 +157,7 @@ export const ActionsSlidesSubsection = (): JSX.Element => {
         </h2>
 
 {/* Cercle image (mobile) */}
-<div className="relative flex items-center justify-center mx-auto shrink-0 w-[300px] h-[300px] overflow-hidden">
+<div className="relative flex items-center justify-center mx-auto shrink-0 w-full max-w-[300px] aspect-square overflow-hidden">
   {/* Images empilées : fondu enchaîné sans remonter l'image */}
   {slides.map((s, index) => (
     <img
@@ -241,7 +241,7 @@ export const ActionsSlidesSubsection = (): JSX.Element => {
 
   // === VERSION DESKTOP (inchangée) ===
   return (
-    <section className="w-full bg-antiflash px-30 py-20">
+    <section className="w-full overflow-x-clip bg-antiflash px-30 py-20">
       <div className="flex flex-wrap items-start justify-center gap-40 max-w-[1440px] mx-auto">
         {/* Colonne gauche */}
         <div className="flex-1 min-w-0 flex flex-col justify-between h-[709px] px-10">

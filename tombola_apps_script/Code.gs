@@ -4,7 +4,7 @@
 const CONFIG = {
   sheetName: "Réservations",
   senderName: "Fondation Diaka Camara",
-  replyTo: "contact@fondationdiakacamara.org",
+  replyTo: "tombola.fondationdiakacamara@gmail.com",
   ticketPriceUsd: 100,
   ticketPriceGnf: 880000, // conversion arrondie de 100 USD, à garder identique dans ReservationForm.tsx
   maxTicketsPerReservation: 20,
