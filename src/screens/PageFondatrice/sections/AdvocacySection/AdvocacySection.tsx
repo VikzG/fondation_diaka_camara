@@ -17,7 +17,7 @@ const content = {
         <span className="font-bold">Cercle des Alliances (CDA)</span>, un espace unique de collaboration et de solidarité entre fondations, philanthropes et décideurs, destiné à amplifier l&apos;impact collectif.
       </>
     ),
-    gala: "Participer au Gala 2025",
+    gala: "Découvrir le Gala 2026",
     circle: "Rejoindre le Cercle des Alliances",
   },
   en: {
@@ -32,7 +32,7 @@ const content = {
         <span className="font-bold">Circle of Alliances (CDA)</span>, a unique space for collaboration and solidarity between foundations, philanthropists and decision-makers, designed to amplify collective impact.
       </>
     ),
-    gala: "Join the Gala 2025",
+    gala: "Discover the 2026 Gala",
     circle: "Join the Circle of Alliances",
   },
 };
@@ -67,7 +67,7 @@ export const AdvocacySection = (): JSX.Element => {
             </div>
             <Card className="self-stretch w-full bg-vanilla rounded-[500px] shadow-[0px_1px_2px_#00000040] border-0">
               <CardContent className="p-0">
-                <Link to="/gala2025">
+                <Link to="/gala2026">
                   <Button className="group relative flex items-center justify-between w-full rounded-[500px] shadow-[0px_1px_2px_#00000040] h-auto py-2 overflow-hidden transition-all duration-500 bg-vanilla hover:bg-carmin">
                     <span className="flex-1 text-center font-extrabold text-xl text-carmin group-hover:text-vanilla">
                       {t.gala}
@@ -134,7 +134,7 @@ export const AdvocacySection = (): JSX.Element => {
           </div>
           <Card className="w-full bg-vanilla rounded-[500px] shadow-[0px_1px_2px_#00000040] border-0">
             <CardContent className="p-0">
-              <Link to="/gala2025">
+              <Link to="/gala2026">
                 <Button className="group relative flex items-center justify-between w-full rounded-[500px] shadow-[0px_1px_2px_#00000040] h-auto py-2 overflow-hidden transition-all duration-500 bg-vanilla hover:bg-carmin">
                   <span className="flex-1 text-center font-extrabold text-lg text-carmin group-hover:text-vanilla">
                     {t.gala}

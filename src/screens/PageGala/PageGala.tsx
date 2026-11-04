@@ -1,30 +1,17 @@
-import { BilleterieSubsection } from "./sections/BilleterieSubsection/BilleterieSubsection";
 import { ContactSubsection } from "../PageHome/sections/ContactSubsection/ContactSubsection";
-import { EncheresSubsection } from "./sections/EncheresSubsection/EncheresSubsection";
 import { FooterSubsection } from "../PageHome/sections/FooterSubsection/FooterSubsection";
-import { FrameSubsection } from "./sections/FrameSubsection/FrameSubsection";
+import { GalaActionsSubsection } from "./sections/GalaActionsSubsection/GalaActionsSubsection";
 import { GalaSubsection } from "./sections/GalaSubsection/GalaSubsection";
 import { HeroSubsection } from "./sections/HeroSubsection/HeroSubsection";
-import { IntervenantsIntroSubsection } from "./sections/IntervenantsIntroSubsection.tsx/IntervenantsIntroSubsection";
-import { IntervenantsSubsection } from "./sections/IntervenantsSubsection/IntervenantsSubsection";
-import { MaitressesCeremonieSubsection } from "./sections/MaitressesCeremonieSubsection/MaitressesCeremonieSubsection";
-import { ObjectifsSubsection } from "./sections/ObjectifsSubsection/ObjectifsSubsection";
 import { PartenaireSubsection } from "./sections/PartenaireSubsection/PartenaireSubsection";
-import { MatchtombolaSubsection } from "./sections/MatchtombolaSubsection/MatchtombolaSubsection";
 
 export const PageGala = (): JSX.Element => {
   return (
     <div className="bg-white w-full min-h-screen">
-      <div className="bg-blanc w-full flex flex-col">        <HeroSubsection />
+      <div className="bg-blanc w-full flex flex-col">
+        <HeroSubsection />
         <GalaSubsection />
-        <ObjectifsSubsection />
-        <FrameSubsection />
-        <MaitressesCeremonieSubsection />
-        <IntervenantsIntroSubsection />
-        <IntervenantsSubsection />
-        <BilleterieSubsection />
-        <MatchtombolaSubsection />
-        <EncheresSubsection />
+        <GalaActionsSubsection />
         <PartenaireSubsection />
         <ContactSubsection />
         <FooterSubsection />

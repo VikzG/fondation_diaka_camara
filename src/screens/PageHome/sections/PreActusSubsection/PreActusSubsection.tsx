@@ -3,8 +3,8 @@ import { HashLink } from "react-router-hash-link";
 import { useTranslation } from "../../../../lib/i18n";
 
 const content = {
-  fr: { dates: "CONAKRY, DU 13 AU 15 NOVEMBRE", button: "Voir les actualités" },
-  en: { dates: "CONAKRY, 13 TO 15 NOVEMBER", button: "See the latest news" },
+  fr: { dates: "CONAKRY, LE 7 NOVEMBRE 2026", button: "Voir les actualités" },
+  en: { dates: "CONAKRY, 7 NOVEMBER 2026", button: "See the latest news" },
 };
 
 export const PreActusSubsection = (): JSX.Element => {
@@ -32,8 +32,8 @@ export const PreActusSubsection = (): JSX.Element => {
 
       {/* Bloc texte */}
       <div className="flex flex-col items-center justify-center gap-5">
-        <h1 className="w-fit font-[beautique-display-bold] text-vanilla text-5xl text-center whitespace-nowrap max-[1200px]:text-3xl">
-          GALA 2025
+        <h1 className="w-fit font-[beautique-display-bold] text-vanilla text-5xl text-center max-[1200px]:text-3xl">
+          AFRICAN ROYALTY GALA 2026
         </h1>
         <p className="[font-family:'Libertinus_Sans',Helvetica] font-bold text-antiflash text-base text-center max-[1200px]:text-sm">
           {t.dates}

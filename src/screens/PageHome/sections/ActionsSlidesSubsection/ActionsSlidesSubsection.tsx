@@ -5,20 +5,21 @@ import { AnimatedCircles } from "../../../../components/AnimatedCircles";
 import { CrossfadeStack } from "../../../../components/CrossfadeStack";
 import { Link } from "react-router-dom";
 import { useTranslation } from "../../../../lib/i18n";
+import { REPORT_URL } from "../../../../lib/reportUrl";
 
 const content = {
   fr: {
     heading: "NOS ACTIONS",
-    report: <>Télécharger le rapport d&apos;activité 2024</>,
-    reportShort: <>Télécharger le rapport<br/>d&apos;activité 2024</>,
+    report: <>Télécharger le rapport d&apos;activité 2025-2026</>,
+    reportShort: <>Télécharger le rapport<br/>d&apos;activité 2025-2026</>,
     donate: "Faire un don à la Fondation",
     flagship: "NOS PROJETS PHARES 2024",
     slides: [] as { title: string; subtitle: string; description: string }[], // textes déjà dans `slides`
   },
   en: {
     heading: "OUR ACTIONS",
-    report: <>Download the 2024 activity report</>,
-    reportShort: <>Download the 2024<br/>activity report</>,
+    report: <>Download the 2025-2026 activity report</>,
+    reportShort: <>Download the 2025-2026<br/>activity report</>,
     donate: "Donate to the Foundation",
     flagship: "OUR FLAGSHIP PROJECTS 2024",
     slides: [
@@ -206,8 +207,10 @@ export const ActionsSlidesSubsection = (): JSX.Element => {
         {/* CTA Rapport + Don */}
         <div className="flex flex-col items-center gap-4 w-full max-w-[320px]">
           {/* 🔵 Bouton bleu rapport */}
-          <Button className="w-full bg-colbat text-antiflash font-extrabold text-base px-6 py-2 rounded-lg shadow h-auto hover:underline hover:-translate-y-1 transition-all duration-300 ease-in-out">
-            {t.reportShort}
+          <Button asChild className="w-full bg-colbat text-antiflash font-extrabold text-base px-6 py-2 rounded-lg shadow h-auto hover:underline hover:-translate-y-1 transition-all duration-300 ease-in-out">
+            <a href={REPORT_URL} download>
+              {t.reportShort}
+            </a>
           </Button>
 
           {/* 🟠 Bouton Don */}
@@ -314,8 +317,10 @@ export const ActionsSlidesSubsection = (): JSX.Element => {
             <div className="font-legendes-categories text-colbat">
               {t.flagship}
             </div>
-            <Button className="bg-colbat text-antiflash font-extrabold text-lg px-8 py-2 rounded-lg shadow h-auto hover:underline hover:-translate-y-1 transition-all duration-300 ease-in-out">
-              {t.report}
+            <Button asChild className="bg-colbat text-antiflash font-extrabold text-lg px-8 py-2 rounded-lg shadow h-auto hover:underline hover:-translate-y-1 transition-all duration-300 ease-in-out">
+              <a href={REPORT_URL} download>
+                {t.report}
+              </a>
             </Button>
           </div>
         </div>

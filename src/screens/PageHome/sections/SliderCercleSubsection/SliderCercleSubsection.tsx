@@ -35,6 +35,8 @@ const content = {
   ],
 };
 
+const AUCTIONS_ACTIVE = false;
+
 export const SliderCercleSubsection = (): JSX.Element => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [fade, setFade] = useState(true);
@@ -47,7 +49,7 @@ export const SliderCercleSubsection = (): JSX.Element => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const states = [
+  const allStates = [
     {
       title: "LE CERCLE DES ALLIANCES",
       titleColor: "text-carmin",
@@ -68,16 +70,18 @@ export const SliderCercleSubsection = (): JSX.Element => {
       buttonColor: "bg-blue-600 hover:bg-blue-500",
       indicatorColor: "bg-blue-600",
       imageUrl: "/slider_cercle_section/slide_img_2.webp",
-      link: "/gala2025",
+      link: "/gala2026",
     },
   ];
 
   const t = useTranslation(content);
+  const states = AUCTIONS_ACTIVE ? allStates : allStates.slice(0, 1);
   const currentState = { ...states[activeIndex], ...t[activeIndex] };
   usePreloadImages(states.map((s) => s.imageUrl));
 
   // Auto-slide toutes les 5s avec fade
   useEffect(() => {
+    if (states.length < 2) return;
     const interval = setInterval(() => {
       setFade(false);
       setTimeout(() => {
@@ -132,7 +136,7 @@ export const SliderCercleSubsection = (): JSX.Element => {
           </Link>
 
           {/* INDICATEURS */}
-          <div className="flex items-end justify-center gap-[30px] w-full mt-6">
+          <div className={`items-end justify-center gap-[30px] w-full mt-6 ${states.length > 1 ? "flex" : "hidden"}`}>
             {states.map((state, index) => (
               <div
                 key={index}
@@ -194,7 +198,7 @@ export const SliderCercleSubsection = (): JSX.Element => {
         </Link>
 
         {/* INDICATEURS */}
-        <div className="flex items-center justify-center gap-5 w-full mt-4">
+        <div className={`items-center justify-center gap-5 w-full mt-4 ${states.length > 1 ? "flex" : "hidden"}`}>
           {states.map((state, index) => (
             <div
               key={index}

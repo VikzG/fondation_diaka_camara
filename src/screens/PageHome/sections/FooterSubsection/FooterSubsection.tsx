@@ -1,4 +1,13 @@
+import { Link } from "react-router-dom";
+import { useTranslation } from "../../../../lib/i18n";
+
+const content = {
+  fr: { support: "Soutenir la Fondation" },
+  en: { support: "Support the Foundation" },
+};
+
 export const FooterSubsection = (): JSX.Element => {
+  const t = useTranslation(content);
   return (
     <footer id="footer" className="w-full bg-colbat px-6 py-5">
       {/* Desktop */}
@@ -28,6 +37,12 @@ export const FooterSubsection = (): JSX.Element => {
               </span>
             </a>
           </div>
+          <Link
+            to="/don"
+            className="shrink-0 px-6 py-2 rounded-lg bg-vanilla text-colbat font-bold hover:underline hover:-translate-y-1 transition-all duration-300"
+          >
+            {t.support}
+          </Link>
           <div className="flex flex-row gap-7">
             <a href="https://www.instagram.com/fondationdiakacamara/" target="_blank" className="cursor-pointer">
               <img loading="lazy" decoding="async" src="/footer_section/instagram_logo.svg" alt="Logo Instagram" />
@@ -54,6 +69,10 @@ export const FooterSubsection = (): JSX.Element => {
             <span className="font-bold text-[#faf2d7] underline">contact@fondationdiakacamara.org</span>
           </a>
         </div>
+
+        <Link to="/don" className="px-6 py-3 rounded-lg bg-vanilla text-colbat font-bold">
+          {t.support}
+        </Link>
 
         <div className="flex flex-row gap-4 mt-2">
           <a href="https://www.instagram.com/fondationdiakacamara/" target="_blank">

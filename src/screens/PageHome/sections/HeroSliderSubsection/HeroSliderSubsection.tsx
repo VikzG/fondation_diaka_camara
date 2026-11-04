@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Button } from "../../../../components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
-import DonationForm from "../../../../components/DonationForm";
+import DonationPanel from "../../../../components/DonationMethods";
 import { CrossfadeStack } from "../../../../components/CrossfadeStack";
 import { useTranslation, type Lang } from "../../../../lib/i18n";
 
@@ -38,9 +38,9 @@ const slideTexts: Record<Lang, SlideText[]> = {
     },
     {
       title:
-        "Gala 2025 : Trois jours pour inspirer, mobiliser et financer des projets qui changent des vies.",
+        "African Royalty Gala 2026 — L'Afrique en héritage : jeunesse, culture et sport.",
       description: "",
-      buttonText: "Participer au Gala 2025",
+      buttonText: "Découvrir l'édition 2026",
     },
   ],
   en: [
@@ -58,9 +58,9 @@ const slideTexts: Record<Lang, SlideText[]> = {
     },
     {
       title:
-        "Gala 2025: Three days to inspire, mobilise and fund projects that change lives.",
+        "African Royalty Gala 2026 — Africa as a legacy: youth, culture and sport.",
       description: "",
-      buttonText: "Join the Gala 2025",
+      buttonText: "Discover the 2026 edition",
     },
   ],
 };
@@ -217,7 +217,7 @@ export const HeroSliderSubsection = (): JSX.Element => {
     if (slide.id === 2) {
       navigate("/don");
     } else if (slide.id === 3) {
-      navigate("/gala2025");
+      navigate("/gala2026");
     }
   };
 
@@ -302,7 +302,7 @@ export const HeroSliderSubsection = (): JSX.Element => {
       <SlideBackgrounds current={currentSlide} position="bg-center" />
 
       {/* Colonne gauche */}
-      <div className="flex-1 flex justify-center">
+      <div className="flex-1 flex justify-center px-10">
         <div
           className={`transition-opacity duration-700 ease-in-out ${
             slidesData[currentSlide].id === 2
@@ -315,7 +315,7 @@ export const HeroSliderSubsection = (): JSX.Element => {
           onFocus={() => setIsFormEngaged(true)}
           onInput={() => setIsFormEngaged(true)}
         >
-          <DonationForm />
+          <DonationPanel />
         </div>
       </div>
 

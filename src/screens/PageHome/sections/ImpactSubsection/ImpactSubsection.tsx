@@ -24,6 +24,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { usePreloadImages } from "../../../../lib/usePreloadImages";
 import { useTranslation } from "../../../../lib/i18n";
+import { REPORT_URL } from "../../../../lib/reportUrl";
 
 // ================== tes catégories et stats (inchangés) ==================
 const categories = [
@@ -187,7 +188,7 @@ const content = {
         CHIFFRES
       </>
     ),
-    report: <>Télécharger le rapport d&apos;activité 2024</>,
+    report: <>Télécharger le rapport d&apos;activité 2025-2026</>,
     intro: (
       <>
         Parce que chaque action compte, voici un
@@ -206,7 +207,7 @@ const content = {
         FIGURES
       </>
     ),
-    report: <>Download the 2024 activity report</>,
+    report: <>Download the 2025-2026 activity report</>,
     intro: (
       <>
         Because every action counts, here is a
@@ -259,8 +260,10 @@ export const ImpactSubsection = (): JSX.Element => {
                 src="/impact_section/logo-submark.svg"
               />
               <div className="inline-flex flex-col items-start gap-5 flex-[0_0_auto]">
-                <Button className="bg-antiflash text-colbat [font-family:'Mona_Sans',Helvetica] font-extrabold text-lg px-8 py-2 rounded-lg shadow-[0px_1px_2px_#00000040] h-auto hover:underline hover:-translate-y-1 transition-all duration-300 ease-in-out">
-                  {t.report}
+                <Button asChild className="bg-antiflash text-colbat [font-family:'Mona_Sans',Helvetica] font-extrabold text-lg px-8 py-2 rounded-lg shadow-[0px_1px_2px_#00000040] h-auto hover:underline hover:-translate-y-1 transition-all duration-300 ease-in-out">
+                  <a href={REPORT_URL} download>
+                    {t.report}
+                  </a>
                 </Button>
                 <p className="self-stretch text-antiflash text-md [font-family:'Mona_Sans',Helvetica]">
                   {t.intro}

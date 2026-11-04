@@ -13,8 +13,8 @@ import { LanguageSwitch } from "../../../../components/LanguageSwitch";
 import { useTranslation } from "../../../../lib/i18n";
 
 const navigationLabels = {
-  fr: ["LA FONDATION", "GALA 2025", "CERCLE DES ALLIANCES", "NOTRE ÉQUIPE", "LA PRÉSIDENTE"],
-  en: ["THE FOUNDATION", "GALA 2025", "CIRCLE OF ALLIANCES", "OUR TEAM", "THE PRESIDENT"],
+  fr: ["LA FONDATION", "GALA 2026", "CERCLE DES ALLIANCES", "NOTRE ÉQUIPE", "LA PRÉSIDENTE", "NOUS SOUTENIR"],
+  en: ["THE FOUNDATION", "GALA 2026", "CIRCLE OF ALLIANCES", "OUR TEAM", "THE PRESIDENT", "SUPPORT US"],
 };
 
 export const TopBarSubsection = (): JSX.Element => {
@@ -25,10 +25,11 @@ export const TopBarSubsection = (): JSX.Element => {
 
   const navigationItems = [
     { label: labels[0], to: "/" },
-    { label: labels[1], to: "/gala2025" },
+    { label: labels[1], to: "/gala2026" },
     { label: labels[2], to: "/cercle" },
     { label: labels[3], to: "/equipe" },
     { label: labels[4], to: "/fondatrice" },
+    { label: labels[5], to: "/don" },
   ];
 
   const socialIcons = [
@@ -190,9 +191,9 @@ export const TopBarSubsection = (): JSX.Element => {
   // === VERSION DESKTOP (inchangée) ===
   return (
     <header className="flex flex-col w-full relative z-50">
-      <nav className="items-center justify-between px-20 py-5 w-full bg-vanilla flex fixed self-stretch shadow-[0px_1px_5px_#00000040]">
+      <nav className="items-center justify-between px-10 min-[1440px]:px-20 py-5 w-full bg-vanilla flex fixed self-stretch shadow-[0px_1px_5px_#00000040]">
         {/* Logo cliquable */}
-        <HashLink to="#" smooth>
+        <HashLink to="#" smooth className="shrink-0">
           <img
             className="relative cursor-pointer"
             alt="Logo Gala"
@@ -201,7 +202,7 @@ export const TopBarSubsection = (): JSX.Element => {
         </HashLink>
 
         <NavigationMenu className="items-center justify-end flex relative self-stretch">
-          <NavigationMenuList className="flex items-center justify-end gap-8">
+          <NavigationMenuList className="flex items-center justify-end gap-4 min-[1440px]:gap-8">
             {navigationItems.map((item, index) => {
               const isActive = location.pathname === item.to;
               return (
@@ -223,7 +224,7 @@ export const TopBarSubsection = (): JSX.Element => {
               );
             })}
           </NavigationMenuList>
-          <LanguageSwitch className="ml-8" />
+          <LanguageSwitch className="ml-4 min-[1440px]:ml-8" />
         </NavigationMenu>
       </nav>
 

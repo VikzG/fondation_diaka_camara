@@ -2,69 +2,41 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "../../../../components/ui/button";
 import { Card, CardContent } from "../../../../components/ui/card";
-import { useLanguage, useTranslation } from "../../../../lib/i18n";
+import { useTranslation } from "../../../../lib/i18n";
 
 const content = {
   fr: {
     heading: "ACTUALITÉS",
     cta: "Informations & Participation",
     ctaShort: "Infos & Participation",
-    programme: "Programme",
-    goalLabel: "OBJECTIF",
-    goal: <>Financer la scolarisation de 100 jeunes filles et l&apos;ouverture de nouvelles bibliothèques.</>,
+    programme: "L'essentiel",
+    events: [
+      { date: "AFRICAN ROYALTY GALA 2026", description: "L'Afrique en héritage : jeunesse, culture et sport" },
+      { date: "7 NOVEMBRE 2026", description: "Hôtel Palm Camayenne, Conakry" },
+      { date: "DÎNER DE GALA", description: "COMPLET" },
+      { date: "TOMBOLA SOLIDAIRE", description: "Tickets à 100 USD" },
+    ],
+    goalLabel: "UN APPEL À AGIR",
+    goal: "Les contributions mobilisées permettent à la Fondation de poursuivre ses programmes de scolarisation, d'amélioration des infrastructures éducatives, d'accès à la lecture et d'accompagnement des communautés.",
   },
   en: {
     heading: "NEWS",
     cta: "Information & Participation",
     ctaShort: "Info & Participation",
-    programme: "Programme",
-    goalLabel: "GOAL",
-    goal: <>Funding schooling for 100 girls and the opening of new libraries.</>,
+    programme: "Key information",
+    events: [
+      { date: "AFRICAN ROYALTY GALA 2026", description: "Africa as a legacy: youth, culture and sport" },
+      { date: "7 NOVEMBER 2026", description: "Hôtel Palm Camayenne, Conakry" },
+      { date: "GALA DINNER", description: "SOLD OUT" },
+      { date: "CHARITY RAFFLE", description: "Tickets at 100 USD" },
+    ],
+    goalLabel: "A CALL TO ACTION",
+    goal: "The contributions raised enable the Foundation to continue its programmes for schooling, improving educational infrastructure, access to reading and community support.",
   },
 };
 
-const programmeEventsEn = [
-  {
-    date: "13 NOVEMBER",
-    description: "Press conference",
-  },
-  {
-    date: "14 NOVEMBER",
-    description: (
-      <>
-        <span className="font-normal text-[#160a00] text-base leading-6">
-          Morning visits to projects carried out by the Foundation{" "}
-        </span>
-        <span className="italic">
-          (Orphanages, Libraries, Meeting the girls in school)
-        </span>
-        <span className="font-normal text-[#160a00] text-base leading-6">
-          {" "}
-          + Friendly women's football match{" "}
-        </span>
-        <span className="italic">(1 goal = 1 donation)</span>
-      </>
-    ),
-  },
-  {
-    date: "15 NOVEMBER",
-    description: (
-      <>
-        <span className="font-corps">Morning round table by the </span>
-        <span className="font-corps">Circle of Alliances</span>
-        <span className="font-corps">
-          {" "}
-          on women&apos;s economic empowerment + Prestige gala evening at the{" "}
-        </span>
-        <span className="font-corps">Hôtel Le Palm Camayenne</span>
-      </>
-    ),
-  },
-];
-
 export const GalaSubsection = (): JSX.Element => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1200);
-  const { lang } = useLanguage();
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 1200);
@@ -73,45 +45,7 @@ export const GalaSubsection = (): JSX.Element => {
   }, []);
 
   const t = useTranslation(content);
-  const programmeEvents = lang === "en" ? programmeEventsEn : [
-    {
-      date: "13 NOVEMBRE",
-      description: "Conférence de presse",
-    },
-    {
-      date: "14 NOVEMBRE",
-      description: (
-        <>
-          <span className="font-normal text-[#160a00] text-base leading-6">
-            Visites des projets réalisés par la Fondation le matin{" "}
-          </span>
-          <span className="italic">
-            (Orphelinats, Bibliothèques, Rencontre avec les filles scolarisées)
-          </span>
-          <span className="font-normal text-[#160a00] text-base leading-6">
-            {" "}
-            + Match de football féminin amical{" "}
-          </span>
-          <span className="italic">(1 but = 1 don)</span>
-        </>
-      ),
-    },
-    {
-      date: "15 NOVEMBRE",
-      description: (
-        <>
-          <span className="font-corps">Table ronde par le </span>
-          <span className="font-corps">Cercle des Alliances</span>
-          <span className="font-corps">
-            {" "}
-            sur l&apos;autonomisation économique des femmes, le matin + Soirée
-            gala de prestige à l&apos;
-          </span>
-          <span className="font-corps">Hôtel Le Palm Camayenne</span>
-        </>
-      ),
-    },
-  ];
+  const programmeEvents = t.events;
 
   // === VERSION MOBILE ===
   if (isMobile) {
@@ -127,11 +61,11 @@ export const GalaSubsection = (): JSX.Element => {
           </h2>
 
           <img loading="lazy" decoding="async"
-            className="w-full max-h-[400px] object-cover rounded-md"
-            src="/gala_section/enveloppe_gala_anim.webp"
+            className="w-full max-h-[400px] object-contain rounded-md"
+            src="/gala_section/enveloppe_fermee.webp"
             alt="Enveloppe animation"
           />
-          <Link to="/gala2025" className="w-full">
+          <Link to="/gala2026" className="w-full">
             <Button className="group relative flex items-center justify-between w-full rounded-[500px] shadow-[0px_1px_2px_#00000040] h-auto py-2 overflow-hidden transition-all duration-500 bg-vanilla hover:bg-[#C30F28]">
               <span className="flex-1 text-center font-mona font-bold text-xl tracking-[0] leading-[35px] text-[#C30F28] transition-colors duration-500 group-hover:text-vanilla">
                 {t.ctaShort}
@@ -208,12 +142,12 @@ export const GalaSubsection = (): JSX.Element => {
 
           <div className="flex h-[619.73px] items-center gap-2.5 relative self-stretch w-full">
             <img loading="lazy" decoding="async"
-              className="relative flex-1 grow h-[619.73px] object-cover"
-              src="/gala_section/enveloppe_gala_anim.webp"
+              className="relative flex-1 grow h-[619.73px] object-contain"
+              src="/gala_section/enveloppe_fermee.webp"
               alt="Enveloppe animation"
             />
           </div>
-          <Link to="/gala2025" className="w-full">
+          <Link to="/gala2026" className="w-full">
             <Button className="group relative flex items-center justify-between w-full rounded-[500px] shadow-[0px_1px_2px_#00000040] h-auto py-2 overflow-hidden transition-all duration-500 bg-vanilla hover:bg-[#C30F28]">
               <span className="flex-1 text-center [font-family:'Mona_Sans',Helvetica] font-extrabold text-xl tracking-[0] leading-[35px] text-[#C30F28] group-hover:text-vanilla">
                 {t.cta}

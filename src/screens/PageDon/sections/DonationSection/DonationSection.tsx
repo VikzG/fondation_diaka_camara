@@ -1,4 +1,10 @@
-import DonationForm from "../../../../components/DonationForm";
+import { HashLink } from "react-router-hash-link";
+import {
+  DonationAmountPicker,
+  DonationMethodDetails,
+  useDonationMethods,
+  type DonationMethodId,
+} from "../../../../components/DonationMethods";
 import { useState,useEffect } from "react";
 import { Button } from "../../../../components/ui/button";
 import { Card, CardContent } from "../../../../components/ui/card";
@@ -15,30 +21,16 @@ const content = {
     a1: "Vous offrez un kit scolaire complet à une élève.",
     a2: "Vous assurez une année entière de scolarité et de repas pour une jeune fille.",
     a3: "Vous contribuez à l'ouverture d'une bibliothèque et à l'accès à la lecture pour plus de 1 000 enfants.",
-    mOnline: "En ligne",
-    mTransfer: "Par virement",
-    mCheque: "Par chèque",
     e1: "Un reçu officiel vous sera transmis pour chaque don.",
     e2: "Vous recevrez des rapports réguliers sur l'impact de votre contribution.",
     e3: "Vous aurez accès à des témoignages et histoires de vie des bénéficiaires.",
-    transferTitle: "Faire un don par virement",
-    transferText: (
-      <>
-        Vous pouvez soutenir la{" "}
-        <strong>Fondation Diaka Camara</strong> en effectuant un virement sécurisé via notre compte PayPal.
-        Chaque geste contribue à offrir un avenir meilleur aux jeunes filles que nous accompagnons.
-      </>
-    ),
-    transferButton: "Virement par PayPal",
-    title: "FAIRE UN DON",
-    dream: <>Celui d&apos;apprendre et de rêver sans limite.</>,
-    introMobile: <>Depuis sa création, la <strong>Fondation Diaka Camara</strong> agit pour offrir aux enfants et aux jeunes filles vulnérables un droit fondamental :{" "}</>,
-    introStart: "Depuis sa création, la",
-    foundationName: <><strong>Fondation Diaka Camara</strong>{" "}</>,
-    introEnd: <>agit pour offrir aux enfants et aux jeunes filles les plus vulnérables un droit fondamental :{" "}</>,
-    generosity: "Grâce à votre générosité, nous avons déjà scolarisé des dizaines de filles, ouvert des bibliothèques et apporté un soutien concret à celles qui en avaient le plus besoin.",
+    title: "SOUTENIR LA FONDATION",
+    lead: "Votre générosité peut transformer un avenir.",
+    body1: "Derrière chaque projet de la Fondation Diaka Camara, il y a des enfants, des familles et des communautés pour lesquels l'accès à l'éducation, aux soins ou à de meilleures conditions d'apprentissage représente une opportunité déterminante.",
+    body2: "Votre contribution, quel que soit son montant, nous aide à poursuivre cet engagement.",
+    donateNow: "Faire un don",
     spark: <>Chaque contribution est une étincelle d&apos;avenir</>,
-    priority: "En 2025, notre priorité est claire :",
+    priority: "Notre priorité est claire :",
     differenceShort: "VOTRE DON FAIT LA DIFFÉRENCE : CHAQUE MONTANT COMPTE.",
     difference: "VOTRE DON FAIT LA DIFFÉRENCE : CHAQUE MONTANT COMPTE. CHAQUE GESTE EST UN PAS VERS UN AVENIR MEILLEUR.",
     how: "COMMENT DONNER ?",
@@ -72,30 +64,16 @@ const content = {
     a1: "You provide a complete school kit for one pupil.",
     a2: "You cover a full year of schooling and meals for one girl.",
     a3: "You help open a library and give more than 1,000 children access to reading.",
-    mOnline: "Online",
-    mTransfer: "By bank transfer",
-    mCheque: "By cheque",
     e1: "You will receive an official receipt for every donation.",
     e2: "You will receive regular reports on the impact of your contribution.",
     e3: "You will have access to testimonials and life stories from beneficiaries.",
-    transferTitle: "Donate by bank transfer",
-    transferText: (
-      <>
-        You can support the{" "}
-        <strong>Diaka Camara Foundation</strong> by making a secure transfer through our PayPal account.
-        Every gesture helps give a better future to the girls we support.
-      </>
-    ),
-    transferButton: "Transfer via PayPal",
-    title: "MAKE A DONATION",
-    dream: "The right to learn and to dream without limits.",
-    introMobile: <>Since its creation, the <strong>Diaka Camara Foundation</strong> has worked to give vulnerable children and girls a fundamental right:{" "}</>,
-    introStart: "Since its creation, the",
-    foundationName: <><strong>Diaka Camara Foundation</strong>{" "}</>,
-    introEnd: <>works to give the most vulnerable children and girls a fundamental right:{" "}</>,
-    generosity: "Thanks to your generosity, we have already put dozens of girls through school, opened libraries and provided concrete support to those who needed it most.",
+    title: "SUPPORT THE FOUNDATION",
+    lead: "Your generosity can transform a future.",
+    body1: "Behind every Diaka Camara Foundation project are children, families and communities for whom access to education, healthcare or better learning conditions is a decisive opportunity.",
+    body2: "Your contribution, whatever its amount, helps us continue this commitment.",
+    donateNow: "Make a donation",
     spark: "Every contribution is a spark for the future",
-    priority: "In 2025, our priority is clear:",
+    priority: "Our priority is clear:",
     differenceShort: "YOUR DONATION MAKES A DIFFERENCE: EVERY AMOUNT COUNTS.",
     difference: "YOUR DONATION MAKES A DIFFERENCE: EVERY AMOUNT COUNTS. EVERY GESTURE IS A STEP TOWARDS A BETTER FUTURE.",
     how: "HOW TO GIVE?",
@@ -124,7 +102,8 @@ const content = {
 export const DonationSection = (): JSX.Element => {
   const t = useTranslation(content);
     const [isMobile, setIsMobile] = useState(window.innerWidth < 1200);
-    const [selectedMethod, setSelectedMethod] = useState("En ligne");
+    const [selectedMethod, setSelectedMethod] = useState<DonationMethodId>("paypal");
+    const [amount, setAmount] = useState<number | null>(null);
 
     const handleResize = () => {
         setIsMobile(window.innerWidth < 1200);
@@ -172,44 +151,13 @@ export const DonationSection = (): JSX.Element => {
     },
   ];
 
-  const paymentMethods = [
-    { title: t.mOnline, value: "En ligne" },
-    { title: t.mTransfer, value: "Par virement" },
-    { title: t.mCheque, value: "Par chèque" },
-  ];
+  const paymentMethods = useDonationMethods();
 
   const engagementItems = [
     t.e1,
     t.e2,
     t.e3,
   ];
-
-  // ✅ Contenu dynamique
-  const renderContent = () => {
-    if (selectedMethod === "En ligne") {
-      return <DonationForm />;
-    }
-if (selectedMethod === "Par virement") {
-  return (
-    <div className="flex flex-col items-center gap-6 p-10 bg-white rounded-2xl shadow-md text-center">
-      <h3 className="font-[beautique-display] text-3xl text-colbat">
-        {t.transferTitle}
-      </h3>
-      <p className="text-licorice text-base max-w-lg">
-        {t.transferText}
-      </p>
-      <a
-        href="https://www.paypal.me/diakacamara1"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="px-8 py-4 rounded-2xl bg-colbat text-white font-bold text-lg shadow hover:scale-105 transition"
-      >
-        {t.transferButton}
-      </a>
-    </div>
-  );
-}
-  };
 
   if (isMobile) {
   return (
@@ -219,13 +167,16 @@ if (selectedMethod === "Par virement") {
         <h1 className="font-[beautique-display-bold] text-4xl text-colbat">
           {t.title}
         </h1>
-        <p className="font-corps text-licorice">
-          {t.introMobile}
-          <strong>{t.dream}</strong>
+        <p className="font-[beautique-display] text-2xl text-colbat">
+          {t.lead}
         </p>
-        <p className="font-corps text-licorice">
-          {t.generosity}
-        </p>
+        <p className="font-corps text-licorice">{t.body1}</p>
+        <p className="font-corps text-licorice">{t.body2}</p>
+        <HashLink smooth to="#comment-donner" className="w-full">
+          <Button className="w-full h-auto py-3 rounded-xl bg-colbat text-white font-bold text-lg">
+            {t.donateNow}
+          </Button>
+        </HashLink>
       </div>
 
       {/* Priorités */}
@@ -273,27 +224,28 @@ if (selectedMethod === "Par virement") {
       </div>
 
       {/* Formulaire & moyens de don */}
-      <div className="flex flex-col gap-8 w-full bg-antiflash px-6 py-12">
+      <div id="comment-donner" className="flex flex-col gap-8 w-full bg-antiflash px-6 py-12 scroll-mt-20">
 
         <div className="flex flex-col gap-6">
          <h3 className="text-colbat font-[beautique-display-bold] text-3xl text-center">
             {t.how}
           </h3>
 
+          <div className="p-6 bg-white rounded-2xl shadow-md">
+            <DonationAmountPicker amount={amount} onChange={setAmount} />
+          </div>
+
           <div className="flex flex-col gap-6">
             {paymentMethods.map((method) => (
               <Card
-                key={method.value}
-                onClick={() =>
-                  method.value !== "Par chèque" && setSelectedMethod(method.value)
-                }
+                key={method.id}
+                onClick={() => setSelectedMethod(method.id)}
                 className={`flex items-center justify-center p-6 rounded-2xl text-center cursor-pointer transition
                   ${
-                    selectedMethod === method.value
+                    selectedMethod === method.id
                       ? "bg-colbat text-white"
                       : "bg-white text-colbat hover:bg-colbat hover:text-white"
                   }
-                  ${method.value === "Par chèque" ? "opacity-50 cursor-not-allowed" : ""}
                 `}
               >
                 <CardContent className="p-0">
@@ -306,7 +258,9 @@ if (selectedMethod === "Par virement") {
           </div>
 
           {/* Contenu dynamique */}
-          <div className="mt-6">{renderContent()}</div>
+          <div className="mt-6 flex justify-center">
+            <DonationMethodDetails method={selectedMethod} amount={amount} />
+          </div>
         </div>
         </div>
 
@@ -339,6 +293,7 @@ if (selectedMethod === "Par virement") {
         <p className="text-center text-licorice font-[beautique-display] text-2xl">
           {t.ctaMobile}
         </p>
+        <HashLink smooth to="#comment-donner" className="w-full">
         <Button className="flex items-center gap-4 px-6 py-6 w-full rounded-xl bg-antiflash hover:-translate-y-1 transition">
           <img
             className="w-8 h-8"
@@ -349,6 +304,7 @@ if (selectedMethod === "Par virement") {
             {t.donate}
           </span>
         </Button>
+        </HashLink>
       </div>
     </section>
   );
@@ -357,7 +313,7 @@ if (selectedMethod === "Par virement") {
 
   return (
     <section className="flex flex-col w-full items-start justify-center bg-blanc">
-      <div className="flex h-[1000px] items-center justify-center gap-[70px] px-32 py-48 w-full max-w-[1600px] mx-auto">
+      <div className="flex h-[1150px] items-center justify-center gap-[70px] px-32 py-48 w-full max-w-[1600px] mx-auto">
         <div className="flex flex-col items-center justify-between flex-1 h-full">
           <div className="flex flex-col items-center gap-[70px] flex-1 w-full">
             <h1 className="w-full font-[beautique-display-bold] text-5xl text-colbat">
@@ -365,27 +321,20 @@ if (selectedMethod === "Par virement") {
             </h1>
 
             <div className="flex flex-col items-start justify-center gap-[30px] w-full">
-              <p className="w-full font-corps font-[number:var(--corps-font-weight)] text-licorice text-[length:var(--corps-font-size)] tracking-[var(--corps-letter-spacing)] leading-[var(--corps-line-height)] [font-style:var(--corps-font-style)]">
-                <span className="leading-[var(--corps-line-height)] font-corps [font-style:var(--corps-font-style)] font-[number:var(--corps-font-weight)] tracking-[var(--corps-letter-spacing)] text-[length:var(--corps-font-size)]">
-                  {t.introStart}
-                </span>
-                <span className="font-corps">
-                  {" "}
-                  {t.foundationName}
-                </span>
-                <span className="leading-[var(--corps-line-height)] font-corps [font-style:var(--corps-font-style)] font-[number:var(--corps-font-weight)] tracking-[var(--corps-letter-spacing)] text-[length:var(--corps-font-size)]">
-                  {t.introEnd}
-                </span>
-                <span className="font-[number:var(--corps-font-weight)] leading-[var(--corps-line-height)] font-corps [font-style:var(--corps-font-style)] tracking-[var(--corps-letter-spacing)] text-[length:var(--corps-font-size)]">
-                  <strong>
-                    {t.dream}
-                  </strong>
-                </span>
+              <p className="w-full font-[beautique-display] text-colbat text-4xl">
+                {t.lead}
               </p>
-
-              <p className="w-full font-corps font-[number:var(--corps-font-weight)] text-licorice text-[length:var(--corps-font-size)] tracking-[var(--corps-letter-spacing)] leading-[var(--corps-line-height)] [font-style:var(--corps-font-style)]">
-                {t.generosity}
+              <p className="w-full font-corps text-licorice text-[length:var(--corps-font-size)] leading-[var(--corps-line-height)]">
+                {t.body1}
               </p>
+              <p className="w-full font-corps text-licorice text-[length:var(--corps-font-size)] leading-[var(--corps-line-height)]">
+                {t.body2}
+              </p>
+              <HashLink smooth to="#comment-donner">
+                <Button className="h-auto px-8 py-3 rounded-xl bg-colbat text-white font-bold text-lg hover:underline hover:-translate-y-1 transition-all duration-300">
+                  {t.donateNow}
+                </Button>
+              </HashLink>
             </div>
           </div>
 
@@ -461,11 +410,14 @@ if (selectedMethod === "Par virement") {
         </div>
       </div>
 
-      <div className="flex min-h-[780px] w-full bg-antiflash">
+      <div id="comment-donner" className="flex min-h-[780px] w-full bg-antiflash scroll-mt-24">
         <div className="flex w-full max-w-[1600px] mx-auto">
           {/* Col gauche = contenu */}
-          <div className="w-1/2 flex items-center justify-center p-12">
-            {renderContent()}
+          <div className="w-1/2 flex flex-col items-center justify-center gap-5 p-12">
+            <div className="w-full max-w-[560px] p-6 sm:p-8 bg-white rounded-2xl shadow-md">
+              <DonationAmountPicker amount={amount} onChange={setAmount} />
+            </div>
+            <DonationMethodDetails method={selectedMethod} amount={amount} />
           </div>
 
           {/* Col droite = boutons */}
@@ -477,17 +429,14 @@ if (selectedMethod === "Par virement") {
             <div className="flex flex-col gap-5">
               {paymentMethods.map((method) => (
                 <Card
-                  key={method.value}
-                  onClick={() =>
-                    method.value !== "Par chèque" && setSelectedMethod(method.value)
-                  }
+                  key={method.id}
+                  onClick={() => setSelectedMethod(method.id)}
                   className={`p-[30px] w-full flex flex-col items-center gap-11 rounded-[20px] text-licorice cursor-pointer transition
                     ${
-                      selectedMethod === method.value
+                      selectedMethod === method.id
                         ? "bg-colbat text-white"
                         : "bg-white text-colbat hover:bg-colbat hover:text-white"
                     }
-                    ${method.value === "Par chèque" ? "opacity-50 cursor-not-allowed" : ""}
                   `}
                 >
                   <CardContent className="p-0 w-full">
@@ -542,6 +491,7 @@ if (selectedMethod === "Par virement") {
             </span>
           </p>
 
+          <HashLink smooth to="#comment-donner" className="w-full">
           <Button className="group max-w-[1500px] mx-auto relative flex items-center gap-5 px-5 py-2.5 w-full bg-antiflash rounded-[10px] shadow-[0px_1px_2px_#00000040] backdrop-blur-[7.5px] backdrop-brightness-[100%] [-webkit-backdrop-filter:blur(7.5px)_brightness(100%)] h-auto border-0 overflow-hidden hover:-translate-y-1 transition ease-in-out duration-300">
             {/* Container image avec transition */}
             <div className="relative w-14 h-14">
@@ -564,6 +514,7 @@ if (selectedMethod === "Par virement") {
               {t.donate}
             </span>
           </Button>
+          </HashLink>
         </div>
       </div>
     </section>
