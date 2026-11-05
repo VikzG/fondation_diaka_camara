@@ -5,24 +5,15 @@ import { useLanguage, useTranslation } from "../lib/i18n";
 export const PAYPAL_URL = "https://www.paypal.me/diakacamara1";
 export const CONTACT_EMAIL = "contact@fondationdiakacamara.org";
 
-// Passer à true une fois les QR codes scannés avec les applications Orange Money et Ecobank,
-// après avoir ajouté le dossier public/paiements au dépôt : affiche alors les QR codes et Ecobank Pay
-const QR_CODES_VERIFIED = false;
+// Passer à true une fois le QR code scanné dans l'application Orange Money,
+// après avoir ajouté le dossier public/paiements au dépôt
+const ORANGE_QR_VERIFIED = false;
 
-// `qrCode` et `recipient` restent vides tant que la Fondation ne les a pas transmis :
-// ces éléments ne s'affichent que lorsqu'ils sont renseignés
 export const ORANGE_MONEY = {
   account: "Fondation Diaka Camara",
   merchantCode: "691560",
   number: "613125478",
-  qrCode: QR_CODES_VERIFIED ? "/paiements/qr_orange_money.svg" : "",
-};
-
-const ECOBANK_PAY = {
-  merchant: "Fondation Diaka Camara",
-  merchantId: "382624524",
-  terminalId: "32645918",
-  qrCode: "/paiements/qr_ecobank_pay.svg",
+  qrCode: ORANGE_QR_VERIFIED ? "/paiements/qr_orange_money.svg" : "",
 };
 
 export const ZELLE = {
@@ -30,7 +21,7 @@ export const ZELLE = {
   recipient: "Diaka Camara",
 };
 
-export type DonationMethodId = "paypal" | "orange" | "zelle" | "ecobank";
+export type DonationMethodId = "paypal" | "orange" | "zelle";
 
 const PRESET_AMOUNTS = [1000, 500, 100, 50];
 
@@ -53,11 +44,6 @@ const content = {
     number: "Numéro",
     qrAlt: "QR code Orange Money de la Fondation Diaka Camara",
     zelleText: "Depuis votre application bancaire compatible Zelle (États-Unis), envoyez votre don à l'adresse ci-dessous.",
-    ecobankText: "Depuis l'application Ecobank mobile, scannez le QR code, entrez le montant de votre don en GNF, puis validez avec votre code PIN.",
-    ecobankQrAlt: "QR code Ecobank Pay de la Fondation Diaka Camara",
-    merchantName: "Nom du marchand",
-    merchantId: "Identifiant marchand",
-    terminalId: "Identifiant du terminal",
     email: "Adresse e-mail",
     recipient: "Bénéficiaire",
     receipt: "Pour recevoir votre reçu, envoyez-nous votre nom et le montant de votre don à",
@@ -80,11 +66,6 @@ const content = {
     number: "Number",
     qrAlt: "Diaka Camara Foundation Orange Money QR code",
     zelleText: "In your Zelle-enabled banking app (United States), send your donation to the address below.",
-    ecobankText: "In the Ecobank mobile app, scan the QR code, enter the amount of your donation in GNF, then confirm with your PIN.",
-    ecobankQrAlt: "Diaka Camara Foundation Ecobank Pay QR code",
-    merchantName: "Merchant name",
-    merchantId: "Merchant ID",
-    terminalId: "Terminal ID",
     email: "Email address",
     recipient: "Recipient",
     receipt: "To receive your receipt, send us your name and the amount of your donation at",
@@ -92,8 +73,8 @@ const content = {
 };
 
 const methodTitles: Record<"fr" | "en", Record<DonationMethodId, string>> = {
-  fr: { paypal: "PayPal", orange: "Orange Money", zelle: "Zelle", ecobank: "Ecobank Pay" },
-  en: { paypal: "PayPal", orange: "Orange Money", zelle: "Zelle", ecobank: "Ecobank Pay" },
+  fr: { paypal: "PayPal", orange: "Orange Money", zelle: "Zelle" },
+  en: { paypal: "PayPal", orange: "Orange Money", zelle: "Zelle" },
 };
 
 export const useDonationMethods = (): { id: DonationMethodId; title: string }[] => {
@@ -103,7 +84,6 @@ export const useDonationMethods = (): { id: DonationMethodId; title: string }[] 
     { id: "paypal", title: titles.paypal },
     { id: "orange", title: titles.orange },
     { id: "zelle", title: titles.zelle },
-    ...(QR_CODES_VERIFIED ? [{ id: "ecobank" as const, title: titles.ecobank }] : []),
   ];
 };
 
@@ -295,11 +275,12 @@ export const DonationMethodDetails = ({
       {method === "orange" && (
         <>
           <p className="text-licorice text-center">{t.orangeText}</p>
+          {/* Sur téléphone, on ne peut pas scanner son propre écran : le code marchand suffit */}
           {ORANGE_MONEY.qrCode && (
             <img
               src={ORANGE_MONEY.qrCode}
               alt={t.qrAlt}
-              className="w-48 h-48 object-contain"
+              className="hidden md:block w-48 h-48 object-contain"
             />
           )}
           <InfoRow label={t.account} value={ORANGE_MONEY.account} />
@@ -309,21 +290,10 @@ export const DonationMethodDetails = ({
         </>
       )}
 
-      {method === "ecobank" && (
-        <>
-          <p className="text-licorice text-center">{t.ecobankText}</p>
-          <img src={ECOBANK_PAY.qrCode} alt={t.ecobankQrAlt} className="w-48 h-48 object-contain" />
-          <InfoRow label={t.merchantName} value={ECOBANK_PAY.merchant} />
-          <InfoRow label={t.merchantId} value={ECOBANK_PAY.merchantId} copyable />
-          <InfoRow label={t.terminalId} value={ECOBANK_PAY.terminalId} copyable />
-          <ReceiptNote />
-        </>
-      )}
-
       {method === "zelle" && (
         <>
           <p className="text-licorice text-center">{t.zelleText}</p>
-          {ZELLE.recipient && <InfoRow label={t.recipient} value={ZELLE.recipient} />}
+          <InfoRow label={t.recipient} value={ZELLE.recipient} />
           {amount && <InfoRow label={t.donationAmount} value={`${amount} USD`} />}
           <InfoRow label={t.email} value={ZELLE.email} copyable />
           <ReceiptNote />
@@ -346,7 +316,7 @@ export default function DonationPanel(): JSX.Element {
       <h3 className="font-[beautique-display] text-4xl text-gray-800 text-center">{t.panelTitle}</h3>
       <DonationAmountPicker amount={amount} onChange={setAmount} />
       <div className="font-corps font-bold text-colbat text-center">{t.chooseMethod}</div>
-      <div className={`grid gap-2 w-full ${methods.length > 3 ? "grid-cols-2" : "grid-cols-3"}`}>
+      <div className="grid grid-cols-3 gap-2 w-full">
         {methods.map((method) => (
           <button
             key={method.id}

@@ -264,7 +264,7 @@ function reservationEmail(reservation, reference) {
         `Hello ${reservation.name},`,
         `We have received your reservation for ${reservation.quantity} raffle ticket(s). Your reference is ${reference}.`,
         instructions,
-        "Once you have paid, reply to this email with your proof of payment. Your ticket number(s) will be sent to you after we have checked your payment.",
+        "Once you have paid, you can help us find your payment by replying to this email with your proof of payment. Your ticket number(s) will be sent to you after we have checked your payment.",
         "Thank you for supporting the Diaka Camara Foundation.",
       ],
     };
@@ -275,7 +275,7 @@ function reservationEmail(reservation, reference) {
       `Bonjour ${reservation.name},`,
       `Nous avons bien reçu votre réservation de ${reservation.quantity} ticket(s) de tombola. Votre référence est ${reference}.`,
       instructions,
-      "Une fois le paiement effectué, répondez à cet e-mail avec votre preuve de paiement. Votre ou vos numéros de ticket vous seront envoyés après vérification.",
+      "Une fois le paiement effectué, vous pouvez nous aider à le retrouver en répondant à cet e-mail avec votre preuve de paiement. Votre ou vos numéros de ticket vous seront envoyés après vérification.",
       "Merci de votre soutien à la Fondation Diaka Camara.",
     ],
   };

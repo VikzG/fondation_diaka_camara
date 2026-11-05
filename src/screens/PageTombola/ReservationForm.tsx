@@ -24,7 +24,8 @@ const content = {
     intro: "Remplissez ce formulaire : vous recevrez votre référence et les instructions de paiement. Vos numéros de ticket vous seront envoyés par e-mail après vérification de votre paiement.",
     name: "Nom et prénom",
     email: "Adresse e-mail",
-    phone: "Téléphone (facultatif)",
+    emailHint: "Vérifiez bien votre adresse : votre ticket y sera envoyé.",
+    phone: "Téléphone",
     quantity: "Nombre de tickets",
     total: "Total",
     method: "Moyen de paiement",
@@ -52,7 +53,7 @@ const content = {
     recipient: "Bénéficiaire",
     zelleEmail: "Adresse e-mail",
     amount: "Montant",
-    proof: "Une fois le paiement effectué, envoyez votre preuve de paiement et votre référence à",
+    proof: "Une fois le paiement effectué, vous pouvez nous aider à le retrouver en envoyant votre preuve de paiement et votre référence à",
     again: "Faire une autre réservation",
   },
   en: {
@@ -60,7 +61,8 @@ const content = {
     intro: "Fill in this form to receive your reference and payment instructions. Your ticket numbers will be emailed to you once we have checked your payment.",
     name: "Full name",
     email: "Email address",
-    phone: "Phone (optional)",
+    emailHint: "Please check your address carefully: your ticket will be sent there.",
+    phone: "Phone",
     quantity: "Number of tickets",
     total: "Total",
     method: "Payment method",
@@ -88,7 +90,7 @@ const content = {
     recipient: "Recipient",
     zelleEmail: "Email address",
     amount: "Amount",
-    proof: "Once you have paid, send your proof of payment and your reference to",
+    proof: "Once you have paid, you can help us find your payment by sending your proof of payment and your reference to",
     again: "Make another reservation",
   },
 };
@@ -148,10 +150,12 @@ const ReservationDone = ({
 
       {method === "orange" && (
         <>
-          <p className="text-licorice">{ORANGE_MONEY.qrCode ? t.orangeNote : t.orangeNoteCode}</p>
+          {ORANGE_MONEY.qrCode && <p className="hidden text-licorice md:block">{t.orangeNote}</p>}
+          <p className={`text-licorice ${ORANGE_MONEY.qrCode ? "md:hidden" : ""}`}>{t.orangeNoteCode}</p>
           <InfoRow label={t.amount} value={`${formatGnf(quantity * TICKET_PRICE_GNF)} GNF`} />
+          {/* Sur téléphone, on ne peut pas scanner son propre écran : le code marchand suffit */}
           {ORANGE_MONEY.qrCode && (
-            <img src={ORANGE_MONEY.qrCode} alt={t.orangeQrAlt} className="h-48 w-48 object-contain" />
+            <img src={ORANGE_MONEY.qrCode} alt={t.orangeQrAlt} className="hidden h-48 w-48 object-contain md:block" />
           )}
           <InfoRow label={t.account} value={ORANGE_MONEY.account} />
           <InfoRow label={t.merchantCode} value={ORANGE_MONEY.merchantCode} copyable />
@@ -185,8 +189,7 @@ const ReservationDone = ({
 export const ReservationForm = (): JSX.Element => {
   const t = useTranslation(content);
   const { lang } = useLanguage();
-  // Ecobank Pay n'est proposé que pour les dons : le script de la tombola ne l'accepte pas
-  const methods = useDonationMethods().filter((method) => method.id !== "ecobank");
+  const methods = useDonationMethods();
   const id = useId();
   const [quantity, setQuantity] = useState(1);
   const [sending, setSending] = useState(false);
@@ -266,11 +269,12 @@ export const ReservationForm = (): JSX.Element => {
       </div>
       <div className="flex flex-col gap-1">
         <label htmlFor={`${id}-email`} className={labelClass}>{t.email}</label>
-        <input id={`${id}-email`} name="email" type="email" required maxLength={200} autoComplete="email" className={fieldClass} />
+        <input id={`${id}-email`} name="email" type="email" required maxLength={200} autoComplete="email" aria-describedby={`${id}-email-hint`} className={fieldClass} />
+        <p id={`${id}-email-hint`} className="text-sm text-licorice/80">{t.emailHint}</p>
       </div>
       <div className="flex flex-col gap-1">
         <label htmlFor={`${id}-phone`} className={labelClass}>{t.phone}</label>
-        <input id={`${id}-phone`} name="phone" type="tel" maxLength={40} autoComplete="tel" className={fieldClass} />
+        <input id={`${id}-phone`} name="phone" type="tel" required maxLength={40} autoComplete="tel" className={fieldClass} />
       </div>
 
       {/* Champ invisible pour les humains : seuls les robots le remplissent */}

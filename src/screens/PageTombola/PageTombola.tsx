@@ -297,7 +297,7 @@ export const PageTombola = (): JSX.Element => {
       {selectedLot && <LotDetails key={selectedLot.id} lot={selectedLot} />}
 
       {/* Bouton d'achat toujours accessible sur mobile, y compris depuis une fiche */}
-      <div className="fixed inset-x-0 bottom-0 z-40 bg-licorice/95 p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] shadow-[0_-2px_8px_#00000040] min-[1200px]:hidden">
+      <div className="fixed inset-x-0 bottom-0 z-40 bg-licorice/95 p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] min-[1200px]:hidden">
         <BuyButton label={t.buyShort} className="w-full" />
       </div>
     </div>
