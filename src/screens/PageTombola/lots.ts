@@ -201,16 +201,14 @@ export const lots: Lot[] = [
     images: ["/lots_tombola/1000018936.jpg"],
   },
   {
-    // Visuel manquant
     id: "lot-17",
     number: "17",
-    name: { fr: "Sac de luxe et sandales", en: "Luxury bag and sandals" },
+    name: { fr: "Elie KOUAME : Sandales + sac", en: "Elie KOUAME: Sandals + bag" },
     shortDescription: {
       fr: "Un sac de luxe et une paire de sandales.",
       en: "A luxury bag and a pair of sandals.",
     },
-    images: [],
-    hidden: true,
+    images: ["/lots_tombola/elie_kouame_sac.jpg", "/lots_tombola/elie_kouame_sandales.jpg"],
   },
   {
     // Visuel manquant
@@ -245,16 +243,18 @@ export const lots: Lot[] = [
     images: ["/lots_tombola/bon_twinsbrokers.webp"],
   },
   {
-    // Contenu du lot en attente et visuel manquant
     id: "lot-21",
     number: "21",
-    name: { fr: "Sonia Mugabo", en: "Sonia Mugabo" },
+    name: { fr: "Sonia Mugabo : Robe Agaseke", en: "Sonia Mugabo: Agaseke dress" },
     shortDescription: {
-      fr: "Un lot de la marque de vêtements Sonia Mugabo.",
-      en: "A prize from the clothing brand Sonia Mugabo.",
+      fr: "L'imprimé de cette robe s'inspire du panier traditionnel rwandais, connu sous le nom d'Agaseke.",
+      en: "The print of this dress is inspired by the traditional Rwandan basket known as the Agaseke.",
     },
-    images: [],
-    hidden: true,
+    description: {
+      fr: "L'imprimé de cette robe s'inspire du panier traditionnel rwandais, connu sous le nom d'Agaseke. Ses motifs géométriques célèbrent le savoir-faire artistique africain, mêlant des tons terreux riches et des imprimés distinctifs. Une pièce forte et polyvalente qui se porte aussi bien le jour que le soir.",
+      en: "The print of this dress is inspired by the traditional Rwandan basket known as the Agaseke. Its geometric patterns celebrate African artistic craftsmanship, blending rich earthy tones with distinctive prints. A strong, versatile piece that can be worn both day and night.",
+    },
+    images: ["/lots_tombola/sonia_mugabo_robe.jpg"],
   },
   {
     id: "lot-22",
