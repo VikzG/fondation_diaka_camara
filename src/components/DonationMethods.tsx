@@ -5,9 +5,8 @@ import { useLanguage, useTranslation } from "../lib/i18n";
 export const PAYPAL_URL = "https://www.paypal.me/diakacamara1";
 export const CONTACT_EMAIL = "contact@fondationdiakacamara.org";
 
-// Passer à true une fois le QR code scanné dans l'application Orange Money,
-// après avoir ajouté le dossier public/paiements au dépôt
-const ORANGE_QR_VERIFIED = false;
+// Repasser à false pour masquer le QR code si le test dans l'application Orange Money échoue
+const ORANGE_QR_VERIFIED = true;
 
 export const ORANGE_MONEY = {
   account: "Fondation Diaka Camara",
