@@ -150,7 +150,7 @@ export const lots: Lot[] = [
       fr: "Deux bons de 500 000 GNF pour L'Avenue, deux bons de 500 000 GNF pour Upstairs et deux bons de 300 000 GNF pour Salma's, soit une valeur totale de 2 600 000 GNF.",
       en: "Two 500,000 GNF vouchers for L'Avenue, two 500,000 GNF vouchers for Upstairs and two 300,000 GNF vouchers for Salma's, worth 2,600,000 GNF in total.",
     },
-    images: ["/lots_tombola/1000018961.jpg", "/lots_tombola/1000018967.jpg", "/lots_tombola/1000018964.jpg"],
+    images: ["/lots_tombola/avenue_group_bons.jpg", "/lots_tombola/1000018961.jpg", "/lots_tombola/1000018967.jpg", "/lots_tombola/1000018964.jpg"],
   },
   {
     id: "lot-12",
@@ -255,7 +255,10 @@ export const lots: Lot[] = [
       fr: "Trois bons d'achat Franprix de 1 000 000 GNF chacun, soit 3 000 000 GNF.",
       en: "Three Franprix gift vouchers worth 1,000,000 GNF each, 3,000,000 GNF in total.",
     },
-    // Visuel provisoire, à remplacer par la photo du lot
-    images: ["/lots_tombola/visuel_provisoire_franprix.svg"],
+    conditions: {
+      fr: "Chèques cadeaux valables jusqu'au 3 janvier 2027.",
+      en: "Gift vouchers valid until 3 January 2027.",
+    },
+    images: ["/lots_tombola/franprix_cheques.jpg"],
   },
 ];
