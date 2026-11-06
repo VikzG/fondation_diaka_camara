@@ -35,13 +35,14 @@ const content = {
     errorTooMany: "Plusieurs réservations ont déjà été faites avec cette adresse. Merci de réessayer dans une heure.",
     errorGeneric: "La réservation n'a pas pu être envoyée. Vérifiez vos informations et réessayez, ou écrivez-nous à",
     doneTitle: "Votre réservation est enregistrée",
+    payNowTitle: "Dernière étape : effectuez votre paiement",
+    payNowText: "Votre ticket n'est pas encore validé. Réglez le montant ci-dessous avec le moyen de paiement choisi : vos numéros de ticket vous seront envoyés par e-mail dès réception du paiement.",
     reference: "Votre référence",
     tickets: (quantity: number, total: number) => `${quantity} ticket${quantity > 1 ? "s" : ""}, soit ${total} USD`,
     emailSent: "Ces instructions vous ont aussi été envoyées par e-mail. Pensez à vérifier vos courriers indésirables.",
     emailFailed: "L'e-mail de confirmation n'a pas pu être envoyé : notez bien votre référence.",
     payWithPaypal: (total: number) => `Payer ${total} USD avec PayPal`,
-    redirecting: "Redirection vers PayPal...",
-    paypalOpened: "La page PayPal s'ouvre dans un nouvel onglet. Si elle ne s'est pas ouverte, utilisez ce bouton :",
+    paypalOpened: "Cliquez sur ce bouton pour payer avec PayPal :",
     paypalNote: "Indiquez votre référence dans la note du paiement si PayPal vous le propose.",
     orangeNote: "Depuis Orange Money, scannez le QR code ou utilisez le code marchand ci-dessous, puis réglez ce montant.",
     orangeNoteCode: "Depuis Orange Money, réglez ce montant au code marchand ci-dessous.",
@@ -72,13 +73,14 @@ const content = {
     errorTooMany: "Several reservations have already been made with this address. Please try again in an hour.",
     errorGeneric: "Your reservation could not be sent. Please check your details and try again, or write to us at",
     doneTitle: "Your reservation has been recorded",
+    payNowTitle: "Final step: make your payment",
+    payNowText: "Your ticket is not confirmed yet. Pay the amount below with the payment method you chose: your ticket numbers will be emailed to you as soon as your payment is received.",
     reference: "Your reference",
     tickets: (quantity: number, total: number) => `${quantity} ticket${quantity > 1 ? "s" : ""}, ${total} USD in total`,
     emailSent: "These instructions have also been emailed to you. Please check your spam folder.",
     emailFailed: "The confirmation email could not be sent: please make a note of your reference.",
     payWithPaypal: (total: number) => `Pay ${total} USD with PayPal`,
-    redirecting: "Redirecting to PayPal...",
-    paypalOpened: "The PayPal page opens in a new tab. If it did not open, use this button:",
+    paypalOpened: "Click this button to pay with PayPal:",
     paypalNote: "Please include your reference in the payment note if PayPal offers this option.",
     orangeNote: "In Orange Money, scan the QR code or use the merchant code below, then pay this amount.",
     orangeNoteCode: "In Orange Money, pay this amount to the merchant code below.",
@@ -130,6 +132,10 @@ const ReservationDone = ({
         {t.doneTitle}
       </h3>
       <p className="text-licorice">{t.tickets(quantity, total)}</p>
+      <div className="flex w-full flex-col gap-1 rounded-xl border-2 border-pumpkin bg-white p-4">
+        <p className="font-extrabold text-licorice">{t.payNowTitle}</p>
+        <p className="text-sm text-licorice">{t.payNowText}</p>
+      </div>
       <InfoRow label={t.reference} value={reference} copyable />
 
       {method === "paypal" && (
@@ -205,12 +211,6 @@ export const ReservationForm = (): JSX.Element => {
     setSending(true);
     setError(null);
 
-    // L'onglet doit s'ouvrir pendant le clic, sinon les navigateurs le bloquent : il reçoit l'adresse de PayPal
-    // une fois la réservation enregistrée, et le bouton de la confirmation reste là s'il a été bloqué
-    const paymentTab = method === "paypal" ? window.open("", "_blank") : null;
-    paymentTab?.document.write(`<p style="font-family:sans-serif;text-align:center;margin-top:40px">${t.redirecting}</p>`);
-    let reserved = false;
-
     try {
       // Le format texte évite la requête préalable que Google Apps Script refuse
       const response = await fetch(RESERVATION_URL, {
@@ -229,19 +229,13 @@ export const ReservationForm = (): JSX.Element => {
       const result = await response.json();
 
       if (result.ok && result.reference) {
-        reserved = true;
         setReservation({ reference: result.reference, quantity, method, emailSent: result.emailSent });
-        if (paymentTab) {
-          paymentTab.opener = null;
-          paymentTab.location.href = `${PAYPAL_URL}/${quantity * TICKET_PRICE_USD}USD`;
-        }
       } else {
         setError(result.error === "too_many" ? "too_many" : "generic");
       }
     } catch {
       setError("generic");
     } finally {
-      if (!reserved) paymentTab?.close();
       setSending(false);
     }
   };

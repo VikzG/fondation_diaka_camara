@@ -23,7 +23,7 @@ export const TOMBOLA_BACKGROUND =
 
 // Tant que c'est false, le formulaire est masqué et les boutons affichent « Vente des tickets bientôt ouverte ».
 // Passer à true pour ouvrir les réservations.
-export const RESERVATIONS_OPEN = false;
+export const RESERVATIONS_OPEN = true;
 
 // Numéros : liste finale de la Fondation (tableau « Tombola 2 », 21 lots).
 // Descriptions rédigées d'après les photos, à valider par la Fondation avant la mise en ligne.

@@ -9,6 +9,7 @@ import { HeroSliderSubsection } from "./sections/HeroSliderSubsection/HeroSlider
 import { ImpactSubsection } from "./sections/ImpactSubsection/ImpactSubsection";
 import { PreActusSubsection } from "./sections/PreActusSubsection/PreActusSubsection";
 import { SliderCercleSubsection } from "./sections/SliderCercleSubsection";
+import { TombolaPopup } from "./sections/TombolaPopup/TombolaPopup";
 import { ValeursSubsection } from "./sections/ValeursSubsection/ValeursSubsection";
 
 export const PageHome = (): JSX.Element => {
@@ -27,6 +28,7 @@ export const PageHome = (): JSX.Element => {
         <ContactSubsection />
         <FooterSubsection />
       </div>
+      <TombolaPopup />
     </div>
   );
 };
