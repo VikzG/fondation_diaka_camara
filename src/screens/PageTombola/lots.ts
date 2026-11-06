@@ -214,13 +214,12 @@ export const lots: Lot[] = [
     // Visuel manquant
     id: "lot-18",
     number: "18",
-    name: { fr: "Retba : Un coffret et une bougie", en: "Retba: A gift box and a candle" },
+    name: { fr: "Retbaa : Un coffret et une bougie", en: "Retbaa: A gift box and a candle" },
     shortDescription: {
-      fr: "Un coffret et une bougie Retba.",
-      en: "A Retba gift box and candle.",
+      fr: "Un élégant coffret Retbaa, accompagné d'une bougie.",
+      en: "An elegant Retbaa gift box, together with a candle.",
     },
-    images: [],
-    hidden: true,
+    images: ["/lots_tombola/retbaa_coffret.jpg"],
   },
   {
     id: "lot-19",
