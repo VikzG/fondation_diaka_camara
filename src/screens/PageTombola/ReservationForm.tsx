@@ -36,6 +36,7 @@ const content = {
     errorGeneric: "La réservation n'a pas pu être envoyée. Vérifiez vos informations et réessayez, ou écrivez-nous à",
     doneTitle: "Votre réservation est enregistrée",
     payNowTitle: "Dernière étape : effectuez votre paiement",
+    spamWarning: "Nos e-mails peuvent arriver dans vos courriers indésirables (spams) : pensez à les vérifier.",
     payNowText: "Votre ticket n'est pas encore validé. Réglez le montant ci-dessous avec le moyen de paiement choisi : vos numéros de ticket vous seront envoyés par e-mail dès réception du paiement.",
     reference: "Votre référence",
     tickets: (quantity: number, total: number) => `${quantity} ticket${quantity > 1 ? "s" : ""}, soit ${total} USD`,
@@ -74,6 +75,7 @@ const content = {
     errorGeneric: "Your reservation could not be sent. Please check your details and try again, or write to us at",
     doneTitle: "Your reservation has been recorded",
     payNowTitle: "Final step: make your payment",
+    spamWarning: "Our emails may land in your spam folder: please check it.",
     payNowText: "Your ticket is not confirmed yet. Pay the amount below with the payment method you chose: your ticket numbers will be emailed to you as soon as your payment is received.",
     reference: "Your reference",
     tickets: (quantity: number, total: number) => `${quantity} ticket${quantity > 1 ? "s" : ""}, ${total} USD in total`,
@@ -135,6 +137,7 @@ const ReservationDone = ({
       <div className="flex w-full flex-col gap-1 rounded-xl border-2 border-pumpkin bg-white p-4">
         <p className="font-extrabold text-licorice">{t.payNowTitle}</p>
         <p className="text-sm text-licorice">{t.payNowText}</p>
+        <p className="text-sm font-bold text-carmin">{t.spamWarning}</p>
       </div>
       <InfoRow label={t.reference} value={reference} copyable />
 

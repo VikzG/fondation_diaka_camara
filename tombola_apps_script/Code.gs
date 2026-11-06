@@ -259,7 +259,7 @@ function reservationEmail(reservation, reference) {
   const instructions = paymentInstructions(reservation, reference);
   if (reservation.lang === "en") {
     return {
-      subject: `Your raffle reservation ${reference}`,
+      subject: `Diaka Camara Foundation: your reservation ${reference}`,
       paragraphs: [
         `Hello ${reservation.name},`,
         `We have received your reservation for ${reservation.quantity} raffle ticket(s). Your reference is ${reference}.`,
@@ -270,7 +270,7 @@ function reservationEmail(reservation, reference) {
     };
   }
   return {
-    subject: `Votre réservation de tombola ${reference}`,
+    subject: `Fondation Diaka Camara : votre réservation ${reference}`,
     paragraphs: [
       `Bonjour ${reservation.name},`,
       `Nous avons bien reçu votre réservation de ${reservation.quantity} ticket(s) de tombola. Votre référence est ${reference}.`,
@@ -285,7 +285,7 @@ function ticketEmail(name, reference, numbers, lang) {
   const list = numbers.join(", ");
   if (lang === "en") {
     return {
-      subject: `Your raffle ticket(s): ${list}`,
+      subject: `Diaka Camara Foundation: your numbers (${reference})`,
       paragraphs: [
         `Hello ${name},`,
         `We have confirmed your payment for reservation ${reference}.`,
@@ -296,7 +296,7 @@ function ticketEmail(name, reference, numbers, lang) {
     };
   }
   return {
-    subject: `Votre ou vos tickets de tombola : ${list}`,
+    subject: `Fondation Diaka Camara : vos numéros (${reference})`,
     paragraphs: [
       `Bonjour ${name},`,
       `Nous avons bien confirmé votre paiement pour la réservation ${reference}.`,
