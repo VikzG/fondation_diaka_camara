@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" viewBox="0 0 800 800">
+  <rect width="800" height="800" fill="#faf2d7"/>
+  <rect x="40" y="40" width="720" height="720" fill="none" stroke="#f06419" stroke-width="3"/>
+  <text x="400" y="330" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="96" letter-spacing="10" fill="#160a00">FRANPRIX</text>
+  <text x="400" y="410" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-style="italic" font-size="40" fill="#0a4ba5">3 bons d'achat de 1 000 000 GNF</text>
+  <line x1="320" y1="470" x2="480" y2="470" stroke="#f06419" stroke-width="3"/>
+  <text x="400" y="540" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="30" letter-spacing="4" fill="#5d5247">PHOTO BIENTÔT DISPONIBLE</text>
+</svg>

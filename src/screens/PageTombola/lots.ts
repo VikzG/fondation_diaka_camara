@@ -25,7 +25,7 @@ export const TOMBOLA_BACKGROUND =
 // Passer à true pour ouvrir les réservations.
 export const RESERVATIONS_OPEN = false;
 
-// Numéros : liste officielle de la Fondation (tableau « Tombola FDC Gala 2026 »).
+// Numéros : liste finale de la Fondation (tableau « Tombola 2 », 21 lots).
 // Descriptions rédigées d'après les photos, à valider par la Fondation avant la mise en ligne.
 // L'ordre du tableau est l'ordre d'affichage sur le site.
 export const lots: Lot[] = [
@@ -60,26 +60,16 @@ export const lots: Lot[] = [
   {
     id: "lot-03",
     number: "03",
-    name: { fr: "The Box Homes : Tableau décor 1", en: "The Box Homes: Decorative painting 1" },
+    name: { fr: "The Box Homes : 2 tableaux décor", en: "The Box Homes: 2 decorative paintings" },
     shortDescription: {
-      fr: "Une œuvre abstraite encadrée, où de larges formes noires se détachent sur un fond ocre craquelé.",
-      en: "A framed abstract artwork in which broad black shapes stand out against a crackled ochre background.",
+      fr: "Deux tableaux de décoration d'intérieur, réunis dans un seul lot.",
+      en: "Two interior decoration paintings, together in a single prize.",
     },
-    images: ["/lots_tombola/1000018952.jpg"],
+    images: ["/lots_tombola/1000018952.jpg", "/lots_tombola/1000018955.jpg"],
   },
   {
     id: "lot-04",
     number: "04",
-    name: { fr: "The Box Homes : Tableau décor 2", en: "The Box Homes: Decorative painting 2" },
-    shortDescription: {
-      fr: "Une œuvre abstraite encadrée, aux nuances de blanc, de gris et de noir relevées de touches de bleu.",
-      en: "A framed abstract artwork in shades of white, grey and black, with touches of blue.",
-    },
-    images: ["/lots_tombola/1000018955.jpg"],
-  },
-  {
-    id: "lot-05",
-    number: "05",
     name: { fr: "Le Solitaire : BAOBAB COLLECTION Bougie blanche Max 24", en: "Le Solitaire: BAOBAB COLLECTION white candle Max 24" },
     shortDescription: {
       fr: "Une bougie Baobab Collection à la silhouette élégante, dans un verre d'un blanc nacré.",
@@ -88,8 +78,8 @@ export const lots: Lot[] = [
     images: ["/lots_tombola/1000018937.jpg"],
   },
   {
-    id: "lot-06",
-    number: "06",
+    id: "lot-05",
+    number: "05",
     name: { fr: "Le Solitaire : BAOBAB COLLECTION Bougie verte Max 24", en: "Le Solitaire: BAOBAB COLLECTION green candle Max 24" },
     shortDescription: {
       fr: "Une bougie Baobab Collection dont le verre est habillé d'un motif graphique vert et gris.",
@@ -98,8 +88,8 @@ export const lots: Lot[] = [
     images: ["/lots_tombola/1000018938.jpg"],
   },
   {
-    id: "lot-07",
-    number: "07",
+    id: "lot-06",
+    number: "06",
     name: { fr: "Le Solitaire : Boucles d'oreilles Or 18 Karat bicolore", en: "Le Solitaire: 18 karat two-tone gold earrings" },
     shortDescription: {
       fr: "Des boucles d'oreilles rondes et dorées, dont le centre à facettes capte la lumière.",
@@ -108,8 +98,8 @@ export const lots: Lot[] = [
     images: ["/lots_tombola/1000018947.jpg"],
   },
   {
-    id: "lot-08",
-    number: "08",
+    id: "lot-07",
+    number: "07",
     name: { fr: "Le Solitaire : Boucles d'oreilles Or jaune 18kt", en: "Le Solitaire: 18kt yellow gold earrings" },
     shortDescription: {
       fr: "Des boucles d'oreilles rondes et dorées, aux lignes douces, ornées d'une pierre brillante.",
@@ -118,8 +108,8 @@ export const lots: Lot[] = [
     images: ["/lots_tombola/1000018951.jpg"],
   },
   {
-    id: "lot-09",
-    number: "09",
+    id: "lot-08",
+    number: "08",
     name: { fr: "Porte carte et porte monnaie Hugo Boss", en: "Hugo Boss card holder and coin purse" },
     shortDescription: {
       fr: "Un portefeuille et un porte-cartes noirs à motif tressé, réunis dans leur coffret BOSS.",
@@ -129,8 +119,8 @@ export const lots: Lot[] = [
     imageBackground: "#ebebeb",
   },
   {
-    id: "lot-10",
-    number: "10",
+    id: "lot-09",
+    number: "09",
     name: { fr: "64 Mark Avenue : Atelier Noir by Night Des Ors 100ml", en: "64 Mark Avenue: Atelier Noir by Night Des Ors 100ml" },
     shortDescription: {
       fr: "Un flacon du noir au transparent, coiffé d'un bouchon doré et animé de paillettes d'or.",
@@ -139,8 +129,8 @@ export const lots: Lot[] = [
     images: ["/lots_tombola/1000018939.jpg"],
   },
   {
-    id: "lot-11",
-    number: "11",
+    id: "lot-10",
+    number: "10",
     name: { fr: "Djeddah Voyages : Billet d'avion Conakry-Abidjan A/R", en: "Djeddah Voyages: Conakry-Abidjan return flight ticket" },
     shortDescription: {
       fr: "Un billet d'avion aller-retour entre Conakry et Abidjan, offert avec l'agence Djeddah Voyages.",
@@ -149,50 +139,33 @@ export const lots: Lot[] = [
     images: ["/lots_tombola/bon_djeddah_voyages.webp"],
   },
   {
+    id: "lot-11",
+    number: "11",
+    name: { fr: "Avenue Group : Bons de consommation L'Avenue, Upstairs et Salma's", en: "Avenue Group: Dining vouchers for L'Avenue, Upstairs and Salma's" },
+    shortDescription: {
+      fr: "Des bons de consommation dans 3 restaurants du groupe, pour une valeur totale de 2 600 000 GNF.",
+      en: "Dining vouchers for 3 of the group's restaurants, worth 2,600,000 GNF in total.",
+    },
+    description: {
+      fr: "Deux bons de 500 000 GNF pour L'Avenue, deux bons de 500 000 GNF pour Upstairs et deux bons de 300 000 GNF pour Salma's, soit une valeur totale de 2 600 000 GNF.",
+      en: "Two 500,000 GNF vouchers for L'Avenue, two 500,000 GNF vouchers for Upstairs and two 300,000 GNF vouchers for Salma's, worth 2,600,000 GNF in total.",
+    },
+    images: ["/lots_tombola/1000018961.jpg", "/lots_tombola/1000018967.jpg", "/lots_tombola/1000018964.jpg"],
+  },
+  {
     id: "lot-12",
     number: "12",
-    name: { fr: "Bon de consommation du restaurant l'Avenue d'un million de francs guinéens", en: "Dining voucher for L'Avenue restaurant worth one million Guinean francs" },
+    name: { fr: "Montale : Parfum, crème corps et bougie parfumée", en: "Montale: Perfume, body cream and scented candle" },
     shortDescription: {
-      fr: "Deux bons de consommation de 500 000 GNF chacun, soit une valeur de 1 000 000 GNF, à utiliser au Avenue Resto.",
-      en: "Two dining vouchers worth 500,000 GNF each, for a total value of 1,000,000 GNF, to use at Avenue Resto.",
+      fr: "Un parfum de 100 ml, une crème pour le corps et une bougie parfumée Montale.",
+      en: "A 100 ml perfume, a body cream and a scented candle by Montale.",
     },
-    images: ["/lots_tombola/1000018961.jpg"],
+    // Visuel provisoire, à remplacer par la photo du lot
+    images: ["/lots_tombola/visuel_provisoire_montale.svg"],
   },
   {
     id: "lot-13",
     number: "13",
-    name: { fr: "Bon de consommation du restaurant Upstairs d'un million de francs guinéens", en: "Dining voucher for Upstairs restaurant worth one million Guinean francs" },
-    shortDescription: {
-      fr: "Deux bons de consommation de 500 000 GNF chacun, soit une valeur de 1 000 000 GNF, à utiliser au Upstairs Lounge.",
-      en: "Two vouchers worth 500,000 GNF each, for a total value of 1,000,000 GNF, to use at Upstairs Lounge.",
-    },
-    images: ["/lots_tombola/1000018967.jpg"],
-  },
-  {
-    id: "lot-14",
-    number: "14",
-    name: { fr: "Bon de consommation restaurant Salma's de six cent mille francs guinéens", en: "Dining voucher for Salma's restaurant worth six hundred thousand Guinean francs" },
-    shortDescription: {
-      fr: "Deux bons de consommation de 300 000 GNF chacun, soit une valeur de 600 000 GNF, à utiliser au Salma's Diner.",
-      en: "Two dining vouchers worth 300,000 GNF each, for a total value of 600,000 GNF, to use at Salma's Diner.",
-    },
-    images: ["/lots_tombola/1000018964.jpg"],
-  },
-  {
-    // Contenu du lot en attente et visuel manquant
-    id: "lot-15",
-    number: "15",
-    name: { fr: "Montale", en: "Montale" },
-    shortDescription: {
-      fr: "Un lot de la marque de parfum Montale.",
-      en: "A prize from the perfume brand Montale.",
-    },
-    images: [],
-    hidden: true,
-  },
-  {
-    id: "lot-16",
-    number: "16",
     name: { fr: "Colonie : Une box de 6 produits + jeu de cartes + jeu de Ludo", en: "Colonie: A box of 6 products + card game + Ludo game" },
     shortDescription: {
       fr: "Un coffret gourmand autour du miel, accompagné de ses cuillères à miel en bois.",
@@ -201,8 +174,8 @@ export const lots: Lot[] = [
     images: ["/lots_tombola/1000018936.jpg"],
   },
   {
-    id: "lot-17",
-    number: "17",
+    id: "lot-14",
+    number: "14",
     name: { fr: "Elie KOUAME : Sandales + sac", en: "Elie KOUAME: Sandals + bag" },
     shortDescription: {
       fr: "Un sac de luxe et une paire de sandales.",
@@ -211,19 +184,18 @@ export const lots: Lot[] = [
     images: ["/lots_tombola/elie_kouame_sac.jpg", "/lots_tombola/elie_kouame_sandales.jpg"],
   },
   {
-    // Visuel manquant
-    id: "lot-18",
-    number: "18",
-    name: { fr: "Retbaa : Un coffret et une bougie", en: "Retbaa: A gift box and a candle" },
+    id: "lot-15",
+    number: "15",
+    name: { fr: "Retbaa : Coffrets de produits", en: "Retbaa: Product gift boxes" },
     shortDescription: {
-      fr: "Un élégant coffret Retbaa, accompagné d'une bougie.",
-      en: "An elegant Retbaa gift box, together with a candle.",
+      fr: "Des coffrets de produits Retbaa, marque d'art de vivre.",
+      en: "Product gift boxes by Retbaa, a lifestyle brand.",
     },
     images: ["/lots_tombola/retbaa_coffret.jpg"],
   },
   {
-    id: "lot-19",
-    number: "19",
+    id: "lot-16",
+    number: "16",
     name: { fr: "Zen Garden : Abonnement soins", en: "Zen Garden: Spa treatment subscription" },
     shortDescription: {
       fr: "Un abonnement soins chez Zen Garden Spa & Beauty, d'une valeur de 2 500 000 GNF.",
@@ -232,8 +204,8 @@ export const lots: Lot[] = [
     images: ["/lots_tombola/bon_zen_garden.webp"],
   },
   {
-    id: "lot-20",
-    number: "20",
+    id: "lot-17",
+    number: "17",
     name: { fr: "Twinsbrokers : Assurance voyage", en: "Twinsbrokers: Travel insurance" },
     shortDescription: {
       fr: "Une assurance voyage proposée par Twinsbrokers, d'une valeur de 1 000 000 GNF.",
@@ -242,8 +214,8 @@ export const lots: Lot[] = [
     images: ["/lots_tombola/bon_twinsbrokers.webp"],
   },
   {
-    id: "lot-21",
-    number: "21",
+    id: "lot-18",
+    number: "18",
     name: { fr: "Sonia Mugabo : Robe Agaseke", en: "Sonia Mugabo: Agaseke dress" },
     shortDescription: {
       fr: "L'imprimé de cette robe s'inspire du panier traditionnel rwandais, connu sous le nom d'Agaseke.",
@@ -256,8 +228,8 @@ export const lots: Lot[] = [
     images: ["/lots_tombola/sonia_mugabo_robe.jpg"],
   },
   {
-    id: "lot-22",
-    number: "22",
+    id: "lot-19",
+    number: "19",
     name: { fr: "Robe en Bazin", en: "Bazin dress" },
     shortDescription: {
       fr: "Une robe longue à épaules dénudées et manches bouffantes, aux motifs violets et blancs rehaussés de broderies.",
@@ -266,8 +238,8 @@ export const lots: Lot[] = [
     images: ["/lots_tombola/1000018934.jpg"],
   },
   {
-    id: "lot-23",
-    number: "23",
+    id: "lot-20",
+    number: "20",
     name: { fr: "Costume Hugo Boss", en: "Hugo Boss suit" },
     shortDescription: {
       fr: "Une veste de costume beige signée BOSS, à la coupe élégante et sobre.",
@@ -276,15 +248,14 @@ export const lots: Lot[] = [
     images: ["/lots_tombola/1000018935.jpg"],
   },
   {
-    // Visuel manquant
-    id: "lot-24",
-    number: "24",
-    name: { fr: "Air Côte d'Ivoire : Billet d'avion business Abidjan-Conakry", en: "Air Côte d'Ivoire: Abidjan-Conakry business class ticket" },
+    id: "lot-21",
+    number: "21",
+    name: { fr: "Franprix : 3 bons d'achat", en: "Franprix: 3 gift vouchers" },
     shortDescription: {
-      fr: "Un billet d'avion en classe business entre Abidjan et Conakry.",
-      en: "A business class flight ticket between Abidjan and Conakry.",
+      fr: "Trois bons d'achat Franprix de 1 000 000 GNF chacun, soit 3 000 000 GNF.",
+      en: "Three Franprix gift vouchers worth 1,000,000 GNF each, 3,000,000 GNF in total.",
     },
-    images: [],
-    hidden: true,
+    // Visuel provisoire, à remplacer par la photo du lot
+    images: ["/lots_tombola/visuel_provisoire_franprix.svg"],
   },
 ];
