@@ -160,8 +160,7 @@ export const lots: Lot[] = [
       fr: "Un parfum de 100 ml, une crème pour le corps et une bougie parfumée Montale.",
       en: "A 100 ml perfume, a body cream and a scented candle by Montale.",
     },
-    // Visuel provisoire, à remplacer par la photo du lot
-    images: ["/lots_tombola/visuel_provisoire_montale.svg"],
+    images: ["/lots_tombola/montale_coffret.jpg"],
   },
   {
     id: "lot-13",
