@@ -8,6 +8,7 @@ import {
   ZELLE,
   type DonationMethodId,
 } from "../../components/DonationMethods";
+import { reservationsClosed } from "./lots";
 import { useLanguage, useTranslation } from "../../lib/i18n";
 
 // Application Web Google Apps Script reliée au Google Sheet de la tombola (voir tombola_apps_script/Code.gs)
@@ -33,6 +34,7 @@ const content = {
     submit: "Réserver mes tickets",
     sending: "Envoi en cours...",
     errorTooMany: "Plusieurs réservations ont déjà été faites avec cette adresse. Merci de réessayer dans une heure.",
+    errorClosed: "La vente des tickets est terminée depuis 23 h (heure de Conakry).",
     errorGeneric: "La réservation n'a pas pu être envoyée. Vérifiez vos informations et réessayez, ou écrivez-nous à",
     doneTitle: "Votre réservation est enregistrée",
     payNowTitle: "Dernière étape : effectuez votre paiement",
@@ -72,6 +74,7 @@ const content = {
     submit: "Reserve my tickets",
     sending: "Sending...",
     errorTooMany: "Several reservations have already been made with this address. Please try again in an hour.",
+    errorClosed: "Ticket sales closed at 11 pm (Conakry time).",
     errorGeneric: "Your reservation could not be sent. Please check your details and try again, or write to us at",
     doneTitle: "Your reservation has been recorded",
     payNowTitle: "Final step: make your payment",
@@ -202,12 +205,16 @@ export const ReservationForm = (): JSX.Element => {
   const id = useId();
   const [quantity, setQuantity] = useState(1);
   const [sending, setSending] = useState(false);
-  const [error, setError] = useState<"too_many" | "generic" | null>(null);
+  const [error, setError] = useState<"too_many" | "generic" | "closed" | null>(null);
   const [reservation, setReservation] = useState<Reservation | null>(null);
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (sending) return;
+    if (reservationsClosed()) {
+      setError("closed");
+      return;
+    }
 
     const form = new FormData(event.currentTarget);
     const method = form.get("method") as DonationMethodId;
@@ -316,6 +323,7 @@ export const ReservationForm = (): JSX.Element => {
 
       <div aria-live="polite" className="text-center text-sm font-bold text-carmin">
         {error === "too_many" && t.errorTooMany}
+        {error === "closed" && t.errorClosed}
         {error === "generic" && (
           <>
             {t.errorGeneric}{" "}

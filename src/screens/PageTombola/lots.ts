@@ -25,6 +25,11 @@ export const TOMBOLA_BACKGROUND =
 // Passer à true pour ouvrir les réservations.
 export const RESERVATIONS_OPEN = true;
 
+// Clôture automatique des ventes : 7 novembre 2026 à 23 h 00, heure de Conakry (GMT, sans changement d'heure)
+export const RESERVATIONS_CLOSE_AT = Date.UTC(2026, 10, 7, 23, 0, 0);
+
+export const reservationsClosed = (): boolean => Date.now() >= RESERVATIONS_CLOSE_AT;
+
 // Numéros : liste finale de la Fondation (tableau « Tombola 2 », 21 lots).
 // Descriptions rédigées d'après les photos, à valider par la Fondation avant la mise en ligne.
 // L'ordre du tableau est l'ordre d'affichage sur le site.

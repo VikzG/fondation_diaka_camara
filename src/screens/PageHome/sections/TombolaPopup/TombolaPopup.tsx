@@ -4,7 +4,7 @@ import { AnimatePresence, MotionConfig, motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { X } from "lucide-react";
 import { useTranslation } from "../../../../lib/i18n";
-import { TOMBOLA_BACKGROUND } from "../../../PageTombola/lots";
+import { reservationsClosed, TOMBOLA_BACKGROUND } from "../../../PageTombola/lots";
 
 // Passer à false après le tirage pour retirer le pop-up de l'accueil
 const POPUP_ACTIVE = true;
@@ -53,7 +53,7 @@ export const TombolaPopup = (): JSX.Element | null => {
 
   // Une seule fois par visite, et après l'affichage de la page
   useEffect(() => {
-    if (!POPUP_ACTIVE || wasDismissed()) return;
+    if (!POPUP_ACTIVE || reservationsClosed() || wasDismissed()) return;
     const timer = setTimeout(() => setOpen(true), OPEN_DELAY_MS);
     return () => clearTimeout(timer);
   }, []);

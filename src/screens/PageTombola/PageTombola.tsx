@@ -4,7 +4,8 @@ import { HashLink } from "react-router-hash-link";
 import { ArrowLeft } from "lucide-react";
 import { FooterSubsection } from "../PageHome/sections/FooterSubsection/FooterSubsection";
 import { useLanguage, useTranslation } from "../../lib/i18n";
-import { lots, RESERVATIONS_OPEN, TOMBOLA_BACKGROUND, type Lot } from "./lots";
+import { lots, TOMBOLA_BACKGROUND, type Lot } from "./lots";
+import { useReservationsStatus } from "./useReservationsOpen";
 import { ReservationForm } from "./ReservationForm";
 
 const content = {
@@ -26,6 +27,7 @@ const content = {
     buy: "Réserver mon ticket de tombola",
     buyShort: "Réserver un ticket — 100 USD",
     soon: "Vente des tickets bientôt ouverte",
+    closed: "Vente des tickets terminée",
     backToLots: "Tous les lots",
     conditions: "Conditions",
     photo: "Photo",
@@ -48,6 +50,7 @@ const content = {
     buy: "Reserve my raffle ticket",
     buyShort: "Reserve a ticket — 100 USD",
     soon: "Ticket sales opening soon",
+    closed: "Ticket sales are closed",
     backToLots: "All prizes",
     conditions: "Conditions",
     photo: "Photo",
@@ -63,8 +66,14 @@ const BuyButton = ({ label, className = "" }: { label: string; className?: strin
   const t = useTranslation(content);
   const base = "inline-flex items-center justify-center gap-2 min-h-[48px] px-6 py-3 rounded-xl font-extrabold text-center";
 
-  if (!RESERVATIONS_OPEN) {
-    return <span className={`${base} bg-gray-300 text-gray-600 cursor-not-allowed ${className}`}>{t.soon}</span>;
+  const status = useReservationsStatus();
+
+  if (status !== "open") {
+    return (
+      <span className={`${base} bg-gray-300 text-gray-600 cursor-not-allowed ${className}`}>
+        {status === "closed" ? t.closed : t.soon}
+      </span>
+    );
   }
 
   return (
@@ -240,6 +249,7 @@ const LotDetails = ({ lot }: { lot: Lot }): JSX.Element => {
 };
 
 export const PageTombola = (): JSX.Element => {
+  const reservationsStatus = useReservationsStatus();
   const t = useTranslation(content);
   const { lotId } = useParams();
   const selectedLot = visibleLots.find((lot) => lot.id === lotId);
@@ -283,7 +293,7 @@ export const PageTombola = (): JSX.Element => {
           <p>{t.about2}</p>
           <p>{t.about3}</p>
         </div>
-        {RESERVATIONS_OPEN ? (
+        {reservationsStatus === "open" ? (
           <div id="reserver" className="flex w-full scroll-mt-24 justify-center">
             <ReservationForm />
           </div>
